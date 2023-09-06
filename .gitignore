@@ -23,13 +23,24 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# local env files
-.env*.local
+.pnpm-debug.log*
 
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+.idea
+pnpm-lock.yaml
+
+.env
+
+cypress/reports/junit/
+
+cypress/videos/
+
+cypress/screenshots/
+
+.env.local
+
+cypress.env.json
+
+yarn.lock
