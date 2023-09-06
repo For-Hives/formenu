@@ -3,51 +3,58 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
-  list-style: none;
-  text-decoration: none;
-  transition: opacity, z-index, color ease-in-out .3s;
-  font-family: 'new-hero', sans-serif;
-  font-weight: 400;
-  color: #fff;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	transition: opacity, z-index, color ease-in-out 0.3s;
+	font-family: 'new-hero', sans-serif;
+	font-weight: 400;
+	color: #fff;
 }
 
 body {
-  box-sizing: border-box;
-  display: inline-block;
-  width: 100vw;
-  max-width: 100vw;
-  clear: both;
-  overflow-x: hidden
+	box-sizing: border-box;
+	display: inline-block;
+	width: 100vw;
+	max-width: 100vw;
+	clear: both;
+	overflow-x: hidden;
 }
 
 html {
-  overflow-x: hidden;
-  max-width: 100vw;
-  scroll-behavior: smooth
+	overflow-x: hidden;
+	max-width: 100vw;
+	scroll-behavior: smooth;
 }
 
 nav a {
-  text-decoration: none
+	text-decoration: none;
 }
 
-h1, h1 *, h2, h3, h4, h5, h6, nav * {
-  font-family: 'Chennai', serif;
-  font-weight: 400;
-  font-style: normal;
+h1,
+h1 *,
+h2,
+h3,
+h4,
+h5,
+h6,
+nav * {
+	font-family: 'Chennai', serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 @media screen and (min-width: 768px) {
-  ::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
+	::-webkit-scrollbar {
+		-webkit-appearance: none;
+		width: 7px;
+	}
 }
 
 @media screen and (min-width: 768px) {
-  ::-webkit-scrollbar-thumb {
-    border-radius: 2rem;
-    background-color: #19191e4d;
-    -webkit-box-shadow: 0 0 1px hsl(0deg 0% 100% / 50%);
-  }
+	::-webkit-scrollbar-thumb {
+		border-radius: 2rem;
+		background-color: #19191e4d;
+		-webkit-box-shadow: 0 0 1px hsl(0deg 0% 100% / 50%);
+	}
 }
