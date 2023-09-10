@@ -38,7 +38,7 @@ export default function RootLayout({ children }) {
 					src={'/images/bg_3.jpg'}
 					alt={'Background restaurant 3'}
 				/>
-				{children}
+				<main>{children}</main>
 			</body>
 		</html>
 	)
