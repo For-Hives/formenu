@@ -12,6 +12,10 @@ module.exports = {
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 			},
+			rotate: {
+				15: '15deg',
+				30: '30deg',
+			},
 		},
 	},
 	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

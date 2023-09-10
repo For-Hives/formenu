@@ -1,19 +1,17 @@
 import Image from 'next/image'
 
-export function CardBackground() {
+export function CardBackground({ placementClassName, src, alt }) {
 	return (
 		<div
-			className={
-				'fixed -right-24 -top-48 -z-10 h-[75vw] w-[50vw] rotate-12 transform'
-			}
+			className={`fixed -z-10 h-[75vw] w-[50vw] transform ${placementClassName} grayscale`}
 		>
 			<div className={'relative h-full w-full'}>
 				<Image
 					className={'rounded-xl object-cover object-center'}
-					src={'/images/bg_1.jpg'}
+					src={src ?? '/images/bg_1.jpg'}
 					fill
 					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-					alt={'bg_restaurant'}
+					alt={alt ?? 'Background'}
 				/>
 			</div>
 			<div
