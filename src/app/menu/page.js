@@ -1,7 +1,7 @@
 export default function Page({ params }) {
 	return (
 		<>
-			<h1>Menu Page {params.menu}</h1>
+			<h1 className={'text-slate-950'}>Menu Page</h1>
 		</>
 	)
 }
