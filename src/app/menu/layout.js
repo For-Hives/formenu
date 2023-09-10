@@ -12,12 +12,14 @@ export default function Layout({ children }) {
 						alt={'logo_restaurant'}
 					/>
 					<div className={'flex flex-col gap-2'}>
-						<h1>Les pieds dans l'eau</h1>
+						<h1 className={'formenu-h1'}>{`Les pieds dans l'eau`}</h1>
 						<h2 className={'ml-4'}>traditionnel et authentique</h2>
 					</div>
 				</div>
-				<h2>Menu Layout</h2>
-				{children}
+				<div className={'mt-20'}>
+					<h2>Menu Layout</h2>
+					{children}
+				</div>
 			</section>
 		</>
 	)

@@ -3,7 +3,7 @@ import Image from 'next/image'
 export function CardBackground({ placementClassName, src, alt }) {
 	return (
 		<div
-			className={`fixed -z-10 h-[75vw] w-[50vw] transform ${placementClassName} opacity-30 grayscale`}
+			className={`fixed -z-10 h-[75vw] w-[50vw] transform md:h-[50vw] md:w-[33vw] lg:h-[40vw] lg:w-[25vw] xl:h-[35vw] xl:w-[25vw] 2xl:h-[30vw] 2xl:w-[20vw] ${placementClassName} opacity-30 grayscale`}
 		>
 			<div className={'relative h-full w-full'}>
 				<Image
