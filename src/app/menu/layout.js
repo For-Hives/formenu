@@ -17,7 +17,7 @@ export default function Layout({ children }) {
 					</div>
 				</div>
 				<div className={'mt-20'}>
-					<h2>Menu Layout</h2>
+					<h2>(Menu Layout)</h2>
 					{children}
 				</div>
 			</section>

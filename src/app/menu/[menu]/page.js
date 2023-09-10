@@ -4,11 +4,10 @@ export async function generateStaticParams() {
 
 export default function Page({ params }) {
 	const { menu } = params
+	console.log('menu', menu)
 	return (
 		<>
-			<h3>in menu (sub) - menu param : [{params.menu}]</h3>
-			<h3>in menu (sub) - category param : [{params.category}]</h3>
-			<h3>in menu (sub) - dish param : [{params.dish}]</h3>
+			<div>menu</div>
 		</>
 	)
 }
