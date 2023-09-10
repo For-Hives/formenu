@@ -1,0 +1,780 @@
+{
+	"version": 2,
+	"data": {
+		"api::menu.menu": {
+			"1": {
+				"id": 1,
+				"title": "Menu classique",
+				"description": "Menu classique (desc)",
+				"activated": true,
+				"createdAt": "2023-09-10T15:32:17.857Z",
+				"updatedAt": "2023-09-10T15:36:04.169Z",
+				"locale": "fr",
+				"company": 1,
+				"categories": [
+					1,
+					5,
+					2,
+					4,
+					3
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"title": "Menu du jour",
+				"description": "Menu du jour (desc)",
+				"activated": true,
+				"createdAt": "2023-09-10T15:35:25.634Z",
+				"updatedAt": "2023-09-10T15:35:54.047Z",
+				"locale": "fr",
+				"company": 1,
+				"categories": [],
+				"localizations": [],
+				"createdBy": 1,
+				"updatedBy": 1
+			},
+			"3": {
+				"id": 3,
+				"title": "Menu du mois",
+				"description": "Menu du mois (desc)",
+				"activated": true,
+				"createdAt": "2023-09-10T15:35:34.820Z",
+				"updatedAt": "2023-09-10T15:36:41.631Z",
+				"locale": "fr",
+				"company": 1,
+				"categories": [],
+				"localizations": [],
+				"createdBy": 1,
+				"updatedBy": 1
+			},
+			"4": {
+				"id": 4,
+				"title": "Menu de Noël",
+				"description": "Menu de Noël (desc)",
+				"activated": true,
+				"createdAt": "2023-09-10T15:36:31.729Z",
+				"updatedAt": "2023-09-10T15:36:47.568Z",
+				"locale": "fr",
+				"company": 1,
+				"categories": [],
+				"localizations": [],
+				"createdBy": 1,
+				"updatedBy": 1
+			}
+		},
+		"api::category.category": {
+			"1": {
+				"id": 1,
+				"name": "Nos fruits de Mer",
+				"createdAt": "2023-09-10T15:34:42.363Z",
+				"updatedAt": "2023-09-10T15:34:42.363Z",
+				"locale": "fr",
+				"menu": 1,
+				"category": null,
+				"categories": [],
+				"dishes": [
+					1,
+					2,
+					3,
+					4,
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"name": "Entrées",
+				"createdAt": "2023-09-10T15:34:52.317Z",
+				"updatedAt": "2023-09-10T15:37:28.685Z",
+				"locale": "fr",
+				"menu": 1,
+				"category": null,
+				"categories": [],
+				"dishes": [],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"3": {
+				"id": 3,
+				"name": "Plats",
+				"createdAt": "2023-09-10T15:34:58.776Z",
+				"updatedAt": "2023-09-10T15:37:41.050Z",
+				"locale": "fr",
+				"menu": 1,
+				"category": null,
+				"categories": [],
+				"dishes": [],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"4": {
+				"id": 4,
+				"name": "Desserts",
+				"createdAt": "2023-09-10T15:35:04.331Z",
+				"updatedAt": "2023-09-10T15:37:37.334Z",
+				"locale": "fr",
+				"menu": 1,
+				"category": null,
+				"categories": [],
+				"dishes": [],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"5": {
+				"id": 5,
+				"name": "Menus",
+				"createdAt": "2023-09-10T15:35:09.701Z",
+				"updatedAt": "2023-09-10T15:37:24.419Z",
+				"locale": "fr",
+				"menu": 1,
+				"category": null,
+				"categories": [],
+				"dishes": [],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"api::company.company": {
+			"1": {
+				"id": 1,
+				"name": "Les pieds dans l'eau",
+				"description": "traditionnel et authentique",
+				"country": "France",
+				"postcode": 74200,
+				"street": "Plage De Corzent, 14 Rue de la Plage",
+				"city": "Anthy-sur-Léman",
+				"createdAt": "2023-09-10T15:24:49.616Z",
+				"updatedAt": "2023-09-10T15:27:37.415Z",
+				"locale": "fr",
+				"logo": 1,
+				"background": null,
+				"users": [],
+				"menus": [
+					1,
+					2,
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"api::dish.dish": {
+			"1": {
+				"id": 1,
+				"activated": true,
+				"name": "6 Huîtres",
+				"description": "Fraîches et salées, nos huîtres sont servies sur un lit de glace pilée avec des quartiers de citron pour une touche d'acidité. Dégustez-les telles quelles ou accompagnez-les de notre vinaigrette maison pour une expérience gustative encore plus riche.",
+				"is_allergen_gluten": false,
+				"is_allergen_shellfishs": true,
+				"is_allergen_eggs": true,
+				"is_allergen_fishes": false,
+				"is_allergen_peanuts": false,
+				"is_allergen_soybeans": true,
+				"is_allergen_milk": false,
+				"is_allergen_nuts": false,
+				"is_allergen_celery": false,
+				"is_allergen_mustard": true,
+				"is_allergen_sesams": false,
+				"is_allergen_sulphurous_anhydre": false,
+				"is_allergen_lupins": false,
+				"is_allergen_mollusks": false,
+				"is_vegetarian": false,
+				"is_vegan": false,
+				"is_sidedish": false,
+				"createdAt": "2023-09-10T15:43:22.100Z",
+				"updatedAt": "2023-09-10T15:59:26.465Z",
+				"locale": "fr",
+				"dishes": [],
+				"dishes_2": null,
+				"category": 1,
+				"ingredients": [
+					2,
+					1,
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"activated": true,
+				"name": "12 Huîtres",
+				"description": "Fraîches et salées, nos huîtres sont servies sur un lit de glace pilée avec des quartiers de citron pour une touche d'acidité. Dégustez-les telles quelles ou accompagnez-les de notre vinaigrette maison pour une expérience gustative encore plus riche.",
+				"is_allergen_gluten": null,
+				"is_allergen_shellfishs": false,
+				"is_allergen_eggs": true,
+				"is_allergen_fishes": false,
+				"is_allergen_peanuts": true,
+				"is_allergen_soybeans": true,
+				"is_allergen_milk": false,
+				"is_allergen_nuts": true,
+				"is_allergen_celery": false,
+				"is_allergen_mustard": false,
+				"is_allergen_sesams": false,
+				"is_allergen_sulphurous_anhydre": false,
+				"is_allergen_lupins": true,
+				"is_allergen_mollusks": false,
+				"is_vegetarian": false,
+				"is_vegan": false,
+				"is_sidedish": false,
+				"createdAt": "2023-09-10T15:58:45.844Z",
+				"updatedAt": "2023-09-10T15:58:52.131Z",
+				"locale": "fr",
+				"dishes": [],
+				"dishes_2": null,
+				"category": 1,
+				"ingredients": [
+					6,
+					5,
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"3": {
+				"id": 3,
+				"activated": true,
+				"name": "Plateau du Matelot",
+				"description": "Notre Plateau du Matelot vous offre une délicieuse sélection de fruits de mer, avec des huîtres Marennes Oléron fines de claire n°3 et des huîtres creuses de Bretagne n°3, des crevettes roses juteuses, des bulots savoureux et des langoustines fraîches. Un festin de la mer !",
+				"is_allergen_gluten": true,
+				"is_allergen_shellfishs": false,
+				"is_allergen_eggs": false,
+				"is_allergen_fishes": false,
+				"is_allergen_peanuts": false,
+				"is_allergen_soybeans": false,
+				"is_allergen_milk": false,
+				"is_allergen_nuts": true,
+				"is_allergen_celery": true,
+				"is_allergen_mustard": true,
+				"is_allergen_sesams": false,
+				"is_allergen_sulphurous_anhydre": false,
+				"is_allergen_lupins": false,
+				"is_allergen_mollusks": false,
+				"is_vegetarian": false,
+				"is_vegan": false,
+				"is_sidedish": false,
+				"createdAt": "2023-09-10T16:00:27.157Z",
+				"updatedAt": "2023-09-10T16:00:27.157Z",
+				"locale": "fr",
+				"dishes": [],
+				"dishes_2": null,
+				"category": 1,
+				"ingredients": [
+					2,
+					1,
+					7,
+					8,
+					9
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"4": {
+				"id": 4,
+				"activated": true,
+				"name": "Plateau de l’Ecailler",
+				"description": "Notre Plateau de l'Ecailler offre une expérience de dégustation de fruits de mer raffinée, avec un demi-tourteau, des langoustines succulentes, des huîtres Marennes Oléron fines de claire n°3 et des huîtres creuses de Bretagne n°3, des crevettes roses juteuses, des crevettes grises savoureuses, des bulots et des amandes de mer. Savourez chaque bouchée de cette sélection exquise de fruits de mer frais et de qualité supérieure.",
+				"is_allergen_gluten": true,
+				"is_allergen_shellfishs": false,
+				"is_allergen_eggs": false,
+				"is_allergen_fishes": false,
+				"is_allergen_peanuts": false,
+				"is_allergen_soybeans": true,
+				"is_allergen_milk": true,
+				"is_allergen_nuts": false,
+				"is_allergen_celery": true,
+				"is_allergen_mustard": false,
+				"is_allergen_sesams": false,
+				"is_allergen_sulphurous_anhydre": false,
+				"is_allergen_lupins": false,
+				"is_allergen_mollusks": false,
+				"is_vegetarian": false,
+				"is_vegan": false,
+				"is_sidedish": false,
+				"createdAt": "2023-09-10T16:02:23.308Z",
+				"updatedAt": "2023-09-10T16:02:25.158Z",
+				"locale": "fr",
+				"dishes": [],
+				"dishes_2": null,
+				"category": 1,
+				"ingredients": [
+					10,
+					9,
+					2,
+					1,
+					7,
+					12,
+					8,
+					13
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"5": {
+				"id": 5,
+				"activated": true,
+				"name": "Le Royal ( pour 2 )",
+				"description": "Le Royal est un plateau de fruits de mer exceptionnel qui comprend un tourteau entier, des langoustines généreuses, des huîtres Marennes Oléron fines de claire n°3 et des huîtres creuses de Bretagne n°3, des crevettes roses abondantes, des crevettes grises savoureuses, des bulots délicieux et des amandes de mer fraîches. Ce plateau est la combinaison parfaite de fruits de mer frais et de qualité supérieure pour une expérience culinaire inoubliable.",
+				"is_allergen_gluten": true,
+				"is_allergen_shellfishs": true,
+				"is_allergen_eggs": false,
+				"is_allergen_fishes": true,
+				"is_allergen_peanuts": false,
+				"is_allergen_soybeans": true,
+				"is_allergen_milk": true,
+				"is_allergen_nuts": false,
+				"is_allergen_celery": false,
+				"is_allergen_mustard": false,
+				"is_allergen_sesams": false,
+				"is_allergen_sulphurous_anhydre": false,
+				"is_allergen_lupins": false,
+				"is_allergen_mollusks": false,
+				"is_vegetarian": false,
+				"is_vegan": false,
+				"is_sidedish": false,
+				"createdAt": "2023-09-10T16:03:07.207Z",
+				"updatedAt": "2023-09-10T16:04:57.336Z",
+				"locale": "fr",
+				"dishes": [],
+				"dishes_2": null,
+				"category": 1,
+				"ingredients": [
+					14,
+					15,
+					6,
+					5,
+					16,
+					17,
+					18,
+					19
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"plugin::users-permissions.user": {},
+		"plugin::upload.file": {
+			"1": {
+				"id": 1,
+				"name": "logo_restaurant.svg",
+				"alternativeText": null,
+				"caption": null,
+				"hash": "logo_restaurant_32f5dbe359",
+				"ext": ".svg",
+				"mime": "image/svg+xml",
+				"url": "https://minio.beta.andy-cinquin.fr:443/formenu/logo_restaurant_32f5dbe359.svg",
+				"createdAt": "2023-09-10T15:24:46.907Z",
+				"updatedAt": "2023-09-10T15:24:46.907Z",
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"api::ingredient.ingredient": {
+			"1": {
+				"id": 1,
+				"name": "3 huîtres Marennes Oléron fines de claire n°3",
+				"createdAt": "2023-09-10T15:45:18.409Z",
+				"updatedAt": "2023-09-10T15:45:18.409Z",
+				"locale": "fr",
+				"dishes": [
+					1,
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"name": "3 huîtres creuses de Bretagne n°3",
+				"createdAt": "2023-09-10T15:45:47.820Z",
+				"updatedAt": "2023-09-10T15:45:47.820Z",
+				"locale": "fr",
+				"dishes": [
+					1,
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"3": {
+				"id": 3,
+				"name": "Pain de seigle",
+				"createdAt": "2023-09-10T15:45:56.597Z",
+				"updatedAt": "2023-09-10T15:45:56.597Z",
+				"locale": "fr",
+				"dishes": [
+					2,
+					1
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"4": {
+				"id": 4,
+				"name": "vinaigre aux échalotes",
+				"createdAt": "2023-09-10T15:46:03.386Z",
+				"updatedAt": "2023-09-10T15:46:03.386Z",
+				"locale": "fr",
+				"dishes": [
+					2,
+					1
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"5": {
+				"id": 5,
+				"name": "6 huîtres Marennes Oléron fines de claire n°3",
+				"createdAt": "2023-09-10T15:46:18.416Z",
+				"updatedAt": "2023-09-10T15:46:18.416Z",
+				"locale": "fr",
+				"dishes": [
+					2,
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"6": {
+				"id": 6,
+				"name": "6 huîtres creuses de Bretagne n°3",
+				"createdAt": "2023-09-10T15:46:27.235Z",
+				"updatedAt": "2023-09-10T15:46:27.235Z",
+				"locale": "fr",
+				"dishes": [
+					2,
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"7": {
+				"id": 7,
+				"name": "10 crevettes roses",
+				"createdAt": "2023-09-10T15:47:00.258Z",
+				"updatedAt": "2023-09-10T15:47:00.258Z",
+				"locale": "fr",
+				"dishes": [
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"8": {
+				"id": 8,
+				"name": "100g de bulots",
+				"createdAt": "2023-09-10T15:47:07.675Z",
+				"updatedAt": "2023-09-10T15:47:07.675Z",
+				"locale": "fr",
+				"dishes": [
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"9": {
+				"id": 9,
+				"name": "3 Langoustines",
+				"createdAt": "2023-09-10T15:47:13.315Z",
+				"updatedAt": "2023-09-10T15:47:13.315Z",
+				"locale": "fr",
+				"dishes": [
+					3,
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"10": {
+				"id": 10,
+				"name": "1/2 tourteau",
+				"createdAt": "2023-09-10T15:47:47.813Z",
+				"updatedAt": "2023-09-10T15:47:47.813Z",
+				"locale": "fr",
+				"dishes": [
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"12": {
+				"id": 12,
+				"name": "30g de crevettes grises",
+				"createdAt": "2023-09-10T15:53:30.291Z",
+				"updatedAt": "2023-09-10T15:53:30.291Z",
+				"locale": "fr",
+				"dishes": [
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"13": {
+				"id": 13,
+				"name": "5 amandes de Mer",
+				"createdAt": "2023-09-10T15:53:40.883Z",
+				"updatedAt": "2023-09-10T15:53:40.883Z",
+				"locale": "fr",
+				"dishes": [
+					4
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"14": {
+				"id": 14,
+				"name": "1 tourteau",
+				"createdAt": "2023-09-10T16:03:25.726Z",
+				"updatedAt": "2023-09-10T16:03:25.726Z",
+				"locale": "fr",
+				"dishes": [
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"15": {
+				"id": 15,
+				"name": "6 langoustines",
+				"createdAt": "2023-09-10T16:03:33.435Z",
+				"updatedAt": "2023-09-10T16:03:33.435Z",
+				"locale": "fr",
+				"dishes": [
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"16": {
+				"id": 16,
+				"name": "20 crevettes roses",
+				"createdAt": "2023-09-10T16:03:39.552Z",
+				"updatedAt": "2023-09-10T16:03:39.552Z",
+				"locale": "fr",
+				"dishes": [
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"17": {
+				"id": 17,
+				"name": "50g de crevettes grises",
+				"createdAt": "2023-09-10T16:03:46.218Z",
+				"updatedAt": "2023-09-10T16:03:46.218Z",
+				"locale": "fr",
+				"dishes": [
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"18": {
+				"id": 18,
+				"name": "200g de bulots",
+				"createdAt": "2023-09-10T16:03:52.100Z",
+				"updatedAt": "2023-09-10T16:03:52.100Z",
+				"locale": "fr",
+				"dishes": [
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"19": {
+				"id": 19,
+				"name": "10 amandes de Mer",
+				"createdAt": "2023-09-10T16:03:58.216Z",
+				"updatedAt": "2023-09-10T16:03:58.216Z",
+				"locale": "fr",
+				"dishes": [
+					5
+				],
+				"localizations": [],
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"plugin::users-permissions.role": {
+			"1": {
+				"id": 1,
+				"name": "Authenticated",
+				"description": "Default role given to authenticated user.",
+				"type": "authenticated",
+				"createdAt": "2023-09-06T15:01:38.329Z",
+				"updatedAt": "2023-09-06T15:01:38.329Z",
+				"permissions": [
+					1,
+					2
+				],
+				"users": [],
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"name": "Public",
+				"description": "Default role given to unauthenticated user.",
+				"type": "public",
+				"createdAt": "2023-09-06T15:01:38.333Z",
+				"updatedAt": "2023-09-06T15:01:38.333Z",
+				"permissions": [
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9
+				],
+				"users": [],
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"plugin::upload.folder": {},
+		"plugin::users-permissions.permission": {
+			"1": {
+				"id": 1,
+				"action": "plugin::users-permissions.user.me",
+				"createdAt": "2023-09-06T15:01:38.341Z",
+				"updatedAt": "2023-09-06T15:01:38.341Z",
+				"role": 1,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"action": "plugin::users-permissions.auth.changePassword",
+				"createdAt": "2023-09-06T15:01:38.341Z",
+				"updatedAt": "2023-09-06T15:01:38.341Z",
+				"role": 1,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"3": {
+				"id": 3,
+				"action": "plugin::users-permissions.auth.callback",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"4": {
+				"id": 4,
+				"action": "plugin::users-permissions.auth.connect",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"5": {
+				"id": 5,
+				"action": "plugin::users-permissions.auth.register",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"6": {
+				"id": 6,
+				"action": "plugin::users-permissions.auth.resetPassword",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"7": {
+				"id": 7,
+				"action": "plugin::users-permissions.auth.sendEmailConfirmation",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"8": {
+				"id": 8,
+				"action": "plugin::users-permissions.auth.emailConfirmation",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"9": {
+				"id": 9,
+				"action": "plugin::users-permissions.auth.forgotPassword",
+				"createdAt": "2023-09-06T15:01:38.353Z",
+				"updatedAt": "2023-09-06T15:01:38.353Z",
+				"role": 2,
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"plugin::i18n.locale": {
+			"1": {
+				"id": 1,
+				"name": "English (en)",
+				"code": "en",
+				"createdAt": "2023-09-06T15:01:38.267Z",
+				"updatedAt": "2023-09-06T15:01:38.267Z",
+				"createdBy": null,
+				"updatedBy": null
+			},
+			"2": {
+				"id": 2,
+				"name": "French (fr)",
+				"code": "fr",
+				"createdAt": "2023-09-10T15:21:43.458Z",
+				"updatedAt": "2023-09-10T15:21:43.458Z",
+				"createdBy": null,
+				"updatedBy": null
+			}
+		},
+		"plugin::translate.batch-translate-job": {}
+	}
+}
