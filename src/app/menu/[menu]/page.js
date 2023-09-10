@@ -1,5 +1,9 @@
+export async function generateStaticParams() {
+	return [{ menu: 'menu1' }, { menu: 'menu2' }, { menu: 'menu3' }]
+}
+
 export default function Page({ params }) {
-	console.log(params)
+	const { menu } = params
 	return (
 		<>
 			<h3>in menu (sub) - menu param : [{params.menu}]</h3>

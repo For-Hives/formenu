@@ -20,7 +20,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="fr">
-			<body className={'text-slate-950'}>{children}</body>
+			<body className={'flex min-h-screen w-full flex-col text-slate-950'}>
+				{children}
+			</body>
 		</html>
 	)
 }

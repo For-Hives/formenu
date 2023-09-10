@@ -1,5 +1,4 @@
 export default function Page({ params }) {
-	console.log(params)
 	return (
 		<>
 			<h3>in dish - menu param : [{params.menu}]</h3>

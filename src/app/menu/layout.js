@@ -1,8 +1,10 @@
 export default function Layout({ children }) {
 	return (
 		<>
-			<h2>Menu Layout</h2>
-			{children}
+			<section className={'px-4'}>
+				<h2>Menu Layout</h2>
+				{children}
+			</section>
 		</>
 	)
 }
