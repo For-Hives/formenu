@@ -9,7 +9,6 @@
 	transition: opacity, z-index, color ease-in-out 0.3s;
 	font-family: 'new-hero', sans-serif;
 	font-weight: 400;
-	color: #fff;
 }
 
 body {
