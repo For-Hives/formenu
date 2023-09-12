@@ -7,8 +7,8 @@
 	list-style: none;
 	text-decoration: none;
 	transition: opacity, z-index, color ease-in-out 0.3s;
-	font-family: 'new-hero', sans-serif;
-	font-weight: 400;
+	font-family: new-hero, sans-serif;
+	font-style: normal;
 }
 
 body {

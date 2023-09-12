@@ -21,7 +21,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="fr">
-			<body className={'flex min-h-screen w-full flex-col text-slate-950'}>
+			<body
+				className={
+					'flex min-h-screen w-full flex-col bg-slate-50 text-slate-950'
+				}
+			>
 				<CardBackground
 					placementClassName={'-right-40 -top-48 rotate-15'}
 					src={'/images/bg_1.jpg'}
@@ -38,7 +42,7 @@ export default function RootLayout({ children }) {
 					src={'/images/bg_3.jpg'}
 					alt={'Background restaurant 3'}
 				/>
-				<main>{children}</main>
+				<main className={'h-full min-h-screen'}>{children}</main>
 			</body>
 		</html>
 	)
