@@ -10,16 +10,14 @@ export default function Layout({ children }) {
 						width={50}
 						height={50}
 						alt={'logo_restaurant'}
+						className={'h-auto w-auto'}
 					/>
 					<div className={'flex flex-col gap-2'}>
 						<h1 className={'formenu-h1'}>{`Les pieds dans l'eau`}</h1>
 						<h2 className={'ml-4'}>traditionnel et authentique</h2>
 					</div>
 				</div>
-				<div className={'mt-20'}>
-					<h2>(Menu Layout)</h2>
-					{children}
-				</div>
+				<div className={'mt-20'}>{children}</div>
 			</section>
 		</>
 	)
