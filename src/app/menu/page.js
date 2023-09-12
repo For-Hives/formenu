@@ -34,14 +34,16 @@ export default async function Page() {
 			>
 				{data?.data?.map((record, index) => {
 					return (
+						// todo change this to get it from slug
+						// 	href={`/menu/${convertStringToKebabCase(
+						// 		record.attributes.title
+						// 	)}`}
 						<Link
 							className={
 								'flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base'
 							}
 							key={record.id}
-							href={`/menu/${convertStringToKebabCase(
-								record.attributes.title
-							)}`}
+							href={`/menu/${encodeURI(record.attributes.title.toString())}`}
 						>
 							<Image
 								src={'/icons/menu_icon.svg'}
