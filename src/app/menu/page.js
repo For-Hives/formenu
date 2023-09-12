@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { convertStringToKebabCase } from '@/app/utils/utils'
 
 async function getData() {
 	let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/menus`, {
@@ -35,10 +36,12 @@ export default async function Page() {
 					return (
 						<Link
 							className={
-								'flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-blue-950 shadow-lg'
+								'flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base'
 							}
 							key={record.id}
-							href={`/menu/${record.attributes.slug}`}
+							href={`/menu/${convertStringToKebabCase(
+								record.attributes.title
+							)}`}
 						>
 							<Image
 								src={'/icons/menu_icon.svg'}
