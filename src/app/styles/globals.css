@@ -3,58 +3,81 @@
 @tailwind utilities;
 
 * {
-	box-sizing: border-box;
-	list-style: none;
-	text-decoration: none;
-	transition: opacity, z-index, color ease-in-out 0.3s;
-	font-family: 'new-hero', sans-serif;
-	font-weight: 400;
-	color: #fff;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    transition: opacity, z-index, color ease-in-out 0.3s;
+    font-family: new-hero, sans-serif;
+    font-style: normal;
 }
 
 body {
-	box-sizing: border-box;
-	display: inline-block;
-	width: 100vw;
-	max-width: 100vw;
-	clear: both;
-	overflow-x: hidden;
+    box-sizing: border-box;
+    display: inline-block;
+    width: 100vw;
+    max-width: 100vw;
+    clear: both;
+    overflow-x: hidden;
 }
 
 html {
-	overflow-x: hidden;
-	max-width: 100vw;
-	scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
+    scroll-behavior: smooth;
 }
 
 nav a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
-h1,
-h1 *,
-h2,
-h3,
-h4,
-h5,
-h6,
-nav * {
-	font-family: 'Chennai', serif;
-	font-weight: 400;
-	font-style: normal;
+
+@media screen and (min-width: 768px) {
+    ::-webkit-scrollbar {
+        -webkit-appearance: none;
+        width: 7px;
+    }
 }
 
 @media screen and (min-width: 768px) {
-	::-webkit-scrollbar {
-		-webkit-appearance: none;
-		width: 7px;
-	}
+    ::-webkit-scrollbar-thumb {
+        border-radius: 2rem;
+        background-color: #19191e4d;
+        -webkit-box-shadow: 0 0 1px hsl(0deg 0% 100% / 50%);
+    }
 }
 
-@media screen and (min-width: 768px) {
-	::-webkit-scrollbar-thumb {
-		border-radius: 2rem;
-		background-color: #19191e4d;
-		-webkit-box-shadow: 0 0 1px hsl(0deg 0% 100% / 50%);
-	}
+/* custom property group for tailwind */
+@layer base {
+    h1 {
+        @apply text-lg sm:text-2xl font-semibold;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.10), 0 1px 1px rgba(0, 0, 0, 0.06);
+    }
+
+    h2 {
+        @apply text-sm sm:text-xl font-light;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.10), 1px 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    h3 {
+        @apply sm:text-lg;
+    }
+
+    h4 {
+        @apply text-base;
+    }
+
+    * {
+        @apply text-slate-950;
+    }
+
+    h1,
+    h1 *,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    nav * {
+        font-family: 'Chennai', sans-serif;
+    }
 }
