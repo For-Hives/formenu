@@ -3,6 +3,7 @@
 // }
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
+import Link from 'next/link'
 
 async function getData(title) {
 	// todo change this to get the menu from the params 'slug' and not from the title
@@ -41,9 +42,15 @@ export default async function Page({ params }) {
 							{/* loop on category */}
 							{data?.data?.map((record, index) => {
 								return (
-									<div key={record.id} className={'btn-alt-primary'}>
+									<Link
+										key={record.id}
+										className={'btn-alt-primary'}
+										href={`/category/${encodeURI(
+											record.attributes.name.toString()
+										)}`}
+									>
 										{record.attributes.name}
-									</div>
+									</Link>
 								)
 							})}
 						</>
