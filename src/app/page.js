@@ -1,15 +1,56 @@
+import Image from 'next/image'
 import Link from 'next/link'
-export default function Home() {
+import { convertStringToKebabCase } from '@/app/utils/utils'
+
+async function getData() {
+	let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/menus`, {
+		method: 'GET',
+		headers: {
+			// 	token
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+			Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+		},
+	})
+
+	if (!res.ok) {
+		// This will activate the closest `error.js` Error Boundary
+		throw new Error('Failed to fetch data')
+	}
+
+	return res.json()
+}
+
+export default async function Page() {
+	const data = await getData()
+
+	console.log(data)
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-center gap-10 p-24">
-			<h1 className={'text-2xl text-slate-950 md:text-7xl'}>ForMenu App</h1>
-			<Link
-				href={'https://formenu.fr'}
-				className={'text-sm underline md:text-base'}
-			>{`Site de présentation de l'app`}</Link>
-			<Link href={'/menu'} className={'text-sm underline md:text-base'}>
-				Voir les menus de la démo →
-			</Link>
-		</main>
+		<>
+			<div className={'container-menus'}>
+				{data?.data?.map((record, index) => {
+					return (
+						// todo change this to get it from slug
+						// 	href={`/menu/${convertStringToKebabCase(
+						// 		record.attributes.title
+						// 	)}`}
+						<Link
+							className={'btn-alt-primary'}
+							key={record.id}
+							href={`/${encodeURI(record.attributes.title.toString())}`}
+						>
+							<Image
+								src={'/icons/menu_icon.svg'}
+								width={20}
+								height={20}
+								alt={'icon menu'}
+								className={'h-auto w-auto'}
+							/>
+							<span className={'font-medium'}>{record.attributes.title}</span>
+						</Link>
+					)
+				})}
+			</div>
+		</>
 	)
 }

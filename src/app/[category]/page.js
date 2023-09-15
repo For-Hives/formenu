@@ -39,15 +39,37 @@ export default async function Page({ params }) {
 				<Suspense fallback={<div>loading</div>}>
 					{data?.data.length > 0 ? (
 						<>
-							{/* loop on category */}
+							{/* ❌ loop on category if it's the first children category */}
 							{data?.data?.map((record, index) => {
 								return (
 									<Link
 										key={record.id}
 										className={'btn-alt-primary'}
-										href={`/category/${encodeURI(
-											record.attributes.name.toString()
-										)}`}
+										href={`/${encodeURI(record.attributes.name.toString())}`}
+									>
+										{record.attributes.name}
+									</Link>
+								)
+							})}
+							{/* ✅ loop on category if it's the last children category */}
+							{data?.data?.map((record, index) => {
+								return (
+									<Link
+										key={record.id}
+										className={'btn-alt-primary'}
+										href={`/${encodeURI(record.attributes.name.toString())}`}
+									>
+										{record.attributes.name}
+									</Link>
+								)
+							})}
+							{/* ❓ loop on category if it's no't the last children category (other) */}
+							{data?.data?.map((record, index) => {
+								return (
+									<Link
+										key={record.id}
+										className={'btn-alt-primary'}
+										href={`/${encodeURI(record.attributes.name.toString())}`}
 									>
 										{record.attributes.name}
 									</Link>
