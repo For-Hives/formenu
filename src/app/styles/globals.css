@@ -7,7 +7,7 @@
     list-style: none;
     text-decoration: none;
     transition: opacity, z-index, color ease-in-out 0.3s;
-    font-family: new-hero, sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
 }
 
@@ -78,6 +78,6 @@ nav a {
     h5,
     h6,
     nav * {
-        font-family: 'Chennai', sans-serif;
+        font-family: 'Fraunces', serif;
     }
 }
