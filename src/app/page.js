@@ -3,15 +3,18 @@ import Link from 'next/link'
 import { convertStringToKebabCase } from '@/app/utils/utils'
 
 async function getData() {
-	let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/menus`, {
-		method: 'GET',
-		headers: {
-			// 	token
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-			Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-		},
-	})
+	let res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[category][id][$null]=true`,
+		{
+			method: 'GET',
+			headers: {
+				// 	token
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+			},
+		}
+	)
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
@@ -24,7 +27,7 @@ async function getData() {
 export default async function Page() {
 	const data = await getData()
 
-	console.log(data)
+	console.log(data.data[0].attributes)
 	return (
 		<>
 			<div className={'container-menus'}>
@@ -37,7 +40,7 @@ export default async function Page() {
 						<Link
 							className={'btn-alt-primary'}
 							key={record.id}
-							href={`/${encodeURI(record.attributes.title.toString())}`}
+							href={`/${encodeURI(record.attributes.name.toString())}`}
 						>
 							<Image
 								src={'/icons/menu_icon.svg'}
@@ -46,7 +49,7 @@ export default async function Page() {
 								alt={'icon menu'}
 								className={'h-auto w-auto'}
 							/>
-							<span className={'font-medium'}>{record.attributes.title}</span>
+							<span className={'font-medium'}>{record.attributes.name}</span>
 						</Link>
 					)
 				})}
