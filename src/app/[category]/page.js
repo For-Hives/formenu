@@ -1,13 +1,10 @@
-// export async function generateStaticParams() {
-// 	return [{ menu: 'menu1' }, { menu: 'menu2' }, { menu: 'menu3' }]
-// }
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
 
 async function getData(category) {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[category][id][$eq]=${category}`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[categories]=deep&populate[category]=deep&populate[dishes]=deep&filters[category][id][$eq]=${category}`,
 		{
 			method: 'GET',
 			headers: {
@@ -27,9 +24,9 @@ async function getData(category) {
 	return res.json()
 }
 
-async function getLastChildElements(category) {
+async function getDataDishes(category) {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[categories][category][dishes]=deep&filters[categories][name][$notNull]=false&&filters[category][id]=${category}`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[category]=deep&populate[categories]=deep&populate[dishes]=deep&filters[id][$eq]=${category}`,
 		{
 			method: 'GET',
 			headers: {
@@ -42,6 +39,7 @@ async function getLastChildElements(category) {
 	)
 
 	if (!res.ok) {
+		// This will activate the closest `error.js` Error Boundary
 		throw new Error('Failed to fetch data')
 	}
 
@@ -51,10 +49,10 @@ async function getLastChildElements(category) {
 export default async function Page({ params }) {
 	const { category } = params
 	const data = await getData(category)
-	// const dataLastChild = await getLastChildElements(category)
+	const data_dishes = await getDataDishes(category)
 
-	console.log('category', category)
-	// search in
+	console.log(data_dishes.data[0].attributes.dishes)
+
 	return (
 		<>
 			<div className={'container-menus'}>
@@ -73,34 +71,19 @@ export default async function Page({ params }) {
 									</Link>
 								)
 							})}
-							{/* ✅ loop on category if it's the last children category */}
-							{/*{data?.data?.map((record, index) => {*/}
-							{/*	return (*/}
-							{/*		<Link*/}
-							{/*			key={record.id}*/}
-							{/*			className={'btn-alt-primary'}*/}
-							{/*			href={`/${encodeURI(record.attributes.name.toString())}`}*/}
-							{/*		>*/}
-							{/*			{record.attributes.name}*/}
-							{/*		</Link>*/}
-							{/*	)*/}
-							{/*})}*/}
-							{/* ❓ loop on category if it's no't the last children category (other) */}
-							{/*{data?.data?.map((record, index) => {*/}
-							{/*	return (*/}
-							{/*		<Link*/}
-							{/*			key={record.id}*/}
-							{/*			className={'btn-alt-primary'}*/}
-							{/*			href={`/${encodeURI(record.attributes.name.toString())}`}*/}
-							{/*		>*/}
-							{/*			{record.attributes.name}*/}
-							{/*		</Link>*/}
-							{/*	)*/}
-							{/*})}*/}
 						</>
 					) : (
 						// When there is no data
 						<div className={'container-dishes'}>
+							{data_dishes?.data[0]?.attributes.dishes?.data?.map(
+								(record, index) => {
+									return (
+										<div key={record.id} className={'btn-alt-primary'}>
+											plats : {record.attributes.name}
+										</div>
+									)
+								}
+							)}
 							<div>
 								<p className={''}>{`Il n'y a rien dans ce menu !`}</p>
 								<div>
