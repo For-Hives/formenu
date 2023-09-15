@@ -37,11 +37,17 @@ export default async function Page({ params }) {
 			<Suspense fallback={<div>loading</div>}>
 				{data?.data.length > 0 ? (
 					<>
+						{/* loop on category */}
 						{data?.data?.map((record, index) => {
-							return <div key={record.id}>→ {record.attributes.name}</div>
+							return (
+								<div key={record.id} className={'btn-alt-primary'}>
+									{record.attributes.name}
+								</div>
+							)
 						})}
 					</>
 				) : (
+					// When there is no data
 					<div className={'flex flex-col gap-4 '}>
 						<p className={''}>{`Il n'y a rien dans ce menu !`}</p>
 						<div>

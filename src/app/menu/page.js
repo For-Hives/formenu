@@ -39,9 +39,7 @@ export default async function Page() {
 						// 		record.attributes.title
 						// 	)}`}
 						<Link
-							className={
-								'flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base'
-							}
+							className={'btn-alt-primary'}
 							key={record.id}
 							href={`/menu/${encodeURI(record.attributes.title.toString())}`}
 						>
