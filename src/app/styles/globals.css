@@ -96,4 +96,8 @@ nav a {
     .container-menus{
         @apply flex h-full min-h-[calc(100vh-25rem)] w-full flex-col items-center justify-center gap-8;
     }
+
+    .container-dishes{
+        @apply flex h-full min-h-[calc(100vh-25rem)] w-full flex-col gap-8;
+    }
 }

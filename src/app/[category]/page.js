@@ -51,64 +51,66 @@ async function getLastChildElements(category) {
 export default async function Page({ params }) {
 	const { category } = params
 	const data = await getData(category)
-	const dataLastChild = await getLastChildElements(category)
+	// const dataLastChild = await getLastChildElements(category)
 
-	if (data?.data.length)
-		// search in
-		return (
-			<>
-				<div className={'container-menus'}>
-					<Suspense fallback={<div>loading</div>}>
-						{data?.data.length > 0 ? (
-							<>
-								{/* ❌ loop on category if it's the first children category */}
-								{data?.data?.map((record, index) => {
-									return (
-										<Link
-											key={record.id}
-											className={'btn-alt-primary'}
-											href={`/${record.id.toString()}`}
-										>
-											{record.attributes.name}
-										</Link>
-									)
-								})}
-								{/* ✅ loop on category if it's the last children category */}
-								{/*{data?.data?.map((record, index) => {*/}
-								{/*	return (*/}
-								{/*		<Link*/}
-								{/*			key={record.id}*/}
-								{/*			className={'btn-alt-primary'}*/}
-								{/*			href={`/${encodeURI(record.attributes.name.toString())}`}*/}
-								{/*		>*/}
-								{/*			{record.attributes.name}*/}
-								{/*		</Link>*/}
-								{/*	)*/}
-								{/*})}*/}
-								{/* ❓ loop on category if it's no't the last children category (other) */}
-								{/*{data?.data?.map((record, index) => {*/}
-								{/*	return (*/}
-								{/*		<Link*/}
-								{/*			key={record.id}*/}
-								{/*			className={'btn-alt-primary'}*/}
-								{/*			href={`/${encodeURI(record.attributes.name.toString())}`}*/}
-								{/*		>*/}
-								{/*			{record.attributes.name}*/}
-								{/*		</Link>*/}
-								{/*	)*/}
-								{/*})}*/}
-							</>
-						) : (
-							// When there is no data
-							<div className={'flex flex-col gap-4 '}>
+	console.log('category', category)
+	// search in
+	return (
+		<>
+			<div className={'container-menus'}>
+				<Suspense fallback={<div>loading</div>}>
+					{data?.data.length > 0 ? (
+						<>
+							{/* ❌ loop on category if it's the first children category */}
+							{data?.data?.map((record, index) => {
+								return (
+									<Link
+										key={record.id}
+										className={'btn-alt-primary'}
+										href={`/${record.id.toString()}`}
+									>
+										{record.attributes.name}
+									</Link>
+								)
+							})}
+							{/* ✅ loop on category if it's the last children category */}
+							{/*{data?.data?.map((record, index) => {*/}
+							{/*	return (*/}
+							{/*		<Link*/}
+							{/*			key={record.id}*/}
+							{/*			className={'btn-alt-primary'}*/}
+							{/*			href={`/${encodeURI(record.attributes.name.toString())}`}*/}
+							{/*		>*/}
+							{/*			{record.attributes.name}*/}
+							{/*		</Link>*/}
+							{/*	)*/}
+							{/*})}*/}
+							{/* ❓ loop on category if it's no't the last children category (other) */}
+							{/*{data?.data?.map((record, index) => {*/}
+							{/*	return (*/}
+							{/*		<Link*/}
+							{/*			key={record.id}*/}
+							{/*			className={'btn-alt-primary'}*/}
+							{/*			href={`/${encodeURI(record.attributes.name.toString())}`}*/}
+							{/*		>*/}
+							{/*			{record.attributes.name}*/}
+							{/*		</Link>*/}
+							{/*	)*/}
+							{/*})}*/}
+						</>
+					) : (
+						// When there is no data
+						<div className={'container-dishes'}>
+							<div>
 								<p className={''}>{`Il n'y a rien dans ce menu !`}</p>
 								<div>
 									<BackToPrevious />
 								</div>
 							</div>
-						)}
-					</Suspense>
-				</div>
-			</>
-		)
+						</div>
+					)}
+				</Suspense>
+			</div>
+		</>
+	)
 }
