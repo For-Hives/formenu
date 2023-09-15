@@ -27,11 +27,7 @@ export default async function Page() {
 	console.log(data)
 	return (
 		<>
-			<div
-				className={
-					'flex h-full min-h-[calc(100vh-25rem)] w-full flex-col items-center justify-center gap-8'
-				}
-			>
+			<div className={'container-menus'}>
 				{data?.data?.map((record, index) => {
 					return (
 						// todo change this to get it from slug

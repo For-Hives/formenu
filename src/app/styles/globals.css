@@ -92,4 +92,8 @@ nav a {
     .btn-alt-primary {
         @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base;
     }
+
+    .container-menus{
+        @apply flex h-full min-h-[calc(100vh-25rem)] w-full flex-col items-center justify-center gap-8;
+    }
 }

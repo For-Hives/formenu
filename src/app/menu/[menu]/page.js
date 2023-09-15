@@ -34,28 +34,30 @@ export default async function Page({ params }) {
 	console.log(data)
 	return (
 		<>
-			<Suspense fallback={<div>loading</div>}>
-				{data?.data.length > 0 ? (
-					<>
-						{/* loop on category */}
-						{data?.data?.map((record, index) => {
-							return (
-								<div key={record.id} className={'btn-alt-primary'}>
-									{record.attributes.name}
-								</div>
-							)
-						})}
-					</>
-				) : (
-					// When there is no data
-					<div className={'flex flex-col gap-4 '}>
-						<p className={''}>{`Il n'y a rien dans ce menu !`}</p>
-						<div>
-							<BackToPrevious />
+			<div className={'container-menus'}>
+				<Suspense fallback={<div>loading</div>}>
+					{data?.data.length > 0 ? (
+						<>
+							{/* loop on category */}
+							{data?.data?.map((record, index) => {
+								return (
+									<div key={record.id} className={'btn-alt-primary'}>
+										{record.attributes.name}
+									</div>
+								)
+							})}
+						</>
+					) : (
+						// When there is no data
+						<div className={'flex flex-col gap-4 '}>
+							<p className={''}>{`Il n'y a rien dans ce menu !`}</p>
+							<div>
+								<BackToPrevious />
+							</div>
 						</div>
-					</div>
-				)}
-			</Suspense>
+					)}
+				</Suspense>
+			</div>
 		</>
 	)
 }
