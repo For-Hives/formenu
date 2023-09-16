@@ -132,7 +132,7 @@ export default async function Page({ params, searchParams }) {
 							}
 						</>
 					) : (
-						// When there is no data
+						// When there is no children categories -> display dishes
 						<div className={'container-dishes'}>
 							{data_dishes?.data[0]?.attributes.dishes?.data?.map(
 								(record, index) => {
@@ -144,7 +144,6 @@ export default async function Page({ params, searchParams }) {
 								}
 							)}
 							<div>
-								<p className={''}>{`Il n'y a rien dans ce menu !`}</p>
 								<div>
 									<BackToPrevious />
 								</div>
