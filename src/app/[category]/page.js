@@ -57,15 +57,20 @@ export default async function Page({ params }) {
 		<>
 			<div className={'container-menus'}>
 				<Suspense fallback={<div>loading</div>}>
+					{/*{data?.data[0]}*/}
 					{data?.data.length > 0 ? (
 						<>
 							{/* ❌ loop on category if it's the first children category */}
 							{data?.data?.map((record, index) => {
+								const next = data?.data[index + 1]?.id.toString() ?? 'none'
+								const previous = data?.data[index - 1]?.id.toString() ?? 'none'
+								const current = record.id.toString()
+								const url = `/${current}?n=${next}&p=${previous}`
 								return (
 									<Link
 										key={record.id}
 										className={'btn-alt-primary'}
-										href={`/${record.id.toString()}`}
+										href={url}
 									>
 										{record.attributes.name}
 									</Link>
