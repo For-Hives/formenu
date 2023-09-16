@@ -8,3 +8,10 @@ export function convertStringToKebabCase(str) {
 	// Replace spaces with '-' and convert to lowercase
 	return withoutAccents.replace(/\s+/g, '-').toLowerCase()
 }
+
+export function createSlug(data, record, index) {
+	const next = data?.data[index + 1]?.id.toString() ?? 'none'
+	const previous = data?.data[index - 1]?.id.toString() ?? 'none'
+	const current = record.id.toString()
+	return `/${current}?n=${next}&p=${previous}`
+}

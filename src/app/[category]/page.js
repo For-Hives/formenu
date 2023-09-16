@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
+import { createSlug } from '@/app/utils/utils'
 
 async function getData(category) {
 	const res = await fetch(
@@ -62,15 +63,11 @@ export default async function Page({ params }) {
 						<>
 							{/* ❌ loop on category if it's the first children category */}
 							{data?.data?.map((record, index) => {
-								const next = data?.data[index + 1]?.id.toString() ?? 'none'
-								const previous = data?.data[index - 1]?.id.toString() ?? 'none'
-								const current = record.id.toString()
-								const url = `/${current}?n=${next}&p=${previous}`
 								return (
 									<Link
 										key={record.id}
 										className={'btn-alt-primary'}
-										href={url}
+										href={createSlug(data, record, index)}
 									>
 										{record.attributes.name}
 									</Link>
