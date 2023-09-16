@@ -52,13 +52,10 @@ export default async function Page({ params }) {
 	const data = await getData(category)
 	const data_dishes = await getDataDishes(category)
 
-	console.log(data_dishes.data[0].attributes.dishes)
-
 	return (
 		<>
 			<div className={'container-menus'}>
 				<Suspense fallback={<div>loading</div>}>
-					{/*{data?.data[0]}*/}
 					{data?.data.length > 0 ? (
 						<>
 							{/* ❌ loop on category if it's the first children category */}
