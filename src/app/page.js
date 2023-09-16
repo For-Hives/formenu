@@ -27,7 +27,6 @@ async function getData() {
 export default async function Page() {
 	const data = await getData()
 
-	console.log(data.data[0].attributes)
 	return (
 		<>
 			<div className={'container-menus'}>
