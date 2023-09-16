@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { convertStringToKebabCase } from '@/app/utils/utils'
+import { createSlug } from '@/app/utils/utils'
 
 async function getData() {
 	let res = await fetch(
@@ -33,14 +33,10 @@ export default async function Page() {
 			<div className={'container-menus'}>
 				{data?.data?.map((record, index) => {
 					return (
-						// todo change this to get it from slug
-						// 	href={`/menu/${convertStringToKebabCase(
-						// 		record.attributes.title
-						// 	)}`}
 						<Link
 							className={'btn-alt-primary'}
 							key={record.id}
-							href={record.id.toString()}
+							href={createSlug(data, record, index)}
 						>
 							<Image
 								src={'/icons/menu_icon.svg'}
