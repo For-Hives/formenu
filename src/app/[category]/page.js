@@ -1,18 +1,20 @@
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
-import { createSlug } from '@/app/utils/utils'
 
 async function getCategories() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/categories`, {
-		method: 'GET',
-		headers: {
-			// 	token
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-			Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-		},
-	})
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep`,
+		{
+			method: 'GET',
+			headers: {
+				// 	token
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+			},
+		}
+	)
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
@@ -74,12 +76,35 @@ export default async function Page({ params, searchParams }) {
 	const current_category_data = categories.data.filter(
 		record => record.id.toString() === category.toString()
 	)
-	const previous_category_data = categories.data.filter(
-		record => record?.id?.toString() === searchParams.p?.toString()
-	)
-	const next_category_data = categories.data.filter(
-		record => record?.id?.toString() === searchParams.n?.toString()
-	)
+
+	const previous_category_data = () => {
+		if (current_category_data[0]?.attributes?.order.toString() === '0')
+			return []
+		return categories.data.filter(
+			record =>
+				record.attributes.order.toString() ===
+					(current_category_data[0]?.attributes?.order - 1).toString() &&
+				record.attributes.depth.toString() ===
+					current_category_data[0]?.attributes?.depth.toString()
+		)
+	}
+
+	const next_category_data = () => {
+		if (
+			current_category_data[0]?.attributes?.order.toString() ===
+			(categories.data.length - 1).toString()
+		)
+			return []
+		return categories.data.filter(
+			record =>
+				record.attributes.order.toString() ===
+					(current_category_data[0]?.attributes?.order + 1).toString() &&
+				record.attributes.depth.toString() ===
+					current_category_data[0]?.attributes?.depth.toString()
+		)
+	}
+
+	console.log(next_category_data())
 
 	return (
 		<>
@@ -112,7 +137,7 @@ export default async function Page({ params, searchParams }) {
 									<Link
 										key={record.id}
 										className={'btn-alt-primary'}
-										href={createSlug(data, record, index)}
+										href={`/${record.id.toString()}`}
 									>
 										{record.attributes.name}
 									</Link>

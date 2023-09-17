@@ -35,7 +35,7 @@ export default async function Page() {
 						<Link
 							className={'btn-alt-primary'}
 							key={record.id}
-							href={createSlug(data, record, index)}
+							href={`/${record.id}`}
 						>
 							<Image
 								src={'/icons/menu_icon.svg'}
