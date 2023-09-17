@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
+import { Dishes } from '@/components/Dishes/dishes'
 
 async function getCategories() {
 	const res = await fetch(
@@ -170,11 +171,14 @@ export default async function Page({ params }) {
 								} container-dishes`}
 							>
 								{data_dishes?.data[0]?.attributes.dishes?.data?.map(
-									(record, index) => {
+									(dish, index) => {
 										return (
-											<div key={record.id} className={'btn-alt-primary'}>
-												plats : {record.attributes.name}
-											</div>
+											<>
+												<Dishes dish={dish} />
+												{/*<div key={dish.id} className={'btn-alt-primary'}>*/}
+												{/*	plats : {dish.attributes.name}*/}
+												{/*</div>*/}
+											</>
 										)
 									}
 								)}
