@@ -96,16 +96,16 @@ nav a {
     .container-menu {
         @apply flex justify-center w-full
     }
-    
+
     .container-menus {
-        @apply flex h-full min-h-[calc(100vh-25rem)] w-full flex-col items-center justify-center gap-8;
+        @apply flex h-full w-full flex-col items-center justify-center gap-8;
     }
 
     .container-sub-menus {
-        @apply flex h-full min-h-[calc(100vh-25rem)] w-full flex-col items-center justify-center gap-8 max-w-sm;
+        @apply flex h-full  w-full flex-col items-center justify-center gap-8 max-w-sm;
     }
 
     .container-dishes {
-        @apply flex h-full min-h-[calc(100vh-25rem)] w-full flex-col gap-8;
+        @apply flex h-full w-full flex-col gap-8;
     }
 }

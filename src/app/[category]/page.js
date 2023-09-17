@@ -109,7 +109,11 @@ export default async function Page({ params }) {
 	return (
 		<>
 			<div className={'container-menu'}>
-				<div className={'container-sub-menus'}>
+				<div
+					className={`${
+						data?.data.length > 0 ? 'min-h-[calc(100vh-25rem)]' : ''
+					} container-sub-menus`}
+				>
 					{/* todo add cool loading */}
 					<Suspense fallback={<div>loading</div>}>
 						{
@@ -158,7 +162,13 @@ export default async function Page({ params }) {
 							</>
 						) : (
 							// When there is no children categories -> display dishes
-							<div className={'container-dishes'}>
+							<div
+								className={`${
+									data_dishes?.data[0].attributes.dishes.length > 0
+										? 'min-h-[calc(100vh-25rem)]'
+										: ''
+								} container-dishes`}
+							>
 								{data_dishes?.data[0]?.attributes.dishes?.data?.map(
 									(record, index) => {
 										return (
