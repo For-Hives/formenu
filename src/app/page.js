@@ -4,7 +4,7 @@ import { createSlug } from '@/app/utils/utils'
 
 async function getData() {
 	let res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[category][id][$null]=true`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
 		{
 			method: 'GET',
 			headers: {
