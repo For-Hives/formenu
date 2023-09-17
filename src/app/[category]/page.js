@@ -77,7 +77,7 @@ export default async function Page({ params, searchParams }) {
 		record => record.id.toString() === category.toString()
 	)
 
-	const previous_category_data = () => {
+	const previous_category = (() => {
 		if (current_category_data[0]?.attributes?.order.toString() === '0')
 			return []
 		return categories.data.filter(
@@ -87,9 +87,10 @@ export default async function Page({ params, searchParams }) {
 				record.attributes.depth.toString() ===
 					current_category_data[0]?.attributes?.depth.toString()
 		)
-	}
+	})()
 
-	const next_category_data = () => {
+	// auto exec
+	const next_category = (() => {
 		if (
 			current_category_data[0]?.attributes?.order.toString() ===
 			(categories.data.length - 1).toString()
@@ -102,9 +103,7 @@ export default async function Page({ params, searchParams }) {
 				record.attributes.depth.toString() ===
 					current_category_data[0]?.attributes?.depth.toString()
 		)
-	}
-
-	console.log(next_category_data())
+	})()
 
 	return (
 		<>
@@ -115,12 +114,12 @@ export default async function Page({ params, searchParams }) {
 							{
 								// ✅ get the previous parent category, url
 								// from search params, get the previous parent category
-								previous_category_data?.length > 0 && (
+								previous_category?.length > 0 && (
 									<Link
 										className={'btn-primary'}
-										href={`/${previous_category_data[0]?.id.toString()}`}
+										href={`/${previous_category[0]?.id.toString()}`}
 									>
-										{previous_category_data[0]?.attributes?.name}
+										{previous_category[0]?.attributes?.name}
 									</Link>
 								)
 							}
@@ -146,12 +145,12 @@ export default async function Page({ params, searchParams }) {
 							{
 								// ✅ get the next parent category
 								// from search params, get the next parent category
-								next_category_data?.length > 0 && (
+								next_category?.length > 0 && (
 									<Link
 										className={'btn-primary'}
-										href={`/${next_category_data[0]?.id.toString()}`}
+										href={`/${next_category[0]?.id.toString()}`}
 									>
-										{next_category_data[0]?.attributes?.name}
+										{next_category[0]?.attributes?.name}
 									</Link>
 								)
 							}
