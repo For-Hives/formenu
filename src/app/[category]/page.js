@@ -68,7 +68,7 @@ async function getDataDishes(category) {
 	return res.json()
 }
 
-export default async function Page({ params, searchParams }) {
+export default async function Page({ params }) {
 	const { category } = params
 	const data = await getData(category)
 	const data_dishes = await getDataDishes(category)
@@ -77,6 +77,7 @@ export default async function Page({ params, searchParams }) {
 		record => record.id.toString() === category.toString()
 	)
 
+	// auto exec
 	const previous_category = (() => {
 		if (current_category_data[0]?.attributes?.order.toString() === '0')
 			return []
@@ -107,74 +108,89 @@ export default async function Page({ params, searchParams }) {
 
 	return (
 		<>
-			<div className={'container-menus'}>
-				<Suspense fallback={<div>loading</div>}>
-					{data?.data.length > 0 ? (
-						<>
-							{
-								// ✅ get the previous parent category, url
-								// from search params, get the previous parent category
-								previous_category?.length > 0 && (
+			<div className={'container-menu'}>
+				<div className={'container-sub-menus'}>
+					{/* todo add cool loading */}
+					<Suspense fallback={<div>loading</div>}>
+						{
+							// ✅ get the previous parent category, url
+							// from search params, get the previous parent category
+							previous_category?.length > 0 && (
+								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
 										href={`/${previous_category[0]?.id.toString()}`}
 									>
 										{previous_category[0]?.attributes?.name}
 									</Link>
-								)
-							}
-							{
-								// ✅ get the parent category, url
+								</div>
+							)
+						}
+						{
+							// ✅ get the parent category, url
+							<div className={'flex w-full items-center justify-start'}>
 								<BackToPrevious
 									className={'btn-primary'}
-									content={current_category_data[0]?.attributes?.name}
+									content={
+										current_category_data[0]?.attributes?.name + ' ← retour'
+									}
 								/>
-							}
-							{/* ❌ loop on category if it's the first children category */}
-							{data?.data?.map((record, index) => {
-								return (
-									<Link
-										key={record.id}
-										className={'btn-alt-primary'}
-										href={`/${record.id.toString()}`}
-									>
-										{record.attributes.name}
-									</Link>
-								)
-							})}
-							{
-								// ✅ get the next parent category
-								// from search params, get the next parent category
-								next_category?.length > 0 && (
+							</div>
+						}
+						{data?.data.length > 0 ? (
+							<>
+								{/* ❌ loop on category if it's the first children category */}
+								{data?.data?.map((record, index) => {
+									return (
+										<div
+											key={record.id}
+											className={'flex w-full items-center justify-end'}
+										>
+											<Link
+												className={'btn-alt-primary'}
+												href={`/${record.id.toString()}`}
+											>
+												{record.attributes.name}
+											</Link>
+										</div>
+									)
+								})}
+							</>
+						) : (
+							// When there is no children categories -> display dishes
+							<div className={'container-dishes'}>
+								{data_dishes?.data[0]?.attributes.dishes?.data?.map(
+									(record, index) => {
+										return (
+											<div key={record.id} className={'btn-alt-primary'}>
+												plats : {record.attributes.name}
+											</div>
+										)
+									}
+								)}
+								<div>
+									<div>
+										<BackToPrevious />
+									</div>
+								</div>
+							</div>
+						)}
+						{
+							// ✅ get the next parent category
+							// from search params, get the next parent category
+							next_category?.length > 0 && (
+								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
 										href={`/${next_category[0]?.id.toString()}`}
 									>
 										{next_category[0]?.attributes?.name}
 									</Link>
-								)
-							}
-						</>
-					) : (
-						// When there is no children categories -> display dishes
-						<div className={'container-dishes'}>
-							{data_dishes?.data[0]?.attributes.dishes?.data?.map(
-								(record, index) => {
-									return (
-										<div key={record.id} className={'btn-alt-primary'}>
-											plats : {record.attributes.name}
-										</div>
-									)
-								}
-							)}
-							<div>
-								<div>
-									<BackToPrevious />
 								</div>
-							</div>
-						</div>
-					)}
-				</Suspense>
+							)
+						}
+					</Suspense>
+				</div>
 			</div>
 		</>
 	)
