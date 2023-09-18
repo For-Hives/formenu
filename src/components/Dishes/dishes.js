@@ -18,7 +18,7 @@ export function Dishes({ dish }) {
 				//	expand this dish
 				setIsExpanded(!isExpanded)
 			}}
-			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
+			className={`flex w-full flex-col gap-8 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
 		>
 			<div className={'flex w-full items-center justify-between'}>
 				<h2 className={'font-bold text-slate-800'}>{dish.attributes.name}</h2>
@@ -86,9 +86,11 @@ export function Dishes({ dish }) {
 				)}
 			</div>
 			{isExpanded && (
-				<div className={'flex flex-col'}>
-					<p className={'text-slate-700'}>Allergènes présents dans le plat :</p>
-					<div className={'flex gap-2'}>
+				<div className={'flex flex-col gap-2'}>
+					<p className={'text-start text-sm text-slate-700'}>
+						Allergènes présents dans le plat :
+					</p>
+					<div className={'flex flex-wrap justify-evenly gap-2'}>
 						<Allergens dish={dish} />
 					</div>
 				</div>
