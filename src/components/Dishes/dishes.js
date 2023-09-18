@@ -33,7 +33,7 @@ export function Dishes({ dish }) {
 			{isExpanded && dish?.attributes?.description && (
 				<div className={'relative flex h-full w-full justify-between gap-6'}>
 					<div className={'absolute left-0 top-0 h-full w-full'}>
-						<div className={'relative h-full w-1/3 gap-4 bg-red-400'}>
+						<div className={'relative h-full w-5/12 gap-4 bg-red-400'}>
 							<Image
 								src={dish?.attributes?.image?.data?.attributes?.url}
 								fill={true}
@@ -41,10 +41,13 @@ export function Dishes({ dish }) {
 							/>
 						</div>
 					</div>
-					<div className={'w-1/3'} />
-					<div className={'h-full w-2/3'}>
+					<div className={'w-5/12'} />
+					<div className={'h-full w-7/12'}>
 						<p className={'text-start text-sm text-slate-600'}>
 							{dish?.attributes?.description}
+						</p>
+						<p className={'text-end text-xs italic text-slate-700'}>
+							{dish?.attributes?.price}&nbsp;€
 						</p>
 					</div>
 				</div>
@@ -53,7 +56,13 @@ export function Dishes({ dish }) {
 			<div className={'flex h-full items-end justify-between gap-8 pl-4'}>
 				{dish?.attributes?.ingredients?.data?.length > 0 && (
 					<div>
-						<p className={'text-start text-sm text-slate-700'}>
+						<p
+							className={`${
+								isExpanded
+									? 'text-center text-sm font-semibold text-slate-700'
+									: 'text-start text-sm text-slate-700'
+							} `}
+						>
 							{/*dish?.attributes?.ingredients?.data*/}
 							{dish?.attributes?.ingredients?.data?.map((ingredient, index) => {
 								return (
@@ -67,7 +76,7 @@ export function Dishes({ dish }) {
 						</p>
 					</div>
 				)}
-				{dish?.attributes?.price && (
+				{!isExpanded && dish?.attributes?.price && (
 					<div className={'flex h-full flex-col items-end justify-end'}>
 						<p className={'text-xs italic text-slate-700'}>
 							{dish?.attributes?.price}&nbsp;€
