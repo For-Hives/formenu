@@ -89,7 +89,26 @@ export function Dishes({ dish }) {
 				<div className={'flex flex-col'}>
 					<p className={'text-slate-700'}>Allergènes présents dans le plat :</p>
 					<div className={'flex gap-2'}>
-						<Allergen />
+						{/*// "is_allergen_gluten": null,*/}
+						{/*// "is_allergen_shellfishs": false,*/}
+						{/*// "is_allergen_eggs": true,*/}
+						{/*// "is_allergen_fishes": false,*/}
+						{/*// "is_allergen_peanuts": true,*/}
+						{/*// "is_allergen_soybeans": true,*/}
+						{/*// "is_allergen_milk": false,*/}
+						{/*// "is_allergen_nuts": true,*/}
+						{/*// "is_allergen_celery": false,*/}
+						{/*// "is_allergen_mustard": false,*/}
+						{/*// "is_allergen_sesams": false,*/}
+						{/*// "is_allergen_sulphurous_anhydre": false,*/}
+						{/*// "is_allergen_lupins": true,*/}
+						{/*// "is_allergen_mollusks": false,*/}
+						{dish?.attributes?.is_allergen_gluten && (
+							<Allergen allergen={'is_allergen_gluten'} />
+						)}
+						{dish?.attributes?.is_allergen_shellfishs && (
+							<Allergen allergen={'is_allergen_shellfishs'} />
+						)}
 					</div>
 				</div>
 			)}
