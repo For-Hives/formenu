@@ -49,7 +49,7 @@ async function getData(category) {
 
 async function getDataDishes(category) {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[category]=deep&populate[categories]=deep&populate[dishes][populate][ingredients]=deep&populate[dishes][populate][type_dish][populate][icon]=deep&filters[id][$eq]=${category}`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[category]=deep&populate[categories]=deep&populate[dishes][populate][ingredients]=deep&populate[dishes][populate][image]=deep&populate[dishes][populate][type_dish][populate][icon]=deep&filters[id][$eq]=${category}`,
 		{
 			method: 'GET',
 			headers: {
@@ -175,9 +175,6 @@ export default async function Page({ params }) {
 										return (
 											<>
 												<Dishes dish={dish} />
-												{/*<div key={dish.id} className={'btn-alt-primary'}>*/}
-												{/*	plats : {dish.attributes.name}*/}
-												{/*</div>*/}
 											</>
 										)
 									}

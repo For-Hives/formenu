@@ -1,15 +1,23 @@
+'use client'
 import Image from 'next/image'
+import { useState } from 'react'
 
 export function Dishes({ dish }) {
+	const [isExpanded, setIsExpanded] = useState(false)
+
 	const image =
 		dish?.attributes?.type_dish?.data?.attributes?.icon?.data?.attributes
 			?.url ?? ''
-	console.log(dish?.attributes)
 
 	// border-cyan-500
 	return (
-		<div
-			className={`flex w-full flex-col rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
+		<button
+			type="button"
+			onClick={() => {
+				//	expand this dish
+				setIsExpanded(!isExpanded)
+			}}
+			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
 		>
 			<div className={'flex w-full items-center justify-between'}>
 				<h2 className={'font-bold text-slate-800'}>{dish.attributes.name}</h2>
@@ -22,11 +30,40 @@ export function Dishes({ dish }) {
 					/>
 				)}
 			</div>
-			<div className={'flex h-full items-end justify-between gap-8 pl-4'}>
-				{dish?.attributes?.description && (
-					<div>
-						<p className={'text-sm text-slate-700'}>
+			{isExpanded && dish?.attributes?.description && (
+				<div className={'relative flex h-full w-full justify-between gap-6'}>
+					<div className={'absolute left-0 top-0 h-full w-full'}>
+						<div className={'relative h-full w-1/3 gap-4 bg-red-400'}>
+							<Image
+								src={dish?.attributes?.image?.data?.attributes?.url}
+								fill={true}
+								alt={dish?.attributes?.name ?? 'image'}
+							/>
+						</div>
+					</div>
+					<div className={'w-1/3'} />
+					<div className={'h-full w-2/3'}>
+						<p className={'text-start text-sm text-slate-600'}>
 							{dish?.attributes?.description}
+						</p>
+					</div>
+				</div>
+			)}
+
+			<div className={'flex h-full items-end justify-between gap-8 pl-4'}>
+				{dish?.attributes?.ingredients?.data?.length > 0 && (
+					<div>
+						<p className={'text-start text-sm text-slate-700'}>
+							{/*dish?.attributes?.ingredients?.data*/}
+							{dish?.attributes?.ingredients?.data?.map((ingredient, index) => {
+								return (
+									<>
+										{ingredient?.attributes?.name}
+										{index !==
+											dish?.attributes?.ingredients?.data?.length - 1 && ', '}
+									</>
+								)
+							})}
 						</p>
 					</div>
 				)}
@@ -38,6 +75,6 @@ export function Dishes({ dish }) {
 					</div>
 				)}
 			</div>
-		</div>
+		</button>
 	)
 }
