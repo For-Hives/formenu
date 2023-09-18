@@ -109,6 +109,42 @@ export function Dishes({ dish }) {
 						{dish?.attributes?.is_allergen_shellfishs && (
 							<Allergen allergen={'is_allergen_shellfishs'} />
 						)}
+						{dish?.attributes?.is_allergen_eggs && (
+							<Allergen allergen={'is_allergen_eggs'} />
+						)}
+						{dish?.attributes?.is_allergen_fishes && (
+							<Allergen allergen={'is_allergen_fishes'} />
+						)}
+						{dish?.attributes?.is_allergen_peanuts && (
+							<Allergen allergen={'is_allergen_peanuts'} />
+						)}
+						{dish?.attributes?.is_allergen_soybeans && (
+							<Allergen allergen={'is_allergen_soybeans'} />
+						)}
+						{dish?.attributes?.is_allergen_milk && (
+							<Allergen allergen={'is_allergen_milk'} />
+						)}
+						{dish?.attributes?.is_allergen_nuts && (
+							<Allergen allergen={'is_allergen_nuts'} />
+						)}
+						{dish?.attributes?.is_allergen_celery && (
+							<Allergen allergen={'is_allergen_celery'} />
+						)}
+						{dish?.attributes?.is_allergen_mustard && (
+							<Allergen allergen={'is_allergen_mustard'} />
+						)}
+						{dish?.attributes?.is_allergen_sesams && (
+							<Allergen allergen={'is_allergen_sesams'} />
+						)}
+						{dish?.attributes?.is_allergen_sulphurous_anhydre && (
+							<Allergen allergen={'is_allergen_sulphurous_anhydre'} />
+						)}
+						{dish?.attributes?.is_allergen_lupins && (
+							<Allergen allergen={'is_allergen_lupins'} />
+						)}
+						{dish?.attributes?.is_allergen_mollusks && (
+							<Allergen allergen={'is_allergen_mollusks'} />
+						)}
 					</div>
 				</div>
 			)}
