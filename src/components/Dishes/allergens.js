@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export function Allergen({ allergen }) {
+export function Allergens({ dish }) {
 	// "is_allergen_gluten": null,
 	// "is_allergen_shellfishs": false,
 	// "is_allergen_eggs": true,
@@ -18,12 +18,28 @@ export function Allergen({ allergen }) {
 	return (
 		<>
 			{/*  check if allergen is 'is_allergen_gluten' or another value then display the image */}
-			{allergen?.attributes?.is_allergen_gluten && (
+			{dish?.attributes?.is_allergen_gluten && (
 				<Image
 					src={'/images/allergens/gluten.svg'}
 					width={20}
 					height={20}
 					alt={'gluten'}
+				/>
+			)}
+			{dish?.attributes?.is_allergen_shellfishes && (
+				<Image
+					src={'/images/allergens/shellfishes.svg'}
+					width={20}
+					height={20}
+					alt={'shellfishes'}
+				/>
+			)}
+			{dish?.attributes?.is_allergen_eggs && (
+				<Image
+					src={'/images/allergens/eggs.svg'}
+					width={20}
+					height={20}
+					alt={'eggs'}
 				/>
 			)}
 		</>

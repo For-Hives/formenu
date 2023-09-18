@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Allergen } from '@/components/Dishes/allergen'
+import { Allergens } from '@/components/Dishes/allergens'
 
 export function Dishes({ dish }) {
 	const [isExpanded, setIsExpanded] = useState(false)
@@ -89,62 +89,7 @@ export function Dishes({ dish }) {
 				<div className={'flex flex-col'}>
 					<p className={'text-slate-700'}>Allergènes présents dans le plat :</p>
 					<div className={'flex gap-2'}>
-						{/*// "is_allergen_gluten": null,*/}
-						{/*// "is_allergen_shellfishs": false,*/}
-						{/*// "is_allergen_eggs": true,*/}
-						{/*// "is_allergen_fishes": false,*/}
-						{/*// "is_allergen_peanuts": true,*/}
-						{/*// "is_allergen_soybeans": true,*/}
-						{/*// "is_allergen_milk": false,*/}
-						{/*// "is_allergen_nuts": true,*/}
-						{/*// "is_allergen_celery": false,*/}
-						{/*// "is_allergen_mustard": false,*/}
-						{/*// "is_allergen_sesams": false,*/}
-						{/*// "is_allergen_sulphurous_anhydre": false,*/}
-						{/*// "is_allergen_lupins": true,*/}
-						{/*// "is_allergen_mollusks": false,*/}
-						{dish?.attributes?.is_allergen_gluten && (
-							<Allergen allergen={'is_allergen_gluten'} />
-						)}
-						{dish?.attributes?.is_allergen_shellfishs && (
-							<Allergen allergen={'is_allergen_shellfishs'} />
-						)}
-						{dish?.attributes?.is_allergen_eggs && (
-							<Allergen allergen={'is_allergen_eggs'} />
-						)}
-						{dish?.attributes?.is_allergen_fishes && (
-							<Allergen allergen={'is_allergen_fishes'} />
-						)}
-						{dish?.attributes?.is_allergen_peanuts && (
-							<Allergen allergen={'is_allergen_peanuts'} />
-						)}
-						{dish?.attributes?.is_allergen_soybeans && (
-							<Allergen allergen={'is_allergen_soybeans'} />
-						)}
-						{dish?.attributes?.is_allergen_milk && (
-							<Allergen allergen={'is_allergen_milk'} />
-						)}
-						{dish?.attributes?.is_allergen_nuts && (
-							<Allergen allergen={'is_allergen_nuts'} />
-						)}
-						{dish?.attributes?.is_allergen_celery && (
-							<Allergen allergen={'is_allergen_celery'} />
-						)}
-						{dish?.attributes?.is_allergen_mustard && (
-							<Allergen allergen={'is_allergen_mustard'} />
-						)}
-						{dish?.attributes?.is_allergen_sesams && (
-							<Allergen allergen={'is_allergen_sesams'} />
-						)}
-						{dish?.attributes?.is_allergen_sulphurous_anhydre && (
-							<Allergen allergen={'is_allergen_sulphurous_anhydre'} />
-						)}
-						{dish?.attributes?.is_allergen_lupins && (
-							<Allergen allergen={'is_allergen_lupins'} />
-						)}
-						{dish?.attributes?.is_allergen_mollusks && (
-							<Allergen allergen={'is_allergen_mollusks'} />
-						)}
+						<Allergens dish={dish} />
 					</div>
 				</div>
 			)}
