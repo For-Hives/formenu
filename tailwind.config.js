@@ -23,6 +23,9 @@ module.exports = {
 				15: '15deg',
 				30: '30deg',
 			},
+			borderWidth: {
+				3: '3px',
+			},
 		},
 	},
 	plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

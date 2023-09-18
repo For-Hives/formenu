@@ -49,7 +49,7 @@ async function getData(category) {
 
 async function getDataDishes(category) {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[category]=deep&populate[categories]=deep&populate[dishes][populate][type_dish][populate][icon]=*&filters[id][$eq]=${category}`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[category]=deep&populate[categories]=deep&populate[dishes][populate][ingredients]=deep&populate[dishes][populate][type_dish][populate][icon]=deep&filters[id][$eq]=${category}`,
 		{
 			method: 'GET',
 			headers: {
@@ -165,7 +165,7 @@ export default async function Page({ params }) {
 							// When there is no children categories -> display dishes
 							<div
 								className={`${
-									data_dishes?.data[0].attributes.dishes.length > 0
+									data_dishes?.data[0]?.attributes.dishes.length > 0
 										? 'min-h-[calc(100vh-25rem)]'
 										: ''
 								} container-dishes`}
