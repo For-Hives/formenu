@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
+import { Allergen } from '@/components/Dishes/allergen'
 
 export function Dishes({ dish }) {
 	const [isExpanded, setIsExpanded] = useState(false)
@@ -84,6 +85,14 @@ export function Dishes({ dish }) {
 					</div>
 				)}
 			</div>
+			{isExpanded && (
+				<div className={'flex flex-col'}>
+					<p className={'text-slate-700'}>Allergènes présents dans le plat :</p>
+					<div className={'flex gap-2'}>
+						<Allergen />
+					</div>
+				</div>
+			)}
 		</button>
 	)
 }
