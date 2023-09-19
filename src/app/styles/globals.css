@@ -7,7 +7,7 @@
     list-style: none;
     text-decoration: none;
     transition: opacity, z-index, color ease-in-out 0.3s;
-    font-family: new-hero, sans-serif;
+    font-family: 'Lato', sans-serif;
     font-style: normal;
 }
 
@@ -78,6 +78,34 @@ nav a {
     h5,
     h6,
     nav * {
-        font-family: 'Chennai', sans-serif;
+        font-family: 'Fraunces', serif;
+    }
+}
+
+@layer components {
+    /* Custom Button */
+    .btn-primary {
+        @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-blue-950 px-7 py-3.5 text-sm text-white shadow-lg sm:text-base;
+    }
+
+    /* Alt Custom Button */
+    .btn-alt-primary {
+        @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base;
+    }
+
+    .container-menu {
+        @apply flex justify-center w-full
+    }
+
+    .container-menus {
+        @apply flex h-full w-full flex-col items-center justify-center gap-8;
+    }
+
+    .container-sub-menus {
+        @apply flex h-full  w-full flex-col items-center justify-center gap-8 max-w-sm;
+    }
+
+    .container-dishes {
+        @apply flex h-full w-full flex-col gap-8;
     }
 }
