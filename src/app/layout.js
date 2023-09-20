@@ -1,6 +1,7 @@
 import './styles/globals.css'
 import { CardBackground } from '@/components/Background/cardBackground'
 import Image from 'next/image'
+import { Nav } from '@/components/Layout/nav'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
 					'flex min-h-screen w-full flex-col bg-slate-50 text-slate-950'
 				}
 			>
+				<Nav />
 				<CardBackground
 					placementClassName={'-right-40 -top-48 rotate-15'}
 					src={'/images/bg_1.jpg'}
