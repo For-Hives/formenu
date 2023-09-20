@@ -18,7 +18,7 @@ export function Dishes({ dish }) {
 				//	expand this dish
 				setIsExpanded(!isExpanded)
 			}}
-			className={`flex w-full flex-col gap-8 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
+			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
 		>
 			<div className={'flex w-full items-center justify-between'}>
 				<h2 className={'font-bold text-slate-800'}>{dish.attributes.name}</h2>
@@ -54,7 +54,11 @@ export function Dishes({ dish }) {
 				</div>
 			)}
 
-			<div className={'flex h-full items-end justify-between gap-8 pl-4'}>
+			<div
+				className={`flex h-full items-end justify-between gap-8 pl-4 ${
+					isExpanded ? 'py-4' : ''
+				}`}
+			>
 				{dish?.attributes?.ingredients?.data?.length > 0 && (
 					<div>
 						<p
