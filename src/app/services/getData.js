@@ -19,5 +19,14 @@ export async function getData() {
 
 export async function getAllData() {
 	const data = await getData()
-	return data
+	return data[0]
+}
+
+// `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
+export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
+	const data = await getAllData()
+	// 	filter data.categories, to get all categories with depth = 0 & sort by order
+	return data.categories
+		.filter(category => category.depth === 0)
+		.sort((a, b) => a.order - b.order)
 }
