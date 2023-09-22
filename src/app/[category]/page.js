@@ -4,13 +4,13 @@ import Link from 'next/link'
 import { Dishes } from '@/components/Dishes/dishes'
 import {
 	getAllData_Categories,
-	getAllData_Dishes,
+	getAllData_DishesFromCategory,
 } from '@/app/services/getData'
 
 export default async function Page({ params }) {
 	// get category ( url )
 	const { category } = params
-	let data = await getAllData_Dishes(category)
+	let data = await getAllData_DishesFromCategory(category)
 	data = data[0]
 	const categories = await getAllData_Categories()
 
@@ -44,6 +44,7 @@ export default async function Page({ params }) {
 		)
 	})()
 
+	console.log('data', data)
 	return (
 		<>
 			<div className={'container-menu'}>
@@ -77,10 +78,10 @@ export default async function Page({ params }) {
 								/>
 							</div>
 						}
-						{data[0]?.length > 0 ? (
+						{data ? (
 							<>
 								{/* ❌ loop on category if it's the first children category */}
-								{data.map((record, index) => {
+								{data.categories.map((record, index) => {
 									return (
 										<div
 											key={record.id}
@@ -100,10 +101,10 @@ export default async function Page({ params }) {
 							// When there is no children categories -> display dishes
 							<div
 								className={`${
-									data[0]?.dishes.length > 0 ? 'min-h-[calc(100vh-25rem)]' : ''
+									data.dishes.length > 0 ? 'min-h-[calc(100vh-25rem)]' : ''
 								} container-dishes`}
 							>
-								{data[0]?.dishes?.map((dish, index) => {
+								{data?.dishes.map((dish, index) => {
 									return (
 										<>
 											<Dishes dish={dish} />
