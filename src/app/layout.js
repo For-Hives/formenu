@@ -2,6 +2,7 @@ import './styles/globals.css'
 import { CardBackground } from '@/components/Background/cardBackground'
 import Image from 'next/image'
 import { Nav } from '@/components/Layout/nav'
+import { getAllData } from '@/app/services/getData'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -31,7 +32,9 @@ export const metadata = {
 	],
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+	const data = await getAllData()
+
 	return (
 		<html lang="fr">
 			<body

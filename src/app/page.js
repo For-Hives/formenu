@@ -24,8 +24,11 @@ async function getData() {
 	return res.json()
 }
 
-export default async function Page() {
-	const data = await getData()
+export default async function Page({ params }) {
+	const data = params.data
+
+	console.log('params', params)
+	// console.log('data', data)
 
 	return (
 		<>
