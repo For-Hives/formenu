@@ -77,7 +77,7 @@ export default async function Page({ params }) {
 								/>
 							</div>
 						}
-						{data?.length > 0 ? (
+						{data[0]?.length > 0 ? (
 							<>
 								{/* ❌ loop on category if it's the first children category */}
 								{data.map((record, index) => {
