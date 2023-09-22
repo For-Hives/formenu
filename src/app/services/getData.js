@@ -30,3 +30,16 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
 		.filter(category => category.depth === 0)
 		.sort((a, b) => a.order - b.order)
 }
+
+export async function getAllData_Categories() {
+	const data = await getAllData()
+	return data.categories
+}
+
+// categories?populate[categories]=deep&populate[category]=deep&populate[dishes]=deep&filters[category][id][$eq]=${category}
+export async function getAllData_Dishes(category) {
+	const data = await getAllData()
+	return data.categories
+		.filter(record => record.id.toString() === category.toString())
+		.map(record => record.dishes)
+}
