@@ -6,32 +6,19 @@ import {
 	getAllData_Categories,
 	getAllData_DishesFromCategory,
 	getCurrentCategoryInfos,
+	getNextCategoryInfos,
 	getPreviousCategoryInfos,
 } from '@/app/services/getData'
 
 export default async function Page({ params }) {
 	const { category } = params
 	const data = await getAllData_DishesFromCategory(category)
-	const categories = await getAllData_Categories()
-	const current_category_data = getCurrentCategoryInfos(category)
-	const previous_category_data = getPreviousCategoryInfos(current_category_data)
+	const current_category_data = await getCurrentCategoryInfos(category)
+	const previous_category_data = await getPreviousCategoryInfos(
+		current_category_data
+	)
+	const next_category_data = await getNextCategoryInfos(current_category_data)
 
-	// auto exec
-	const next_category = (() => {
-		if (
-			current_category_data[0]?.order.toString() ===
-			(categories.length - 1).toString()
-		)
-			return []
-		return categories.filter(
-			record =>
-				record.order.toString() ===
-					(current_category_data[0]?.order + 1).toString() &&
-				record.depth.toString() === current_category_data[0]?.depth.toString()
-		)
-	})()
-
-	console.log('data', data)
 	return (
 		<>
 			<div className={'container-menu'}>
@@ -45,13 +32,13 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the previous parent category, url
 							// from search params, get the previous parent category
-							previous_category?.length > 0 && (
+							previous_category_data?.length > 0 && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${previous_category[0]?.id.toString()}`}
+										href={`/${previous_category_data[0]?.id.toString()}`}
 									>
-										{previous_category[0]?.name}
+										{previous_category_data[0]?.name}
 									</Link>
 								</div>
 							)
@@ -108,13 +95,13 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the next parent category
 							// from search params, get the next parent category
-							next_category?.length > 0 && (
+							next_category_data?.length > 0 && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${next_category[0]?.id.toString()}`}
+										href={`/${next_category_data?.id.toString()}`}
 									>
-										{next_category[0]?.name}
+										{next_category_data?.name}
 									</Link>
 								</div>
 							)
