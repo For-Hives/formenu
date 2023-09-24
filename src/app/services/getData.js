@@ -52,6 +52,15 @@ export async function getCurrentCategoryInfos(categoryId) {
 	return data_category[0]
 }
 
+export async function getCategoriesParent(current_category_data) {
+	const data = await getAllData_Categories()
+	// get the parent category (depth - 1) of current_category_data
+	return data.filter(
+		record =>
+			record.depth.toString() === (current_category_data?.depth).toString()
+	)
+}
+
 export async function getPreviousCategoryInfos(current_category_data) {
 	const data = await getAllData_Categories()
 	const previous_category = (() => {

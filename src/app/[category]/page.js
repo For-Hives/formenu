@@ -3,12 +3,13 @@ import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
 import { Dishes } from '@/components/Dishes/dishes'
 import {
-	getAllData_Categories,
 	getAllData_DishesFromCategory,
+	getCategoriesParent,
 	getCurrentCategoryInfos,
 	getNextCategoryInfos,
 	getPreviousCategoryInfos,
 } from '@/app/services/getData'
+import { Nav } from '@/components/Layout/nav'
 
 export default async function Page({ params }) {
 	const { category } = params
@@ -18,9 +19,11 @@ export default async function Page({ params }) {
 		current_category_data
 	)
 	const next_category_data = await getNextCategoryInfos(current_category_data)
+	const parent_categories = await getCategoriesParent(current_category_data)
 
 	return (
 		<>
+			<Nav parent_categories={parent_categories} />
 			<div className={'container-menu'}>
 				<div
 					className={`${

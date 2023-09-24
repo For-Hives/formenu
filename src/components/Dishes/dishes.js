@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Allergens } from '@/components/Dishes/allergens'
 
 export function Dishes({ dish }) {
-	console.log('dish', dish)
 	const [isExpanded, setIsExpanded] = useState(false)
 
 	const image = dish?.type_dish?.icon?.url ?? ''

@@ -2,7 +2,11 @@ import './styles/globals.css'
 import { CardBackground } from '@/components/Background/cardBackground'
 import Image from 'next/image'
 import { Nav } from '@/components/Layout/nav'
-import { getAllData } from '@/app/services/getData'
+import {
+	getAllData,
+	getAllData_CategoriesWith0DepthAndSortByOrder,
+	getCurrentCategoryInfos,
+} from '@/app/services/getData'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -33,8 +37,6 @@ export const metadata = {
 }
 
 export default async function RootLayout({ children }) {
-	const data = await getAllData()
-
 	return (
 		<html lang="fr">
 			<body
@@ -42,7 +44,6 @@ export default async function RootLayout({ children }) {
 					'flex min-h-screen w-full flex-col bg-slate-50 text-slate-950'
 				}
 			>
-				<Nav />
 				<CardBackground
 					placementClassName={'-right-40 -top-48 rotate-15'}
 					src={'/images/bg_1.jpg'}
