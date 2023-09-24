@@ -19,8 +19,6 @@ export default async function Page({ params }) {
 	)
 	const next_category_data = await getNextCategoryInfos(current_category_data)
 
-	console.log('data', previous_category_data)
-
 	return (
 		<>
 			<div className={'container-menu'}>
