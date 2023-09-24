@@ -19,6 +19,8 @@ export default async function Page({ params }) {
 	)
 	const next_category_data = await getNextCategoryInfos(current_category_data)
 
+	console.log('data', previous_category_data)
+
 	return (
 		<>
 			<div className={'container-menu'}>
@@ -32,13 +34,13 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the previous parent category, url
 							// from search params, get the previous parent category
-							previous_category_data?.length > 0 && (
+							previous_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${previous_category_data[0]?.id.toString()}`}
+										href={`/${previous_category_data?.id.toString()}`}
 									>
-										{previous_category_data[0]?.name}
+										{previous_category_data?.name}
 									</Link>
 								</div>
 							)
@@ -48,7 +50,7 @@ export default async function Page({ params }) {
 							<div className={'flex w-full items-center justify-start'}>
 								<BackToPrevious
 									className={'btn-primary'}
-									content={current_category_data[0]?.name + ' ← retour'}
+									content={current_category_data?.name + ' ← retour'}
 								/>
 							</div>
 						}
@@ -95,7 +97,7 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the next parent category
 							// from search params, get the next parent category
-							next_category_data?.length > 0 && (
+							next_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
