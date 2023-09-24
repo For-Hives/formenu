@@ -53,16 +53,29 @@ export async function getCurrentCategoryInfos(categoryId) {
 	return data_category[0]
 }
 
-// auto exec
-const previous_category = (() => {
-	if (current_category_data[0]?.order.toString() === '0') return []
-	return categories.filter(
-		record =>
-			record.order.toString() ===
-				(current_category_data[0]?.order - 1).toString() &&
-			record.depth.toString() === current_category_data[0]?.depth.toString()
-	)
-})()
+export async function getPreviousCategoryInfos(current_category_data) {
+	const data = await getAllData_Categories()
+	const previous_category = (() => {
+		if (current_category_data?.order.toString() === '0') return []
+		return data.filter(
+			record =>
+				record.order.toString() ===
+					(current_category_data?.order - 1).toString() &&
+				record.depth.toString() === current_category_data?.depth.toString()
+		)
+	})()
+	return previous_category[0]
+}
+// // auto exec
+// const previous_category = (() => {
+// 	if (current_category_data[0]?.order.toString() === '0') return []
+// 	return categories.filter(
+// 		record =>
+// 			record.order.toString() ===
+// 				(current_category_data[0]?.order - 1).toString() &&
+// 			record.depth.toString() === current_category_data[0]?.depth.toString()
+// 	)
+// })()
 
 // auto exec
 const next_category = (() => {

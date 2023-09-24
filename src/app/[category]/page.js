@@ -6,6 +6,7 @@ import {
 	getAllData_Categories,
 	getAllData_DishesFromCategory,
 	getCurrentCategoryInfos,
+	getPreviousCategoryInfos,
 } from '@/app/services/getData'
 
 export default async function Page({ params }) {
@@ -13,17 +14,7 @@ export default async function Page({ params }) {
 	const data = await getAllData_DishesFromCategory(category)
 	const categories = await getAllData_Categories()
 	const current_category_data = getCurrentCategoryInfos(category)
-
-	// auto exec
-	const previous_category = (() => {
-		if (current_category_data[0]?.order.toString() === '0') return []
-		return categories.filter(
-			record =>
-				record.order.toString() ===
-					(current_category_data[0]?.order - 1).toString() &&
-				record.depth.toString() === current_category_data[0]?.depth.toString()
-		)
-	})()
+	const previous_category_data = getPreviousCategoryInfos(current_category_data)
 
 	// auto exec
 	const next_category = (() => {
