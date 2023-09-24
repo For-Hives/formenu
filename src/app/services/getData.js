@@ -33,12 +33,9 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
 
 export async function getAllData_Categories() {
 	let data = await getAllData()
-	// sort by order
-	data.categories = data.categories.sort((a, b) => a.order - b.order)
 	return data.categories
 }
 
-// categories?populate[categories]=deep&populate[category]=deep&populate[dishes]=deep&filters[category][id][$eq]=${category}
 export async function getAllData_DishesFromCategory(category) {
 	const data = await getAllData()
 	const data_dishes = data.categories.filter(

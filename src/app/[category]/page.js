@@ -75,7 +75,7 @@ export default async function Page({ params }) {
 							// When there is no children categories -> display dishes
 							<div
 								className={`${
-									data.dishes.length > 0 ? 'min-h-[calc(100vh-25rem)]' : ''
+									data.dishes ? 'min-h-[calc(100vh-25rem)]' : ''
 								} container-dishes`}
 							>
 								{data?.dishes.map((dish, index) => {
