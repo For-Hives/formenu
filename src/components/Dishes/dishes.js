@@ -7,7 +7,7 @@ export function Dishes({ dish }) {
 	console.log('dish', dish)
 	const [isExpanded, setIsExpanded] = useState(false)
 
-	const image = dish?.attributes?.type_dish?.data?.icon?.data?.url ?? ''
+	const image = dish?.type_dish?.icon?.url ?? ''
 
 	// border-cyan-500
 	return (
@@ -17,7 +17,7 @@ export function Dishes({ dish }) {
 				//	expand this dish
 				setIsExpanded(!isExpanded)
 			}}
-			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.data?.color}`}
+			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 		>
 			<div className={'flex w-full items-center justify-between'}>
 				<h2 className={'font-bold text-slate-800'}>{dish?.name}</h2>
@@ -35,7 +35,7 @@ export function Dishes({ dish }) {
 					<div className={'absolute left-0 top-0 h-full w-full'}>
 						<div className={'relative h-full w-5/12 gap-4 bg-red-400'}>
 							<Image
-								src={dish?.image?.data?.attributes?.url}
+								src={dish?.image?.url}
 								fill={true}
 								alt={dish?.name ?? 'image'}
 							/>
@@ -58,7 +58,7 @@ export function Dishes({ dish }) {
 					isExpanded ? 'py-4' : ''
 				}`}
 			>
-				{dish?.ingredients?.data?.length > 0 && (
+				{dish?.ingredients?.length > 0 && (
 					<div>
 						<p
 							className={`${
@@ -68,21 +68,21 @@ export function Dishes({ dish }) {
 							} `}
 						>
 							{/*dish?.attributes?.ingredients?.data*/}
-							{dish?.ingredients?.data?.map((ingredient, index) => {
+							{dish?.ingredients?.map((ingredient, index) => {
 								return (
 									<>
 										{ingredient?.name}
-										{index !== dish?.ingredients?.data?.length - 1 && ', '}
+										{index !== dish?.ingredients?.length - 1 && ', '}
 									</>
 								)
 							})}
 						</p>
 					</div>
 				)}
-				{!isExpanded && dish?.attributes?.price && (
+				{!isExpanded && dish?.price && (
 					<div className={'flex h-full flex-col items-end justify-end'}>
 						<p className={'text-xs italic text-slate-700'}>
-							{dish?.attributes?.price}&nbsp;€
+							{dish?.price}&nbsp;€
 						</p>
 					</div>
 				)}
