@@ -52,7 +52,7 @@ export default async function Page({ params }) {
 								/>
 							</div>
 						}
-						{data.length > 0 ? (
+						{current_category_data.categories.length > 0 ? (
 							<>
 								{/* ❌ loop on category if it's the first children category */}
 								{data.categories.map((record, index) => {
