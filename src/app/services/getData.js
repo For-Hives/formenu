@@ -32,7 +32,9 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
 }
 
 export async function getAllData_Categories() {
-	const data = await getAllData()
+	let data = await getAllData()
+	// sort by order
+	data.categories = data.categories.sort((a, b) => a.order - b.order)
 	return data.categories
 }
 
