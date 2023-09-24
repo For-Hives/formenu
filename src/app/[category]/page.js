@@ -24,7 +24,7 @@ export default async function Page({ params }) {
 			<div className={'container-menu'}>
 				<div
 					className={`${
-						data?.length > 0 ? 'min-h-[calc(100vh-25rem)]' : ''
+						data ? 'min-h-[calc(100vh-25rem)]' : ''
 					} container-sub-menus`}
 				>
 					{/* todo add cool loading */}
@@ -52,7 +52,7 @@ export default async function Page({ params }) {
 								/>
 							</div>
 						}
-						{data ? (
+						{data.length > 0 ? (
 							<>
 								{/* ❌ loop on category if it's the first children category */}
 								{data.categories.map((record, index) => {

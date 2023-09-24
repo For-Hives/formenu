@@ -4,11 +4,10 @@ import { useState } from 'react'
 import { Allergens } from '@/components/Dishes/allergens'
 
 export function Dishes({ dish }) {
+	console.log('dish', dish)
 	const [isExpanded, setIsExpanded] = useState(false)
 
-	const image =
-		dish?.attributes?.type_dish?.data?.attributes?.icon?.data?.attributes
-			?.url ?? ''
+	const image = dish?.attributes?.type_dish?.data?.icon?.data?.url ?? ''
 
 	// border-cyan-500
 	return (
@@ -18,37 +17,37 @@ export function Dishes({ dish }) {
 				//	expand this dish
 				setIsExpanded(!isExpanded)
 			}}
-			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.attributes?.type_dish?.data?.attributes?.color}`}
+			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.data?.color}`}
 		>
 			<div className={'flex w-full items-center justify-between'}>
-				<h2 className={'font-bold text-slate-800'}>{dish.attributes.name}</h2>
+				<h2 className={'font-bold text-slate-800'}>{dish?.name}</h2>
 				{image && (
 					<Image
-						alt={dish?.attributes?.name ?? 'icon'}
+						alt={dish?.name ?? 'icon'}
 						src={image}
 						width={25}
 						height={25}
 					/>
 				)}
 			</div>
-			{isExpanded && dish?.attributes?.description && (
+			{isExpanded && dish?.description && (
 				<div className={'relative flex h-full w-full justify-between gap-6'}>
 					<div className={'absolute left-0 top-0 h-full w-full'}>
 						<div className={'relative h-full w-5/12 gap-4 bg-red-400'}>
 							<Image
-								src={dish?.attributes?.image?.data?.attributes?.url}
+								src={dish?.image?.data?.attributes?.url}
 								fill={true}
-								alt={dish?.attributes?.name ?? 'image'}
+								alt={dish?.name ?? 'image'}
 							/>
 						</div>
 					</div>
 					<div className={'w-5/12'} />
 					<div className={'h-full w-7/12'}>
 						<p className={'text-start text-sm text-slate-600'}>
-							{dish?.attributes?.description}
+							{dish?.description}
 						</p>
 						<p className={'text-end text-xs italic text-slate-700'}>
-							{dish?.attributes?.price}&nbsp;€
+							{dish?.price}&nbsp;€
 						</p>
 					</div>
 				</div>
@@ -59,7 +58,7 @@ export function Dishes({ dish }) {
 					isExpanded ? 'py-4' : ''
 				}`}
 			>
-				{dish?.attributes?.ingredients?.data?.length > 0 && (
+				{dish?.ingredients?.data?.length > 0 && (
 					<div>
 						<p
 							className={`${
@@ -69,12 +68,11 @@ export function Dishes({ dish }) {
 							} `}
 						>
 							{/*dish?.attributes?.ingredients?.data*/}
-							{dish?.attributes?.ingredients?.data?.map((ingredient, index) => {
+							{dish?.ingredients?.data?.map((ingredient, index) => {
 								return (
 									<>
-										{ingredient?.attributes?.name}
-										{index !==
-											dish?.attributes?.ingredients?.data?.length - 1 && ', '}
+										{ingredient?.name}
+										{index !== dish?.ingredients?.data?.length - 1 && ', '}
 									</>
 								)
 							})}
