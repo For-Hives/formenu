@@ -8,10 +8,8 @@ import {
 } from '@/app/services/getData'
 
 export default async function Page({ params }) {
-	// get category ( url )
 	const { category } = params
-	let data = await getAllData_DishesFromCategory(category)
-	data = data[0]
+	const data = await getAllData_DishesFromCategory(category)
 	const categories = await getAllData_Categories()
 
 	const current_category_data = categories.filter(

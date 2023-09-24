@@ -39,8 +39,8 @@ export async function getAllData_Categories() {
 // categories?populate[categories]=deep&populate[category]=deep&populate[dishes]=deep&filters[category][id][$eq]=${category}
 export async function getAllData_DishesFromCategory(category) {
 	const data = await getAllData()
-	// console.log('data', data.categories[0].dishes[0])
-	return data.categories.filter(
+	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)
+	return data_dishes[0]
 }
