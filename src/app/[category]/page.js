@@ -5,16 +5,14 @@ import { Dishes } from '@/components/Dishes/dishes'
 import {
 	getAllData_Categories,
 	getAllData_DishesFromCategory,
+	getCurrentCategoryInfos,
 } from '@/app/services/getData'
 
 export default async function Page({ params }) {
 	const { category } = params
 	const data = await getAllData_DishesFromCategory(category)
 	const categories = await getAllData_Categories()
-
-	const current_category_data = categories.filter(
-		record => record.id.toString() === category.toString()
-	)
+	const current_category_data = getCurrentCategoryInfos(category)
 
 	// auto exec
 	const previous_category = (() => {

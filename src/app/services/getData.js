@@ -44,3 +44,37 @@ export async function getAllData_DishesFromCategory(category) {
 	)
 	return data_dishes[0]
 }
+
+export async function getCurrentCategoryInfos(categoryId) {
+	const data = await getAllData_Categories()
+	const data_category = data.filter(
+		record => record.id.toString() === categoryId.toString()
+	)
+	return data_category[0]
+}
+
+// auto exec
+const previous_category = (() => {
+	if (current_category_data[0]?.order.toString() === '0') return []
+	return categories.filter(
+		record =>
+			record.order.toString() ===
+				(current_category_data[0]?.order - 1).toString() &&
+			record.depth.toString() === current_category_data[0]?.depth.toString()
+	)
+})()
+
+// auto exec
+const next_category = (() => {
+	if (
+		current_category_data[0]?.order.toString() ===
+		(categories.length - 1).toString()
+	)
+		return []
+	return categories.filter(
+		record =>
+			record.order.toString() ===
+				(current_category_data[0]?.order + 1).toString() &&
+			record.depth.toString() === current_category_data[0]?.depth.toString()
+	)
+})()
