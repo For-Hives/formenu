@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BackToPrevious from '@/components/BackToPrevious'
 
-export async function Nav({ parent_categories }) {
+export async function Nav({ parent_categories, selected_category }) {
 	return (
 		<>
 			<nav className={'fixed left-0 top-0 h-screen w-screen pb-16 md:pb-0'}>
@@ -45,12 +45,26 @@ export async function Nav({ parent_categories }) {
 												className={'flex w-full items-center justify-end'}
 											>
 												<Link
-													className={
-														'flex h-10 w-10 items-center justify-center rounded-full bg-red-400'
-													}
+													className={`${
+														selected_category.toString() ===
+														record.id.toString()
+															? 'btn-nav-alt'
+															: 'btn-nav'
+													}`}
 													href={`/${record.id.toString()}`}
 												>
-													{record.name[0]}
+													<Image
+														src={record?.icon?.url}
+														alt={record?.name ?? 'icon'}
+														width={15}
+														height={15}
+														className={
+															selected_category.toString() ===
+															record.id.toString()
+																? ''
+																: 'invert'
+														}
+													/>
 												</Link>
 											</div>
 										)

@@ -23,7 +23,10 @@ export default async function Page({ params }) {
 
 	return (
 		<>
-			<Nav parent_categories={parent_categories} />
+			<Nav
+				parent_categories={parent_categories}
+				selected_category={current_category_data.id}
+			/>
 			<div className={'container-menu'}>
 				<div
 					className={`${
