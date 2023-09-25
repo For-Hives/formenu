@@ -22,7 +22,14 @@ export async function Nav({ parent_categories }) {
 							'col-span-1 flex flex-col items-end justify-between gap-32 p-8'
 						}
 					>
-						<div>item 1</div>
+						<Link href={'/'} className={'btn-nav'}>
+							<Image
+								src={'/icons/magnifying-glass.svg'}
+								alt={'search button'}
+								width={15}
+								height={15}
+							/>
+						</Link>
 						<div
 							className={
 								'flex w-full flex-col items-end justify-between gap-16'
