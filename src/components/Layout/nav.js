@@ -5,7 +5,11 @@ import BackToPrevious from '@/components/BackToPrevious'
 export async function Nav({ parent_categories, selected_category }) {
 	return (
 		<>
-			<nav className={'fixed left-0 top-0 h-screen w-screen pb-16 md:pb-0'}>
+			<nav
+				className={
+					'pointer-events-none fixed left-0 top-0 h-screen w-screen select-none pb-16 md:pb-0'
+				}
+			>
 				<div className={'grid h-full w-full grid-cols-2'}>
 					<div className={'col-span-1 flex items-start justify-start p-8'}>
 						<BackToPrevious className={'btn-nav'}>
@@ -61,8 +65,8 @@ export async function Nav({ parent_categories, selected_category }) {
 														className={
 															selected_category.toString() ===
 															record.id.toString()
-																? ''
-																: 'invert'
+																? 'fill-white'
+																: 'fill-black'
 														}
 													/>
 												</Link>
