@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import BackToPrevious from '@/components/BackToPrevious'
+import { CustomSvg } from '@/components/CustomSvg'
 
 export async function Nav({ parent_categories, selected_category }) {
 	return (
@@ -57,16 +58,13 @@ export async function Nav({ parent_categories, selected_category }) {
 													}`}
 													href={`/${record.id.toString()}`}
 												>
-													<Image
-														src={record?.icon?.url}
-														alt={record?.name ?? 'icon'}
-														width={15}
-														height={15}
-														className={
+													<CustomSvg
+														url={record.icon.url}
+														classNames={
 															selected_category.toString() ===
 															record.id.toString()
-																? 'fill-white'
-																: 'fill-black'
+																? 'bg-white'
+																: 'bg-black'
 														}
 													/>
 												</Link>
