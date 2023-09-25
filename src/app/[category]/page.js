@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
-import { Dishes } from '@/components/Dishes/dishes'
+import { Dishes } from '@/components/Dishes/Dishes'
 import {
 	getAllData_DishesFromCategory,
 	getCategoriesParent,
@@ -9,7 +9,7 @@ import {
 	getNextCategoryInfos,
 	getPreviousCategoryInfos,
 } from '@/app/services/getData'
-import { Nav } from '@/components/Layout/nav'
+import { Nav } from '@/components/Layout/Nav'
 
 export default async function Page({ params }) {
 	const { category } = params

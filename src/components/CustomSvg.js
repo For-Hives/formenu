@@ -1,7 +1,7 @@
 export function CustomSvg({ url, classNames }) {
 	return (
 		<div
-			className={`h-[15px] w-[15px] ${classNames}`}
+			className={`h-[20px] w-[20px] ${classNames}`}
 			style={{
 				mask: `url(${url})`,
 				WebkitMask: `url(${url})`,

@@ -1,7 +1,7 @@
 import './styles/globals.css'
-import { CardBackground } from '@/components/Background/cardBackground'
+import { CardBackground } from '@/components/Background/CardBackground'
 import Image from 'next/image'
-import { Nav } from '@/components/Layout/nav'
+import { Nav } from '@/components/Layout/Nav'
 import {
 	getAllData,
 	getAllData_CategoriesWith0DepthAndSortByOrder,

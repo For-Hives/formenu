@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Allergens } from '@/components/Dishes/allergens'
+import { Allergens } from '@/components/Dishes/Allergens'
 
 export function Dishes({ dish }) {
 	const [isExpanded, setIsExpanded] = useState(false)
