@@ -1,12 +1,22 @@
-'use client'
 import Link from 'next/link'
+import Image from 'next/image'
+import BackToPrevious from '@/components/BackToPrevious'
 
 export async function Nav({ parent_categories }) {
 	return (
 		<>
 			<nav className={'fixed left-0 top-0 h-screen w-screen pb-16 md:pb-0'}>
 				<div className={'grid h-full w-full grid-cols-2'}>
-					<div className={'col-span-1 flex p-8'}>Logo</div>
+					<div className={'col-span-1 flex items-start justify-start p-8'}>
+						<BackToPrevious className={'btn-nav'}>
+							<Image
+								src={'/icons/left-arrow.svg'}
+								width={15}
+								height={15}
+								alt={'back'}
+							/>
+						</BackToPrevious>
+					</div>
 					<div
 						className={
 							'col-span-1 flex flex-col items-end justify-between gap-32 p-8'
@@ -41,7 +51,7 @@ export async function Nav({ parent_categories }) {
 								</>
 							}
 						</div>
-						<div>item 1</div>
+						<div></div>
 					</div>
 				</div>
 			</nav>

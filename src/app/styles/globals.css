@@ -108,4 +108,8 @@ nav a {
     .container-dishes {
         @apply flex h-full w-full flex-col gap-8;
     }
+
+    .btn-nav{
+        @apply flex h-[40px] w-[40px] items-center justify-center rounded-full border border-blue-950 bg-white;
+    }
 }
