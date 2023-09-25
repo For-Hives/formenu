@@ -26,6 +26,7 @@ export function Dishes({ dish }) {
 						src={image}
 						width={25}
 						height={25}
+						className={'object-cover'}
 					/>
 				)}
 			</div>
@@ -37,6 +38,7 @@ export function Dishes({ dish }) {
 								src={dish?.image?.url}
 								fill={true}
 								alt={dish?.name ?? 'image'}
+								className={'object-cover'}
 							/>
 						</div>
 					</div>

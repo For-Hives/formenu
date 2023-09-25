@@ -79,24 +79,28 @@ export default async function Page({ params }) {
 							</>
 						) : (
 							// When there is no children categories -> display dishes
-							<div
-								className={`${
-									data.dishes ? 'min-h-[calc(100vh-25rem)]' : ''
-								} container-dishes`}
-							>
-								{data?.dishes.map((dish, index) => {
-									return (
-										<>
-											<Dishes dish={dish} />
-										</>
-									)
-								})}
-								<div>
-									<div>
-										<BackToPrevious />
+							<>
+								{data?.dishes.length > 0 && (
+									<div
+										className={`${
+											data.dishes ? 'min-h-[calc(100vh-25rem)]' : ''
+										} container-dishes`}
+									>
+										{data?.dishes.map((dish, index) => {
+											return (
+												<>
+													<Dishes dish={dish} />
+												</>
+											)
+										})}
+										<div>
+											<div>
+												<BackToPrevious />
+											</div>
+										</div>
 									</div>
-								</div>
-							</div>
+								)}
+							</>
 						)}
 						{
 							// ✅ get the next parent category
