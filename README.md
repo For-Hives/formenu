@@ -1,4 +1,4 @@
-# ForMenu 🍔
+# 🍔 ForMenu 🍔
 
 #### _A digital menu for a whole new experience!_
 
