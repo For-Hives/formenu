@@ -23,6 +23,14 @@ export async function Nav({ parent_categories, selected_category }) {
 								alt={'back'}
 							/>
 						</BackToPrevious>
+						<Link className={'btn-nav ml-2 sm:ml-4'} href={'/'}>
+							<Image
+								src={'/icons/back.svg'}
+								width={15}
+								height={15}
+								alt={'back'}
+							/>
+						</Link>
 					</div>
 					<div
 						className={

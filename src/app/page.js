@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getAllData_CategoriesWith0DepthAndSortByOrder } from '@/app/services/getData'
+import { CustomSvg } from '@/components/CustomSvg'
 
 export default async function Page() {
 	const data = await getAllData_CategoriesWith0DepthAndSortByOrder()
@@ -15,13 +16,7 @@ export default async function Page() {
 							key={record.id}
 							href={`/${record.id}`}
 						>
-							<Image
-								src={'/icons/menu_icon.svg'}
-								width={20}
-								height={20}
-								alt={'icon menu'}
-								className={'h-auto w-auto'}
-							/>
+							<CustomSvg url={record.icon.url} classNames={'bg-blue-950'} />
 							<span className={'font-medium'}>{record.name}</span>
 						</Link>
 					)
