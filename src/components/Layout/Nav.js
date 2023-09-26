@@ -12,7 +12,9 @@ export async function Nav({ parent_categories, selected_category }) {
 				}
 			>
 				<div className={'grid h-full w-full grid-cols-2'}>
-					<div className={'col-span-1 flex items-start justify-start p-8'}>
+					<div
+						className={'col-span-1 flex items-start justify-start p-4 md:p-8'}
+					>
 						<BackToPrevious className={'btn-nav'}>
 							<Image
 								src={'/icons/left-arrow.svg'}
@@ -24,7 +26,7 @@ export async function Nav({ parent_categories, selected_category }) {
 					</div>
 					<div
 						className={
-							'col-span-1 flex flex-col items-end justify-between gap-32 p-8'
+							'col-span-1 flex flex-col items-end justify-between gap-32 p-4 md:p-8'
 						}
 					>
 						<Link href={'/'} className={'btn-nav'}>
