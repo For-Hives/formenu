@@ -2,13 +2,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import BackToPrevious from '@/components/BackToPrevious'
 import { CustomSvg } from '@/components/CustomSvg'
+import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
 
 export async function Nav({ parent_categories, selected_category }) {
 	return (
 		<>
 			<nav
 				className={
-					'pointer-events-none fixed left-0 top-0 h-screen w-screen select-none pb-16 md:pb-0'
+					'pointer-events-none fixed left-0 top-0 z-10 h-screen w-screen select-none pb-8 md:pb-0'
 				}
 			>
 				<div className={'grid h-full w-full grid-cols-2'}>
@@ -34,22 +35,39 @@ export async function Nav({ parent_categories, selected_category }) {
 					</div>
 					<div
 						className={
-							'col-span-1 flex flex-col items-end justify-between gap-32 p-4 md:p-8'
+							'relative col-span-1 flex flex-col items-end justify-between px-4 pt-4 md:px-8 md:pt-8'
 						}
 					>
-						<Link href={'/'} className={'btn-nav'}>
-							<Image
-								src={'/icons/magnifying-glass.svg'}
-								alt={'search button'}
-								width={15}
-								height={15}
-							/>
-						</Link>
+						{/* start ------------------------------ underline decoration ------------------------------  */}
 						<div
 							className={
-								'flex w-full flex-col items-end justify-between gap-16'
+								'absolute right-0 top-0 mx-4 flex h-full justify-center md:mx-8'
 							}
 						>
+							<div className={'flex h-full w-[40px] justify-center'}>
+								<div className={'relative h-full w-0.5 bg-slate-950'}></div>
+							</div>
+						</div>
+						{/* end ------------------------------ underline decoration ------------------------------  */}
+						<div className={'flex h-2/6 items-start justify-center'}>
+							<Link href={'/'} className={'btn-nav'}>
+								<Image
+									src={'/icons/magnifying-glass.svg'}
+									alt={'search button'}
+									width={15}
+									height={15}
+								/>
+							</Link>
+						</div>
+						<div
+							className={
+								'relative flex h-4/6 w-full flex-col items-start justify-start gap-8 md:gap-16'
+							}
+						>
+							<UnderlineDecoration
+								parent_categories={parent_categories}
+								selected_category={selected_category}
+							/>
 							{
 								<>
 									{/* ❌ loop on category if it's the first children category */}
@@ -84,7 +102,6 @@ export async function Nav({ parent_categories, selected_category }) {
 								</>
 							}
 						</div>
-						<div></div>
 					</div>
 				</div>
 			</nav>
