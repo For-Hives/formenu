@@ -49,12 +49,12 @@ nav a {
 /* custom property group for tailwind */
 @layer base {
     h1 {
-        @apply text-lg sm:text-2xl font-semibold;
+        @apply text-sm sm:text-2xl font-semibold;
         text-shadow: 0 1px 2px rgba(0, 0, 0, 0.10), 0 1px 1px rgba(0, 0, 0, 0.06);
     }
 
     h2 {
-        @apply text-sm sm:text-xl font-light;
+        @apply text-xs sm:text-xl font-light;
         text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.10), 1px 1px 3px rgba(0, 0, 0, 0.06);
     }
 
@@ -83,18 +83,16 @@ nav a {
 }
 
 @layer components {
-    /* Custom Button */
     .btn-primary {
-        @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-blue-950 px-7 py-3.5 text-sm text-white shadow-lg sm:text-base;
+        @apply flex min-h-[50px] w-[235px] items-center gap-4 sm:gap-6 rounded-lg border-[1.5px] border-blue-950 bg-blue-950 px-7 py-3.5 text-sm text-white shadow-lg sm:text-base;
     }
 
-    /* Alt Custom Button */
     .btn-alt-primary {
-        @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base;
+        @apply flex min-h-[50px] w-[235px] items-center gap-4 sm:gap-6 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base;
     }
 
     .container-menu {
-        @apply flex justify-center w-full
+        @apply flex justify-center w-full pr-16 sm:pr-0
     }
 
     .container-menus {
@@ -107,5 +105,13 @@ nav a {
 
     .container-dishes {
         @apply flex h-full w-full flex-col gap-8;
+    }
+
+    .btn-nav {
+        @apply flex h-[40px] w-[40px] items-center justify-center rounded-full border border-blue-950 bg-white pointer-events-auto z-10;
+    }
+
+    .btn-nav-alt {
+        @apply flex h-[40px] w-[40px] items-center justify-center rounded-full bg-blue-950 border border-blue-950 pointer-events-auto z-10;
     }
 }

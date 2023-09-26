@@ -1,118 +1,37 @@
 import { Suspense } from 'react'
 import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
-import { Dishes } from '@/components/Dishes/dishes'
-
-async function getCategories() {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
-		}
-	)
-
-	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
-		throw new Error('Failed to fetch data')
-	}
-
-	return res.json()
-}
-
-async function getData(category) {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[categories]=deep&populate[category]=deep&populate[dishes]=deep&filters[category][id][$eq]=${category}`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
-		}
-	)
-
-	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
-		throw new Error('Failed to fetch data')
-	}
-
-	return res.json()
-}
-
-async function getDataDishes(category) {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate[category]=deep&populate[categories]=deep&populate[dishes][populate][ingredients]=deep&populate[dishes][populate][image]=deep&populate[dishes][populate][type_dish][populate][icon]=deep&filters[id][$eq]=${category}`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
-		}
-	)
-
-	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
-		throw new Error('Failed to fetch data')
-	}
-
-	return res.json()
-}
+import { Dishes } from '@/components/Dishes/Dishes'
+import {
+	getAllData_DishesFromCategory,
+	getCategoriesParent,
+	getCurrentCategoryInfos,
+	getNextCategoryInfos,
+	getPreviousCategoryInfos,
+} from '@/app/services/getData'
+import { Nav } from '@/components/Layout/Nav'
+import { CustomSvg } from '@/components/CustomSvg'
 
 export default async function Page({ params }) {
 	const { category } = params
-	const data = await getData(category)
-	const data_dishes = await getDataDishes(category)
-	const categories = await getCategories()
-	const current_category_data = categories.data.filter(
-		record => record.id.toString() === category.toString()
+	const data = await getAllData_DishesFromCategory(category)
+	const current_category_data = await getCurrentCategoryInfos(category)
+	const previous_category_data = await getPreviousCategoryInfos(
+		current_category_data
 	)
-
-	// auto exec
-	const previous_category = (() => {
-		if (current_category_data[0]?.attributes?.order.toString() === '0')
-			return []
-		return categories.data.filter(
-			record =>
-				record.attributes.order.toString() ===
-					(current_category_data[0]?.attributes?.order - 1).toString() &&
-				record.attributes.depth.toString() ===
-					current_category_data[0]?.attributes?.depth.toString()
-		)
-	})()
-
-	// auto exec
-	const next_category = (() => {
-		if (
-			current_category_data[0]?.attributes?.order.toString() ===
-			(categories.data.length - 1).toString()
-		)
-			return []
-		return categories.data.filter(
-			record =>
-				record.attributes.order.toString() ===
-					(current_category_data[0]?.attributes?.order + 1).toString() &&
-				record.attributes.depth.toString() ===
-					current_category_data[0]?.attributes?.depth.toString()
-		)
-	})()
+	const next_category_data = await getNextCategoryInfos(current_category_data)
+	const parent_categories = await getCategoriesParent(current_category_data)
 
 	return (
 		<>
+			<Nav
+				parent_categories={parent_categories}
+				selected_category={current_category_data.id}
+			/>
 			<div className={'container-menu'}>
 				<div
 					className={`${
-						data?.data.length > 0 ? 'min-h-[calc(100vh-25rem)]' : ''
+						data ? 'min-h-[calc(100vh-25rem)]' : ''
 					} container-sub-menus`}
 				>
 					{/* todo add cool loading */}
@@ -120,13 +39,17 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the previous parent category, url
 							// from search params, get the previous parent category
-							previous_category?.length > 0 && (
+							previous_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${previous_category[0]?.id.toString()}`}
+										href={`/${previous_category_data?.id.toString()}`}
 									>
-										{previous_category[0]?.attributes?.name}
+										<CustomSvg
+											url={previous_category_data.icon.url}
+											classNames={'bg-white'}
+										/>
+										{previous_category_data?.name}
 									</Link>
 								</div>
 							)
@@ -134,18 +57,22 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the parent category, url
 							<div className={'flex w-full items-center justify-start'}>
-								<BackToPrevious
+								<Link
 									className={'btn-primary'}
-									content={
-										current_category_data[0]?.attributes?.name + ' ← retour'
-									}
-								/>
+									href={current_category_data?.id.toString()}
+								>
+									<CustomSvg
+										url={current_category_data.icon.url}
+										classNames={'bg-white'}
+									/>
+									{current_category_data?.name}
+								</Link>
 							</div>
 						}
-						{data?.data.length > 0 ? (
+						{current_category_data.categories.length > 0 ? (
 							<>
 								{/* ❌ loop on category if it's the first children category */}
-								{data?.data?.map((record, index) => {
+								{data.categories.map((record, index) => {
 									return (
 										<div
 											key={record.id}
@@ -155,7 +82,11 @@ export default async function Page({ params }) {
 												className={'btn-alt-primary'}
 												href={`/${record.id.toString()}`}
 											>
-												{record.attributes.name}
+												<CustomSvg
+													url={record.icon.url}
+													classNames={'bg-blue-950'}
+												/>
+												{record.name}
 											</Link>
 										</div>
 									)
@@ -163,39 +94,38 @@ export default async function Page({ params }) {
 							</>
 						) : (
 							// When there is no children categories -> display dishes
-							<div
-								className={`${
-									data_dishes?.data[0]?.attributes.dishes.length > 0
-										? 'min-h-[calc(100vh-25rem)]'
-										: ''
-								} container-dishes`}
-							>
-								{data_dishes?.data[0]?.attributes.dishes?.data?.map(
-									(dish, index) => {
-										return (
-											<>
-												<Dishes dish={dish} />
-											</>
-										)
-									}
-								)}
-								<div>
-									<div>
-										<BackToPrevious />
+							<>
+								{data?.dishes.length > 0 && (
+									<div
+										className={`${
+											data.dishes ? 'min-h-[calc(100vh-25rem)]' : ''
+										} container-dishes`}
+									>
+										{data?.dishes.map((dish, index) => {
+											return (
+												<>
+													<Dishes dish={dish} />
+												</>
+											)
+										})}
 									</div>
-								</div>
-							</div>
+								)}
+							</>
 						)}
 						{
 							// ✅ get the next parent category
 							// from search params, get the next parent category
-							next_category?.length > 0 && (
+							next_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${next_category[0]?.id.toString()}`}
+										href={`/${next_category_data?.id.toString()}`}
 									>
-										{next_category[0]?.attributes?.name}
+										<CustomSvg
+											url={next_category_data.icon.url}
+											classNames={'bg-white'}
+										/>
+										{next_category_data?.name}
 									</Link>
 								</div>
 							)

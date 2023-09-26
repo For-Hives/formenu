@@ -1,6 +1,12 @@
 import './styles/globals.css'
-import { CardBackground } from '@/components/Background/cardBackground'
+import { CardBackground } from '@/components/Background/CardBackground'
 import Image from 'next/image'
+import { Nav } from '@/components/Layout/Nav'
+import {
+	getAllData,
+	getAllData_CategoriesWith0DepthAndSortByOrder,
+	getCurrentCategoryInfos,
+} from '@/app/services/getData'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -30,7 +36,7 @@ export const metadata = {
 	],
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
 	return (
 		<html lang="fr">
 			<body
@@ -55,21 +61,25 @@ export default function RootLayout({ children }) {
 					alt={'Background restaurant 3'}
 				/>
 				<main className={'h-full min-h-screen'}>
-					<section className={'px-4 py-20'}>
-						<div className={'flex w-full items-center justify-center gap-8'}>
+					<section className={'px-2 py-16 sm:px-4 sm:py-20'}>
+						<div
+							className={
+								'flex w-full items-center justify-center gap-4 sm:gap-8'
+							}
+						>
 							<Image
 								src={'/icons/logo_restaurant.svg'}
 								width={50}
 								height={50}
 								alt={'logo_restaurant'}
-								className={'h-12 w-12'}
+								className={'h-8 w-8 sm:h-12 sm:w-12'}
 							/>
-							<div className={'flex flex-col gap-2'}>
+							<div className={'flex flex-col gap-1 sm:gap-2'}>
 								<h1 className={'formenu-h1'}>{`Les pieds dans l'eau`}</h1>
 								<h2 className={'ml-4'}>traditionnel et authentique</h2>
 							</div>
 						</div>
-						<div className={'pt-20'}>{children}</div>
+						<div className={'pt-16 sm:pt-20'}>{children}</div>
 					</section>
 				</main>
 			</body>
