@@ -10,6 +10,7 @@ import {
 	getPreviousCategoryInfos,
 } from '@/app/services/getData'
 import { Nav } from '@/components/Layout/Nav'
+import { CustomSvg } from '@/components/CustomSvg'
 
 export default async function Page({ params }) {
 	const { category } = params
@@ -44,6 +45,10 @@ export default async function Page({ params }) {
 										className={'btn-primary'}
 										href={`/${previous_category_data?.id.toString()}`}
 									>
+										<CustomSvg
+											url={previous_category_data.icon.url}
+											classNames={'bg-white'}
+										/>
 										{previous_category_data?.name}
 									</Link>
 								</div>
@@ -52,10 +57,16 @@ export default async function Page({ params }) {
 						{
 							// ✅ get the parent category, url
 							<div className={'flex w-full items-center justify-start'}>
-								<BackToPrevious
+								<Link
 									className={'btn-primary'}
-									content={current_category_data?.name + ' ← retour'}
-								/>
+									href={current_category_data?.id.toString()}
+								>
+									<CustomSvg
+										url={current_category_data.icon.url}
+										classNames={'bg-white'}
+									/>
+									{current_category_data?.name}
+								</Link>
 							</div>
 						}
 						{current_category_data.categories.length > 0 ? (
@@ -71,6 +82,10 @@ export default async function Page({ params }) {
 												className={'btn-alt-primary'}
 												href={`/${record.id.toString()}`}
 											>
+												<CustomSvg
+													url={record.icon.url}
+													classNames={'bg-blue-950'}
+												/>
 												{record.name}
 											</Link>
 										</div>
@@ -93,11 +108,6 @@ export default async function Page({ params }) {
 												</>
 											)
 										})}
-										<div>
-											<div>
-												<BackToPrevious />
-											</div>
-										</div>
 									</div>
 								)}
 							</>
@@ -111,6 +121,10 @@ export default async function Page({ params }) {
 										className={'btn-primary'}
 										href={`/${next_category_data?.id.toString()}`}
 									>
+										<CustomSvg
+											url={next_category_data.icon.url}
+											classNames={'bg-white'}
+										/>
 										{next_category_data?.name}
 									</Link>
 								</div>

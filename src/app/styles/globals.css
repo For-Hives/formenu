@@ -83,14 +83,12 @@ nav a {
 }
 
 @layer components {
-    /* Custom Button */
     .btn-primary {
-        @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-blue-950 px-7 py-3.5 text-sm text-white shadow-lg sm:text-base;
+        @apply flex min-h-[50px] w-[235px] items-center gap-4 sm:gap-6 rounded-lg border-[1.5px] border-blue-950 bg-blue-950 px-7 py-3.5 text-sm text-white shadow-lg sm:text-base;
     }
 
-    /* Alt Custom Button */
     .btn-alt-primary {
-        @apply flex min-h-[50px] w-[235px] items-center gap-8 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base;
+        @apply flex min-h-[50px] w-[235px] items-center gap-4 sm:gap-6 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:text-base;
     }
 
     .container-menu {
