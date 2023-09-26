@@ -11,6 +11,7 @@ export function Dishes({ dish }) {
 	// border-cyan-500
 	return (
 		<button
+			key={dish?.id}
 			type="button"
 			onClick={() => {
 				//	expand this dish
@@ -33,7 +34,7 @@ export function Dishes({ dish }) {
 			{isExpanded && dish?.description && (
 				<div className={'relative flex h-full w-full justify-between gap-6'}>
 					<div className={'absolute left-0 top-0 h-full w-full'}>
-						<div className={'relative h-full w-5/12 gap-4 bg-red-400'}>
+						<div className={'relative h-full w-5/12 gap-4'}>
 							<Image
 								src={dish?.image?.url}
 								fill={true}
@@ -55,12 +56,12 @@ export function Dishes({ dish }) {
 			)}
 
 			<div
-				className={`flex h-full items-end justify-between gap-8 pl-4 ${
+				className={`flex h-full w-full items-end justify-between gap-8 pl-4 ${
 					isExpanded ? 'py-4' : ''
 				}`}
 			>
 				{dish?.ingredients?.length > 0 && (
-					<div>
+					<div className={'w-full'}>
 						<p
 							className={`${
 								isExpanded
