@@ -9,7 +9,7 @@ module.exports = {
 		'text-2xl',
 		'text-3xl',
 		{
-			pattern: /bg-(cyan|yellow|red|indigo|blue|purple|teal)-(400|500|600)/,
+			pattern: /border-(cyan|yellow|red|indigo|blue|purple|teal)-(400|500|600)/,
 		},
 	],
 	theme: {
