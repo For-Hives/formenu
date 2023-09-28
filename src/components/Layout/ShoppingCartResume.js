@@ -13,12 +13,6 @@ export function ShoppingCartResume() {
 		setItemsInCart(value)
 	}, [])
 
-	// // When user submits the form, save the favorite number to the local storage
-	// const saveToLocalStorage = e => {
-	// 	e.preventDefault()
-	// 	localStorage.setItem("favoriteNumber", favoriteNumber)
-	// }
-
 	return (
 		<button className={'btn-nav relative'}>
 			{/* number of item in the cart */}
