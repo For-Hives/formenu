@@ -9,8 +9,8 @@ export function ShoppingCartResume() {
 	useEffect(() => {
 		let value
 		// Get the value from local storage if it exists
-		value = localStorage.getItem('itemsInCart') || []
-		setItemsInCart(value)
+		value = localStorage.getItem('itemsInCart')
+		value !== '' && setItemsInCart(JSON.parse(value))
 	}, [])
 
 	return (

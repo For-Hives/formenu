@@ -9,9 +9,8 @@ export function ShoppingCartAdd({ newItem }) {
 	useEffect(() => {
 		let value
 		// Get the value from local storage if it exists
-		value = localStorage.getItem('itemsInCart') || []
-		value = value?.length ? JSON.parse(value) : []
-		setItemsInCart(value)
+		value = localStorage.getItem('itemsInCart')
+		value !== '' && setItemsInCart(JSON.parse(value))
 	}, [])
 
 	// When user submits the form, save the favorite number to the local storage
@@ -22,12 +21,8 @@ export function ShoppingCartAdd({ newItem }) {
 		setItemsInCart(newItemsInCart)
 	}
 
-	useEffect(() => {
-		console.log('itemsInCart', itemsInCart)
-	}, [itemsInCart])
-
 	return (
-		<button className={'btn-nav relative'} onClick={() => saveToLocalStorage}>
+		<button className={'btn-nav relative'} onClick={saveToLocalStorage}>
 			<CustomSvg
 				url={'/icons/shopping_add.svg'}
 				classNames={'bg-blue-950 h-[25px] w-[25px]'}
