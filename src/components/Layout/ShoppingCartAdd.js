@@ -1,28 +1,18 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useEffect, useState } from 'react'
+import { useCart } from '@/app/providers/CartProvider'
 
 export function ShoppingCartAdd({ newItem }) {
 	// Set the value received from the local storage to a local state
-	const [itemsInCart, setItemsInCart] = useState([])
-
-	useEffect(() => {
-		let value
-		// Get the value from local storage if it exists
-		value = localStorage.getItem('itemsInCart')
-		value !== '' && setItemsInCart(JSON.parse(value))
-	}, [])
-
-	// When user submits the form, save the favorite number to the local storage
-	const saveToLocalStorage = e => {
-		e.preventDefault()
-		let newItemsInCart = [...itemsInCart, newItem]
-		localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
-		setItemsInCart(newItemsInCart)
-	}
+	const { addItem } = useCart()
 
 	return (
-		<button className={'btn-nav relative'} onClick={saveToLocalStorage}>
+		<button
+			className={'btn-nav relative'}
+			onClick={() => {
+				addItem(newItem)
+			}}
+		>
 			<CustomSvg
 				url={'/icons/shopping_add.svg'}
 				classNames={'bg-blue-950 h-[25px] w-[25px]'}
