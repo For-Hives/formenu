@@ -7,7 +7,7 @@ WORKDIR /usr/app
 COPY ./.next ./.next
 COPY ./package.json .
 COPY ./package-lock.json .
-COPY ./public ./public
+
 
 RUN npm ci --omit=dev --ignore-scripts
 
