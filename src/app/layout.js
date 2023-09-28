@@ -1,13 +1,8 @@
 import './styles/globals.css'
 import { CardBackground } from '@/components/Background/CardBackground'
 import Image from 'next/image'
-import { Nav } from '@/components/Layout/Nav'
-import {
-	getAllData,
-	getAllData_CategoriesWith0DepthAndSortByOrder,
-	getCurrentCategoryInfos,
-} from '@/app/services/getData'
 import { CartProvider } from '@/app/providers/CartProvider'
+import { WrapNextUiProviders } from '@/app/providers/WrapNextUiProvider'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -80,9 +75,11 @@ export default async function RootLayout({ children }) {
 								<h2 className={'ml-4'}>traditionnel et authentique</h2>
 							</div>
 						</div>
-						<CartProvider>
-							<div className={'pt-16 sm:pt-20'}>{children}</div>
-						</CartProvider>
+						<WrapNextUiProviders>
+							<CartProvider>
+								<div className={'pt-16 sm:pt-20'}>{children}</div>
+							</CartProvider>
+						</WrapNextUiProviders>
 					</section>
 				</main>
 			</body>
