@@ -8,7 +8,6 @@ COPY ./.next ./.next
 COPY ./public ./public
 COPY ./package.json .
 COPY ./package-lock.json .
-COPY ./src ./src
 COPY ./next* .
 
 RUN npm ci --omit=dev --ignore-scripts
