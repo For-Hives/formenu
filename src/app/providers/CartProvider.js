@@ -5,6 +5,7 @@ const CartContext = createContext()
 
 export function CartProvider({ children }) {
 	const [itemsInCart, setItemsInCart] = useState()
+	const [isLoading, setIsLoading] = useState(true)
 
 	//     add an item to the cart
 	const addItem = item => {
@@ -30,11 +31,12 @@ export function CartProvider({ children }) {
 	// execute getItemsInCart on load
 	useEffect(() => {
 		getItemsInCart()
+		setIsLoading(false)
 	}, [])
 
 	return (
 		<CartContext.Provider
-			value={{ itemsInCart, addItem, resetCart, getItemsInCart }}
+			value={{ itemsInCart, addItem, resetCart, getItemsInCart, isLoading }}
 		>
 			{children}
 		</CartContext.Provider>

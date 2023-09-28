@@ -34,6 +34,27 @@ module.exports = {
 	plugins: [
 		require('@tailwindcss/forms'),
 		require('@tailwindcss/typography'),
-		nextui(),
+		nextui({
+			themes: {
+				dark: {
+					colors: {
+						primary: {
+							DEFAULT: '#172554',
+							foreground: '#000000',
+						},
+						focus: '#172554',
+					},
+				},
+				light: {
+					colors: {
+						primary: {
+							DEFAULT: '#172554',
+							foreground: '#000000',
+						},
+						focus: '#172554',
+					},
+				},
+			},
+		}),
 	],
 }

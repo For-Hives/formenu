@@ -1,31 +1,42 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-// import { useEffect, useState } from 'react'
 import { useCart } from '@/app/providers/CartProvider'
+import { Button, Spinner } from '@nextui-org/react'
 
 export function ShoppingCartResume() {
-	// Set the value received from the local storage to a local state
-	// const [itemsInCart, setItemsInCart] = useState([])
 	const { itemsInCart } = useCart()
-
-	// useEffect(() => {
-	// 	let value
-	// 	// Get the value from local storage if it exists
-	// 	value = localStorage.getItem('itemsInCart')
-	// 	value !== '' && setItemsInCart(JSON.parse(value))
-	// }, [])
+	const { isLoading } = useCart()
 
 	return (
 		<button className={'btn-nav relative'}>
-			{/* number of item in the cart */}
-			<h4
-				className={
-					'absolute -right-2 -top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-blue-950 bg-white text-xs font-bold'
-				}
-			>
-				{itemsInCart?.length && itemsInCart?.length}
-			</h4>
-			<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />
+			{/*{isLoading ? (*/}
+			{/*	<Spinner size="sm" />*/}
+			{/*) : (*/}
+			{/*	<>*/}
+			{/*		<h4*/}
+			{/*			className={*/}
+			{/*				'absolute -right-2 -top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-blue-950 bg-white text-xs font-bold'*/}
+			{/*			}*/}
+			{/*		>*/}
+			{/*			{itemsInCart?.length}*/}
+			{/*		</h4>*/}
+			{/*		<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />*/}
+			{/*	</>*/}
+			{/*)}*/}
+			{
+				<>
+					<h4
+						className={`absolute -right-2 -top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full text-xs font-bold ${
+							isLoading
+								? 'scale-[0.85] transform'
+								: 'border border-blue-950 bg-white'
+						}`}
+					>
+						{isLoading ? <Spinner size={'sm'} /> : <>{itemsInCart?.length}</>}
+					</h4>
+					<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />
+				</>
+			}
 		</button>
 	)
 }
