@@ -35,7 +35,6 @@ export async function Nav({ parent_categories, selected_category }) {
 								alt={'back'}
 							/>
 						</Link>
-						<ShoppingCart />
 					</div>
 					<div
 						className={
@@ -53,7 +52,10 @@ export async function Nav({ parent_categories, selected_category }) {
 							</div>
 						</div>
 						{/* end ------------------------------ underline decoration ------------------------------  */}
-						<div className={'flex h-2/6 items-start justify-center'}>
+						<div
+							className={'flex h-2/6 items-start justify-center gap-2 md:gap-4'}
+						>
+							<ShoppingCart />
 							<Link href={'/'} className={'btn-nav'}>
 								<Image
 									src={'/icons/magnifying-glass.svg'}

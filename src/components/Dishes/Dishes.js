@@ -72,10 +72,10 @@ export function Dishes({ dish }) {
 							{/*dish?.attributes?.ingredients?.data*/}
 							{dish?.ingredients?.map((ingredient, index) => {
 								return (
-									<>
+									<span key={ingredient.id}>
 										{ingredient?.name}
 										{index !== dish?.ingredients?.length - 1 && ', '}
-									</>
+									</span>
 								)
 							})}
 						</p>
