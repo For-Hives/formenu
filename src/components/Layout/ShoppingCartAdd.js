@@ -22,12 +22,8 @@ export function ShoppingCartAdd({ newItem }) {
 		setItemsInCart(newItemsInCart)
 	}
 
-	useEffect(() => {
-		console.log(itemsInCart)
-	}, [itemsInCart])
-
 	return (
-		<button className={'btn-nav relative'} onClick={saveToLocalStorage}>
+		<button className={'btn-nav relative'} onClick={() => saveToLocalStorage}>
 			<CustomSvg
 				url={'/icons/shopping_add.svg'}
 				classNames={'bg-blue-950 h-[25px] w-[25px]'}

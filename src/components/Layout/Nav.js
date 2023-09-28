@@ -4,6 +4,7 @@ import BackToPrevious from '@/components/BackToPrevious'
 import { CustomSvg } from '@/components/CustomSvg'
 import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
 import { ShoppingCartResume } from '@/components/Layout/ShoppingCartResume'
+import { ShoppingCartClear } from '@/components/Layout/ShoppingCartClear'
 
 export async function Nav({ parent_categories, selected_category }) {
 	return (
@@ -55,6 +56,7 @@ export async function Nav({ parent_categories, selected_category }) {
 						<div
 							className={'flex h-2/6 items-start justify-center gap-2 md:gap-4'}
 						>
+							<ShoppingCartClear />
 							<ShoppingCartResume />
 							<Link href={'/'} className={'btn-nav'}>
 								<Image
