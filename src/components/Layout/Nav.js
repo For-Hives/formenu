@@ -3,6 +3,7 @@ import Image from 'next/image'
 import BackToPrevious from '@/components/BackToPrevious'
 import { CustomSvg } from '@/components/CustomSvg'
 import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
+import { ShoppingCart } from '@/components/Layout/ShoppingCart'
 
 export async function Nav({ parent_categories, selected_category }) {
 	return (
@@ -14,7 +15,9 @@ export async function Nav({ parent_categories, selected_category }) {
 			>
 				<div className={'grid h-full w-full grid-cols-2'}>
 					<div
-						className={'col-span-1 flex items-start justify-start p-4 md:p-8'}
+						className={
+							'col-span-1 flex items-start justify-start gap-2 p-4 sm:gap-4 md:p-8'
+						}
 					>
 						<BackToPrevious className={'btn-nav'}>
 							<Image
@@ -24,7 +27,7 @@ export async function Nav({ parent_categories, selected_category }) {
 								alt={'back'}
 							/>
 						</BackToPrevious>
-						<Link className={'btn-nav ml-2 sm:ml-4'} href={'/'}>
+						<Link className={'btn-nav'} href={'/'}>
 							<Image
 								src={'/icons/back.svg'}
 								width={15}
@@ -32,6 +35,7 @@ export async function Nav({ parent_categories, selected_category }) {
 								alt={'back'}
 							/>
 						</Link>
+						<ShoppingCart />
 					</div>
 					<div
 						className={

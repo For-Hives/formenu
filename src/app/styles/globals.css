@@ -59,7 +59,8 @@ nav a {
     }
 
     h3 {
-        @apply sm:text-lg;
+        @apply text-base sm:text-xl font-light;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.10), 1px 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     h4 {

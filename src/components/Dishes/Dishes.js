@@ -20,7 +20,7 @@ export function Dishes({ dish }) {
 			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 		>
 			<div className={'flex w-full items-center justify-between'}>
-				<h2 className={'font-bold text-slate-800'}>{dish?.name}</h2>
+				<h3 className={'font-bold text-slate-800'}>{dish?.name}</h3>
 				{image && (
 					<Image
 						alt={dish?.name ?? 'icon'}
