@@ -9,20 +9,6 @@ export function ShoppingCartResume() {
 
 	return (
 		<button className={'btn-nav relative'}>
-			{/*{isLoading ? (*/}
-			{/*	<Spinner size="sm" />*/}
-			{/*) : (*/}
-			{/*	<>*/}
-			{/*		<h4*/}
-			{/*			className={*/}
-			{/*				'absolute -right-2 -top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-blue-950 bg-white text-xs font-bold'*/}
-			{/*			}*/}
-			{/*		>*/}
-			{/*			{itemsInCart?.length}*/}
-			{/*		</h4>*/}
-			{/*		<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />*/}
-			{/*	</>*/}
-			{/*)}*/}
 			{
 				<>
 					<h4
