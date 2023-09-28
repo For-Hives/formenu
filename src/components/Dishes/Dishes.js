@@ -20,7 +20,7 @@ export function Dishes({ dish }) {
 			className={`relative flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 		>
 			<div className={'absolute -right-2 -top-2 z-30'}>
-				{<ShoppingCartAdd newItem={dish?.id} />}
+				<ShoppingCartAdd newItem={dish?.id} />
 			</div>
 			<button
 				key={dish?.id}
