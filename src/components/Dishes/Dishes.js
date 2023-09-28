@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { Allergens } from '@/components/Dishes/Allergens'
+import { ShoppingCartAdd } from '@/components/Layout/ShoppingCartAdd'
 
 export function Dishes({ dish }) {
 	const [isExpanded, setIsExpanded] = useState(false)
@@ -17,10 +18,12 @@ export function Dishes({ dish }) {
 				//	expand this dish
 				setIsExpanded(!isExpanded)
 			}}
-			className={`flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
+			className={`relative flex w-full flex-col gap-4 rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 		>
-			<div className={'flex w-full items-center justify-between'}>
-				<h3 className={'font-bold text-slate-800'}>{dish?.name}</h3>
+			<div className={'absolute -right-2 -top-2'}>
+				<ShoppingCartAdd newItem={dish?.id} />
+			</div>
+			<div className={'flex w-full items-center justify-start gap-4'}>
 				{image && (
 					<Image
 						alt={dish?.name ?? 'icon'}
@@ -30,6 +33,7 @@ export function Dishes({ dish }) {
 						className={'object-cover'}
 					/>
 				)}
+				<h3 className={'font-bold text-slate-800'}>{dish?.name}</h3>
 			</div>
 			{isExpanded && dish?.description && (
 				<div className={'relative flex h-full w-full justify-between gap-6'}>

@@ -10,7 +10,7 @@ export function ShoppingCartAdd({ newItem }) {
 		let value
 		// Get the value from local storage if it exists
 		value = localStorage.getItem('itemsInCart') || []
-		value = JSON.parse(value) ?? []
+		value = value?.length ? JSON.parse(value) : []
 		setItemsInCart(value)
 	}, [])
 
@@ -24,15 +24,10 @@ export function ShoppingCartAdd({ newItem }) {
 
 	return (
 		<button className={'btn-nav relative'}>
-			{/* number of item in the cart */}
-			<h4
-				className={
-					'absolute -right-2 -top-2 z-10 flex h-5 w-5 items-center justify-center rounded-full border border-blue-950 bg-white text-xs font-bold'
-				}
-			>
-				{itemsInCart.length}
-			</h4>
-			<CustomSvg url={'/icons/shopping_add.svg'} classNames={'bg-blue-950'} />
+			<CustomSvg
+				url={'/icons/shopping_add.svg'}
+				classNames={'bg-blue-950 h-[25px] w-[25px]'}
+			/>
 		</button>
 	)
 }
