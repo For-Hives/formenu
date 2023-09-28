@@ -1,10 +1,10 @@
 'use client'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const CartContext = createContext()
 
 export function CartProvider({ children }) {
-	const [itemsInCart, setItemsInCart] = useState([])
+	const [itemsInCart, setItemsInCart] = useState()
 
 	//     add an item to the cart
 	const addItem = item => {
@@ -19,8 +19,23 @@ export function CartProvider({ children }) {
 		localStorage.setItem('itemsInCart', JSON.stringify([]))
 	}
 
+	// get items in cart from local storage
+	const getItemsInCart = () => {
+		let value
+		// Get the value from local storage if it exists
+		value = localStorage.getItem('itemsInCart')
+		value !== '' && value?.length && setItemsInCart(JSON.parse(value))
+	}
+
+	// execute getItemsInCart on load
+	useEffect(() => {
+		getItemsInCart()
+	}, [])
+
 	return (
-		<CartContext.Provider value={{ itemsInCart, addItem, resetCart }}>
+		<CartContext.Provider
+			value={{ itemsInCart, addItem, resetCart, getItemsInCart }}
+		>
 			{children}
 		</CartContext.Provider>
 	)
