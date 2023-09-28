@@ -1,17 +1,19 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+import { useCart } from '@/app/providers/CartProvider'
 
 export function ShoppingCartResume() {
 	// Set the value received from the local storage to a local state
-	const [itemsInCart, setItemsInCart] = useState([])
+	// const [itemsInCart, setItemsInCart] = useState([])
+	const { itemsInCart } = useCart()
 
-	useEffect(() => {
-		let value
-		// Get the value from local storage if it exists
-		value = localStorage.getItem('itemsInCart')
-		value !== '' && setItemsInCart(JSON.parse(value))
-	}, [])
+	// useEffect(() => {
+	// 	let value
+	// 	// Get the value from local storage if it exists
+	// 	value = localStorage.getItem('itemsInCart')
+	// 	value !== '' && setItemsInCart(JSON.parse(value))
+	// }, [])
 
 	return (
 		<button className={'btn-nav relative'}>

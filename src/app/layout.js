@@ -7,6 +7,7 @@ import {
 	getAllData_CategoriesWith0DepthAndSortByOrder,
 	getCurrentCategoryInfos,
 } from '@/app/services/getData'
+import { CartProvider } from '@/app/providers/CartProvider'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -79,7 +80,9 @@ export default async function RootLayout({ children }) {
 								<h2 className={'ml-4'}>traditionnel et authentique</h2>
 							</div>
 						</div>
-						<div className={'pt-16 sm:pt-20'}>{children}</div>
+						<CartProvider>
+							<div className={'pt-16 sm:pt-20'}>{children}</div>
+						</CartProvider>
 					</section>
 				</main>
 			</body>
