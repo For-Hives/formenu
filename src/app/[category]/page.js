@@ -103,9 +103,9 @@ export default async function Page({ params }) {
 									>
 										{data?.dishes.map((dish, index) => {
 											return (
-												<>
+												<div key={dish.id}>
 													<Dishes dish={dish} />
-												</>
+												</div>
 											)
 										})}
 									</div>
