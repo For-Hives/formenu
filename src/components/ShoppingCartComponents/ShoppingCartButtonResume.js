@@ -18,7 +18,11 @@ export function ShoppingCartButtonResume() {
 								: 'border border-blue-950 bg-white'
 						}`}
 					>
-						{isLoading ? <Spinner size={'sm'} /> : <>{itemsInCart?.length}</>}
+						{isLoading ? (
+							<Spinner size={'sm'} />
+						) : (
+							<>{itemsInCart?.length ?? 0}</>
+						)}
 					</h4>
 					<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />
 				</>
