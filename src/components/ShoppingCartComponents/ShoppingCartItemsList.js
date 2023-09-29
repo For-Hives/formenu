@@ -1,6 +1,6 @@
 'use client'
-import { useCart } from '@/app/providers/CartProvider'
-import { getDishes, getDishFromId } from '@/app/services/getData'
+import { useCart } from '@/providers/CartProvider'
+import { getDishes, getDishFromId } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 

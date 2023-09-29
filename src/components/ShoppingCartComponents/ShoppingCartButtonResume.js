@@ -1,6 +1,6 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useCart } from '@/app/providers/CartProvider'
+import { useCart } from '@/providers/CartProvider'
 import { Spinner } from '@nextui-org/react'
 
 export function ShoppingCartButtonResume() {

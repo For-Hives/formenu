@@ -8,7 +8,7 @@ import {
 	getCurrentCategoryInfos,
 	getNextCategoryInfos,
 	getPreviousCategoryInfos,
-} from '@/app/services/getData'
+} from '@/services/getData'
 import { Nav } from '@/components/Layout/Nav'
 import { CustomSvg } from '@/components/CustomSvg'
 

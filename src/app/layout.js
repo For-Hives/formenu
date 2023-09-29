@@ -1,8 +1,8 @@
-import './styles/globals.css'
+import '@/styles/globals.css'
 import { CardBackground } from '@/components/Background/CardBackground'
 import Image from 'next/image'
-import { CartProvider } from '@/app/providers/CartProvider'
-import { WrapNextUiProviders } from '@/app/providers/WrapNextUiProvider'
+import { CartProvider } from '@/providers/CartProvider'
+import { WrapNextUiProviders } from '@/providers/WrapNextUiProvider'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',

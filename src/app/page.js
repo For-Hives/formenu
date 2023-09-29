@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { getAllData_CategoriesWith0DepthAndSortByOrder } from '@/app/services/getData'
+import { getAllData_CategoriesWith0DepthAndSortByOrder } from '@/services/getData'
 import { CustomSvg } from '@/components/CustomSvg'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 
