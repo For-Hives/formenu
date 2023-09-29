@@ -85,42 +85,42 @@ export function Dishes({ dish }) {
 						isExpanded ? 'py-4' : ''
 					}`}
 				>
-					{dish?.ingredients?.length > 0 ||
-						(dish?.attributes?.ingredients?.data?.length > 0 && (
-							<div className={'w-full'}>
-								<p
-									className={`${
-										isExpanded
-											? 'text-center text-sm font-semibold text-slate-700'
-											: 'text-start text-sm text-slate-700'
-									} `}
-								>
-									{/*dish?.attributes?.ingredients?.data*/}
-									{dish?.ingredients &&
-										dish?.ingredients?.map((ingredient, index) => {
+					{(dish?.ingredients?.length > 0 ||
+						dish?.attributes?.ingredients?.data?.length > 0) && (
+						<div className={'w-full'}>
+							<p
+								className={`${
+									isExpanded
+										? 'text-center text-sm font-semibold text-slate-700'
+										: 'text-start text-sm text-slate-700'
+								} `}
+							>
+								{/*dish?.attributes?.ingredients?.data*/}
+								{dish?.ingredients &&
+									dish?.ingredients?.map((ingredient, index) => {
+										return (
+											<span key={ingredient.id}>
+												{ingredient?.name}
+												{index !== dish?.ingredients?.length - 1 && ', '}
+											</span>
+										)
+									})}
+								{dish?.attributes?.ingredients?.data &&
+									dish?.attributes?.ingredients?.data?.map(
+										(ingredient, index) => {
 											return (
 												<span key={ingredient.id}>
-													{ingredient?.name}
-													{index !== dish?.ingredients?.length - 1 && ', '}
+													{ingredient?.attributes?.name}
+													{index !==
+														dish?.attributes?.ingredients?.data?.length - 1 &&
+														', '}
 												</span>
 											)
-										})}
-									{dish?.attributes?.ingredients?.data &&
-										dish?.attributes?.ingredients?.data?.map(
-											(ingredient, index) => {
-												return (
-													<span key={ingredient.id}>
-														{ingredient?.attributes?.name}
-														{index !==
-															dish?.attributes?.ingredients?.data?.length - 1 &&
-															', '}
-													</span>
-												)
-											}
-										)}
-								</p>
-							</div>
-						))}
+										}
+									)}
+							</p>
+						</div>
+					)}
 					{!isExpanded && (dish?.price || dish?.attributes?.price) && (
 						<div className={'flex h-full flex-col items-end justify-end'}>
 							<p className={'text-xs italic text-slate-700'}>

@@ -94,7 +94,7 @@ export async function getNextCategoryInfos(current_category_data) {
 
 export async function getDishes() {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/dishes?populate=deep`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/dishes?populate=type_dish,category,image,ingredients`,
 		{
 			method: 'GET',
 			headers: {
