@@ -4,16 +4,9 @@ import { ShoppingCartItemsList } from '@/components/ShoppingCartComponents/Shopp
 export default async function Page() {
 	return (
 		<>
-			<Nav
-				parent_categories={parent_categories}
-				selected_category={current_category_data.id}
-			/>
+			<Nav />
 			<div className={'container-menu'}>
-				<div
-					className={`${
-						data ? 'min-h-[calc(100vh-25rem)]' : ''
-					} container-sub-menus`}
-				>
+				<div className={`container-sub-menus`}>
 					<ShoppingCartItemsList />
 				</div>
 			</div>

@@ -6,7 +6,10 @@ import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
 import { ShoppingCartButtonResume } from '@/components/ShoppingCartComponents/ShoppingCartButtonResume'
 import { ShoppingCartButtonClear } from '@/components/ShoppingCartComponents/ShoppingCartButtonClear'
 
-export async function Nav({ parent_categories, selected_category }) {
+export async function Nav({
+	parent_categories = null,
+	selected_category = null,
+}) {
 	return (
 		<>
 			<nav
@@ -67,49 +70,54 @@ export async function Nav({ parent_categories, selected_category }) {
 								/>
 							</Link>
 						</div>
-						<div
-							className={
-								'relative flex h-4/6 w-full flex-col items-start justify-start gap-8 md:gap-16'
-							}
-						>
-							<UnderlineDecoration
-								parent_categories={parent_categories}
-								selected_category={selected_category}
-							/>
-							{
-								<>
-									{/* ❌ loop on category if it's the first children category */}
-									{parent_categories.map((record, index) => {
-										return (
-											<div
-												key={record.id}
-												className={'flex w-full items-center justify-end'}
-											>
-												<Link
-													className={`${
-														selected_category.toString() ===
-														record.id.toString()
-															? 'btn-nav-alt'
-															: 'btn-nav'
-													}`}
-													href={`/${record.id.toString()}`}
-												>
-													<CustomSvg
-														url={record.icon.url}
-														classNames={
-															selected_category.toString() ===
-															record.id.toString()
-																? 'bg-white'
-																: 'bg-black'
-														}
-													/>
-												</Link>
-											</div>
-										)
-									})}
-								</>
-							}
-						</div>
+						{
+							//     if parent_categories is null, it means that we are on cart page
+							parent_categories !== null && selected_category !== null && (
+								<div
+									className={
+										'relative flex h-4/6 w-full flex-col items-start justify-start gap-8 md:gap-16'
+									}
+								>
+									<UnderlineDecoration
+										parent_categories={parent_categories}
+										selected_category={selected_category}
+									/>
+									{
+										<>
+											{/* ❌ loop on category if it's the first children category */}
+											{parent_categories.map((record, index) => {
+												return (
+													<div
+														key={record.id}
+														className={'flex w-full items-center justify-end'}
+													>
+														<Link
+															className={`${
+																selected_category.toString() ===
+																record.id.toString()
+																	? 'btn-nav-alt'
+																	: 'btn-nav'
+															}`}
+															href={`/${record.id.toString()}`}
+														>
+															<CustomSvg
+																url={record.icon.url}
+																classNames={
+																	selected_category.toString() ===
+																	record.id.toString()
+																		? 'bg-white'
+																		: 'bg-black'
+																}
+															/>
+														</Link>
+													</div>
+												)
+											})}
+										</>
+									}
+								</div>
+							)
+						}
 					</div>
 				</div>
 			</nav>
