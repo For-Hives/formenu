@@ -10,15 +10,13 @@ export function ShoppingCartItemsList() {
 	const [dishes, setDishes] = useState([])
 
 	const itemInfo = item => {
-		console.log('item', item)
 		if (!dishes.length) return
 		return dishes.find(dish => dish.id.toString() === item.toString())
 	}
 
 	useEffect(() => {
 		getDishes().then(data => {
-			console.log('data', data)
-			setDishes(data)
+			setDishes(data.data)
 		})
 	}, [])
 
@@ -33,7 +31,8 @@ export function ShoppingCartItemsList() {
 									key={index}
 									className={'flex w-full items-center justify-start'}
 								>
-									<p>{console.log('item', itemInfo(item))}</p>
+									{/* todo , on a toutes les infos ici */}
+									<p>{itemInfo(item).attributes.name}</p>
 								</div>
 							)
 						})
