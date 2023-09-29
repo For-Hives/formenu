@@ -3,6 +3,7 @@ import { useCart } from '@/providers/CartProvider'
 import { getDishes, getDishFromId } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
+import { Dishes } from '@/components/Dishes/Dishes'
 
 export function ShoppingCartItemsList() {
 	const { itemsInCart } = useCart()
@@ -31,8 +32,7 @@ export function ShoppingCartItemsList() {
 									key={index}
 									className={'flex w-full items-center justify-start'}
 								>
-									{/* todo , on a toutes les infos ici */}
-									<p>{itemInfo(item).attributes.name}</p>
+									<Dishes dish={itemInfo(item)} />
 								</div>
 							)
 						})

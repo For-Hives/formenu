@@ -93,15 +93,18 @@ export async function getNextCategoryInfos(current_category_data) {
 }
 
 export async function getDishes() {
-	const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/dishes`, {
-		method: 'GET',
-		headers: {
-			// 	token
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-			Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-		},
-	})
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/dishes?populate=deep`,
+		{
+			method: 'GET',
+			headers: {
+				// 	token
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+			},
+		}
+	)
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary

@@ -77,7 +77,8 @@ export function Allergens({ dish }) {
 		<>
 			{allergens.map(allergen => {
 				return (
-					dish[allergen.key] && (
+					dish[allergen.key] ||
+					(dish?.attributes[allergen.key] && (
 						<div
 							key={allergen.key}
 							className={
@@ -91,7 +92,7 @@ export function Allergens({ dish }) {
 								alt={allergen.alt}
 							/>
 						</div>
-					)
+					))
 				)
 			})}
 		</>
