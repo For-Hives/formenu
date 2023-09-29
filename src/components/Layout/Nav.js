@@ -3,8 +3,8 @@ import Image from 'next/image'
 import BackToPrevious from '@/components/BackToPrevious'
 import { CustomSvg } from '@/components/CustomSvg'
 import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
-import { ShoppingCartResume } from '@/components/Layout/ShoppingCartResume'
-import { ShoppingCartClear } from '@/components/Layout/ShoppingCartClear'
+import { ShoppingCartButtonResume } from '@/components/ShoppingCartComponents/ShoppingCartButtonResume'
+import { ShoppingCartButtonClear } from '@/components/ShoppingCartComponents/ShoppingCartButtonClear'
 
 export async function Nav({ parent_categories, selected_category }) {
 	return (
@@ -56,8 +56,8 @@ export async function Nav({ parent_categories, selected_category }) {
 						<div
 							className={'flex h-2/6 items-start justify-center gap-2 md:gap-4'}
 						>
-							<ShoppingCartClear />
-							<ShoppingCartResume />
+							<ShoppingCartButtonClear />
+							<ShoppingCartButtonResume />
 							<Link href={'/'} className={'btn-nav'}>
 								<Image
 									src={'/icons/magnifying-glass.svg'}

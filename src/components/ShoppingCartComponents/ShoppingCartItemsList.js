@@ -1,6 +1,6 @@
 import { useCart } from '@/app/providers/CartProvider'
 
-export function CartItemsList(props) {
+export function ShoppingCartItemsList(props) {
 	const { itemsInCart } = useCart()
 	return (
 		<div className={'flex w-full flex-col gap-6'}>

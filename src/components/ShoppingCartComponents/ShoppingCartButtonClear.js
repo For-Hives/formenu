@@ -2,7 +2,7 @@
 import { CustomSvg } from '@/components/CustomSvg'
 import { useCart } from '@/app/providers/CartProvider'
 
-export function ShoppingCartClear() {
+export function ShoppingCartButtonClear() {
 	const { resetCart } = useCart()
 	return (
 		<button className={'btn-nav relative'} onClick={() => resetCart()}>

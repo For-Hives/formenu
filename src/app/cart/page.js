@@ -1,5 +1,5 @@
 import { Nav } from '@/components/Layout/Nav'
-import { CartItemsList } from '@/components/Dishes/CartItemsList'
+import { ShoppingCartItemsList } from '@/components/ShoppingCartComponents/ShoppingCartItemsList'
 
 export default async function Page() {
 	return (
@@ -14,7 +14,7 @@ export default async function Page() {
 						data ? 'min-h-[calc(100vh-25rem)]' : ''
 					} container-sub-menus`}
 				>
-					<CartItemsList />
+					<ShoppingCartItemsList />
 				</div>
 			</div>
 		</>
