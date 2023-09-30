@@ -12,7 +12,7 @@ export function CartProvider({ children }) {
 		const newItemsInCart = itemsInCart.map(itemInCart => {
 			if (itemInCart.id === item.id) {
 				if (itemInCart?.quantity === 1) {
-					return
+					return null // use null to easily clean up later
 				}
 				return {
 					...itemInCart,
@@ -21,8 +21,11 @@ export function CartProvider({ children }) {
 			}
 			return itemInCart
 		})
-		setItemsInCart(newItemsInCart)
-		localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
+
+		const cleanedItemsInCart = cleanData(newItemsInCart) // use cleanData function
+
+		setItemsInCart(cleanedItemsInCart)
+		localStorage.setItem('itemsInCart', JSON.stringify(cleanedItemsInCart))
 	}
 
 	// click on plus button, increase the quantity of the item
@@ -36,8 +39,11 @@ export function CartProvider({ children }) {
 			}
 			return itemInCart
 		})
-		setItemsInCart(newItemsInCart)
-		localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
+
+		const cleanedItemsInCart = cleanData(newItemsInCart) // use cleanData function
+
+		setItemsInCart(cleanedItemsInCart)
+		localStorage.setItem('itemsInCart', JSON.stringify(cleanedItemsInCart))
 	}
 
 	//     add an item to the cart
@@ -70,16 +76,21 @@ export function CartProvider({ children }) {
 		localStorage.setItem('itemsInCart', JSON.stringify([]))
 	}
 
+	const cleanData = data => {
+		if (!data || !data.length) return []
+		return data.filter(
+			item => item && (typeof item !== 'string' || item.trim() !== '')
+		)
+	}
+
 	// get items in cart from local storage (and clear the values that are not valid)
 	const getItemsInCart = () => {
 		// Get the value from local storage if it exists
 		const value = localStorage.getItem('itemsInCart')
 		let valueParsed = JSON.parse(value)
-		// check the valueParsed array and clear the values that are not valid (null, undefined, empty string, empty array)
-		if (valueParsed?.length) {
-			valueParsed = valueParsed.filter(item => item)
-			localStorage.setItem('itemsInCart', JSON.stringify(valueParsed))
-		}
+		// Use the cleanData function
+		valueParsed = cleanData(valueParsed)
+		localStorage.setItem('itemsInCart', JSON.stringify(valueParsed))
 		valueParsed !== '' && valueParsed?.length && setItemsInCart(valueParsed)
 	}
 
