@@ -5,7 +5,7 @@ import { Spinner } from '@nextui-org/react'
 import Link from 'next/link'
 
 export function ShoppingCartButtonResume() {
-	const { itemsInCart } = useCart()
+	const { itemsInCart, countItemsInCart } = useCart()
 	const { isLoading } = useCart()
 
 	return (
@@ -19,11 +19,7 @@ export function ShoppingCartButtonResume() {
 								: 'border border-blue-950 bg-white'
 						}`}
 					>
-						{isLoading ? (
-							<Spinner size={'sm'} />
-						) : (
-							<>{itemsInCart?.length ?? 0}</>
-						)}
+						{isLoading ? <Spinner size={'sm'} /> : <>{countItemsInCart()}</>}
 					</h4>
 					<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />
 				</>

@@ -45,6 +45,15 @@ export function CartProvider({ children }) {
 		value !== '' && value?.length && setItemsInCart(JSON.parse(value))
 	}
 
+	// count the number of items in the cart (length of the array + quantity of each item)
+	const countItemsInCart = () => {
+		let count = 0
+		itemsInCart.forEach(item => {
+			count += item.quantity
+		})
+		return count
+	}
+
 	// execute getItemsInCart on load
 	useEffect(() => {
 		getItemsInCart()
@@ -53,7 +62,14 @@ export function CartProvider({ children }) {
 
 	return (
 		<CartContext.Provider
-			value={{ itemsInCart, addItem, resetCart, getItemsInCart, isLoading }}
+			value={{
+				itemsInCart,
+				addItem,
+				resetCart,
+				getItemsInCart,
+				isLoading,
+				countItemsInCart,
+			}}
 		>
 			{children}
 		</CartContext.Provider>
