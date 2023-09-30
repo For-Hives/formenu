@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+formenu.iml
 
 # testing
 /coverage
