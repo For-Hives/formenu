@@ -7,13 +7,14 @@ import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
 
 export function ShoppingCartItemsList() {
-	const { itemsInCart, countItemsInCart } = useCart()
+	const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
+		useCart()
 
 	const [dishes, setDishes] = useState([])
 
 	const itemInfo = item => {
 		if (!dishes.length) return
-		return dishes.find(dish => dish.id.toString() === item.toString())
+		return dishes.find(dish => dish?.id.toString() === item.toString())
 	}
 
 	useEffect(() => {
@@ -36,29 +37,7 @@ export function ShoppingCartItemsList() {
 									key={index}
 									className={'relative flex w-full items-center justify-start'}
 								>
-									<Dishes dish={itemInfo(item.id)} />
-									{/*	quantity - first possibility */}
-									{/*<div*/}
-									{/*	className={*/}
-									{/*		'absolute right-0 top-0 flex items-center justify-center rounded-bl-lg rounded-tr-lg bg-blue-950 px-3 py-1'*/}
-									{/*	}*/}
-									{/*>*/}
-									{/*	<p className={'text-xs font-bold text-white'}>*/}
-									{/*		Quantité : {item.quantity}*/}
-									{/*	</p>*/}
-									{/*</div>*/}
-
-									{/* second possibility */}
-									{/*<div*/}
-									{/*	className={*/}
-									{/*		'absolute -right-2 -top-2 flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1 shadow'*/}
-									{/*	}*/}
-									{/*>*/}
-									{/*	<p className={'text-xs text-blue-950'}>*/}
-									{/*		Quantité : {item.quantity}*/}
-									{/*	</p>*/}
-									{/*</div>*/}
-
+									<Dishes dish={itemInfo(item?.id)} />
 									{/* third possibility */}
 									<div
 										className={
@@ -69,35 +48,44 @@ export function ShoppingCartItemsList() {
 											className={
 												'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
 											}
-											onClick={() => {}}
+											onClick={() => {
+												decreaseQuantity(item)
+											}}
 										>
 											<div
 												className={
 													'flex h-full w-full items-center justify-center'
 												}
 											>
-												{item.quantity === 1 ? (
-													<CustomSvg
-														url={'/icons/bin.svg'}
-														classNames={'bg-black h-[14px] w-[14px]'}
-													/>
+												{item?.quantity === 1 ? (
+													<>
+														<CustomSvg
+															url={'/icons/bin.svg'}
+															classNames={'bg-black h-[14px] w-[14px]'}
+														/>
+													</>
 												) : (
-													<CustomSvg
-														url={'/icons/minus.svg'}
-														classNames={'bg-black h-[14px] w-[14px]'}
-													/>
+													<>
+														<CustomSvg
+															url={'/icons/minus.svg'}
+															classNames={'bg-black h-[14px] w-[14px]'}
+														/>
+													</>
 												)}
 											</div>
 										</button>
 										<div className={'flex items-center justify-center'}>
 											<p className={'text-xs font-bold text-blue-950'}>
-												{item.quantity}
+												{item?.quantity}
 											</p>
 										</div>
 										<button
 											className={
 												'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
 											}
+											onClick={() => {
+												increaseQuantity(item)
+											}}
 										>
 											<div
 												className={
@@ -111,17 +99,6 @@ export function ShoppingCartItemsList() {
 											</div>
 										</button>
 									</div>
-
-									{/* fourth possibility */}
-									{/*<div*/}
-									{/*	className={*/}
-									{/*		'absolute right-0 top-0 flex items-center justify-center rounded-bl-lg rounded-tr-lg bg-blue-950 px-3 py-1'*/}
-									{/*	}*/}
-									{/*>*/}
-									{/*	<p className={'text-xs font-bold text-white'}>*/}
-									{/*		{item.quantity}*/}
-									{/*	</p>*/}
-									{/*</div>*/}
 								</div>
 							)
 						})

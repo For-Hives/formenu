@@ -11,12 +11,12 @@ export function CartProvider({ children }) {
 	const decreaseQuantity = item => {
 		const newItemsInCart = itemsInCart.map(itemInCart => {
 			if (itemInCart.id === item.id) {
-				if (itemInCart.quantity === 1) {
+				if (itemInCart?.quantity === 1) {
 					return
 				}
 				return {
 					...itemInCart,
-					quantity: itemInCart.quantity - 1,
+					quantity: itemInCart?.quantity - 1,
 				}
 			}
 			return itemInCart
@@ -31,7 +31,7 @@ export function CartProvider({ children }) {
 			if (itemInCart.id === item.id) {
 				return {
 					...itemInCart,
-					quantity: itemInCart.quantity + 1,
+					quantity: itemInCart?.quantity + 1,
 				}
 			}
 			return itemInCart
@@ -49,7 +49,7 @@ export function CartProvider({ children }) {
 				if (itemInCart.id === item.id) {
 					return {
 						...itemInCart,
-						quantity: itemInCart.quantity + 1,
+						quantity: itemInCart?.quantity + 1,
 					}
 				}
 				return itemInCart
@@ -70,19 +70,24 @@ export function CartProvider({ children }) {
 		localStorage.setItem('itemsInCart', JSON.stringify([]))
 	}
 
-	// get items in cart from local storage
+	// get items in cart from local storage (and clear the values that are not valid)
 	const getItemsInCart = () => {
 		// Get the value from local storage if it exists
-		let value = localStorage.getItem('itemsInCart')
-		console.log('value', value)
-		value !== '' && value?.length && setItemsInCart(JSON.parse(value))
+		const value = localStorage.getItem('itemsInCart')
+		let valueParsed = JSON.parse(value)
+		// check the valueParsed array and clear the values that are not valid (null, undefined, empty string, empty array)
+		if (valueParsed?.length) {
+			valueParsed = valueParsed.filter(item => item)
+			localStorage.setItem('itemsInCart', JSON.stringify(valueParsed))
+		}
+		valueParsed !== '' && valueParsed?.length && setItemsInCart(valueParsed)
 	}
 
 	// count the number of items in the cart (length of the array + quantity of each item)
 	const countItemsInCart = () => {
 		let count = 0
 		itemsInCart.forEach(item => {
-			count += item.quantity
+			count += item?.quantity
 		})
 		return count
 	}
