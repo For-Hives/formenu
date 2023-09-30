@@ -6,7 +6,7 @@ import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 
 export function ShoppingCartItemsList() {
-	const { itemsInCart } = useCart()
+	const { itemsInCart, countItemsInCart } = useCart()
 
 	const [dishes, setDishes] = useState([])
 
@@ -23,6 +23,9 @@ export function ShoppingCartItemsList() {
 
 	return (
 		<div className={'flex w-full flex-col gap-6'}>
+			<h2 className={'font-bold'}>
+				Les plats dans votre panier ({countItemsInCart() || 0})
+			</h2>
 			{dishes?.length ? (
 				<>
 					{itemsInCart?.length ? (
@@ -33,7 +36,7 @@ export function ShoppingCartItemsList() {
 									className={'relative flex w-full items-center justify-start'}
 								>
 									<Dishes dish={itemInfo(item.id)} />
-									{/*	quantity */}
+									{/*	quantity - first possibility */}
 									{/*<div*/}
 									{/*	className={*/}
 									{/*		'absolute right-0 top-0 flex items-center justify-center rounded-bl-lg rounded-tr-lg bg-blue-950 px-3 py-1'*/}
@@ -44,6 +47,7 @@ export function ShoppingCartItemsList() {
 									{/*	</p>*/}
 									{/*</div>*/}
 
+									{/* second possibility */}
 									{/*<div*/}
 									{/*	className={*/}
 									{/*		'absolute -right-2 -top-2 flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1 shadow'*/}
@@ -54,6 +58,7 @@ export function ShoppingCartItemsList() {
 									{/*	</p>*/}
 									{/*</div>*/}
 
+									{/* third possibility */}
 									<div
 										className={
 											'absolute -right-2 -top-2 flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1 shadow'
@@ -62,6 +67,7 @@ export function ShoppingCartItemsList() {
 										<p className={'text-xs text-blue-950'}>{item.quantity}</p>
 									</div>
 
+									{/* fourth possibility */}
 									{/*<div*/}
 									{/*	className={*/}
 									{/*		'absolute right-0 top-0 flex items-center justify-center rounded-bl-lg rounded-tr-lg bg-blue-950 px-3 py-1'*/}
