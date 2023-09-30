@@ -27,7 +27,7 @@ export function Dishes({ dish }) {
 		>
 			{!dish?.attributes && (
 				<div className={'absolute -right-2 -top-2 z-30'}>
-					<ShoppingCartButtonAdd newItem={dish?.id} />
+					<ShoppingCartButtonAdd newItem={{ id: dish?.id, quantity: 1 }} />
 				</div>
 			)}
 			<button

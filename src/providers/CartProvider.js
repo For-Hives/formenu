@@ -9,7 +9,23 @@ export function CartProvider({ children }) {
 
 	//     add an item to the cart
 	const addItem = item => {
-		// (itemsInCart === undefined || itemsInCart === null) && setItemsInCart([])
+		// check if the item is already in the cart, if it is, increase the quantity
+		const itemInCart = itemsInCart.find(itemInCart => itemInCart.id === item.id)
+		if (itemInCart) {
+			const newItemsInCart = itemsInCart.map(itemInCart => {
+				if (itemInCart.id === item.id) {
+					return {
+						...itemInCart,
+						quantity: itemInCart.quantity + 1,
+					}
+				}
+				return itemInCart
+			})
+			setItemsInCart(newItemsInCart)
+			localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
+			return
+		}
+		// if the item is not in the cart, add it
 		const newItemsInCart = [...itemsInCart, item]
 		setItemsInCart(newItemsInCart)
 		localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
@@ -23,9 +39,9 @@ export function CartProvider({ children }) {
 
 	// get items in cart from local storage
 	const getItemsInCart = () => {
-		let value
 		// Get the value from local storage if it exists
-		value = localStorage.getItem('itemsInCart')
+		let value = localStorage.getItem('itemsInCart')
+		console.log('value', value)
 		value !== '' && value?.length && setItemsInCart(JSON.parse(value))
 	}
 
