@@ -30,9 +30,47 @@ export function ShoppingCartItemsList() {
 							return (
 								<div
 									key={index}
-									className={'flex w-full items-center justify-start'}
+									className={'relative flex w-full items-center justify-start'}
 								>
-									<Dishes dish={itemInfo(item)} />
+									<Dishes dish={itemInfo(item.id)} />
+									{/*	quantity */}
+									{/*<div*/}
+									{/*	className={*/}
+									{/*		'absolute right-0 top-0 flex items-center justify-center rounded-bl-lg rounded-tr-lg bg-blue-950 px-3 py-1'*/}
+									{/*	}*/}
+									{/*>*/}
+									{/*	<p className={'text-xs font-bold text-white'}>*/}
+									{/*		Quantité : {item.quantity}*/}
+									{/*	</p>*/}
+									{/*</div>*/}
+
+									{/*<div*/}
+									{/*	className={*/}
+									{/*		'absolute -right-2 -top-2 flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1 shadow'*/}
+									{/*	}*/}
+									{/*>*/}
+									{/*	<p className={'text-xs text-blue-950'}>*/}
+									{/*		Quantité : {item.quantity}*/}
+									{/*	</p>*/}
+									{/*</div>*/}
+
+									<div
+										className={
+											'absolute -right-2 -top-2 flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1 shadow'
+										}
+									>
+										<p className={'text-xs text-blue-950'}>{item.quantity}</p>
+									</div>
+
+									{/*<div*/}
+									{/*	className={*/}
+									{/*		'absolute right-0 top-0 flex items-center justify-center rounded-bl-lg rounded-tr-lg bg-blue-950 px-3 py-1'*/}
+									{/*	}*/}
+									{/*>*/}
+									{/*	<p className={'text-xs font-bold text-white'}>*/}
+									{/*		{item.quantity}*/}
+									{/*	</p>*/}
+									{/*</div>*/}
 								</div>
 							)
 						})
