@@ -2,13 +2,14 @@
 import { CustomSvg } from '@/components/CustomSvg'
 import { useCart } from '@/providers/CartProvider'
 import { Spinner } from '@nextui-org/react'
+import Link from 'next/link'
 
 export function ShoppingCartButtonResume() {
 	const { itemsInCart } = useCart()
 	const { isLoading } = useCart()
 
 	return (
-		<button className={'btn-nav relative'}>
+		<Link className={'btn-nav relative'} href={'/cart'}>
 			{
 				<>
 					<h4
@@ -27,6 +28,6 @@ export function ShoppingCartButtonResume() {
 					<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />
 				</>
 			}
-		</button>
+		</Link>
 	)
 }
