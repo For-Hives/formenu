@@ -4,6 +4,7 @@ import { getDishes, getDishFromId } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
+import { CustomSvg } from '@/components/CustomSvg'
 
 export function ShoppingCartItemsList() {
 	const { itemsInCart, countItemsInCart } = useCart()
@@ -61,10 +62,54 @@ export function ShoppingCartItemsList() {
 									{/* third possibility */}
 									<div
 										className={
-											'absolute -right-2 -top-2 flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-1 shadow'
+											'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
 										}
 									>
-										<p className={'text-xs text-blue-950'}>{item.quantity}</p>
+										<button
+											className={
+												'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
+											}
+											onClick={() => {}}
+										>
+											<div
+												className={
+													'flex h-full w-full items-center justify-center'
+												}
+											>
+												{item.quantity === 1 ? (
+													<CustomSvg
+														url={'/icons/bin.svg'}
+														classNames={'bg-black h-[14px] w-[14px]'}
+													/>
+												) : (
+													<CustomSvg
+														url={'/icons/minus.svg'}
+														classNames={'bg-black h-[14px] w-[14px]'}
+													/>
+												)}
+											</div>
+										</button>
+										<div className={'flex items-center justify-center'}>
+											<p className={'text-xs font-bold text-blue-950'}>
+												{item.quantity}
+											</p>
+										</div>
+										<button
+											className={
+												'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
+											}
+										>
+											<div
+												className={
+													'flex h-full w-full items-center justify-center'
+												}
+											>
+												<CustomSvg
+													url={'/icons/plus.svg'}
+													classNames={'bg-black h-[14px] w-[14px]'}
+												/>
+											</div>
+										</button>
 									</div>
 
 									{/* fourth possibility */}

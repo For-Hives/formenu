@@ -7,6 +7,39 @@ export function CartProvider({ children }) {
 	const [itemsInCart, setItemsInCart] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
 
+	// click on minus button, decrease the quantity of the item, if quantity === 1, remove the item from the cart
+	const decreaseQuantity = item => {
+		const newItemsInCart = itemsInCart.map(itemInCart => {
+			if (itemInCart.id === item.id) {
+				if (itemInCart.quantity === 1) {
+					return
+				}
+				return {
+					...itemInCart,
+					quantity: itemInCart.quantity - 1,
+				}
+			}
+			return itemInCart
+		})
+		setItemsInCart(newItemsInCart)
+		localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
+	}
+
+	// click on plus button, increase the quantity of the item
+	const increaseQuantity = item => {
+		const newItemsInCart = itemsInCart.map(itemInCart => {
+			if (itemInCart.id === item.id) {
+				return {
+					...itemInCart,
+					quantity: itemInCart.quantity + 1,
+				}
+			}
+			return itemInCart
+		})
+		setItemsInCart(newItemsInCart)
+		localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart))
+	}
+
 	//     add an item to the cart
 	const addItem = item => {
 		// check if the item is already in the cart, if it is, increase the quantity
@@ -69,6 +102,8 @@ export function CartProvider({ children }) {
 				getItemsInCart,
 				isLoading,
 				countItemsInCart,
+				decreaseQuantity,
+				increaseQuantity,
 			}}
 		>
 			{children}
