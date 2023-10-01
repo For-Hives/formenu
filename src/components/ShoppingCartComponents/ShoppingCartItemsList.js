@@ -104,7 +104,9 @@ export function ShoppingCartItemsList() {
 						})
 					) : (
 						<div className={'flex w-full items-center justify-start'}>
-							<p>No items in cart</p>
+							<p className={'text-xs italic'}>
+								{`Il n'y a rien dans votre panier !`}
+							</p>
 						</div>
 					)}
 				</>
