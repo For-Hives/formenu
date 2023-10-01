@@ -9,7 +9,9 @@ function Filter(props) {
 			}
 		>
 			<div className={'flex w-full items-center justify-end'}>
-				<div className={'relative flex w-full items-center'}>
+				<div
+					className={'relative flex w-full max-w-lg items-center justify-end'}
+				>
 					<input
 						className={
 							'ml-4 flex w-full items-center rounded-l-lg bg-slate-50 py-3 pl-12 shadow-xl'
