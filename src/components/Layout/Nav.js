@@ -5,6 +5,7 @@ import { CustomSvg } from '@/components/CustomSvg'
 import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
 import { ShoppingCartButtonResume } from '@/components/ShoppingCartComponents/ShoppingCartButtonResume'
 import { ShoppingCartButtonClear } from '@/components/ShoppingCartComponents/ShoppingCartButtonClear'
+import Filter from '@/components/Filter/Filter'
 
 export async function Nav({
 	parent_categories = null,
@@ -12,6 +13,7 @@ export async function Nav({
 }) {
 	return (
 		<>
+			<Filter></Filter>
 			<nav
 				className={
 					'pointer-events-none fixed left-0 top-0 z-10 h-screen w-screen select-none pb-8 md:pb-0'
