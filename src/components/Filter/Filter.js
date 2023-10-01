@@ -36,10 +36,14 @@ function Filter(props) {
 				>
 					<div
 						className={
-							'flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 py-3'
+							'flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-3'
 						}
 					>
-						<div className={'flex gap-4 border-b border-b-slate-200 pb-3 pl-4'}>
+						<div
+							className={
+								'relative flex gap-4 border-b border-b-slate-300 py-3 pl-4'
+							}
+						>
 							<div className={'flex items-center justify-center'}>
 								<CustomSvg
 									url={'/icons/filter.svg'}
@@ -47,6 +51,11 @@ function Filter(props) {
 								/>
 							</div>
 							<p className={'text-sm font-bold'}>Filtrer</p>
+							<div
+								className={
+									'absolute right-0 top-0 h-full w-1/3 border-l border-slate-300'
+								}
+							/>
 						</div>
 						<div>Regime Alimentaire</div>
 						<div>Allergènes</div>
