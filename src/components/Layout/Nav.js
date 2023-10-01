@@ -13,7 +13,7 @@ export async function Nav({
 }) {
 	return (
 		<>
-			<Filter></Filter>
+			<Filter />
 			<nav
 				className={
 					'pointer-events-none fixed left-0 top-0 z-10 h-screen w-screen select-none pb-8 md:pb-0'

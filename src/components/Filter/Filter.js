@@ -1,7 +1,8 @@
 import React from 'react'
 import { CustomSvg } from '@/components/CustomSvg'
+import Image from 'next/image'
 
-function Filter(props) {
+function Filter() {
 	return (
 		<div
 			className={
@@ -36,7 +37,7 @@ function Filter(props) {
 				>
 					<div
 						className={
-							'flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-3'
+							'flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-10'
 						}
 					>
 						<div
@@ -57,8 +58,35 @@ function Filter(props) {
 								}
 							/>
 						</div>
-						<div>Regime Alimentaire</div>
-						<div>Allergènes</div>
+						<div className={'flex flex-col items-start justify-center gap-3'}>
+							<div className={'flex items-center justify-start gap-3 pl-6'}>
+								<Image
+									src={'/icons/regime_alimentaire.svg'}
+									alt={'regime alimentaire'}
+									width={20}
+									height={20}
+								/>
+								<p className={'text-sm font-bold'}>Régime(s) alimentaire(s)</p>
+							</div>
+						</div>
+						<div></div>
+						<div className={'flex flex-col items-start justify-center gap-3'}>
+							<div className={'flex items-center justify-start gap-3 pl-6'}>
+								<Image
+									src={'/icons/cereal.svg'}
+									alt={'Allergens'}
+									width={20}
+									height={20}
+								/>
+								<p className={'text-sm font-bold'}>
+									Allergènes{' '}
+									<span className={'text-xs font-light italic'}>
+										(Selectionnez les éléments que vous souhaitez triés)
+									</span>
+								</p>
+							</div>
+							<div></div>
+						</div>
 					</div>
 				</div>
 			</div>
