@@ -22,10 +22,6 @@
 		"@heroicons/react": "2.0.18",
 		"@hookform/resolvers": "3.3.1",
 		"@nextui-org/react": "2.1.13",
-		"@tailwindcss/typography": "0.5.10",
-		"autoprefixer": "10.4.16",
-		"eslint": "8.50.0",
-		"eslint-config-next": "13.5.3",
 		"framer-motion": "10.16.4",
 		"html-react-parser": "4.2.2",
 		"lodash": "4.17.21",
@@ -44,12 +40,15 @@
 	},
 	"devDependencies": {
 		"@tailwindcss/forms": "0.5.6",
+		"@tailwindcss/typography": "0.5.10",
+		"tailwindcss": "3.3.3",
 		"autoprefixer": "10.4.16",
 		"eslint-config-prettier": "8.10.0",
+		"eslint": "8.50.0",
+		"eslint-config-next": "13.5.3",
 		"husky": "8.0.3",
 		"lint-staged": "14.0.1",
 		"postcss": "8.4.30",
-		"prettier": "2.8.8",
-		"tailwindcss": "3.3.3"
+		"prettier": "2.8.8"
 	}
 }
