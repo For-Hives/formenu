@@ -2,6 +2,7 @@ import React from 'react'
 import { CustomSvg } from '@/components/CustomSvg'
 import Image from 'next/image'
 import { DietFilter } from '@/components/Filter/DietFilter'
+import { AllergensFilter } from '@/components/Filter/AllergensFilter'
 
 function Filter() {
 	return (
@@ -87,7 +88,7 @@ function Filter() {
 									</span>
 								</p>
 							</div>
-							<div></div>
+							<AllergensFilter />
 						</div>
 					</div>
 				</div>

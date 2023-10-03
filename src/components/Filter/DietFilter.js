@@ -49,12 +49,12 @@ export function DietFilter() {
 			{diets.map(diet => (
 				<>
 					<div
+						key={diet.type}
 						className={
 							'col-span-3 flex flex-col items-center justify-center gap-2'
 						}
 					>
 						<DietButton
-							key={diet.type}
 							diet={diet}
 							selectedDiet={selectedDiet}
 							onDietChange={setSelectedDiet}
