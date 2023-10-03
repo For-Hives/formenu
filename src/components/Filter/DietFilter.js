@@ -34,7 +34,7 @@ function DietButton({ diet, selectedDiet, onDietChange }) {
 	)
 }
 
-export function Diet() {
+export function DietFilter() {
 	const [selectedDiet, setSelectedDiet] = useState('default')
 
 	const diets = [

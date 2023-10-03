@@ -1,7 +1,7 @@
 import React from 'react'
 import { CustomSvg } from '@/components/CustomSvg'
 import Image from 'next/image'
-import { Diet } from '@/components/Filter/Diet'
+import { DietFilter } from '@/components/Filter/DietFilter'
 
 function Filter() {
 	return (
@@ -70,7 +70,7 @@ function Filter() {
 								<p className={'text-sm font-bold'}>Régime(s) alimentaire(s)</p>
 							</div>
 						</div>
-						<Diet />
+						<DietFilter />
 
 						<div className={'flex flex-col items-start justify-center gap-3'}>
 							<div className={'flex items-center justify-start gap-3 pl-6'}>
