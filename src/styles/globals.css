@@ -112,4 +112,12 @@ nav a {
     .btn-nav-alt {
         @apply flex h-[40px] w-[40px] items-center justify-center rounded-full bg-blue-950 border border-blue-950 pointer-events-auto z-10;
     }
+
+    .diet-button{
+        @apply col-span-3 flex items-center justify-center rounded-lg bg-slate-100 py-4
+    }
+
+    .diet-button-selected{
+        @apply col-span-3 flex items-center justify-center rounded-lg bg-slate-800 py-4
+    }
 }
