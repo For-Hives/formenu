@@ -1,20 +1,21 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
+import { diets } from '@/enum/dietsData'
 
 function DietButton({ diet, selectedDiet, onDietChange }) {
-	const isSelected = diet.type === selectedDiet
+	const isSelected = diet.key === selectedDiet
 	return (
 		<button
 			className={`${
 				isSelected ? 'diet-button-selected' : 'diet-button'
 			} relative`}
-			onClick={() => onDietChange(diet.type)}
+			onClick={() => onDietChange(diet.key)}
 		>
-			{diet.icon ? (
-				<Image src={diet.icon} width={20} height={20} alt={diet.type} />
+			{diet.url ? (
+				<Image src={diet.url} width={20} height={20} alt={diet.key} />
 			) : (
-				<span className={'sr-only'}>{diet.type}</span>
+				<span className={'sr-only'}>{diet.key}</span>
 			)}
 
 			<span className={'absolute right-0 top-0 m-1'}>
@@ -42,7 +43,7 @@ export function DietFilter() {
 			{diets.map(diet => (
 				<>
 					<div
-						key={diet.type}
+						key={diet.key}
 						className={
 							'col-span-3 flex flex-col items-center justify-center gap-2'
 						}
@@ -54,10 +55,10 @@ export function DietFilter() {
 						/>
 						<p
 							className={`text-xs text-slate-600 ${
-								selectedDiet === diet.type && 'underline'
+								selectedDiet === diet.key && 'underline'
 							}`}
 						>
-							{diet.type.charAt(0).toUpperCase() + diet.type.slice(1)}
+							{diet.key.charAt(0).toUpperCase() + diet.key.slice(1)}
 						</p>
 					</div>
 				</>
