@@ -21,13 +21,13 @@ function AllergenButton({ allergen, selectedAllergens, onAllergenToggle }) {
 			<span className={'absolute right-0 top-0 m-1'}>
 				<div
 					className={
-						'flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 p-0.5'
+						'flex items-center justify-center rounded border border-slate-300 bg-slate-50 p-0.5'
 					}
 				>
 					{isSelected ? (
-						<div className={'h-1 w-1 rounded-full bg-black/75'}></div>
+						<div className={'h-1 w-1 rounded bg-black/75'}></div>
 					) : (
-						<div className={'h-1 w-1 rounded-full bg-transparent'}></div>
+						<div className={'h-1 w-1 rounded bg-transparent'}></div>
 					)}
 				</div>
 			</span>
