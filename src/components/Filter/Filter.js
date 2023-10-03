@@ -8,7 +8,7 @@ function Filter() {
 	return (
 		<div
 			className={
-				'fixed left-0 top-0 z-50 flex h-screen w-screen items-start justify-start bg-black/10 py-4'
+				'fixed left-0 top-0 z-50 flex h-screen w-screen items-start justify-start bg-black/10 py-4 backdrop-blur-sm'
 			}
 		>
 			<div

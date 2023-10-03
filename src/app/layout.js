@@ -3,6 +3,7 @@ import { CardBackground } from '@/components/Background/CardBackground'
 import Image from 'next/image'
 import { CartProvider } from '@/providers/CartProvider'
 import { WrapNextUiProviders } from '@/providers/WrapNextUiProvider'
+import { StoreProvider } from '@/providers/StoreProvider'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -75,11 +76,13 @@ export default async function RootLayout({ children }) {
 								<h2 className={'ml-4'}>traditionnel et authentique</h2>
 							</div>
 						</div>
-						<WrapNextUiProviders>
-							<CartProvider>
-								<div className={'pt-16 sm:pt-20'}>{children}</div>
-							</CartProvider>
-						</WrapNextUiProviders>
+						<StoreProvider>
+							<WrapNextUiProviders>
+								<CartProvider>
+									<div className={'pt-16 sm:pt-20'}>{children}</div>
+								</CartProvider>
+							</WrapNextUiProviders>
+						</StoreProvider>
 					</section>
 				</main>
 			</body>
