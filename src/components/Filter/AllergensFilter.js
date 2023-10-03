@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { allergens } from '@/enum/allergensData'
+import { CustomSvg } from '@/components/CustomSvg'
 
 function AllergenButton({ allergen, selectedAllergens, onAllergenToggle }) {
 	const isSelected = selectedAllergens.includes(allergen.key)
@@ -21,11 +22,14 @@ function AllergenButton({ allergen, selectedAllergens, onAllergenToggle }) {
 			<span className={'absolute right-0 top-0 m-1'}>
 				<div
 					className={
-						'flex items-center justify-center rounded border border-slate-300 bg-slate-50 p-0.5'
+						'flex items-center justify-center rounded border border-slate-300 bg-transparent p-0.5'
 					}
 				>
 					{isSelected ? (
-						<div className={'h-1 w-1 rounded bg-black/75'}></div>
+						<CustomSvg
+							url={'/icons/check.svg'}
+							classNames={'h-[6px] w-[6px] bg-white'}
+						/>
 					) : (
 						<div className={'h-1 w-1 rounded bg-transparent'}></div>
 					)}
