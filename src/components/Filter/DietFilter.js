@@ -37,13 +37,6 @@ function DietButton({ diet, selectedDiet, onDietChange }) {
 export function DietFilter() {
 	const [selectedDiet, setSelectedDiet] = useState('default')
 
-	const diets = [
-		{ type: 'omnivore', icon: '/icons/omnivore.svg' },
-		{ type: 'vegetarien', icon: '/icons/vege.svg' },
-		{ type: 'vegan', icon: '/icons/vegan.svg' },
-		{ type: 'default' },
-	]
-
 	return (
 		<div className={'grid w-full grid-cols-12 gap-2 px-8'}>
 			{diets.map(diet => (
