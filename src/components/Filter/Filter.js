@@ -1,15 +1,21 @@
+'use client'
+
 import React from 'react'
 import { CustomSvg } from '@/components/CustomSvg'
 import Image from 'next/image'
 import { DietFilter } from '@/components/Filter/DietFilter'
 import { AllergensFilter } from '@/components/Filter/AllergensFilter'
+import { useStore } from '@/providers/StoreProvider'
 
 function Filter() {
+	const { isNavBarClosed, toggleNavbar } = useStore()
 	return (
 		<div
-			className={
-				'fixed left-0 top-0 z-50 flex h-screen w-screen items-start justify-start bg-black/10 py-4 backdrop-blur-sm'
-			}
+			className={`${
+				isNavBarClosed
+					? 'pointer-events-none -z-10 select-none opacity-0'
+					: 'pointer-events-auto z-50 select-auto opacity-100'
+			} fixed left-0 top-0 flex h-screen w-screen items-start justify-start bg-black/10 py-4 backdrop-blur-sm`}
 		>
 			<div
 				className={'ml-4 flex w-full flex-col items-end justify-center gap-4'}

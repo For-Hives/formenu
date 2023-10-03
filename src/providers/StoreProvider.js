@@ -4,14 +4,14 @@ import { createContext, useContext, useState } from 'react'
 const StoreContext = createContext()
 
 export function StoreProvider({ children }) {
-	const [navbarState, setNavbarState] = useState(false)
+	const [isNavBarClosed, setIsNavBarClosed] = useState(true)
 
 	const toggleNavbar = () => {
-		setNavbarState(!navbarState)
+		setIsNavBarClosed(!isNavBarClosed)
 	}
 
 	return (
-		<StoreContext.Provider value={{ navbarState, toggleNavbar }}>
+		<StoreContext.Provider value={{ isNavBarClosed, toggleNavbar }}>
 			{children}
 		</StoreContext.Provider>
 	)
