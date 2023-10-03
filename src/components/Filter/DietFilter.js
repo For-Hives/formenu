@@ -36,6 +36,7 @@ function DietButton({ diet, selectedDiet, onDietChange }) {
 }
 
 export function DietFilter() {
+	// todo décaler le selected diet // allergen selected
 	const [selectedDiet, setSelectedDiet] = useState('default')
 
 	return (
