@@ -114,10 +114,10 @@ nav a {
     }
 
     .diet-button{
-        @apply col-span-3 flex items-center justify-center rounded-lg bg-slate-100 py-4
+        @apply w-full h-full flex items-center justify-center rounded-lg bg-slate-100 py-4
     }
 
     .diet-button-selected{
-        @apply col-span-3 flex items-center justify-center rounded-lg bg-slate-800 py-4
+        @apply w-full h-full flex items-center justify-center rounded-lg bg-slate-800 py-4
     }
 }
