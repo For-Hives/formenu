@@ -4,14 +4,14 @@ import { createContext, useContext, useState } from 'react'
 const StoreContext = createContext()
 
 export function StoreProvider({ children }) {
-	const [isNavBarClosed, setIsNavBarClosed] = useState(true)
+	const [isFilterModalClosed, setIsFilterModalClosed] = useState(true)
 
-	const toggleNavbar = () => {
-		setIsNavBarClosed(!isNavBarClosed)
+	const toggleFilterModal = () => {
+		setIsFilterModalClosed(!isFilterModalClosed)
 	}
 
 	return (
-		<StoreContext.Provider value={{ isNavBarClosed, toggleNavbar }}>
+		<StoreContext.Provider value={{ isFilterModalClosed, toggleFilterModal }}>
 			{children}
 		</StoreContext.Provider>
 	)
