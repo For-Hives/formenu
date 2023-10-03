@@ -65,7 +65,7 @@ export function AllergensFilter() {
 							selectedAllergens.includes(allergen.key) && 'underline'
 						}`}
 					>
-						{allergen.key.charAt(0).toUpperCase() + allergen.key.slice(1)}
+						{allergen.title.charAt(0).toUpperCase() + allergen.title.slice(1)}
 					</p>
 				</div>
 			))}
