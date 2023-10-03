@@ -6,6 +6,7 @@ import { UnderlineDecoration } from '@/components/Layout/UnderlineDecoration'
 import { ShoppingCartButtonResume } from '@/components/ShoppingCartComponents/ShoppingCartButtonResume'
 import { ShoppingCartButtonClear } from '@/components/ShoppingCartComponents/ShoppingCartButtonClear'
 import Filter from '@/components/Filter/Filter'
+import { ButtonFilter } from '@/components/Layout/ButtonFilter'
 
 export async function Nav({
 	parent_categories = null,
@@ -63,14 +64,8 @@ export async function Nav({
 						>
 							<ShoppingCartButtonClear />
 							<ShoppingCartButtonResume />
-							<Link href={'/'} className={'btn-nav'}>
-								<Image
-									src={'/icons/magnifying-glass.svg'}
-									alt={'search button'}
-									width={15}
-									height={15}
-								/>
-							</Link>
+
+							<ButtonFilter />
 						</div>
 						{
 							//     if parent_categories is null, it means that we are on cart page
