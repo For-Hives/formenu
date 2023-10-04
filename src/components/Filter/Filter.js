@@ -31,15 +31,26 @@ function Filter() {
 				>
 					<div
 						className={
+							'relative flex w-full max-w-lg items-center justify-end rounded-l-lg border border-blue-900 bg-slate-50 py-3 shadow-xl'
+						}
+					>
+						<CustomSvg
+							url={'/icons/close.svg'}
+							classNames={'h-[15px] w-[15px] bg-black'}
+						/>
+						{/*toggleFilterModal*/}
+					</div>
+					<div
+						className={
 							'relative flex w-full max-w-lg items-center justify-end shadow-xl'
 						}
 					>
 						<input
 							className={
-								'flex w-full items-center rounded-l-lg bg-slate-50 py-3 pl-12 text-sm'
+								'flex w-full items-center rounded-l-lg border border-blue-950 bg-slate-50 py-3 pl-12 text-sm'
 							}
 							placeholder={'Rechercher un plat avec un mot clé...'}
-						></input>
+						/>
 						<CustomSvg
 							url={'/icons/magnifying-glass.svg'}
 							classNames={

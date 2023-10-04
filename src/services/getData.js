@@ -19,6 +19,7 @@ export async function getData() {
 
 export async function getAllData() {
 	const data = await getData()
+	console.log('data', data)
 	return data[0]
 }
 

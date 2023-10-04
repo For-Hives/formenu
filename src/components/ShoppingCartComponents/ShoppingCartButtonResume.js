@@ -5,8 +5,7 @@ import { Spinner } from '@nextui-org/react'
 import Link from 'next/link'
 
 export function ShoppingCartButtonResume() {
-	const { itemsInCart, countItemsInCart } = useCart()
-	const { isLoading } = useCart()
+	const { itemsInCart, countItemsInCart, isLoading } = useCart()
 
 	return (
 		<Link className={'btn-nav relative'} href={'/cart'}>
