@@ -1,8 +1,8 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
 import { allergens } from '@/enum/allergensData'
 import { CustomSvg } from '@/components/CustomSvg'
+import { useStore } from '@/providers/StoreProvider'
 
 function AllergenButton({ allergen, selectedAllergens, onAllergenToggle }) {
 	const isSelected = selectedAllergens.includes(allergen.key)
@@ -40,16 +40,7 @@ function AllergenButton({ allergen, selectedAllergens, onAllergenToggle }) {
 }
 
 export function AllergensFilter() {
-	const [selectedAllergens, setSelectedAllergens] = useState([])
-
-	const toggleAllergen = key => {
-		if (selectedAllergens.includes(key)) {
-			setSelectedAllergens(prev => prev.filter(item => item !== key))
-		} else {
-			setSelectedAllergens(prev => [...prev, key])
-		}
-	}
-
+	const { selectedAllergens, toggleAllergen } = useStore()
 	return (
 		<div className={'grid w-full grid-cols-12 gap-2 px-8'}>
 			{allergens.map(allergen => (

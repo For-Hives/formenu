@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react'
 import { diets } from '@/enum/dietsData'
+import { useStore } from '@/providers/StoreProvider'
 
 function DietButton({ diet, selectedDiet, onDietChange }) {
 	const isSelected = diet.key === selectedDiet
@@ -36,8 +36,7 @@ function DietButton({ diet, selectedDiet, onDietChange }) {
 }
 
 export function DietFilter() {
-	// todo décaler le selected diet // allergen selected
-	const [selectedDiet, setSelectedDiet] = useState('default')
+	const { selectedDiet, setSelectedDiet } = useStore()
 
 	return (
 		<div className={'grid w-full grid-cols-12 gap-2 px-8'}>
