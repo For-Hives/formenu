@@ -1,11 +1,7 @@
-import Link from 'next/link'
-import { getAllData_CategoriesWith0DepthAndSortByOrder } from '@/services/getData'
-import { CustomSvg } from '@/components/CustomSvg'
 import { LanguageSwitch } from '@/components/LanguageSwitch'
+import { MenusLinks } from '@/components/MenusLinks'
 
-export default async function Page() {
-	const data = await getAllData_CategoriesWith0DepthAndSortByOrder()
-
+export default function Page() {
 	return (
 		<>
 			<div className={'container-menus'}>
@@ -26,19 +22,7 @@ export default async function Page() {
 						</div>
 					</nav>
 				</>
-
-				{data?.map(record => {
-					return (
-						<Link
-							className={'btn-alt-primary'}
-							key={record.id}
-							href={`/${record.id}`}
-						>
-							<CustomSvg url={record.icon.url} classNames={'bg-blue-950'} />
-							<span className={'font-medium'}>{record.name}</span>
-						</Link>
-					)
-				})}
+				<MenusLinks />
 			</div>
 		</>
 	)
