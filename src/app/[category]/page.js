@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import BackToPrevious from '@/components/BackToPrevious'
 import Link from 'next/link'
 import { Dishes } from '@/components/Dishes/Dishes'
 import {
@@ -34,7 +33,6 @@ export default async function Page({ params }) {
 						data ? 'min-h-[calc(100vh-25rem)]' : ''
 					} container-sub-menus`}
 				>
-					{/* todo add cool loading */}
 					<Suspense fallback={<div>loading</div>}>
 						{
 							// ✅ get the previous parent category, url

@@ -1,6 +1,5 @@
 'use client'
-import { createContext, useContext, useEffect, useState } from 'react'
-import { getAllData_CategoriesWith0DepthAndSortByOrder } from '@/services/getData'
+import { createContext, useContext, useState } from 'react'
 
 const StoreContext = createContext()
 
