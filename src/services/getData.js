@@ -1,13 +1,16 @@
-function getData() {
-	const res = fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/all-company`, {
-		method: 'GET',
-		headers: {
-			// 	token
-			'Content-Type': 'application/json',
-			Accept: 'application/json',
-			Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-		},
-	})
+async function getData() {
+	const res = await fetch(
+		`${process.env.NEXT_PUBLIC_API_URL}/api/all-company`,
+		{
+			method: 'GET',
+			headers: {
+				// 	token
+				'Content-Type': 'application/json',
+				Accept: 'application/json',
+				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+			},
+		}
+	)
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
@@ -17,9 +20,9 @@ function getData() {
 	return res.json()
 }
 
-export async function get_data_all() {
+export async function get_data_all(company_id = null) {
 	const data = await getData()
-	const companies = data.map(record => {
+	let companies = data.map(record => {
 		let menus = record.menus.map(menu => {
 			let categories = menu.categories.map(category => {
 				let dishes = category.dishes.map(dish => {
@@ -99,6 +102,22 @@ export async function get_data_all() {
 		})
 	})
 
+	// filter companies, menus, categories, dishes by company_id
+	if (company_id) {
+		companies = companies.filter(
+			company => company.id.toString() === company_id.toString()
+		)
+		menus = menus.filter(
+			menu => menu.company.id.toString() === company_id.toString()
+		)
+		categories = categories.filter(
+			category => category.company.id.toString() === company_id.toString()
+		)
+		dishes = dishes.filter(
+			dish => dish.company.id.toString() === company_id.toString()
+		)
+	}
+
 	return {
 		companies: companies,
 		menus: menus,
@@ -108,26 +127,28 @@ export async function get_data_all() {
 }
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
-export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
-	const data = await get_data_all()
+export async function getAllData_CategoriesWith0DepthAndSortByOrder({
+	company_id = null,
+}) {
+	const data = await get_data_all(company_id)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)
 		.sort((a, b) => a.order - b.order)
 }
 
-export async function get_data_categories() {
-	let data = await get_data_all()
+export async function get_data_categories({ company_id = null }) {
+	let data = await get_data_all(company_id)
 	return data.categories
 }
 
-export async function get_data_menus() {
-	let data = await get_data_all()
+export async function get_data_menus({ company_id = null }) {
+	let data = await get_data_all(company_id)
 	return data.menus
 }
 
-export async function get_data_dishes() {
-	let data = await get_data_all()
+export async function get_data_dishes({ company_id = null }) {
+	let data = await get_data_all(company_id)
 	return data.dishes
 }
 
@@ -136,24 +157,33 @@ export async function get_data_companies() {
 	return data.companies
 }
 
-export async function getAllData_DishesFromCategory(category) {
-	const data = await get_data_all()
+export async function getAllData_DishesFromCategory({
+	category,
+	company_id = null,
+}) {
+	const data = await get_data_all(company_id)
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)
 	return data_dishes[0]
 }
 
-export async function getCurrentCategoryInfos(categoryId) {
-	const data = await get_data_categories()
+export async function getCurrentCategoryInfos({
+	categoryId,
+	company_id = null,
+}) {
+	const data = await get_data_categories(company_id)
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
 	)
 	return data_category[0]
 }
 
-export async function getCategoriesParent(current_category_data) {
-	const data = await get_data_categories()
+export async function getCategoriesParent({
+	current_category_data,
+	company_id = null,
+}) {
+	const data = await get_data_categories(company_id)
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
 		record =>
@@ -161,8 +191,11 @@ export async function getCategoriesParent(current_category_data) {
 	)
 }
 
-export async function getPreviousCategoryInfos(current_category_data) {
-	const data = await get_data_categories()
+export async function getPreviousCategoryInfos({
+	current_category_data,
+	company_id = null,
+}) {
+	const data = await get_data_categories(company_id)
 	const previous_category = (() => {
 		if (current_category_data?.order.toString() === '0') return []
 		return data.filter(
@@ -175,8 +208,11 @@ export async function getPreviousCategoryInfos(current_category_data) {
 	return previous_category[0]
 }
 
-export async function getNextCategoryInfos(current_category_data) {
-	const data = await get_data_categories()
+export async function getNextCategoryInfos({
+	current_category_data,
+	company_id = null,
+}) {
+	const data = await get_data_categories(company_id)
 	const next_category = (() => {
 		if (
 			current_category_data?.order.toString() === (data.length - 1).toString()

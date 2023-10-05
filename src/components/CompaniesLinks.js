@@ -14,7 +14,7 @@ export async function CompaniesLinks() {
 						key={record.id}
 						href={`/${record.id}`}
 					>
-						<CustomSvg url={record.logo.url} classNames={'bg-blue-950'} />
+						<CustomSvg url={record?.logo?.url} classNames={'bg-blue-950'} />
 						<span className={'font-medium'}>{record.name}</span>
 					</Link>
 				)

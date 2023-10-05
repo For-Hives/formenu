@@ -12,7 +12,7 @@ import { Nav } from '@/components/Layout/Nav'
 import { CustomSvg } from '@/components/CustomSvg'
 
 export default async function Page({ params }) {
-	const { category } = params
+	const { category, company } = params
 	const data = await getAllData_DishesFromCategory(category)
 	const current_category_data = await getCurrentCategoryInfos(category)
 	const previous_category_data = await getPreviousCategoryInfos(

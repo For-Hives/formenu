@@ -1,6 +1,7 @@
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { MenusLinks } from '@/components/MenusLinks'
 import { get_data_companies } from '@/services/getData'
+import { CompaniesLinks } from '@/components/CompaniesLinks'
 
 export default async function Page() {
 	const data_companies = await get_data_companies()
@@ -25,7 +26,7 @@ export default async function Page() {
 						</div>
 					</nav>
 				</>
-				{/*<MenusLinks />*/}
+				<CompaniesLinks />
 			</div>
 		</>
 	)
