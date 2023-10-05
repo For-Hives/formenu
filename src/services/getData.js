@@ -1,16 +1,13 @@
-export async function getData() {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/all-company`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
-		}
-	)
+function getData() {
+	const res = fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/all-company`, {
+		method: 'GET',
+		headers: {
+			// 	token
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+			Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+		},
+	})
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
@@ -20,7 +17,7 @@ export async function getData() {
 	return res.json()
 }
 
-export async function getAllData() {
+export async function get_data_all() {
 	const data = await getData()
 	const companies = data.map(record => {
 		let menus = record.menus.map(menu => {
@@ -112,21 +109,35 @@ export async function getAllData() {
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
 export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
-	const data = await getAllData()
+	const data = await get_data_all()
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
-	console.log(data.categories)
 	return data.categories
 		.filter(category => category.depth === 0)
 		.sort((a, b) => a.order - b.order)
 }
 
-export async function getAllData_Categories() {
-	let data = await getAllData()
+export async function get_data_categories() {
+	let data = await get_data_all()
 	return data.categories
 }
 
+export async function get_data_menus() {
+	let data = await get_data_all()
+	return data.menus
+}
+
+export async function get_data_dishes() {
+	let data = await get_data_all()
+	return data.dishes
+}
+
+export async function get_data_companies() {
+	let data = await get_data_all()
+	return data.companies
+}
+
 export async function getAllData_DishesFromCategory(category) {
-	const data = await getAllData()
+	const data = await get_data_all()
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)
@@ -134,7 +145,7 @@ export async function getAllData_DishesFromCategory(category) {
 }
 
 export async function getCurrentCategoryInfos(categoryId) {
-	const data = await getAllData_Categories()
+	const data = await get_data_categories()
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
 	)
@@ -142,7 +153,7 @@ export async function getCurrentCategoryInfos(categoryId) {
 }
 
 export async function getCategoriesParent(current_category_data) {
-	const data = await getAllData_Categories()
+	const data = await get_data_categories()
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
 		record =>
@@ -151,7 +162,7 @@ export async function getCategoriesParent(current_category_data) {
 }
 
 export async function getPreviousCategoryInfos(current_category_data) {
-	const data = await getAllData_Categories()
+	const data = await get_data_categories()
 	const previous_category = (() => {
 		if (current_category_data?.order.toString() === '0') return []
 		return data.filter(
@@ -165,7 +176,7 @@ export async function getPreviousCategoryInfos(current_category_data) {
 }
 
 export async function getNextCategoryInfos(current_category_data) {
-	const data = await getAllData_Categories()
+	const data = await get_data_categories()
 	const next_category = (() => {
 		if (
 			current_category_data?.order.toString() === (data.length - 1).toString()
@@ -179,26 +190,4 @@ export async function getNextCategoryInfos(current_category_data) {
 		)
 	})()
 	return next_category[0]
-}
-
-export async function getDishes() {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/dishes?populate=type_dish,category,image,ingredients`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
-		}
-	)
-
-	if (!res.ok) {
-		// This will activate the closest `error.js` Error Boundary
-		throw new Error('Failed to fetch data')
-	}
-
-	return res.json()
 }
