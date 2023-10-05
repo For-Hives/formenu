@@ -1,7 +1,10 @@
 import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { MenusLinks } from '@/components/MenusLinks'
+import { get_data_companies } from '@/services/getData'
 
-export default function Page() {
+export default async function Page() {
+	const data_companies = await get_data_companies()
+
 	return (
 		<>
 			<div className={'container-menus'}>
@@ -22,7 +25,7 @@ export default function Page() {
 						</div>
 					</nav>
 				</>
-				<MenusLinks />
+				{/*<MenusLinks />*/}
 			</div>
 		</>
 	)

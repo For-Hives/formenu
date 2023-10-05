@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import { CustomSvg } from '@/components/CustomSvg'
-import { getAllData_CategoriesWith0DepthAndSortByOrder } from '@/services/getData'
+import { get_data_companies } from '@/services/getData'
 
-export async function MenusLinks() {
-	const data = await getAllData_CategoriesWith0DepthAndSortByOrder()
+export async function CompaniesLinks() {
+	const data = await get_data_companies()
 
 	return (
 		<>
@@ -14,7 +14,7 @@ export async function MenusLinks() {
 						key={record.id}
 						href={`/${record.id}`}
 					>
-						<CustomSvg url={record.icon.url} classNames={'bg-blue-950'} />
+						<CustomSvg url={record.logo.url} classNames={'bg-blue-950'} />
 						<span className={'font-medium'}>{record.name}</span>
 					</Link>
 				)
