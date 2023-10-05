@@ -102,20 +102,19 @@ export async function getAllData() {
 		})
 	})
 
-	console.log('companies', companies)
-	console.log('******************************************')
-	console.log('dishes', dishes)
-	console.log('******************************************')
-	console.log('categories', categories)
-	console.log('******************************************')
-	console.log('menus', menus)
-	return data[0]
+	return {
+		companies: companies,
+		menus: menus,
+		categories: categories,
+		dishes: dishes,
+	}
 }
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
 export async function getAllData_CategoriesWith0DepthAndSortByOrder() {
 	const data = await getAllData()
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
+	console.log(data.categories)
 	return data.categories
 		.filter(category => category.depth === 0)
 		.sort((a, b) => a.order - b.order)
