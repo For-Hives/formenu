@@ -22,7 +22,93 @@ export async function getData() {
 
 export async function getAllData() {
 	const data = await getData()
-	console.log('data', data)
+	const companies = data.map(record => {
+		let menus = record.menus.map(menu => {
+			let categories = menu.categories.map(category => {
+				let dishes = category.dishes.map(dish => {
+					return {
+						id: dish.id,
+						name: dish.name,
+						description: dish.description,
+						price: dish.price,
+						ingredients: dish.ingredients,
+						attributes: dish.attributes,
+						image: dish.image,
+						type_dish: dish.type_dish,
+						category: dish.category,
+					}
+				})
+				return {
+					id: category.id,
+					name: category.name,
+					order: category.order,
+					depth: category.depth,
+					icon: category.icon,
+					category: category.category,
+					categories: category.categories,
+					dishes: dishes,
+				}
+			})
+			return {
+				id: menu.id,
+				title: menu.title,
+				description: menu.description,
+				activated: menu.activated,
+				color: menu.color,
+				fonts: menu.fonts,
+				image: menu.image,
+				categories: categories,
+			}
+		})
+		return {
+			id: record.id,
+			name: record.name,
+			country: record.country,
+			city: record.city,
+			street: record.street,
+			postcode: record.postcode,
+			menus: menus,
+			logo: record.logo,
+		}
+	})
+
+	// get all dishes
+	let dishes = []
+	companies.forEach(company => {
+		company.menus.forEach(menu => {
+			menu.categories.forEach(category => {
+				category.dishes.forEach(dish => {
+					dishes.push(dish)
+				})
+			})
+		})
+	})
+
+	// get all categories
+	let categories = []
+	companies.forEach(company => {
+		company.menus.forEach(menu => {
+			menu.categories.forEach(category => {
+				categories.push(category)
+			})
+		})
+	})
+
+	// get all menus
+	let menus = []
+	companies.forEach(company => {
+		company.menus.forEach(menu => {
+			menus.push(menu)
+		})
+	})
+
+	console.log('companies', companies)
+	console.log('******************************************')
+	console.log('dishes', dishes)
+	console.log('******************************************')
+	console.log('categories', categories)
+	console.log('******************************************')
+	console.log('menus', menus)
 	return data[0]
 }
 
