@@ -29,15 +29,12 @@ export async function get_data_all(company_id) {
 		let menus = record.menus.map(menu => {
 			flag = menu?.categories.length > 0 ? menu.categories : false
 			if (!flag) return []
-			console.log('-------------' + 'menu.company.id', menu)
 			let categories = menu.categories.map(category => {
 				flag = category?.dishes.length > 0 ? category.dishes : false
 				if (!flag) return []
-				console.log('-------------' + 'category.company.id', category)
 				let dishes = category.dishes.map(dish => {
 					flag = dish?.company?.id ? dish?.company?.id : false
 					if (!flag) return []
-					console.log('-------------' + 'dish.company.id', dish)
 
 					return {
 						id: dish.id,
@@ -64,7 +61,6 @@ export async function get_data_all(company_id) {
 					company: category?.company?.id,
 				}
 			})
-			console.log('-------------' + 'menu.company.id', menu.company)
 			return {
 				id: menu.id,
 				title: menu.title,
@@ -154,6 +150,7 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 	company_id
 ) {
 	const data = await get_data_all(company_id)
+	console.log('data.categories', data)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)

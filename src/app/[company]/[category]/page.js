@@ -13,6 +13,8 @@ import { CustomSvg } from '@/components/CustomSvg'
 
 export default async function Page({ params }) {
 	const { category, company } = params
+	console.log('category', category)
+	console.log('company', company)
 	const data = await getAllData_DishesFromCategory(category, company)
 	const current_category_data = await getCurrentCategoryInfos(category, company)
 	const previous_category_data = await getPreviousCategoryInfos(
