@@ -22,21 +22,16 @@ async function getData() {
 
 export async function get_data_all(company_id) {
 	const data = await getData()
+	console.log('----------------------------------------------')
+	console.log('data', data[0].menus[0].categories[0].dishes[0])
+
+	console.log('----------------------------------------------')
+
 	let companies = data.map(record => {
 		// get all menus, if menus is empty, return empty array
-		let flag = record?.menus.length > 0 ? record.menus : false
-		if (!flag) return null
 		let menus = record.menus.map(menu => {
-			flag = menu?.categories.length > 0 ? menu.categories : false
-			if (!flag) return null
 			let categories = menu.categories.map(category => {
-				flag = category?.dishes.length > 0 ? category.dishes : false
-				if (!flag) return null
 				let dishes = category.dishes.map(dish => {
-					console.log('dish', dish)
-					flag = dish?.company?.id ? dish?.company?.id : false
-					if (!flag) return null
-
 					return {
 						id: dish.id,
 						name: dish.name,
@@ -59,7 +54,7 @@ export async function get_data_all(company_id) {
 					category: category.category,
 					categories: category.categories,
 					dishes: dishes,
-					company: category?.company?.id,
+					company: category.company.id,
 				}
 			})
 			return {
@@ -89,16 +84,13 @@ export async function get_data_all(company_id) {
 	// get all dishes
 	let dishes = []
 	companies.forEach(company => {
-		company?.menus?.length > 0 &&
-			company.menus.forEach(menu => {
-				menu?.categories?.length > 0 &&
-					menu.categories.forEach(category => {
-						category?.dishes?.length > 0 &&
-							category?.dishes.forEach(dish => {
-								dishes.push(dish)
-							})
-					})
+		company.menus.forEach(menu => {
+			menu.categories.forEach(category => {
+				category.dishes.forEach(dish => {
+					dishes.push(dish)
+				})
 			})
+		})
 	})
 
 	// console.log('dishes', companies[0].menus[0].categories[0])
