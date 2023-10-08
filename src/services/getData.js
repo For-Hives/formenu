@@ -188,10 +188,10 @@ export async function getCategoriesParent(
 	)
 }
 
-export async function getPreviousCategoryInfos({
+export async function getPreviousCategoryInfos(
 	current_category_data,
-	company_id = null,
-}) {
+	company_id = null
+) {
 	const data = await get_data_categories(company_id)
 	const previous_category = (() => {
 		if (current_category_data?.order.toString() === '0') return []
@@ -205,10 +205,10 @@ export async function getPreviousCategoryInfos({
 	return previous_category[0]
 }
 
-export async function getNextCategoryInfos({
+export async function getNextCategoryInfos(
 	current_category_data,
-	company_id = null,
-}) {
+	company_id = null
+) {
 	const data = await get_data_categories(company_id)
 	const next_category = (() => {
 		if (
