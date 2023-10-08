@@ -24,7 +24,7 @@ export default async function Page({ params }) {
 						</div>
 					</nav>
 				</>
-				<MenusLinks />
+				<MenusLinks company_id={company} />
 			</div>
 		</>
 	)
