@@ -20,7 +20,7 @@ async function getData() {
 	return res.json()
 }
 
-export async function get_data_all(company_id = null) {
+export async function get_data_all(company_id) {
 	const data = await getData()
 	let companies = data.map(record => {
 		let menus = record.menus.map(menu => {
@@ -36,6 +36,7 @@ export async function get_data_all(company_id = null) {
 						image: dish.image,
 						type_dish: dish.type_dish,
 						category: dish.category,
+						company: dish.company.id,
 					}
 				})
 				return {
@@ -47,6 +48,7 @@ export async function get_data_all(company_id = null) {
 					category: category.category,
 					categories: category.categories,
 					dishes: dishes,
+					company: category.company.id,
 				}
 			})
 			return {
@@ -58,6 +60,7 @@ export async function get_data_all(company_id = null) {
 				fonts: menu.fonts,
 				image: menu.image,
 				categories: categories,
+				company: menu.company.id,
 			}
 		})
 		return {
@@ -102,19 +105,23 @@ export async function get_data_all(company_id = null) {
 		})
 	})
 
+	console.log('companies', company_id)
+	console.log('companies', companies)
+	console.log('----------------------------------------------')
+	console.log('menus', menus)
 	// filter companies, menus, categories, dishes by company_id
 	if (company_id) {
 		companies = companies.filter(
-			company => company?.id.toString() === company_id.toString()
+			company => company.id.toString() === company_id.toString()
 		)
 		menus = menus.filter(
-			menu => menu?.company?.id.toString() === company_id.toString()
+			menu => menu.company.id.toString() === company_id.toString()
 		)
 		categories = categories.filter(
-			category => category?.company?.id.toString() === company_id.toString()
+			category => category.company.id.toString() === company_id.toString()
 		)
 		dishes = dishes.filter(
-			dish => dish?.company?.id.toString() === company_id.toString()
+			dish => dish.company.id.toString() === company_id.toString()
 		)
 	}
 
@@ -128,9 +135,11 @@ export async function get_data_all(company_id = null) {
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
 export async function getAllData_CategoriesWith0DepthAndSortByOrder(
-	company_id = null
+	company_id
 ) {
+	console.log('company_id get all data categories', company_id)
 	const data = await get_data_all(company_id)
+	console.log('data', data)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)
