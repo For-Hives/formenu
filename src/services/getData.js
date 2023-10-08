@@ -105,16 +105,16 @@ export async function get_data_all(company_id = null) {
 	// filter companies, menus, categories, dishes by company_id
 	if (company_id) {
 		companies = companies.filter(
-			company => company.id.toString() === company_id.toString()
+			company => company?.id.toString() === company_id.toString()
 		)
 		menus = menus.filter(
-			menu => menu.company.id.toString() === company_id.toString()
+			menu => menu?.company?.id.toString() === company_id.toString()
 		)
 		categories = categories.filter(
-			category => category.company.id.toString() === company_id.toString()
+			category => category?.company?.id.toString() === company_id.toString()
 		)
 		dishes = dishes.filter(
-			dish => dish.company.id.toString() === company_id.toString()
+			dish => dish?.company?.id.toString() === company_id.toString()
 		)
 	}
 
@@ -127,9 +127,9 @@ export async function get_data_all(company_id = null) {
 }
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
-export async function getAllData_CategoriesWith0DepthAndSortByOrder({
-	company_id = null,
-}) {
+export async function getAllData_CategoriesWith0DepthAndSortByOrder(
+	company_id = null
+) {
 	const data = await get_data_all(company_id)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
@@ -137,17 +137,17 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder({
 		.sort((a, b) => a.order - b.order)
 }
 
-export async function get_data_categories({ company_id = null }) {
+export async function get_data_categories(company_id = null) {
 	let data = await get_data_all(company_id)
 	return data.categories
 }
 
-export async function get_data_menus({ company_id = null }) {
+export async function get_data_menus(company_id = null) {
 	let data = await get_data_all(company_id)
 	return data.menus
 }
 
-export async function get_data_dishes({ company_id = null }) {
+export async function get_data_dishes(company_id = null) {
 	let data = await get_data_all(company_id)
 	return data.dishes
 }
@@ -157,10 +157,10 @@ export async function get_data_companies() {
 	return data.companies
 }
 
-export async function getAllData_DishesFromCategory({
+export async function getAllData_DishesFromCategory(
 	category,
-	company_id = null,
-}) {
+	company_id = null
+) {
 	const data = await get_data_all(company_id)
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
@@ -168,10 +168,7 @@ export async function getAllData_DishesFromCategory({
 	return data_dishes[0]
 }
 
-export async function getCurrentCategoryInfos({
-	categoryId,
-	company_id = null,
-}) {
+export async function getCurrentCategoryInfos(categoryId, company_id = null) {
 	const data = await get_data_categories(company_id)
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
@@ -179,10 +176,10 @@ export async function getCurrentCategoryInfos({
 	return data_category[0]
 }
 
-export async function getCategoriesParent({
+export async function getCategoriesParent(
 	current_category_data,
-	company_id = null,
-}) {
+	company_id = null
+) {
 	const data = await get_data_categories(company_id)
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
