@@ -23,9 +23,22 @@ async function getData() {
 export async function get_data_all(company_id) {
 	const data = await getData()
 	let companies = data.map(record => {
+		// get all menus, if menus is empty, return empty array
+		let flag = record?.menus.length > 0 ? record.menus : false
+		if (!flag) return []
 		let menus = record.menus.map(menu => {
+			flag = menu?.categories.length > 0 ? menu.categories : false
+			if (!flag) return []
+			console.log('-------------' + 'menu.company.id', menu)
 			let categories = menu.categories.map(category => {
+				flag = category?.dishes.length > 0 ? category.dishes : false
+				if (!flag) return []
+				console.log('-------------' + 'category.company.id', category)
 				let dishes = category.dishes.map(dish => {
+					flag = dish?.company?.id ? dish?.company?.id : false
+					if (!flag) return []
+					console.log('-------------' + 'dish.company.id', dish)
+
 					return {
 						id: dish.id,
 						name: dish.name,
@@ -48,9 +61,10 @@ export async function get_data_all(company_id) {
 					category: category.category,
 					categories: category.categories,
 					dishes: dishes,
-					company: category.company.id,
+					company: category?.company?.id,
 				}
 			})
+			console.log('-------------' + 'menu.company.id', menu.company)
 			return {
 				id: menu.id,
 				title: menu.title,
@@ -60,7 +74,7 @@ export async function get_data_all(company_id) {
 				fonts: menu.fonts,
 				image: menu.image,
 				categories: categories,
-				company: menu.company.id,
+				company: menu.company,
 			}
 		})
 		return {
@@ -78,50 +92,52 @@ export async function get_data_all(company_id) {
 	// get all dishes
 	let dishes = []
 	companies.forEach(company => {
-		company.menus.forEach(menu => {
-			menu.categories.forEach(category => {
-				category.dishes.forEach(dish => {
-					dishes.push(dish)
-				})
+		company?.menus?.length > 0 &&
+			company.menus.forEach(menu => {
+				menu?.categories?.length > 0 &&
+					menu.categories.forEach(category => {
+						category?.dishes?.length > 0 &&
+							category?.dishes.forEach(dish => {
+								dishes.push(dish)
+							})
+					})
 			})
-		})
 	})
 
 	// get all categories
 	let categories = []
 	companies.forEach(company => {
-		company.menus.forEach(menu => {
-			menu.categories.forEach(category => {
-				categories.push(category)
+		company?.menus?.length > 0 &&
+			company.menus.forEach(menu => {
+				menu?.categories?.length > 0 &&
+					menu.categories.forEach(category => {
+						categories.push(category)
+					})
 			})
-		})
 	})
 
 	// get all menus
 	let menus = []
 	companies.forEach(company => {
-		company.menus.forEach(menu => {
-			menus.push(menu)
-		})
+		company?.menus?.length > 0 &&
+			company.menus.forEach(menu => {
+				menus.push(menu)
+			})
 	})
 
-	console.log('companies', company_id)
-	console.log('companies', companies)
-	console.log('----------------------------------------------')
-	console.log('menus', menus)
 	// filter companies, menus, categories, dishes by company_id
 	if (company_id) {
 		companies = companies.filter(
-			company => company.id.toString() === company_id.toString()
+			company => company?.id.toString() === company_id.toString()
 		)
 		menus = menus.filter(
-			menu => menu.company.id.toString() === company_id.toString()
+			menu => menu.company?.id.toString() === company_id.toString()
 		)
 		categories = categories.filter(
-			category => category.company.id.toString() === company_id.toString()
+			category => category.company?.id.toString() === company_id.toString()
 		)
 		dishes = dishes.filter(
-			dish => dish.company.id.toString() === company_id.toString()
+			dish => dish.company?.id.toString() === company_id.toString()
 		)
 	}
 
@@ -137,9 +153,7 @@ export async function get_data_all(company_id) {
 export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 	company_id
 ) {
-	console.log('company_id get all data categories', company_id)
 	const data = await get_data_all(company_id)
-	console.log('data', data)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)
