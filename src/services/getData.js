@@ -25,16 +25,17 @@ export async function get_data_all(company_id) {
 	let companies = data.map(record => {
 		// get all menus, if menus is empty, return empty array
 		let flag = record?.menus.length > 0 ? record.menus : false
-		if (!flag) return []
+		if (!flag) return null
 		let menus = record.menus.map(menu => {
 			flag = menu?.categories.length > 0 ? menu.categories : false
-			if (!flag) return []
+			if (!flag) return null
 			let categories = menu.categories.map(category => {
 				flag = category?.dishes.length > 0 ? category.dishes : false
-				if (!flag) return []
+				if (!flag) return null
 				let dishes = category.dishes.map(dish => {
+					console.log('dish', dish)
 					flag = dish?.company?.id ? dish?.company?.id : false
-					if (!flag) return []
+					if (!flag) return null
 
 					return {
 						id: dish.id,
@@ -100,6 +101,8 @@ export async function get_data_all(company_id) {
 			})
 	})
 
+	// console.log('dishes', companies[0].menus[0].categories[0])
+
 	// get all categories
 	let categories = []
 	companies.forEach(company => {
@@ -127,13 +130,13 @@ export async function get_data_all(company_id) {
 			company => company?.id.toString() === company_id.toString()
 		)
 		menus = menus.filter(
-			menu => menu.company?.id.toString() === company_id.toString()
+			menu => menu?.company?.id.toString() === company_id.toString()
 		)
 		categories = categories.filter(
-			category => category.company?.id.toString() === company_id.toString()
+			category => category?.company?.id.toString() === company_id.toString()
 		)
 		dishes = dishes.filter(
-			dish => dish.company?.id.toString() === company_id.toString()
+			dish => dish?.company?.id.toString() === company_id.toString()
 		)
 	}
 
@@ -150,7 +153,6 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 	company_id
 ) {
 	const data = await get_data_all(company_id)
-	console.log('data.categories', data)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)

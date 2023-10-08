@@ -3,7 +3,6 @@ import { MenusLinks } from '@/components/MenusLinks'
 
 export default async function Page({ params }) {
 	const { company } = params
-	console.log('company', company)
 
 	return (
 		<>
