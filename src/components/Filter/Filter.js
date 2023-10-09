@@ -15,7 +15,7 @@ function Filter() {
 				isFilterModalClosed
 					? 'pointer-events-none -z-10 select-none opacity-0'
 					: 'pointer-events-auto z-50 select-auto opacity-100'
-			} fixed left-0 top-0 flex h-screen w-screen items-start justify-start bg-black/10 backdrop-blur-sm transition-all`}
+			} fixed left-0 top-0 flex min-h-screen w-screen items-start justify-start bg-black/10 backdrop-blur-sm transition-all`}
 		>
 			<div className={'relative h-full w-full py-4'}>
 				<div
@@ -43,7 +43,6 @@ function Filter() {
 								classNames={'h-[10px] w-[10px] bg-black'}
 							/>
 						</div>
-						{/*toggleFilterModal*/}
 					</button>
 					<div
 						className={
@@ -70,7 +69,7 @@ function Filter() {
 					>
 						<div
 							className={
-								'flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-10'
+								'relative flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-10'
 							}
 						>
 							<div
@@ -122,6 +121,30 @@ function Filter() {
 									</p>
 								</div>
 								<AllergensFilter />
+							</div>
+							<div
+								className={
+									'absolute -right-4 bottom-0 flex items-center justify-center'
+								}
+							>
+								<button
+									onClick={() => {
+										toggleFilterModal()
+									}}
+									className={
+										'relative flex items-center justify-end rounded-l-lg  px-4 py-3'
+									}
+								>
+									<div className={'btn-primary flex min-h-[50px] w-full pr-8'}>
+										<span className={'text-xs font-semibold text-white'}>
+											Appliquer
+										</span>
+										<CustomSvg
+											url={'/icons/check.svg'}
+											classNames={'h-[9px] w-[9px] bg-white'}
+										/>
+									</div>
+								</button>
 							</div>
 						</div>
 					</div>
