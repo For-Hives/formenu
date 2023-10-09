@@ -5,7 +5,7 @@ import { Allergens } from '@/components/Dishes/Allergens'
 import { ShoppingCartButtonAdd } from '@/components/ShoppingCartComponents/ShoppingCartButtonAdd'
 import { useStore } from '@/providers/StoreProvider'
 
-export function Dishes({ dish }) {
+export function Dishes({ dish, cartView = false }) {
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [isClient, setIsClient] = useState(false)
 	const { selectedDiet, selectedAllergens } = useStore()
@@ -35,9 +35,13 @@ export function Dishes({ dish }) {
 			<div
 				className={`relative flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 			>
-				<div className={'absolute -right-2 -top-2 z-30'}>
-					<ShoppingCartButtonAdd newItem={{ id: dish?.id, quantity: 1 }} />
-				</div>
+				{!cartView && (
+					<div className={'absolute -right-2 -top-2 z-30'}>
+						<ShoppingCartButtonAdd
+							newItem={{ id: dish?.id, quantity: 1, cartView: cartView }}
+						/>
+					</div>
+				)}
 
 				<button
 					key={dish?.id}

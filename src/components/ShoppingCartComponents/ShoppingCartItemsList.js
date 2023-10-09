@@ -37,7 +37,7 @@ export function ShoppingCartItemsList({ company_slug }) {
 									key={index}
 									className={'relative flex w-full items-center justify-start'}
 								>
-									<Dishes dish={itemInfo(item?.id)} />
+									<Dishes dish={itemInfo(item?.id)} cartView={true} />
 									{/* third possibility */}
 									<div
 										className={
