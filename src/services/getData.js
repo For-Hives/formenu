@@ -20,12 +20,12 @@ async function getData() {
 	return res.json()
 }
 
-export async function get_data_all(company_id) {
+export async function get_data_all(company_slug) {
 	const data = await getData()
 
-	let companies = data.map(record => {
+	let companies = data.map(record_company => {
 		// get all menus, if menus is empty, return empty array
-		let menus = record.menus.map(menu => {
+		let menus = record_company.menus.map(menu => {
 			let categories = menu.categories.map(category => {
 				let dishes = category.dishes.map(dish => {
 					return {
@@ -38,7 +38,9 @@ export async function get_data_all(company_id) {
 						image: dish.image,
 						type_dish: dish.type_dish,
 						category: dish.category,
-						company: dish.company,
+						company: {
+							id: record_company.id,
+						},
 					}
 				})
 				return {
@@ -50,7 +52,9 @@ export async function get_data_all(company_id) {
 					category: category.category,
 					categories: category.categories,
 					dishes: dishes,
-					company: category.company,
+					company: {
+						id: record_company.id,
+					},
 				}
 			})
 			return {
@@ -62,18 +66,20 @@ export async function get_data_all(company_id) {
 				fonts: menu.fonts,
 				image: menu.image,
 				categories: categories,
-				company: menu.company,
+				company: {
+					id: record_company.id,
+				},
 			}
 		})
 		return {
-			id: record.id,
-			name: record.name,
-			country: record.country,
-			city: record.city,
-			street: record.street,
-			postcode: record.postcode,
+			id: record_company.id,
+			name: record_company.name,
+			country: record_company.country,
+			city: record_company.city,
+			street: record_company.street,
+			postcode: record_company.postcode,
 			menus: menus,
-			logo: record.logo,
+			logo: record_company.logo,
 		}
 	})
 
@@ -107,21 +113,25 @@ export async function get_data_all(company_id) {
 		})
 	})
 
-	// filter companies, menus, categories, dishes by company_id
-	console.log(categories)
-	if (company_id) {
+	// filter companies, menus, categories, dishes by company_slug
+	// console.log('company_slug', company_slug)
+	if (company_slug) {
 		companies = companies.filter(
-			company => company.id.toString() === company_id.toString()
+			company => company.id.toString() === company_slug.toString()
 		)
 		menus = menus.filter(
-			menu => menu.company.id.toString() === company_id.toString()
+			menu => menu.company.id.toString() === company_slug.toString()
 		)
-		// categories = categories.filter(
-		// 	category => category.company.id.toString() === company_id.toString()
-		// )
-		// dishes = dishes.filter(
-		// 	dish => dish.company.id.toString() === company_id.toString()
-		// )
+		// console.log('categories before', categories)
+		// console.log('categories before', categories[0].company.id.toString())
+		// console.log('categories before', company_slug.toString())
+		categories = categories.filter(
+			category => category.company.id.toString() === company_slug.toString()
+		)
+		// console.log('categories after', categories)
+		dishes = dishes.filter(
+			dish => dish.company.id.toString() === company_slug.toString()
+		)
 	}
 
 	return {
@@ -134,27 +144,27 @@ export async function get_data_all(company_id) {
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,
 export async function getAllData_CategoriesWith0DepthAndSortByOrder(
-	company_id
+	company_slug
 ) {
-	const data = await get_data_all(company_id)
+	const data = await get_data_all(company_slug)
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)
 		.sort((a, b) => a.order - b.order)
 }
 
-export async function get_data_categories(company_id = null) {
-	let data = await get_data_all(company_id)
+export async function get_data_categories(company_slug) {
+	let data = await get_data_all(company_slug)
 	return data.categories
 }
 
-export async function get_data_menus(company_id = null) {
-	let data = await get_data_all(company_id)
+export async function get_data_menus(company_slug) {
+	let data = await get_data_all(company_slug)
 	return data.menus
 }
 
-export async function get_data_dishes(company_id = null) {
-	let data = await get_data_all(company_id)
+export async function get_data_dishes(company_slug) {
+	let data = await get_data_all(company_slug)
 	return data.dishes
 }
 
@@ -163,30 +173,24 @@ export async function get_data_companies() {
 	return data.companies
 }
 
-export async function getAllData_DishesFromCategory(
-	category,
-	company_id = null
-) {
-	const data = await get_data_all(company_id)
+export async function getAllData_DishesFromCategory(category, company_slug) {
+	const data = await get_data_all(company_slug)
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)
 	return data_dishes[0]
 }
 
-export async function getCurrentCategoryInfos(categoryId, company_id = null) {
-	const data = await get_data_categories(company_id)
+export async function getCurrentCategoryInfos(categoryId, company_slug) {
+	const data = await get_data_categories(company_slug)
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
 	)
 	return data_category[0]
 }
 
-export async function getCategoriesParent(
-	current_category_data,
-	company_id = null
-) {
-	const data = await get_data_categories(company_id)
+export async function getCategoriesParent(current_category_data, company_slug) {
+	const data = await get_data_categories(company_slug)
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
 		record =>
@@ -196,9 +200,9 @@ export async function getCategoriesParent(
 
 export async function getPreviousCategoryInfos(
 	current_category_data,
-	company_id = null
+	company_slug
 ) {
-	const data = await get_data_categories(company_id)
+	const data = await get_data_categories(company_slug)
 	const previous_category = (() => {
 		if (current_category_data?.order.toString() === '0') return []
 		return data.filter(
@@ -213,9 +217,9 @@ export async function getPreviousCategoryInfos(
 
 export async function getNextCategoryInfos(
 	current_category_data,
-	company_id = null
+	company_slug
 ) {
-	const data = await get_data_categories(company_id)
+	const data = await get_data_categories(company_slug)
 	const next_category = (() => {
 		if (
 			current_category_data?.order.toString() === (data.length - 1).toString()
