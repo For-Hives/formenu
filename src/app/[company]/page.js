@@ -2,7 +2,6 @@ import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { MenusLinks } from '@/components/MenusLinks'
 
 export default async function Page({ params }) {
-	console.log('params', params)
 	const { company } = params
 
 	return (
