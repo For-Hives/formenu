@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { allergens } from '@/enum/allergensData'
 
 export function Allergens({ dish }) {
-	console.log('dish', dish)
 	return (
 		<>
 			{allergens.map(allergen => {

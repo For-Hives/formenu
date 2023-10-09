@@ -1,6 +1,6 @@
 'use client'
 import { useCart } from '@/providers/CartProvider'
-import { getDishes } from '@/services/getData'
+import { get_data_dishes } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
@@ -18,7 +18,7 @@ export function ShoppingCartItemsList() {
 	}
 
 	useEffect(() => {
-		getDishes().then(data => {
+		get_data_dishes().then(data => {
 			setDishes(data.data)
 		})
 	}, [])

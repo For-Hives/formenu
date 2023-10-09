@@ -118,7 +118,6 @@ export async function get_data_all(company_id) {
 	})
 
 	// filter companies, menus, categories, dishes by company_slug
-	// console.log('company_slug', company_slug)
 	if (company_id) {
 		companies = companies.filter(
 			company => company.id.toString() === company_id.toString()
@@ -203,11 +202,11 @@ export async function getCurrentCategoryInfos(categoryId, company_slug) {
 }
 
 export async function getCategoriesParent(current_category_data, company_slug) {
+	if (!current_category_data) return []
 	const data = await get_data_categories(company_slug)
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
-		record =>
-			record.depth.toString() === (current_category_data?.depth).toString()
+		record => record.depth.toString() === current_category_data.depth.toString()
 	)
 }
 
