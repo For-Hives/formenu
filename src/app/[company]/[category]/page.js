@@ -49,7 +49,7 @@ export default async function Page({ params }) {
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${previous_category_data?.id.toString()}`}
+										href={`/${company}/${previous_category_data?.id.toString()}`}
 									>
 										<CustomSvg
 											url={previous_category_data.icon.url}
@@ -65,7 +65,7 @@ export default async function Page({ params }) {
 							<div className={'flex w-full items-center justify-start'}>
 								<Link
 									className={'btn-primary'}
-									href={current_category_data?.id.toString()}
+									href={`/${company}/${current_category_data?.id.toString()}`}
 								>
 									<CustomSvg
 										url={current_category_data.icon.url}
@@ -86,7 +86,7 @@ export default async function Page({ params }) {
 										>
 											<Link
 												className={'btn-alt-primary'}
-												href={`/${record.id.toString()}`}
+												href={`/${company}/${record.id.toString()}`}
 											>
 												<CustomSvg
 													url={record.icon.url}
@@ -125,7 +125,7 @@ export default async function Page({ params }) {
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
 										className={'btn-primary'}
-										href={`/${next_category_data?.id.toString()}`}
+										href={`/${company}/${next_category_data?.id.toString()}`}
 									>
 										<CustomSvg
 											url={next_category_data.icon.url}

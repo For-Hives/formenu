@@ -163,6 +163,7 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 }
 
 export async function get_data_categories(company_slug) {
+	console.log('company_slug', company_slug)
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
 	return data.categories
@@ -195,8 +196,7 @@ export async function getAllData_DishesFromCategory(category, company_slug) {
 }
 
 export async function getCurrentCategoryInfos(categoryId, company_slug) {
-	const company_id = await getIdFromSlug(company_slug)
-	const data = await get_data_categories(company_id)
+	const data = await get_data_categories(company_slug)
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
 	)
@@ -204,8 +204,7 @@ export async function getCurrentCategoryInfos(categoryId, company_slug) {
 }
 
 export async function getCategoriesParent(current_category_data, company_slug) {
-	const company_id = await getIdFromSlug(company_slug)
-	const data = await get_data_categories(company_id)
+	const data = await get_data_categories(company_slug)
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
 		record =>
@@ -217,8 +216,7 @@ export async function getPreviousCategoryInfos(
 	current_category_data,
 	company_slug
 ) {
-	const company_id = await getIdFromSlug(company_slug)
-	const data = await get_data_categories(company_id)
+	const data = await get_data_categories(company_slug)
 	const previous_category = (() => {
 		if (current_category_data?.order.toString() === '0') return []
 		return data.filter(
@@ -235,8 +233,7 @@ export async function getNextCategoryInfos(
 	current_category_data,
 	company_slug
 ) {
-	const company_id = await getIdFromSlug(company_slug)
-	const data = await get_data_categories(company_id)
+	const data = await get_data_categories(company_slug)
 	const next_category = (() => {
 		if (
 			current_category_data?.order.toString() === (data.length - 1).toString()
