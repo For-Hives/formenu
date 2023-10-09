@@ -29,17 +29,22 @@ function Filter() {
 						'z-50 ml-4 flex w-full flex-col items-end justify-center gap-4'
 					}
 				>
-					<div
+					<button
+						onClick={() => {
+							toggleFilterModal()
+						}}
 						className={
-							'relative flex w-full max-w-lg items-center justify-end rounded-l-lg border border-blue-900 bg-slate-50 py-3 shadow-xl'
+							'relative flex items-center justify-end rounded-l-lg border border-blue-900 bg-slate-50 px-4 py-3 shadow-xl'
 						}
 					>
-						<CustomSvg
-							url={'/icons/close.svg'}
-							classNames={'h-[15px] w-[15px] bg-black'}
-						/>
+						<div className={'flex items-center justify-center pr-4'}>
+							<CustomSvg
+								url={'/icons/close.svg'}
+								classNames={'h-[10px] w-[10px] bg-black'}
+							/>
+						</div>
 						{/*toggleFilterModal*/}
-					</div>
+					</button>
 					<div
 						className={
 							'relative flex w-full max-w-lg items-center justify-end shadow-xl'
