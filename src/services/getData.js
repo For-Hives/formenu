@@ -20,7 +20,7 @@ async function getData() {
 	return res.json()
 }
 
-export async function get_data_all(company_slug) {
+export async function get_data_all(company_id) {
 	const data = await getData()
 
 	let companies = data.map(record_company => {
@@ -119,22 +119,18 @@ export async function get_data_all(company_slug) {
 
 	// filter companies, menus, categories, dishes by company_slug
 	// console.log('company_slug', company_slug)
-	if (company_slug) {
+	if (company_id) {
 		companies = companies.filter(
-			company => company.slug.toString() === company_slug.toString()
+			company => company.id.toString() === company_id.toString()
 		)
 		menus = menus.filter(
-			menu => menu.company.slug.toString() === company_slug.toString()
+			menu => menu.company.id.toString() === company_id.toString()
 		)
-		// console.log('categories before', categories)
-		// console.log('categories before', categories[0].company.id.toString())
-		// console.log('categories before', company_slug.toString())
 		categories = categories.filter(
-			category => category.company.slug.toString() === company_slug.toString()
+			category => category.company.id.toString() === company_id.toString()
 		)
-		// console.log('categories after', categories)
 		dishes = dishes.filter(
-			dish => dish.company.slug.toString() === company_slug.toString()
+			dish => dish.company.id.toString() === company_id.toString()
 		)
 	}
 
