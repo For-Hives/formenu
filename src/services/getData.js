@@ -147,7 +147,7 @@ async function getIdFromSlug(slug) {
 	const company = data.companies.filter(
 		record => record.slug.toString() === slug.toString()
 	)
-	return company[0].id
+	return company[0]?.id
 }
 
 // `${process.env.NEXT_PUBLIC_API_URL}/api/categories?populate=deep&filters[depth][$eq]=0&sort=order`,

@@ -11,6 +11,7 @@ import { ButtonFilter } from '@/components/Layout/ButtonFilter'
 export async function Nav({
 	parent_categories = null,
 	selected_category = null,
+	company_slug,
 }) {
 	return (
 		<>
@@ -63,7 +64,7 @@ export async function Nav({
 							className={'flex h-2/6 items-start justify-center gap-2 md:gap-4'}
 						>
 							<ShoppingCartButtonClear />
-							<ShoppingCartButtonResume />
+							<ShoppingCartButtonResume company_slug={company_slug} />
 
 							<ButtonFilter />
 						</div>
@@ -95,7 +96,7 @@ export async function Nav({
 																	? 'btn-nav-alt'
 																	: 'btn-nav'
 															}`}
-															href={`/${record.id.toString()}`}
+															href={`/${company_slug}/${record.id.toString()}`}
 														>
 															<CustomSvg
 																url={record.icon.url}

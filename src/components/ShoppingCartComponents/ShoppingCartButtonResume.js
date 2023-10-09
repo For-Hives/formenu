@@ -4,11 +4,11 @@ import { useCart } from '@/providers/CartProvider'
 import { Spinner } from '@nextui-org/react'
 import Link from 'next/link'
 
-export function ShoppingCartButtonResume() {
+export function ShoppingCartButtonResume({ company_slug }) {
 	const { itemsInCart, countItemsInCart, isLoading } = useCart()
 
 	return (
-		<Link className={'btn-nav relative'} href={'/cart'}>
+		<Link className={'btn-nav relative'} href={`/${company_slug}/cart`}>
 			{
 				<>
 					<h4
