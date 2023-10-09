@@ -8,11 +8,12 @@ export async function CompaniesLinks() {
 	return (
 		<>
 			{data?.map(record => {
+				console.log('record', record)
 				return (
 					<Link
 						className={'btn-alt-primary'}
 						key={record.id}
-						href={`/${record.id}`}
+						href={`/${record.slug}`}
 					>
 						<CustomSvg url={record?.logo?.url} classNames={'bg-blue-950'} />
 						<span className={'font-medium'}>{record.name}</span>

@@ -2,6 +2,7 @@ import { LanguageSwitch } from '@/components/LanguageSwitch'
 import { MenusLinks } from '@/components/MenusLinks'
 
 export default async function Page({ params }) {
+	console.log('params', params)
 	const { company } = params
 
 	return (
@@ -24,7 +25,7 @@ export default async function Page({ params }) {
 						</div>
 					</nav>
 				</>
-				<MenusLinks company_id={company} />
+				<MenusLinks company_slug={company} />
 			</div>
 		</>
 	)
