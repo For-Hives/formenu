@@ -42,6 +42,19 @@ export async function get_data_all(company_id) {
 							id: record_company.id,
 							slug: record_company.slug,
 						},
+						is_allergen_gluten: dish.is_allergen_gluten,
+						is_allergen_eggs: dish.is_allergen_eggs,
+						is_allergen_fishes: dish.is_allergen_fishes,
+						is_allergen_peanuts: dish.is_allergen_peanuts,
+						is_allergen_soybeans: dish.is_allergen_soybeans,
+						is_allergen_milk: dish.is_allergen_milk,
+						is_allergen_nuts: dish.is_allergen_nuts,
+						is_allergen_celery: dish.is_allergen_celery,
+						is_allergen_mustard: dish.is_allergen_mustard,
+						is_allergen_sesams: dish.is_allergen_sesams,
+						is_allergen_sulphurous_anhydre: dish.is_allergen_sulphurous_anhydre,
+						is_allergen_lupins: dish.is_allergen_lupins,
+						is_allergen_mollusks: dish.is_allergen_mollusks,
 					}
 				})
 				return {
