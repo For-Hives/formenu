@@ -32,7 +32,7 @@ export default async function Page({ params }) {
 		<>
 			<Nav
 				parent_categories={parent_categories}
-				selected_category={current_category_data.id}
+				selected_category={current_category_data?.id}
 				company_slug={company}
 			/>
 			<div className={'container-menu'}>
@@ -68,14 +68,14 @@ export default async function Page({ params }) {
 									href={`/${company}/${current_category_data?.id.toString()}`}
 								>
 									<CustomSvg
-										url={current_category_data.icon.url}
+										url={current_category_data?.icon?.url}
 										classNames={'bg-white'}
 									/>
 									{current_category_data?.name}
 								</Link>
 							</div>
 						}
-						{current_category_data.categories.length > 0 ? (
+						{current_category_data?.categories.length > 0 ? (
 							<>
 								{/* ❌ loop on category if it's the first children category */}
 								{data.categories.map((record, index) => {
