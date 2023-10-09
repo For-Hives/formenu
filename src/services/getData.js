@@ -163,7 +163,6 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 }
 
 export async function get_data_categories(company_slug) {
-	console.log('company_slug', company_slug)
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
 	return data.categories

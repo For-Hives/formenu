@@ -8,7 +8,6 @@ export async function CompaniesLinks() {
 	return (
 		<>
 			{data?.map(record => {
-				console.log('record', record)
 				return (
 					<Link
 						className={'btn-alt-primary'}

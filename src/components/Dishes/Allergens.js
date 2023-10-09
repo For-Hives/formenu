@@ -2,12 +2,13 @@ import Image from 'next/image'
 import { allergens } from '@/enum/allergensData'
 
 export function Allergens({ dish }) {
+	console.log('dish', dish)
 	return (
 		<>
 			{allergens.map(allergen => {
 				return (
 					dish[allergen.key] ||
-					(dish?.attributes[allergen.key] && (
+					(dish[allergen.key] && (
 						<div
 							key={allergen.key}
 							className={
