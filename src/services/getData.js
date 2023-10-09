@@ -22,10 +22,6 @@ async function getData() {
 
 export async function get_data_all(company_id) {
 	const data = await getData()
-	console.log('----------------------------------------------')
-	console.log('data', data[0].menus[0].categories[0].dishes[0])
-
-	console.log('----------------------------------------------')
 
 	let companies = data.map(record => {
 		// get all menus, if menus is empty, return empty array
@@ -42,7 +38,7 @@ export async function get_data_all(company_id) {
 						image: dish.image,
 						type_dish: dish.type_dish,
 						category: dish.category,
-						company: dish.company.id,
+						company: dish.company,
 					}
 				})
 				return {
@@ -54,7 +50,7 @@ export async function get_data_all(company_id) {
 					category: category.category,
 					categories: category.categories,
 					dishes: dishes,
-					company: category.company.id,
+					company: category.company,
 				}
 			})
 			return {
@@ -93,43 +89,39 @@ export async function get_data_all(company_id) {
 		})
 	})
 
-	// console.log('dishes', companies[0].menus[0].categories[0])
-
 	// get all categories
 	let categories = []
 	companies.forEach(company => {
-		company?.menus?.length > 0 &&
-			company.menus.forEach(menu => {
-				menu?.categories?.length > 0 &&
-					menu.categories.forEach(category => {
-						categories.push(category)
-					})
+		company.menus.forEach(menu => {
+			menu.categories.forEach(category => {
+				categories.push(category)
 			})
+		})
 	})
 
 	// get all menus
 	let menus = []
 	companies.forEach(company => {
-		company?.menus?.length > 0 &&
-			company.menus.forEach(menu => {
-				menus.push(menu)
-			})
+		company.menus.forEach(menu => {
+			menus.push(menu)
+		})
 	})
 
 	// filter companies, menus, categories, dishes by company_id
+	console.log(categories)
 	if (company_id) {
 		companies = companies.filter(
-			company => company?.id.toString() === company_id.toString()
+			company => company.id.toString() === company_id.toString()
 		)
 		menus = menus.filter(
-			menu => menu?.company?.id.toString() === company_id.toString()
+			menu => menu.company.id.toString() === company_id.toString()
 		)
-		categories = categories.filter(
-			category => category?.company?.id.toString() === company_id.toString()
-		)
-		dishes = dishes.filter(
-			dish => dish?.company?.id.toString() === company_id.toString()
-		)
+		// categories = categories.filter(
+		// 	category => category.company.id.toString() === company_id.toString()
+		// )
+		// dishes = dishes.filter(
+		// 	dish => dish.company.id.toString() === company_id.toString()
+		// )
 	}
 
 	return {
