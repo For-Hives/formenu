@@ -6,7 +6,7 @@ import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
 
-export function ShoppingCartItemsList() {
+export function ShoppingCartItemsList({ company_slug }) {
 	const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
 		useCart()
 
@@ -18,8 +18,8 @@ export function ShoppingCartItemsList() {
 	}
 
 	useEffect(() => {
-		get_data_dishes().then(data => {
-			setDishes(data.data)
+		get_data_dishes(company_slug).then(data => {
+			setDishes(data)
 		})
 	}, [])
 

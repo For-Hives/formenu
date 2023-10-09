@@ -1,13 +1,15 @@
 import { Nav } from '@/components/Layout/Nav'
 import { ShoppingCartItemsList } from '@/components/ShoppingCartComponents/ShoppingCartItemsList'
 
-export default async function Page() {
+export default async function Page({ params }) {
+	const { company } = params
+
 	return (
 		<>
-			<Nav />
+			<Nav company_slug={company} />
 			<div className={'container-menu'}>
 				<div className={`container-sub-menus`}>
-					<ShoppingCartItemsList />
+					<ShoppingCartItemsList company_slug={company} />
 				</div>
 			</div>
 		</>
