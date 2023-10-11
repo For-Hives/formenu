@@ -35,25 +35,23 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
 	return (
-		<html lang="fr">
-			<body
-				className={
-					'flex min-h-screen w-full flex-col bg-slate-50 text-slate-950'
-				}
-			>
+		<html lang="fr" className={'bg-slate-50'}>
+			<body className={'flex min-h-screen w-full flex-col text-slate-950'}>
 				<CardBackground
-					placementClassName={'-right-40 -top-48 rotate-15'}
+					placementClassName={'-z-10 -right-40 -top-48 rotate-15'}
 					src={'/images/bg_1.jpg'}
 					alt={'Background restaurant'}
 				/>
 				<CardBackground
-					placementClassName={'-left-40 top-1/2 rotate-30 translate-y-[-50%]'}
+					placementClassName={
+						'-z-10 -left-40 top-1/2 rotate-30 translate-y-[-50%]'
+					}
 					src={'/images/bg_2.jpg'}
 					alt={'Background restaurant 2'}
 				/>
 
 				<CardBackground
-					placementClassName={'right-8 -bottom-48 -rotate-15'}
+					placementClassName={'-z-10 right-8 -bottom-48 -rotate-15'}
 					src={'/images/bg_3.jpg'}
 					alt={'Background restaurant 3'}
 				/>

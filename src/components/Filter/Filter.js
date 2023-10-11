@@ -86,9 +86,18 @@ function Filter() {
 								<p className={'text-sm font-bold'}>Filtrer</p>
 								<div
 									className={
-										'absolute right-0 top-0 h-full w-1/3 border-l border-slate-300'
+										'absolute right-0 top-0 flex h-full w-1/3 items-center justify-end border-l border-slate-300'
 									}
-								/>
+								>
+									<div className={'flex items-center justify-center pr-10'}>
+										<button onClick={() => {}}>
+											<CustomSvg
+												url={'/icons/refresh.svg'}
+												classNames={'h-[12px] w-[12px] bg-black'}
+											/>
+										</button>
+									</div>
+								</div>
 							</div>
 							<div className={'flex flex-col items-start justify-center gap-3'}>
 								<div className={'flex items-center justify-start gap-3 pl-6'}>
@@ -104,7 +113,6 @@ function Filter() {
 								</div>
 							</div>
 							<DietFilter />
-
 							<div className={'flex flex-col items-start justify-center gap-3'}>
 								<div className={'flex items-center justify-start gap-3 pl-6'}>
 									<Image
