@@ -90,10 +90,14 @@ function Filter() {
 									}
 								>
 									<div className={'flex items-center justify-center pr-10'}>
-										<button onClick={() => {}}>
+										<button
+											onClick={() => {}}
+											className={'flex items-center gap-2'}
+										>
+											<span className={'text-xs underline'}>Réinitialiser</span>
 											<CustomSvg
 												url={'/icons/refresh.svg'}
-												classNames={'h-[12px] w-[12px] bg-black'}
+												classNames={'h-[18px] w-[18px] bg-black'}
 											/>
 										</button>
 									</div>
