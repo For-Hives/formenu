@@ -20,6 +20,11 @@ export function StoreProvider({ children }) {
 		setIsFilterModalClosed(!isFilterModalClosed)
 	}
 
+	const resetFilter = () => {
+		setSelectedDiet('default')
+		setSelectedAllergens([])
+	}
+
 	return (
 		<StoreContext.Provider
 			value={{
@@ -30,6 +35,7 @@ export function StoreProvider({ children }) {
 				toggleAllergen,
 				setSelectedDiet,
 				setSelectedAllergens,
+				resetFilter,
 			}}
 		>
 			{children}
