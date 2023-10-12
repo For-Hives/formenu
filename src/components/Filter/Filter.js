@@ -8,7 +8,7 @@ import { AllergensFilter } from '@/components/Filter/AllergensFilter'
 import { useStore } from '@/providers/StoreProvider'
 
 function Filter() {
-	const { isFilterModalClosed, toggleFilterModal } = useStore()
+	const { isFilterModalClosed, toggleFilterModal, resetFilter } = useStore()
 	return (
 		<div
 			className={`${
@@ -91,7 +91,9 @@ function Filter() {
 								>
 									<div className={'flex items-center justify-center pr-10'}>
 										<button
-											onClick={() => {}}
+											onClick={() => {
+												resetFilter()
+											}}
 											className={'flex items-center gap-2'}
 										>
 											<span className={'text-xs underline'}>Réinitialiser</span>
@@ -112,7 +114,10 @@ function Filter() {
 										height={20}
 									/>
 									<p className={'text-sm font-bold'}>
-										Régime(s) alimentaire(s)
+										Régime alimentaire{' '}
+										<span className={'text-xs font-light italic'}>
+											(Selectionnez votre régime alimentaire)
+										</span>
 									</p>
 								</div>
 							</div>
@@ -128,7 +133,7 @@ function Filter() {
 									<p className={'text-sm font-bold'}>
 										Allergènes{' '}
 										<span className={'text-xs font-light italic'}>
-											(Selectionnez les éléments que vous souhaitez triés)
+											(Selectionnez les éléments dont vous êtes allergique)
 										</span>
 									</p>
 								</div>
