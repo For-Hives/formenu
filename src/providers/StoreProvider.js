@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 const StoreContext = createContext()
 
@@ -24,6 +24,11 @@ export function StoreProvider({ children }) {
 		setSelectedDiet('default')
 		setSelectedAllergens([])
 	}
+
+	useEffect(() => {
+		console.log('selectedDiet, store', selectedDiet)
+		console.log('selectedAllergens, store', selectedAllergens)
+	}, [selectedDiet, selectedAllergens])
 
 	return (
 		<StoreContext.Provider

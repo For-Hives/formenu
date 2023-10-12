@@ -90,19 +90,19 @@ nav a {
     }
 
     .container-menu {
-        @apply flex justify-center w-full pr-16 sm:pr-0
+        @apply flex justify-center w-full pr-16 sm:pr-0;
     }
 
     .container-menus {
-        @apply flex h-full w-full flex-col items-center justify-center gap-8;
+        @apply flex h-full w-full flex-col items-center justify-start;
     }
 
     .container-sub-menus {
-        @apply flex h-full  w-full flex-col items-center justify-center gap-8 max-w-sm;
+        @apply flex h-full  w-full flex-col items-center justify-start max-w-sm gap-8;
     }
 
     .container-dishes {
-        @apply flex h-full w-full flex-col gap-8;
+        @apply flex h-full w-full flex-col;
     }
 
     .btn-nav {
