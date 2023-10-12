@@ -6,10 +6,10 @@ export const diets = [
 		alt: 'omnivore',
 	},
 	{
-		key: 'vegetarien',
+		key: 'vegetarian',
 		url: '/icons/vege.svg',
 		title: 'Végétarien',
-		alt: 'vegetarien',
+		alt: 'vegetarian',
 	},
 	{
 		key: 'vegan',

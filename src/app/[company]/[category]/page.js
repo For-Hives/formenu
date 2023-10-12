@@ -102,17 +102,9 @@ export default async function Page({ params }) {
 							// When there is no children categories -> display dishes
 							<>
 								{data?.dishes.length > 0 && (
-									<div
-										className={`${
-											data.dishes ? 'min-h-[calc(100vh-25rem)]' : ''
-										} container-dishes`}
-									>
+									<div className={`container-dishes`}>
 										{data?.dishes.map((dish, index) => {
-											return (
-												<div key={dish.id}>
-													<Dishes dish={dish} />
-												</div>
-											)
+											return <Dishes dish={dish} key={dish.id} />
 										})}
 									</div>
 								)}
