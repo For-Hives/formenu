@@ -13,29 +13,38 @@ export function Dishes({ dish, cartView = false }) {
 	const image = dish?.type_dish?.icon?.url
 
 	const checkDiet = () => {
-		if (selectedDiet === 'default' || selectedDiet === 'omnivore') {
+		switch (selectedDiet) {
+			case 'default':
+			case 'omnivore':
+				return true
+			case 'vegetarian':
+				return dish?.is_vegetarian
+			case 'vegan':
+				return dish?.is_vegan
+			default:
+				return false
+		}
+	}
+
+	const checkAllergens = () => {
+		if (selectedAllergens.length === 0) {
 			return true
-		} else if (selectedDiet === 'vegetarian') {
-			return dish?.is_vegetarian
-		} else if (selectedDiet === 'vegan') {
-			return dish?.is_vegan
+		} else {
+			return selectedAllergens.every(allergen => {
+				// This line checks if the allergen exists and if its value is truthy
+				return dish?.allergens[allergen]
+			})
 		}
 	}
 
 	useEffect(() => {
 		setIsClient(true)
-		console.log('dish', dish)
 	}, [])
-
-	useEffect(() => {
-		console.log('selectedDiet', selectedDiet)
-		console.log('selectedAllergens', selectedAllergens)
-	}, [selectedDiet, selectedAllergens])
 
 	return (
 		<>
 			{/* is diet selected correspond to dish && allergens present */}
-			{isClient && checkDiet() && (
+			{isClient && checkDiet() && checkAllergens() && (
 				<div
 					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 				>

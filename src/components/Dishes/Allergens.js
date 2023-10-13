@@ -6,7 +6,7 @@ export function Allergens({ dish }) {
 		<>
 			{allergens.map(allergen => {
 				return (
-					dish[allergen.key] && (
+					dish.allergens[allergen.key] && (
 						<div
 							key={allergen.key}
 							className={
