@@ -1,6 +1,5 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
-import { Dishes } from '@/components/Dishes/Dishes'
 import {
 	getAllData_DishesFromCategory,
 	getCategoriesParent,
@@ -10,6 +9,7 @@ import {
 } from '@/services/getData'
 import { Nav } from '@/components/Layout/Nav'
 import { CustomSvg } from '@/components/CustomSvg'
+import DishesList from '@/components/Dishes/DishesList'
 
 export default async function Page({ params }) {
 	const { category, company } = params
@@ -101,13 +101,7 @@ export default async function Page({ params }) {
 						) : (
 							// When there is no children categories -> display dishes
 							<>
-								{data?.dishes.length > 0 && (
-									<div className={`container-dishes`}>
-										{data?.dishes.map((dish, index) => {
-											return <Dishes dish={dish} key={dish.id} />
-										})}
-									</div>
-								)}
+								<DishesList category={category} company={company} />
 							</>
 						)}
 						{
