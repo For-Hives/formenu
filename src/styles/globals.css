@@ -94,7 +94,7 @@ nav a {
     }
 
     .container-menus {
-        @apply flex h-full w-full flex-col items-center justify-start;
+        @apply flex h-full w-full flex-col items-center justify-start gap-6;
     }
 
     .container-sub-menus {
