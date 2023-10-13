@@ -5,10 +5,12 @@ import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
+import { useStore } from '@/providers/StoreProvider'
 
 export function ShoppingCartItemsList({ company_slug }) {
 	const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
 		useCart()
+	const { checkDiet, checkAllergens } = useStore()
 
 	const [dishes, setDishes] = useState([])
 
@@ -39,66 +41,69 @@ export function ShoppingCartItemsList({ company_slug }) {
 								>
 									<Dishes dish={itemInfo(item?.id)} cartView={true} />
 									{/* third possibility */}
-									<div
-										className={
-											'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
-										}
-									>
-										<button
-											className={
-												'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
-											}
-											onClick={() => {
-												decreaseQuantity(item)
-											}}
-										>
+									{checkDiet(itemInfo(item?.id)) &&
+										checkAllergens(itemInfo(item?.id)) && (
 											<div
 												className={
-													'flex h-full w-full items-center justify-center'
+													'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
 												}
 											>
-												{item?.quantity === 1 ? (
-													<>
+												<button
+													className={
+														'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
+													}
+													onClick={() => {
+														decreaseQuantity(item)
+													}}
+												>
+													<div
+														className={
+															'flex h-full w-full items-center justify-center'
+														}
+													>
+														{item?.quantity === 1 ? (
+															<>
+																<CustomSvg
+																	url={'/icons/bin.svg'}
+																	classNames={'bg-black h-[14px] w-[14px]'}
+																/>
+															</>
+														) : (
+															<>
+																<CustomSvg
+																	url={'/icons/minus.svg'}
+																	classNames={'bg-black h-[14px] w-[14px]'}
+																/>
+															</>
+														)}
+													</div>
+												</button>
+												<div className={'flex items-center justify-center'}>
+													<p className={'text-xs font-bold text-blue-950'}>
+														{item?.quantity}
+													</p>
+												</div>
+												<button
+													className={
+														'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
+													}
+													onClick={() => {
+														increaseQuantity(item)
+													}}
+												>
+													<div
+														className={
+															'flex h-full w-full items-center justify-center'
+														}
+													>
 														<CustomSvg
-															url={'/icons/bin.svg'}
+															url={'/icons/plus.svg'}
 															classNames={'bg-black h-[14px] w-[14px]'}
 														/>
-													</>
-												) : (
-													<>
-														<CustomSvg
-															url={'/icons/minus.svg'}
-															classNames={'bg-black h-[14px] w-[14px]'}
-														/>
-													</>
-												)}
+													</div>
+												</button>
 											</div>
-										</button>
-										<div className={'flex items-center justify-center'}>
-											<p className={'text-xs font-bold text-blue-950'}>
-												{item?.quantity}
-											</p>
-										</div>
-										<button
-											className={
-												'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
-											}
-											onClick={() => {
-												increaseQuantity(item)
-											}}
-										>
-											<div
-												className={
-													'flex h-full w-full items-center justify-center'
-												}
-											>
-												<CustomSvg
-													url={'/icons/plus.svg'}
-													classNames={'bg-black h-[14px] w-[14px]'}
-												/>
-											</div>
-										</button>
-									</div>
+										)}
 								</div>
 							)
 						})
