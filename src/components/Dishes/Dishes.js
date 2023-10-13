@@ -19,7 +19,7 @@ export function Dishes({ dish, cartView = false }) {
 	return (
 		<>
 			{/* is diet selected correspond to dish && allergens present */}
-			{isClient && checkDiet(dish) && checkAllergens(dish) && (
+			{(cartView || (isClient && checkDiet(dish) && checkAllergens(dish))) && (
 				<div
 					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 				>
