@@ -43,24 +43,6 @@ export default async function Page({ params }) {
 				>
 					<Suspense fallback={<div>loading</div>}>
 						{
-							// ✅ get the previous parent category, url
-							// from search params, get the previous parent category
-							previous_category_data && (
-								<div className={'flex w-full items-center justify-start'}>
-									<Link
-										className={'btn-primary'}
-										href={`/${company}/${previous_category_data?.id.toString()}`}
-									>
-										<CustomSvg
-											url={previous_category_data.icon.url}
-											classNames={'bg-white'}
-										/>
-										{previous_category_data?.name}
-									</Link>
-								</div>
-							)
-						}
-						{
 							// ✅ get the parent category, url
 							<div className={'flex w-full items-center justify-start'}>
 								<Link
@@ -104,24 +86,6 @@ export default async function Page({ params }) {
 								<DishesList category={category} company={company} />
 							</>
 						)}
-						{
-							// ✅ get the next parent category
-							// from search params, get the next parent category
-							next_category_data && (
-								<div className={'flex w-full items-center justify-start'}>
-									<Link
-										className={'btn-primary'}
-										href={`/${company}/${next_category_data?.id.toString()}`}
-									>
-										<CustomSvg
-											url={next_category_data.icon.url}
-											classNames={'bg-white'}
-										/>
-										{next_category_data?.name}
-									</Link>
-								</div>
-							)
-						}
 					</Suspense>
 				</div>
 			</div>
