@@ -43,6 +43,25 @@ export default async function Page({ params }) {
 				>
 					<Suspense fallback={<div>loading</div>}>
 						{
+							// ✅ get the previous parent category, url
+							// from search params, get the previous parent category
+							current_category_data?.categories.length > 0 &&
+								previous_category_data && (
+									<div className={'flex w-full items-center justify-start'}>
+										<Link
+											className={'btn-primary'}
+											href={`/${company}/${previous_category_data?.id.toString()}`}
+										>
+											<CustomSvg
+												url={previous_category_data.icon.url}
+												classNames={'bg-white'}
+											/>
+											{previous_category_data?.name}
+										</Link>
+									</div>
+								)
+						}
+						{
 							// ✅ get the parent category, url
 							<div className={'flex w-full items-center justify-start'}>
 								<Link
@@ -84,8 +103,37 @@ export default async function Page({ params }) {
 							// When there is no children categories -> display dishes
 							<>
 								<DishesList category={category} company={company} />
+								{next_category_data && (
+									<div className={'flex w-full items-center justify-start'}>
+										<Link
+											className={'btn-primary'}
+											href={`/${company}/${next_category_data?.id.toString()}`}
+										>
+											→&nbsp;Voir les {next_category_data?.name}
+										</Link>
+									</div>
+								)}
 							</>
 						)}
+						{
+							// ✅ get the next parent category
+							// from search params, get the next parent category
+							current_category_data?.categories.length > 0 &&
+								next_category_data && (
+									<div className={'flex w-full items-center justify-start'}>
+										<Link
+											className={'btn-primary'}
+											href={`/${company}/${next_category_data?.id.toString()}`}
+										>
+											<CustomSvg
+												url={next_category_data.icon.url}
+												classNames={'bg-white'}
+											/>
+											{next_category_data?.name}
+										</Link>
+									</div>
+								)
+						}
 					</Suspense>
 				</div>
 			</div>
