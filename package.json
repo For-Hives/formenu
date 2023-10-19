@@ -21,7 +21,7 @@
 		"@headlessui/react": "1.7.17",
 		"@heroicons/react": "2.0.18",
 		"@hookform/resolvers": "3.3.2",
-		"next": "13.5.5",
+		"next": "13.5.6",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"html-react-parser": "4.2.5",
@@ -43,7 +43,7 @@
 		"prettier": "2.8.8",
 		"tailwindcss": "3.3.3",
 		"eslint": "8.51.0",
-		"eslint-config-next": "13.5.5",
+		"eslint-config-next": "13.5.6",
 		"prettier-plugin-tailwindcss": "0.4.1",
 		"typescript": "5.2.2",
 		"@tailwindcss/typography": "0.5.10"
