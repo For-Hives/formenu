@@ -14,6 +14,7 @@ async function getData() {
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
+		console.log('error', res)
 		throw new Error('Failed to fetch data')
 	}
 
@@ -235,6 +236,7 @@ export async function getPreviousCategoryInfos(
 	const data = await get_data_categories(company_slug)
 	const previous_category = (() => {
 		if (current_category_data?.order.toString() === '0') return []
+
 		return data.filter(
 			record =>
 				record.order.toString() ===
@@ -242,6 +244,8 @@ export async function getPreviousCategoryInfos(
 				record.depth.toString() === current_category_data?.depth.toString()
 		)
 	})()
+
+	console.log('previous_category', previous_category)
 	return previous_category[0]
 }
 
@@ -262,5 +266,6 @@ export async function getNextCategoryInfos(
 				record.depth.toString() === current_category_data?.depth.toString()
 		)
 	})()
+
 	return next_category[0]
 }
