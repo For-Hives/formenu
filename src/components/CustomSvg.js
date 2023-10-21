@@ -3,8 +3,8 @@ export function CustomSvg({ url, classNames }) {
 		<div
 			className={`h-[20px] w-[20px] ${classNames}`}
 			style={{
-				mask: `url(${url})`,
-				WebkitMask: `url(${url})`,
+				maskImage: `url(${url})`,
+				WebkitMaskImage: `url(${url})`,
 				maskRepeat: 'no-repeat',
 				WebkitMaskRepeat: 'no-repeat',
 				maskPosition: 'center',

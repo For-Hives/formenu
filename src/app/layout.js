@@ -1,12 +1,9 @@
-import './styles/globals.css'
+import '@/styles/globals.css'
 import { CardBackground } from '@/components/Background/CardBackground'
 import Image from 'next/image'
-import { Nav } from '@/components/Layout/Nav'
-import {
-	getAllData,
-	getAllData_CategoriesWith0DepthAndSortByOrder,
-	getCurrentCategoryInfos,
-} from '@/app/services/getData'
+import { CartProvider } from '@/providers/CartProvider'
+import { WrapNextUiProviders } from '@/providers/WrapNextUiProvider'
+import { StoreProvider } from '@/providers/StoreProvider'
 
 export const metadata = {
 	title: 'ForMenu la carte digitale pour les restaurateurs',
@@ -38,25 +35,23 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
 	return (
-		<html lang="fr">
-			<body
-				className={
-					'flex min-h-screen w-full flex-col bg-slate-50 text-slate-950'
-				}
-			>
+		<html lang="fr" className={'bg-slate-50'}>
+			<body className={'flex min-h-screen w-full flex-col text-slate-950'}>
 				<CardBackground
-					placementClassName={'-right-40 -top-48 rotate-15'}
+					placementClassName={'-z-10 -right-40 -top-48 rotate-15'}
 					src={'/images/bg_1.jpg'}
 					alt={'Background restaurant'}
 				/>
 				<CardBackground
-					placementClassName={'-left-40 top-1/2 rotate-30 translate-y-[-50%]'}
+					placementClassName={
+						'-z-10 -left-40 top-1/2 rotate-30 translate-y-[-50%]'
+					}
 					src={'/images/bg_2.jpg'}
 					alt={'Background restaurant 2'}
 				/>
 
 				<CardBackground
-					placementClassName={'right-8 -bottom-48 -rotate-15'}
+					placementClassName={'-z-10 right-8 -bottom-48 -rotate-15'}
 					src={'/images/bg_3.jpg'}
 					alt={'Background restaurant 3'}
 				/>
@@ -79,7 +74,13 @@ export default async function RootLayout({ children }) {
 								<h2 className={'ml-4'}>traditionnel et authentique</h2>
 							</div>
 						</div>
-						<div className={'pt-16 sm:pt-20'}>{children}</div>
+						<StoreProvider>
+							<WrapNextUiProviders>
+								<CartProvider>
+									<div className={'pt-16 sm:pt-20'}>{children}</div>
+								</CartProvider>
+							</WrapNextUiProviders>
+						</StoreProvider>
 					</section>
 				</main>
 			</body>

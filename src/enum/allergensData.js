@@ -1,0 +1,86 @@
+export const allergens = [
+	{
+		key: 'is_allergen_gluten',
+		src: '/images/allergens/gluten.svg',
+		alt: 'gluten',
+		title: 'Gluten',
+	},
+	{
+		key: 'is_allergen_shellfishes',
+		src: '/images/allergens/shellfishes.svg',
+		alt: 'shellfishes',
+		title: 'Crustacés',
+	},
+	{
+		key: 'is_allergen_eggs',
+		src: '/images/allergens/eggs.svg',
+		alt: 'eggs',
+		title: 'Oeufs',
+	},
+	{
+		key: 'is_allergen_fishes',
+		src: '/images/allergens/fishes.svg',
+		alt: 'fishes',
+		title: 'Poissons',
+	},
+	{
+		key: 'is_allergen_peanuts',
+		src: '/images/allergens/peanuts.svg',
+		alt: 'peanuts',
+		title: 'Arachides',
+	},
+	{
+		key: 'is_allergen_soybeans',
+		src: '/images/allergens/soybeans.svg',
+		alt: 'soybeans',
+		title: 'Soja',
+	},
+	{
+		key: 'is_allergen_milk',
+		src: '/images/allergens/milk.svg',
+		alt: 'milk',
+		title: 'Lait',
+	},
+	{
+		key: 'is_allergen_nuts',
+		src: '/images/allergens/nuts.svg',
+		alt: 'nuts',
+		title: 'Fruits à coque',
+	},
+	{
+		key: 'is_allergen_celery',
+		src: '/images/allergens/celery.svg',
+		alt: 'celery',
+		title: 'Céleri',
+	},
+	{
+		key: 'is_allergen_mustard',
+		src: '/images/allergens/mustard.svg',
+		alt: 'mustard',
+		title: 'Moutarde',
+	},
+	{
+		key: 'is_allergen_sesams',
+		src: '/images/allergens/sesams.svg',
+		alt: 'sesams',
+		title: 'Sésames',
+	},
+	{
+		key: 'is_allergen_sulphurous_anhydre',
+		src: '/images/allergens/sulphurous_anhydre.svg',
+		alt: 'sulphurous_anhydre',
+		title: 'SO2',
+	},
+	{
+		key: 'is_allergen_lupins',
+		src: '/images/allergens/lupins.svg',
+		alt: 'lupins',
+		title: 'Lupins',
+	},
+	{
+		key: 'is_allergen_mollusks',
+		src: '/images/allergens/mollusks.svg',
+		alt: 'mollusks',
+		title: 'Mollusques',
+	},
+]

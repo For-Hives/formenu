@@ -1,7 +1,9 @@
 import { LanguageSwitch } from '@/components/LanguageSwitch'
-import { CompaniesLinks } from '@/components/CompaniesLinks'
+import { MenusLinks } from '@/components/MenusLinks'
 
-export default async function Page() {
+export default async function Page({ params }) {
+	const { company } = params
+
 	return (
 		<>
 			<div className={'container-menus'}>
@@ -22,7 +24,7 @@ export default async function Page() {
 						</div>
 					</nav>
 				</>
-				<CompaniesLinks />
+				<MenusLinks company_slug={company} />
 			</div>
 		</>
 	)

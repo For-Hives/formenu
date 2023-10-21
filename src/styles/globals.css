@@ -50,16 +50,14 @@ nav a {
 @layer base {
     h1 {
         @apply text-sm sm:text-2xl font-semibold;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.10), 0 1px 1px rgba(0, 0, 0, 0.06);
     }
 
     h2 {
         @apply text-xs sm:text-xl font-light;
-        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.10), 1px 1px 3px rgba(0, 0, 0, 0.06);
     }
 
     h3 {
-        @apply sm:text-lg;
+        @apply text-base sm:text-xl font-light;
     }
 
     h4 {
@@ -92,19 +90,19 @@ nav a {
     }
 
     .container-menu {
-        @apply flex justify-center w-full pr-16 sm:pr-0
+        @apply flex justify-center w-full pr-16 sm:pr-0;
     }
 
     .container-menus {
-        @apply flex h-full w-full flex-col items-center justify-center gap-8;
+        @apply flex h-full w-full flex-col items-center justify-start gap-6;
     }
 
     .container-sub-menus {
-        @apply flex h-full  w-full flex-col items-center justify-center gap-8 max-w-sm;
+        @apply flex h-full  w-full flex-col items-center justify-start max-w-sm gap-6;
     }
 
     .container-dishes {
-        @apply flex h-full w-full flex-col gap-8;
+        @apply flex h-full w-full flex-col;
     }
 
     .btn-nav {
@@ -113,5 +111,13 @@ nav a {
 
     .btn-nav-alt {
         @apply flex h-[40px] w-[40px] items-center justify-center rounded-full bg-blue-950 border border-blue-950 pointer-events-auto z-10;
+    }
+
+    .diet-button{
+        @apply w-full h-full flex items-center justify-center rounded-lg bg-slate-100 py-4
+    }
+
+    .diet-button-selected{
+        @apply w-full h-full flex items-center justify-center rounded-lg bg-slate-800 py-4
     }
 }
