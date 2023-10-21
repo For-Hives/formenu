@@ -91,7 +91,7 @@ export const useCartStore = create(set => ({
 	},
 }))
 
-const useStore = create(set => ({
+export const useStore = create(set => ({
 	isFilterModalClosed: true,
 	selectedDiet: 'default',
 	selectedAllergens: [],

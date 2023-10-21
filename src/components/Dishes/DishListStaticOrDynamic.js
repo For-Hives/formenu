@@ -1,13 +1,15 @@
 'use client'
 import DishesList from '@/components/Dishes/DishesList'
-import { useStore } from '@/providers/StoreProvider'
+import { useStore } from 'zustand'
 
 export function DishListStaticOrDynamic({
 	category,
 	company,
 	DishesListStatic,
 }) {
-	const { selectedDiet, selectedAllergens } = useStore()
+	// const { selectedDiet, selectedAllergens } = useStore()
+	const selectedDiet = useStore(state => state.selectedDiet)
+	const selectedAllergens = useStore(state => state.selectedAllergens)
 
 	return (
 		<>
