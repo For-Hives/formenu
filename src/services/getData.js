@@ -14,7 +14,6 @@ async function getData() {
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
-		console.log('error', res)
 		throw new Error('Failed to fetch data')
 	}
 
@@ -245,7 +244,6 @@ export async function getPreviousCategoryInfos(
 		)
 	})()
 
-	console.log('previous_category', previous_category)
 	return previous_category[0]
 }
 
