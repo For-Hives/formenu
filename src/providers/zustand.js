@@ -1,3 +1,4 @@
+'use client'
 import { create } from 'zustand'
 
 export const useCartStore = create(set => ({
@@ -19,7 +20,6 @@ export const useCartStore = create(set => ({
 				return itemInCart
 			}),
 		}))
-		// localStorage.setItem('itemsInCart', JSON.stringify(cleanedItemsInCart));
 	},
 
 	increaseQuantity: item => {
@@ -34,7 +34,6 @@ export const useCartStore = create(set => ({
 				return itemInCart
 			}),
 		}))
-		// localStorage.setItem('itemsInCart', JSON.stringify(cleanedItemsInCart));
 	},
 
 	addItem: item => {
@@ -53,42 +52,42 @@ export const useCartStore = create(set => ({
 					return itemInCart
 				}),
 			}))
-			// localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart));
 			return
 		}
 		set(state => ({
 			itemsInCart: [...state.itemsInCart, item],
 		}))
-		// localStorage.setItem('itemsInCart', JSON.stringify(newItemsInCart));
 	},
 
 	resetCart: () => {
 		set({ itemsInCart: [] })
-		// localStorage.setItem('itemsInCart', JSON.stringify([]));
 	},
 
-	cleanData: data => {
-		if (!data || !data.length) return []
-		return data.filter(
-			item => item && (typeof item !== 'string' || item.trim() !== '')
-		)
-	},
+	// cleanData: data => {
+	// 	if (!data || !data.length) return []
+	// 	return data.filter(
+	// 		item => item && (typeof item !== 'string' || item.trim() !== '')
+	// 	)
+	// },
+	//
+	// getItemsInCart: () => {
+	// 	// Get the value from local storage if it exists
+	// 	const value = localStorage.getItem('itemsInCart')
+	// 	let valueParsed = JSON.parse(value)
+	// 	// Use the cleanData function
+	// 	valueParsed = cleanData(valueParsed)
+	// 	valueParsed !== '' &&
+	// 		valueParsed?.length &&
+	// 		set({ itemsInCart: valueParsed })
+	// },
 
-	getItemsInCart: () => {
-		// Get the value from local storage if it exists
-		const value = localStorage.getItem('itemsInCart')
-		let valueParsed = JSON.parse(value)
-		// Use the cleanData function
-		valueParsed = cleanData(valueParsed)
-		// localStorage.setItem('itemsInCart', JSON.stringify(valueParsed));
-		valueParsed !== '' &&
-			valueParsed?.length &&
-			set({ itemsInCart: valueParsed })
-	},
-
-	countItemsInCart: () => {
-		return itemsInCart.reduce((count, item) => count + item?.quantity, 0)
-	},
+	countItemsInCart: () =>
+		set(state => ({
+			itemsInCart: state.itemsInCart.reduce(
+				(count, item) => count + item?.quantity,
+				0
+			),
+		})),
 }))
 
 export const useStore = create(set => ({
@@ -140,7 +139,6 @@ export const useStore = create(set => ({
 			return true
 		} else {
 			return selectedAllergens.every(allergen => {
-				// This line checks if the allergen exists and if its value is truthy
 				return dish?.allergens[allergen]
 			})
 		}
