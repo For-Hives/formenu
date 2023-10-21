@@ -1,6 +1,5 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useCart } from '@/providers/CartProvider'
 import { useCartStore } from '@/providers/zustand'
 
 export function ShoppingCartButtonAdd({ newItem }) {

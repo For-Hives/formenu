@@ -1,11 +1,9 @@
 'use client'
-import { useCart } from '@/providers/CartProvider'
 import { get_data_dishes } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useStore } from '@/providers/StoreProvider'
 import { useCartStore } from '@/providers/zustand'
 
 export function ShoppingCartItemsList({ company_slug }) {
