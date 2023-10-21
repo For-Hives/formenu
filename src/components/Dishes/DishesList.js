@@ -3,12 +3,13 @@
 import { useState, useEffect } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
-import { useStore } from '@/providers/StoreProvider'
+import { useStore } from 'zustand'
 
 const DishesList = ({ category, company }) => {
 	const [data, setData] = useState(null)
 
-	const { checkDiet, checkAllergens } = useStore()
+	const checkDiet = useStore(state => state.checkDiet)
+	const checkAllergens = useStore(state => state.checkAllergens)
 
 	useEffect(() => {
 		getAllData_DishesFromCategory(category, company).then(result => {

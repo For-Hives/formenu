@@ -6,10 +6,15 @@ import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
 import { useStore } from '@/providers/StoreProvider'
+import { useCartStore } from '@/providers/zustand'
 
 export function ShoppingCartItemsList({ company_slug }) {
-	const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
-		useCart()
+	// const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
+	// 	useCart()
+	const countItemsInCart = useCartStore(state => state.countItemsInCart)
+	const increaseQuantity = useCartStore(state => state.increaseQuantity)
+	const decreaseQuantity = useCartStore(state => state.decreaseQuantity)
+	const itemsInCart = useCartStore(state => state.itemsInCart)
 
 	const [dishes, setDishes] = useState([])
 
