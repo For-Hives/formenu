@@ -9,7 +9,8 @@ import {
 } from '@/services/getData'
 import { Nav } from '@/components/Layout/Nav'
 import { CustomSvg } from '@/components/CustomSvg'
-import DishesList from '@/components/Dishes/DishesList'
+import { DishListStaticOrDynamic } from '@/components/Dishes/DishListStaticOrDynamic'
+import DishesListStatic from '@/components/Dishes/DishesListStatic'
 
 export default async function Page({ params }) {
 	const { category, company } = params
@@ -103,7 +104,13 @@ export default async function Page({ params }) {
 						) : (
 							// When there is no children categories -> display dishes
 							<>
-								<DishesList category={category} company={company} />
+								<DishListStaticOrDynamic
+									category={category}
+									company={company}
+									DishesListStatic={
+										<DishesListStatic category={category} company={company} />
+									}
+								/>
 								{next_category_data && (
 									<div className={'flex w-full items-center justify-start'}>
 										<Link

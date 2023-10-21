@@ -1,42 +1,21 @@
-'use client'
-
-import { useState, useEffect } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
-import { useStore } from '@/providers/StoreProvider'
 
-const DishesList = ({ category, company }) => {
-	const [data, setData] = useState(null)
-
-	const { checkDiet, checkAllergens } = useStore()
-
-	useEffect(() => {
-		getAllData_DishesFromCategory(category, company).then(result => {
-			setData(result)
-		})
-	}, [category, company])
-
-	if (!data) {
-		return <div>Loading...</div>
-	}
-
-	// Filtrez les plats en fonction des critères de diet et d'allergens sélectionnés
-	const filteredDishes = data?.dishes.filter(
-		dish => checkDiet(dish) && checkAllergens(dish)
-	)
+const DishesListStatic = async ({ category, company }) => {
+	const data = await getAllData_DishesFromCategory(category, company)
 
 	return (
 		<>
-			{filteredDishes.length > 0 ? (
+			{data?.dishes.length > 0 ? (
 				<div className={`container-dishes`}>
-					{filteredDishes.map((dish, index) => (
+					{data?.dishes.map((dish, index) => (
 						<Dishes dish={dish} key={dish.id} />
 					))}
 				</div>
 			) : (
 				<div className={`container-dishes`}>
 					<p className={`text-sm italic`}>
-						Aucun plat ne correspond à vos critères de recherche
+						Aucun plats présent dans cette catégorie
 					</p>
 				</div>
 			)}
@@ -44,4 +23,4 @@ const DishesList = ({ category, company }) => {
 	)
 }
 
-export default DishesList
+export default DishesListStatic

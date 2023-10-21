@@ -14,7 +14,7 @@ const DishesList = ({ category, company }) => {
 		getAllData_DishesFromCategory(category, company).then(result => {
 			setData(result)
 		})
-	}, [category, company])
+	}, [category, company, checkDiet, checkAllergens])
 
 	if (!data) {
 		return <div>Loading...</div>
