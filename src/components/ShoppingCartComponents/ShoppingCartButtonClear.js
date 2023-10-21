@@ -1,6 +1,5 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-
 import { useCartStore } from '@/providers/useCartStore'
 
 export function ShoppingCartButtonClear() {
