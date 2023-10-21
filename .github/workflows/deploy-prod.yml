@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies in production
         run: npm ci --ignore-scripts
       - name: Build the app
-        continue-on-error: true
+        continue-on-error: false
         run: npm run build
       - name: List files
         run: ls -la

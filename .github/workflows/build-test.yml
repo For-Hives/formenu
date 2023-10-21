@@ -27,7 +27,7 @@ jobs:
       - name: Install dependencies in production
         run: npm ci --ignore-scripts
       - name: Build the app
-        continue-on-error: true
+        continue-on-error: false
         run: npm run build
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
