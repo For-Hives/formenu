@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
-import { useStore } from 'zustand'
+import { useStore } from '@/providers/useStore'
 
 const DishesList = ({ category, company }) => {
 	const [data, setData] = useState(null)

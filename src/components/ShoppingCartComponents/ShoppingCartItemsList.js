@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useCartStore } from '@/providers/zustand'
+
+import { useCartStore } from '@/providers/useCartStore'
 
 export function ShoppingCartItemsList({ company_slug }) {
 	// const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =

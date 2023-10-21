@@ -1,7 +1,8 @@
 'use client'
 import { diets } from '@/enum/dietsData'
 import { DietButton } from '@/components/Filter/DietButton'
-import { useStore } from '@/providers/zustand'
+
+import { useStore } from '@/providers/useStore'
 
 export function DietFilter() {
 	const selectedDiet = useStore(state => state.selectedDiet)

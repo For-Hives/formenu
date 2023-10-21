@@ -1,6 +1,7 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useCartStore } from '@/providers/zustand'
+
+import { useCartStore } from '@/providers/useCartStore'
 
 export function ShoppingCartButtonAdd({ newItem }) {
 	// Set the value received from the local storage to a local state

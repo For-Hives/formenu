@@ -1,7 +1,7 @@
 'use client'
 import { allergens } from '@/enum/allergensData'
-import { useStore } from '@/providers/zustand'
 import { AllergenButton } from '@/components/Filter/AllergenButton'
+import { useStore } from '@/providers/useStore'
 
 export function AllergensFilter() {
 	const selectedAllergens = useStore(state => state.selectedAllergens)

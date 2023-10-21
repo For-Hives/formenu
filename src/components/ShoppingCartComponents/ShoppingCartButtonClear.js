@@ -1,6 +1,7 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useCartStore } from '@/providers/zustand'
+
+import { useCartStore } from '@/providers/useCartStore'
 
 export function ShoppingCartButtonClear() {
 	const resetCart = useCartStore(state => state.resetCart)
