@@ -1,46 +1,12 @@
 'use client'
-import Image from 'next/image'
 import { allergens } from '@/enum/allergensData'
-import { CustomSvg } from '@/components/CustomSvg'
-import { useStore } from '@/providers/StoreProvider'
-
-function AllergenButton({ allergen, selectedAllergens, onAllergenToggle }) {
-	const isSelected = selectedAllergens.includes(allergen.key)
-	return (
-		<button
-			className={`${
-				isSelected ? 'diet-button-selected' : 'diet-button'
-			} relative`}
-			onClick={() => onAllergenToggle(allergen.key)}
-		>
-			{allergen.src ? (
-				<Image src={allergen.src} width={20} height={20} alt={allergen.key} />
-			) : (
-				<span className={'sr-only'}>{allergen.key}</span>
-			)}
-
-			<span className={'absolute right-0 top-0 m-1'}>
-				<div
-					className={
-						'flex items-center justify-center rounded border border-slate-300 bg-transparent p-0.5'
-					}
-				>
-					{isSelected ? (
-						<CustomSvg
-							url={'/icons/check.svg'}
-							classNames={'h-[6px] w-[6px] bg-white'}
-						/>
-					) : (
-						<div className={'h-1 w-1 rounded bg-transparent'}></div>
-					)}
-				</div>
-			</span>
-		</button>
-	)
-}
+import { useStore } from '@/providers/zustand'
+import { AllergenButton } from '@/components/Filter/AllergenButton'
 
 export function AllergensFilter() {
-	const { selectedAllergens, toggleAllergen } = useStore()
+	const selectedAllergens = useStore(state => state.selectedAllergens)
+	const toggleAllergen = useStore(state => state.toggleAllergen)
+
 	return (
 		<div className={'grid w-full grid-cols-12 gap-2 px-8'}>
 			{allergens.map(allergen => (

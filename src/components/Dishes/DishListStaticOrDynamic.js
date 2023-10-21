@@ -1,6 +1,6 @@
 'use client'
 import DishesList from '@/components/Dishes/DishesList'
-import { useStore } from 'zustand'
+import { useStore } from '@/providers/zustand'
 
 export function DishListStaticOrDynamic({
 	category,
