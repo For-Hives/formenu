@@ -96,6 +96,10 @@ export const useStore = create(set => ({
 	selectedDiet: 'default',
 	selectedAllergens: [],
 
+	setSelectedDiet: diet => {
+		set({ selectedDiet: diet })
+	},
+
 	toggleAllergen: key => {
 		set(state => ({
 			selectedAllergens: state.selectedAllergens.includes(key)

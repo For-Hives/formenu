@@ -5,10 +5,13 @@ import { CustomSvg } from '@/components/CustomSvg'
 import Image from 'next/image'
 import { DietFilter } from '@/components/Filter/DietFilter'
 import { AllergensFilter } from '@/components/Filter/AllergensFilter'
-import { useStore } from '@/providers/StoreProvider'
+import { useStore } from '@/providers/zustand'
 
 function Filter() {
-	const { isFilterModalClosed, toggleFilterModal, resetFilter } = useStore()
+	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
+	const toggleFilterModal = useStore(state => state.toggleFilterModal)
+	const resetFilter = useStore(state => state.resetFilter)
+
 	return (
 		<div
 			className={`${
