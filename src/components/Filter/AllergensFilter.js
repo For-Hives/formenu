@@ -23,7 +23,7 @@ export function AllergensFilter() {
 					/>
 					<p
 						className={`text-xs text-slate-600 ${
-							selectedAllergens.includes(allergen.key) && 'underline'
+							selectedAllergens?.includes(allergen.key) && 'underline'
 						}`}
 					>
 						{allergen.title.charAt(0).toUpperCase() + allergen.title.slice(1)}

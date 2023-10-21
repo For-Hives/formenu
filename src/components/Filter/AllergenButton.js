@@ -6,7 +6,7 @@ export function AllergenButton({
 	selectedAllergens,
 	onAllergenToggle,
 }) {
-	const isSelected = selectedAllergens.includes(allergen.key)
+	const isSelected = selectedAllergens?.includes(allergen.key)
 	return (
 		<button
 			className={`${

@@ -10,11 +10,13 @@ export const useStore = create(set => ({
 	},
 
 	toggleAllergen: key => {
-		set(state => ({
-			selectedAllergens: state.selectedAllergens.includes(key)
+		set(state => {
+			const selectedAllergens = state.selectedAllergens.includes(key)
 				? state.selectedAllergens.filter(item => item !== key)
-				: [...state.selectedAllergens, key],
-		}))
+				: [...state.selectedAllergens, key]
+
+			return { selectedAllergens }
+		})
 	},
 
 	toggleFilterModal: () => {
@@ -25,14 +27,16 @@ export const useStore = create(set => ({
 
 	resetFilter: () => {
 		set({
+			isFilterModalClosed: true,
 			selectedDiet: 'default',
 			selectedAllergens: [],
 		})
 	},
 
 	checkDiet: dish => {
-		return set(state => {
-			switch (state.selectedDiet) {
+		set(state => {
+			const selectedDiet = state.selectedDiet
+			switch (selectedDiet) {
 				case 'default':
 				case 'omnivore':
 					return true
@@ -46,11 +50,11 @@ export const useStore = create(set => ({
 		})
 	},
 
-	checkAllergens: dish => {
-		if (selectedAllergens.length === 0) {
+	checkAllergens: (dish, selectedAllergens) => {
+		if (selectedAllergens?.length === 0) {
 			return true
 		} else {
-			return selectedAllergens.every(allergen => {
+			return selectedAllergens?.every(allergen => {
 				return dish?.allergens[allergen]
 			})
 		}

@@ -8,7 +8,6 @@ export function DishListStaticOrDynamic({
 	company,
 	DishesListStatic,
 }) {
-	// const { selectedDiet, selectedAllergens } = useStore()
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
 
