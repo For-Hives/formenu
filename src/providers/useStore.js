@@ -4,8 +4,6 @@ export const useStore = create(set => ({
 	isFilterModalClosed: true,
 	selectedDiet: 'default',
 	selectedAllergens: [],
-	lastDietCheck: null,
-	lastAllergensCheck: null,
 
 	setSelectedDiet: diet => {
 		set({ selectedDiet: diet })
@@ -53,9 +51,4 @@ export const useStore = create(set => ({
 		if (selectedAllergens?.length === 0) return true
 		return !selectedAllergens.some(allergen => dish?.allergens[allergen])
 	},
-
-	// to trigger useEffect in DishesList and so on
-	updateLastDietCheck: () => set(state => ({ lastDietCheck: Date.now() })),
-	updateLastAllergensCheck: () =>
-		set(state => ({ lastAllergensCheck: Date.now() })),
 }))

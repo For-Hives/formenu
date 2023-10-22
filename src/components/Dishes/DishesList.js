@@ -11,14 +11,11 @@ const DishesList = ({ category, company }) => {
 
 	const checkDiet = useStore(state => state.checkDiet)
 	const checkAllergens = useStore(state => state.checkAllergens)
-	const lastDietCheck = useStore(state => state.lastDietCheck)
-	const lastAllergensCheck = useStore(state => state.lastAllergensCheck)
 
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
 
 	useEffect(() => {
-		console.log('useEffect DishesList')
 		getAllData_DishesFromCategory(category, company).then(result => {
 			setData(result)
 			setFilteredDishes(
@@ -29,16 +26,8 @@ const DishesList = ({ category, company }) => {
 					)
 				})
 			)
-			// console.log('filteredDishes', filteredDishes)
 		})
-	}, [
-		category,
-		company,
-		lastDietCheck,
-		lastAllergensCheck,
-		selectedDiet,
-		selectedAllergens,
-	])
+	}, [category, company, selectedDiet, selectedAllergens])
 
 	if (!data) {
 		return <div>Loading...</div>

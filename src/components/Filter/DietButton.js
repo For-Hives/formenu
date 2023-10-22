@@ -1,16 +1,13 @@
 import Image from 'next/image'
-import { useStore } from '@/providers/useStore'
 
 export function DietButton({ diet, selectedDiet, onDietChange }) {
 	const isSelected = diet.key === selectedDiet
-	const updateLastDietCheck = useStore(state => state.updateLastDietCheck)
 	return (
 		<button
 			className={`${
 				isSelected ? 'diet-button-selected' : 'diet-button'
 			} relative`}
 			onClick={() => {
-				updateLastDietCheck()
 				onDietChange(diet.key)
 			}}
 		>

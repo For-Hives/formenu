@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useStore } from '@/providers/useStore'
 
 export function AllergenButton({
 	allergen,
@@ -8,16 +7,12 @@ export function AllergenButton({
 	onAllergenToggle,
 }) {
 	const isSelected = selectedAllergens?.includes(allergen.key)
-	const updateLastAllergensCheck = useStore(
-		state => state.updateLastAllergensCheck
-	)
 	return (
 		<button
 			className={`${
 				isSelected ? 'diet-button-selected' : 'diet-button'
 			} relative`}
 			onClick={() => {
-				updateLastAllergensCheck()
 				onAllergenToggle(allergen.key)
 			}}
 		>

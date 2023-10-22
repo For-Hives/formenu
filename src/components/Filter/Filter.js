@@ -1,6 +1,5 @@
 'use client'
 
-import React, { useEffect } from 'react'
 import { CustomSvg } from '@/components/CustomSvg'
 import Image from 'next/image'
 import { DietFilter } from '@/components/Filter/DietFilter'
