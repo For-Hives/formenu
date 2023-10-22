@@ -57,9 +57,9 @@ export async function get_data_all(company_id) {
 								dish.is_allergen_sulphurous_anhydre,
 							is_allergen_lupins: dish.is_allergen_lupins,
 							is_allergen_mollusks: dish.is_allergen_mollusks,
-							is_vegetarian: dish.is_vegetarian,
-							is_vegan: dish.is_vegan,
 						},
+						is_vegetarian: dish.is_vegetarian,
+						is_vegan: dish.is_vegan,
 					}
 				})
 				return {

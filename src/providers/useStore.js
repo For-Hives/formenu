@@ -4,6 +4,8 @@ export const useStore = create(set => ({
 	isFilterModalClosed: true,
 	selectedDiet: 'default',
 	selectedAllergens: [],
+	lastDietCheck: null,
+	lastAllergensCheck: null,
 
 	setSelectedDiet: diet => {
 		set({ selectedDiet: diet })
@@ -33,30 +35,27 @@ export const useStore = create(set => ({
 		})
 	},
 
-	checkDiet: dish => {
-		set(state => {
-			const selectedDiet = state.selectedDiet
-			switch (selectedDiet) {
-				case 'default':
-				case 'omnivore':
-					return true
-				case 'vegetarian':
-					return dish?.is_vegetarian
-				case 'vegan':
-					return dish?.is_vegan
-				default:
-					return false
-			}
-		})
+	checkDiet: (dish, diet) => {
+		switch (diet) {
+			case 'default':
+			case 'omnivore':
+				return true
+			case 'vegetarian':
+				return dish.is_vegetarian
+			case 'vegan':
+				return dish.is_vegan
+			default:
+				return true
+		}
 	},
 
 	checkAllergens: (dish, selectedAllergens) => {
-		if (selectedAllergens?.length === 0) {
-			return true
-		} else {
-			return selectedAllergens?.every(allergen => {
-				return dish?.allergens[allergen]
-			})
-		}
+		if (selectedAllergens?.length === 0) return true
+		return selectedAllergens.some(allergen => dish?.allergens[allergen])
 	},
+
+	// to trigger useEffect in DishesList and so on
+	updateLastDietCheck: () => set(state => ({ lastDietCheck: Date.now() })),
+	updateLastAllergensCheck: () =>
+		set(state => ({ lastAllergensCheck: Date.now() })),
 }))
