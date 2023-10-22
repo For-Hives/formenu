@@ -51,7 +51,7 @@ export const useStore = create(set => ({
 
 	checkAllergens: (dish, selectedAllergens) => {
 		if (selectedAllergens?.length === 0) return true
-		return selectedAllergens.some(allergen => dish?.allergens[allergen])
+		return !selectedAllergens.some(allergen => dish?.allergens[allergen])
 	},
 
 	// to trigger useEffect in DishesList and so on

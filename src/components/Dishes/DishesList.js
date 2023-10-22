@@ -25,7 +25,7 @@ const DishesList = ({ category, company }) => {
 				result.dishes.filter(dish => {
 					return (
 						checkDiet(dish, selectedDiet) &&
-						!checkAllergens(dish, selectedAllergens)
+						checkAllergens(dish, selectedAllergens)
 					)
 				})
 			)
