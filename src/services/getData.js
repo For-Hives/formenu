@@ -141,7 +141,7 @@ export async function get_data_all(company_id) {
 			postcode: record_company.postcode,
 			slug: record_company.slug,
 			menus: menus,
-			logo: record_company.logo,
+			content: record_company.content,
 		}
 	})
 

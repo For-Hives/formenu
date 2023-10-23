@@ -7,10 +7,10 @@ export async function generateMetadata({ params }, parent) {
 
 	return {
 		title:
-			content_website?.data?.attributes?.metadata_title ||
+			content_website?.data?.attributes?.content?.metadata_title ||
 			'ForMenu la carte digitale pour les restaurateurs',
 		description:
-			content_website?.data?.attributes?.metadata_description ||
+			content_website?.data?.attributes?.content?.metadata_description ||
 			"La carte qui s'adapte réellement à votre restaurant",
 		metadataBase: new URL(`https://app.formenu.fr`),
 		alternates: {
