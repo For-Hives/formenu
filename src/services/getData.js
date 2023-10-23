@@ -1,6 +1,6 @@
 export async function getContentWebsite() {
 	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/content-website`,
+		`${process.env.NEXT_PUBLIC_API_URL}/api/content-website?populate=deep`,
 		{
 			method: 'GET',
 			headers: {

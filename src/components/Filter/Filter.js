@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { DietFilter } from '@/components/Filter/DietFilter'
 import { AllergensFilter } from '@/components/Filter/AllergensFilter'
 import { useStore } from '@/providers/useStore'
+import { FuzzySearchField } from '@/components/Filter/FuzzySearchField'
 
 function Filter() {
 	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
@@ -46,24 +47,8 @@ function Filter() {
 							/>
 						</div>
 					</button>
-					<div
-						className={
-							'relative flex w-full max-w-lg items-center justify-end shadow-xl'
-						}
-					>
-						<input
-							className={
-								'flex w-full items-center rounded-l-lg border border-blue-950 bg-slate-50 py-3 pl-12 text-sm'
-							}
-							placeholder={'Rechercher un plat avec un mot clé...'}
-						/>
-						<CustomSvg
-							url={'/icons/magnifying-glass.svg'}
-							classNames={
-								'ml-5 absolute top-1/2 transform -translate-y-1/2 left-0 h-[15px] w-[15px] bg-black'
-							}
-						/>
-					</div>
+					{/* Fuzzy Search Field */}
+					<FuzzySearchField />
 					<div
 						className={
 							'relative flex w-full max-w-lg items-center justify-end shadow-xl'

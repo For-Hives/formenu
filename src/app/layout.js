@@ -10,10 +10,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 	return {
 		title:
-			content_website?.metadata_title ||
+			content_website?.data?.attributes?.metadata_title ||
 			'ForMenu la carte digitale pour les restaurateurs',
 		description:
-			content_website.metadata_description ||
+			content_website?.data?.attributes?.metadata_description ||
 			"La carte qui s'adapte réellement à votre restaurant",
 		metadataBase: new URL(`https://app.formenu.fr`),
 		alternates: {
@@ -41,10 +41,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
 	}
 }
 
-// todo : change the background images etc...
 export default async function RootLayout({ children }) {
 	const content_website = await getContentWebsite()
-
+	console.log(content_website)
 	return (
 		<html lang="fr" className={'bg-slate-50'}>
 			<body className={'flex min-h-screen w-full flex-col text-slate-950'}>
@@ -81,8 +80,12 @@ export default async function RootLayout({ children }) {
 								className={'h-8 w-8 sm:h-12 sm:w-12'}
 							/>
 							<div className={'flex flex-col gap-1 sm:gap-2'}>
-								<h1 className={'formenu-h1'}>{`Les pieds dans l'eau`}</h1>
-								<h2 className={'ml-4'}>traditionnel et authentique</h2>
+								<h1 className={'formenu-h1'}>
+									{`${content_website?.data?.attributes?.home_title}`}
+								</h1>
+								<h2 className={'ml-4'}>
+									{`${content_website?.data?.attributes?.home_subtitle}`}
+								</h2>
 							</div>
 						</div>
 						<WrapNextUiProviders>
