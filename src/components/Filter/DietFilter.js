@@ -1,42 +1,12 @@
 'use client'
-import Image from 'next/image'
 import { diets } from '@/enum/dietsData'
-import { useStore } from '@/providers/StoreProvider'
+import { DietButton } from '@/components/Filter/DietButton'
 
-function DietButton({ diet, selectedDiet, onDietChange }) {
-	const isSelected = diet.key === selectedDiet
-	return (
-		<button
-			className={`${
-				isSelected ? 'diet-button-selected' : 'diet-button'
-			} relative`}
-			onClick={() => onDietChange(diet.key)}
-		>
-			{diet.url ? (
-				<Image src={diet.url} width={20} height={20} alt={diet.key} />
-			) : (
-				<span className={'sr-only'}>{diet.key}</span>
-			)}
-
-			<span className={'absolute right-0 top-0 m-1'}>
-				<div
-					className={
-						'flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 p-0.5'
-					}
-				>
-					{isSelected ? (
-						<div className={'h-1 w-1 rounded-full bg-black/75'}></div>
-					) : (
-						<div className={'h-1 w-1 rounded-full bg-transparent'}></div>
-					)}
-				</div>
-			</span>
-		</button>
-	)
-}
+import { useStore } from '@/providers/useStore'
 
 export function DietFilter() {
-	const { selectedDiet, setSelectedDiet } = useStore()
+	const selectedDiet = useStore(state => state.selectedDiet)
+	const setSelectedDiet = useStore(state => state.setSelectedDiet)
 
 	return (
 		<div className={'grid w-full grid-cols-12 gap-2 px-8'}>

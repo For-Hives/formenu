@@ -1,21 +1,27 @@
 'use client'
-import { useCart } from '@/providers/CartProvider'
 import { get_data_dishes } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { CustomSvg } from '@/components/CustomSvg'
-import { useStore } from '@/providers/StoreProvider'
+
+import { useCartStore } from '@/providers/useCartStore'
 
 export function ShoppingCartItemsList({ company_slug }) {
-	const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
-		useCart()
+	// const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
+	// 	useCart()
+	const countItemsInCart = useCartStore(state => state.countItemsInCart)
+	const count = useCartStore(state => state.count)
+	const increaseQuantity = useCartStore(state => state.increaseQuantity)
+	const decreaseQuantity = useCartStore(state => state.decreaseQuantity)
+	const itemsInCart = useCartStore(state => state.itemsInCart)
+	const [isLoading, setIsLoading] = useState(true)
 
 	const [dishes, setDishes] = useState([])
 
 	const itemInfo = item => {
 		if (!dishes.length) return
-		return dishes.find(dish => dish?.id.toString() === item.toString())
+		return dishes.find(dish => dish?.id?.toString() === item?.toString())
 	}
 
 	useEffect(() => {
@@ -24,11 +30,15 @@ export function ShoppingCartItemsList({ company_slug }) {
 		})
 	}, [])
 
+	useEffect(() => {
+		countItemsInCart()
+		setIsLoading(false)
+		console.log('itemsInCart', itemsInCart)
+	}, [countItemsInCart, itemsInCart])
+
 	return (
 		<div className={'flex w-full flex-col gap-6'}>
-			<h2 className={'font-bold'}>
-				Les plats dans votre panier ({countItemsInCart() || 0})
-			</h2>
+			<h2 className={'font-bold'}>Les plats dans votre panier ({count})</h2>
 			{dishes?.length ? (
 				<>
 					{itemsInCart?.length ? (
@@ -36,70 +46,75 @@ export function ShoppingCartItemsList({ company_slug }) {
 							return (
 								<div
 									key={index}
-									className={'relative flex w-full items-center justify-start'}
+									className={`${itemInfo(item?.id) ? 'block' : 'hidden'}`}
 								>
-									<Dishes dish={itemInfo(item?.id)} cartView={true} />
-									{/* third possibility */}
-
 									<div
 										className={
-											'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
+											'relative flex w-full items-center justify-start'
 										}
 									>
-										<button
+										<Dishes dish={itemInfo(item?.id)} cartView={true} />
+										{/* third possibility */}
+										<div
 											className={
-												'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
+												'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
 											}
-											onClick={() => {
-												decreaseQuantity(item)
-											}}
 										>
-											<div
+											<button
 												className={
-													'flex h-full w-full items-center justify-center'
+													'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
 												}
+												onClick={() => {
+													decreaseQuantity(item)
+												}}
 											>
-												{item?.quantity === 1 ? (
-													<>
-														<CustomSvg
-															url={'/icons/bin.svg'}
-															classNames={'bg-black h-[14px] w-[14px]'}
-														/>
-													</>
-												) : (
-													<>
-														<CustomSvg
-															url={'/icons/minus.svg'}
-															classNames={'bg-black h-[14px] w-[14px]'}
-														/>
-													</>
-												)}
+												<div
+													className={
+														'flex h-full w-full items-center justify-center'
+													}
+												>
+													{item?.quantity === 1 ? (
+														<>
+															<CustomSvg
+																url={'/icons/bin.svg'}
+																classNames={'bg-black h-[14px] w-[14px]'}
+															/>
+														</>
+													) : (
+														<>
+															<CustomSvg
+																url={'/icons/minus.svg'}
+																classNames={'bg-black h-[14px] w-[14px]'}
+															/>
+														</>
+													)}
+												</div>
+											</button>
+											<div className={'flex items-center justify-center'}>
+												<p className={'text-xs font-bold text-blue-950'}>
+													{item?.quantity}
+												</p>
 											</div>
-										</button>
-										<div className={'flex items-center justify-center'}>
-											<p className={'text-xs font-bold text-blue-950'}>
-												{item?.quantity}
-											</p>
+											<button
+												className={
+													'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
+												}
+												onClick={() => {
+													increaseQuantity(item)
+												}}
+											>
+												<div
+													className={
+														'flex h-full w-full items-center justify-center'
+													}
+												>
+													<CustomSvg
+														url={'/icons/plus.svg'}
+														classNames={'bg-black h-[14px] w-[14px]'}
+													/>
+												</div>
+											</button>
 										</div>
-										<button
-											className={
-												'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
-											}
-											onClick={() => {
-												increaseQuantity(item)
-											}}
-										>
-											<div
-												className={
-													'flex h-full w-full items-center justify-center'
-												}
-											>
-												<CustomSvg
-													url={'/icons/plus.svg'}
-													classNames={'bg-black h-[14px] w-[14px]'}
-												/>
-											</div>
-										</button>
 									</div>
 								</div>
 							)

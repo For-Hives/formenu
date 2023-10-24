@@ -29,8 +29,10 @@ That is the list of technologies that ForMenu use.
 > > - [NextJs (ReactJS)](https://nextjs.org/)
 > > - [TailwindCSS](https://tailwindcss.com/)
 > > - [TailwindUI](https://tailwindui.com/)
+> > - [NextUI](https://nextui.org/)
 > > - [HeadlessUI](https://headlessui.com/)
 > > - [Prettier](https://prettier.io/)
+> > - [Bruno](https://github.com/usebruno/bruno)
 > > - [EsLint](https://eslint.org/)
 > > - [Husky](https://typicode.github.io/husky/#/)
 
@@ -43,6 +45,7 @@ That is the list of technologies that ForMenu use.
 >
 > > - [Strapi](https://strapi.io/)
 > > - [PostgreSQL](https://www.postgresql.org/)
+> > - [Minio](https://min.io/)
 
 > **Serveur**
 >
@@ -61,7 +64,7 @@ That is the list of technologies that ForMenu use.
 
 > **Tools**
 >
-> > - [OpenCommit](https://github.com/di-sukharev/opencommit)
+> > - [OpenCommit](https://github.com/di-sukharev/opencommit) // Tool for commit messages in GitKraken
 > > - [Git Kraken](https://www.gitkraken.com/)
 > > - [IntelliJ](https://www.jetbrains.com/idea/)
 > > - [Wakatime](https://wakatime.com/)
@@ -72,7 +75,7 @@ That is the list of technologies that ForMenu use.
 > > - [cwebp](https://developers.google.com/speed/webp/docs/cwebp)
 > > - [PowerToys](https://learn.microsoft.com/en-us/windows/powertoys/)
 > > - Google suit
-> > - [Insomnia](https://insomnia.rest/)
+> > - [Insomnia](https://insomnia.rest/) // [Bruno](https://github.com/usebruno/bruno)
 > > - [TMUX](https://tmuxcheatsheet.com/)
 > > - [Discord](https://discord.com/)
 

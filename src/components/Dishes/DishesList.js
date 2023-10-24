@@ -3,31 +3,39 @@
 import { useState, useEffect } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
-import { useStore } from '@/providers/StoreProvider'
+import { useStore } from '@/providers/useStore'
 
 const DishesList = ({ category, company }) => {
 	const [data, setData] = useState(null)
+	const [filteredDishes, setFilteredDishes] = useState(null)
 
-	const { checkDiet, checkAllergens } = useStore()
+	const checkDiet = useStore(state => state.checkDiet)
+	const checkAllergens = useStore(state => state.checkAllergens)
+
+	const selectedDiet = useStore(state => state.selectedDiet)
+	const selectedAllergens = useStore(state => state.selectedAllergens)
 
 	useEffect(() => {
 		getAllData_DishesFromCategory(category, company).then(result => {
 			setData(result)
+			setFilteredDishes(
+				result.dishes.filter(dish => {
+					return (
+						checkDiet(dish, selectedDiet) &&
+						checkAllergens(dish, selectedAllergens)
+					)
+				})
+			)
 		})
-	}, [category, company])
+	}, [category, company, selectedDiet, selectedAllergens])
 
 	if (!data) {
 		return <div>Loading...</div>
 	}
 
-	// Filtrez les plats en fonction des critères de diet et d'allergens sélectionnés
-	const filteredDishes = data?.dishes.filter(
-		dish => checkDiet(dish) && checkAllergens(dish)
-	)
-
 	return (
 		<>
-			{filteredDishes.length > 0 ? (
+			{filteredDishes && filteredDishes?.length > 0 ? (
 				<div className={`container-dishes`}>
 					{filteredDishes.map((dish, index) => (
 						<Dishes dish={dish} key={dish.id} />

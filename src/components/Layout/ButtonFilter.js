@@ -1,9 +1,11 @@
 'use client'
 import Image from 'next/image'
-import { useStore } from '@/providers/StoreProvider'
+
+import { useStore } from '@/providers/useStore'
 
 export function ButtonFilter() {
-	const { toggleFilterModal } = useStore()
+	const toggleFilterModal = useStore(state => state.toggleFilterModal)
+
 	return (
 		<button
 			className={'btn-nav'}
