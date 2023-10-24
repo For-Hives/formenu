@@ -19,12 +19,12 @@ function Filter({ category, company }) {
 	 * Fetch data from category and company if not already fetched
 	 */
 	useEffect(() => {
-		if (data) return
+		if (data && data.length > 0) return
 		if (!category || !company) return
 		getAllData_DishesFromCategory(category, company).then(data => {
 			useStore.setState({ data: data })
 		})
-	}, [category, company, data])
+	}, [category, company, isFilterModalClosed])
 
 	return (
 		<div

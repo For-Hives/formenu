@@ -36,6 +36,8 @@ export default async function Page({ params }) {
 				parent_categories={parent_categories}
 				selected_category={current_category_data?.id}
 				company_slug={company}
+				company={company}
+				category={category}
 			/>
 			<div className={'container-menu'}>
 				<div

@@ -11,11 +11,13 @@ import { ButtonFilter } from '@/components/Layout/ButtonFilter'
 export async function Nav({
 	parent_categories = null,
 	selected_category = null,
+	company = null,
+	category = null,
 	company_slug,
 }) {
 	return (
 		<>
-			<Filter />
+			<Filter category={category} company={company} />
 			<nav
 				className={
 					'pointer-events-none fixed left-0 top-0 z-10 h-screen w-screen select-none pb-8 md:pb-0'
