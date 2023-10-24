@@ -1,48 +1,53 @@
 'use client'
 import { CustomSvg } from '@/components/CustomSvg'
 import Fuse from 'fuse.js'
-import { useStore } from '@/providers/useStore'
 import { fuze_config } from '@/components/config/fuze_config'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { getAllData_DishesFromCategory } from '@/services/getData'
 
-export function FuzzySearchField() {
+export function FuzzySearchField({ category, company }) {
 	const searchRef = useRef(null)
 	const [query, setQuery] = useState('')
 	const [active, setActive] = useState(false)
 	const [results, setResults] = useState([])
 	const [fuse, setFuse] = useState(null)
-	const data = useStore(state => state.data)
+	const [data, setData] = useState(null)
 
-	const onChange = useCallback(event => {
-		const query = event.target.value
+	const onChange = e => {
+		const query = e.target.value
 		setQuery(query)
 		if (query.length) {
+			if (!fuse) return
 			const results = fuse.search(query)
 			console.log('results', results)
 			setResults(results)
 		} else {
 			setResults([])
 		}
-	}, [])
+	}
 
-	const onFocus = useCallback(() => {
+	const onFocus = () => {
 		setActive(true)
-		window.addEventListener('click', onClick)
-	}, [])
+	}
 
-	const onClick = useCallback(event => {
-		if (searchRef.current && !searchRef.current.contains(event.target)) {
+	const onClick = e => {
+		if (searchRef.current && !searchRef.current.contains(e.target)) {
 			setActive(false)
-			window.removeEventListener('click', onClick)
 		}
-	}, [])
+	}
 
+	/**
+	 * Fetch data from category and company if not already fetched
+	 */
 	useEffect(() => {
-		if (data && data.length > 0) {
-			const fuse = new Fuse(data, fuze_config)
+		if (!data) return
+		if (!category || !company) return
+		getAllData_DishesFromCategory(category, company).then(data => {
+			const fuse = new Fuse(data.dishes, fuze_config)
 			setFuse(fuse)
-		}
-	}, [data])
+			setData(data)
+		})
+	}, [category, company])
 
 	return (
 		<div
@@ -57,6 +62,7 @@ export function FuzzySearchField() {
 				placeholder={'Rechercher un plat avec un mot clé...'}
 				onChange={onChange}
 				onFocus={onFocus}
+				onClick={onClick}
 				value={query}
 				type="text"
 			/>
