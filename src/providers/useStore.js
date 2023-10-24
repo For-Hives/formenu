@@ -1,9 +1,14 @@
 import { create } from 'zustand'
 
 export const useStore = create(set => ({
+	data: [],
 	isFilterModalClosed: true,
 	selectedDiet: 'default',
 	selectedAllergens: [],
+
+	setData: data => {
+		set({ data: data })
+	},
 
 	setSelectedDiet: diet => {
 		set({ selectedDiet: diet })

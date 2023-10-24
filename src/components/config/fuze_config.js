@@ -1,0 +1,20 @@
+export const fuze_config = {
+	keys: [
+		'name',
+		'title',
+		'description',
+		'home_title',
+		'home_subtitle',
+		'price',
+		'country',
+		'city',
+		'street',
+		'postcode',
+	],
+	threshold: 0.3,
+	location: 0,
+	distance: 100,
+	includeMatches: true,
+	includeScore: true,
+	useExtendedSearch: true,
+}

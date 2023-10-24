@@ -6,11 +6,25 @@ import { DietFilter } from '@/components/Filter/DietFilter'
 import { AllergensFilter } from '@/components/Filter/AllergensFilter'
 import { useStore } from '@/providers/useStore'
 import { FuzzySearchField } from '@/components/Filter/FuzzySearchField'
+import { useEffect } from 'react'
+import { getAllData_DishesFromCategory } from '@/services/getData'
 
-function Filter() {
+function Filter({ category, company }) {
 	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
 	const toggleFilterModal = useStore(state => state.toggleFilterModal)
 	const resetFilter = useStore(state => state.resetFilter)
+	const data = useStore(state => state.data)
+
+	/**
+	 * Fetch data from category and company if not already fetched
+	 */
+	useEffect(() => {
+		if (data) return
+		if (!category || !company) return
+		getAllData_DishesFromCategory(category, company).then(data => {
+			useStore.setState({ data: data })
+		})
+	}, [category, company, data])
 
 	return (
 		<div
