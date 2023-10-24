@@ -1,16 +1,16 @@
 import '@/styles/globals.css'
-import { getContentWebsite } from '@/services/getData'
+import { getAllContentWebsite } from '@/services/getData'
 
 export async function generateMetadata({ params }, parent) {
 	// fetch data
-	const content_website = await getContentWebsite()
+	const content_website = await getAllContentWebsite()
 
 	return {
 		title:
-			content_website?.data?.attributes?.content?.metadata_title ||
+			content_website?.metadata_title ||
 			'ForMenu la carte digitale pour les restaurateurs',
 		description:
-			content_website?.data?.attributes?.content?.metadata_description ||
+			content_website?.metadata_description ||
 			"La carte qui s'adapte réellement à votre restaurant",
 		metadataBase: new URL(`https://app.formenu.fr`),
 		alternates: {

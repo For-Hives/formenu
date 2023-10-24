@@ -1,10 +1,10 @@
 /**
  * Get all content-website from API
  * /api/content-website?populate=deep
- * @public
+ * @private
  * @returns {Promise<any>}
  */
-export async function getContentWebsite() {
+async function getContentWebsite() {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/content-website?populate=deep`,
 		{
@@ -24,6 +24,24 @@ export async function getContentWebsite() {
 	}
 
 	return res.json()
+}
+
+/**
+ * Get all content-website from API
+ * @public
+ * @returns {Promise<{home_title, metadata_description, home_background_images, metadata_title, home_image, home_subtitle, id}>}
+ */
+export async function getAllContentWebsite() {
+	const data = await getContentWebsite()
+
+	return {
+		metadata_title: data.data.attributes.content.metadata_title,
+		metadata_description: data.data.attributes.content.metadata_description,
+		home_title: data.data.attributes.content.home_title,
+		home_subtitle: data.data.attributes.content.home_subtitle,
+		home_image: data.data.attributes.content.home_image,
+		home_background_images: data.data.attributes.content.home_background_images,
+	}
 }
 
 /**
@@ -69,79 +87,84 @@ export async function get_data_all(company_id) {
 			let categories = menu.categories.map(category => {
 				let dishes = category.dishes.map(dish => {
 					return {
-						id: dish.id,
-						name: dish.name,
-						description: dish.description,
-						price: dish.price,
-						ingredients: dish.ingredients,
-						attributes: dish.attributes,
-						image: dish.image,
-						type_dish: dish.type_dish,
-						category: dish.category,
+						id: dish?.id,
+						name: dish?.name,
+						description: dish?.description,
+						price: dish?.price,
+						ingredients: dish?.ingredients,
+						attributes: dish?.attributes,
+						image: dish?.image,
+						type_dish: dish?.type_dish,
+						category: dish?.category,
 						company: {
 							id: record_company.id,
 							slug: record_company.slug,
 						},
 						allergens: {
-							is_allergen_gluten: dish.is_allergen_gluten,
-							is_allergen_eggs: dish.is_allergen_eggs,
-							is_allergen_fishes: dish.is_allergen_fishes,
-							is_allergen_peanuts: dish.is_allergen_peanuts,
-							is_allergen_soybeans: dish.is_allergen_soybeans,
-							is_allergen_milk: dish.is_allergen_milk,
-							is_allergen_nuts: dish.is_allergen_nuts,
-							is_allergen_celery: dish.is_allergen_celery,
-							is_allergen_mustard: dish.is_allergen_mustard,
-							is_allergen_sesams: dish.is_allergen_sesams,
+							is_allergen_gluten: dish?.is_allergen_gluten,
+							is_allergen_eggs: dish?.is_allergen_eggs,
+							is_allergen_fishes: dish?.is_allergen_fishes,
+							is_allergen_peanuts: dish?.is_allergen_peanuts,
+							is_allergen_soybeans: dish?.is_allergen_soybeans,
+							is_allergen_milk: dish?.is_allergen_milk,
+							is_allergen_nuts: dish?.is_allergen_nuts,
+							is_allergen_celery: dish?.is_allergen_celery,
+							is_allergen_mustard: dish?.is_allergen_mustard,
+							is_allergen_sesams: dish?.is_allergen_sesams,
 							is_allergen_sulphurous_anhydre:
-								dish.is_allergen_sulphurous_anhydre,
-							is_allergen_lupins: dish.is_allergen_lupins,
-							is_allergen_mollusks: dish.is_allergen_mollusks,
+								dish?.is_allergen_sulphurous_anhydre,
+							is_allergen_lupins: dish?.is_allergen_lupins,
+							is_allergen_mollusks: dish?.is_allergen_mollusks,
 						},
-						is_vegetarian: dish.is_vegetarian,
-						is_vegan: dish.is_vegan,
+						is_vegetarian: dish?.is_vegetarian,
+						is_vegan: dish?.is_vegan,
 					}
 				})
 				return {
-					id: category.id,
-					name: category.name,
-					order: category.order,
-					depth: category.depth,
-					icon: category.icon,
-					category: category.category,
-					categories: category.categories,
+					id: category?.id,
+					name: category?.name,
+					order: category?.order,
+					depth: category?.depth,
+					icon: category?.icon,
+					category: category?.category,
+					categories: category?.categories,
 					dishes: dishes,
 					company: {
-						id: record_company.id,
-						slug: record_company.slug,
+						id: record_company?.id,
+						slug: record_company?.slug,
 					},
 				}
 			})
 			return {
-				id: menu.id,
-				title: menu.title,
-				description: menu.description,
-				activated: menu.activated,
-				color: menu.color,
-				fonts: menu.fonts,
-				image: menu.image,
+				id: menu?.id,
+				title: menu?.title,
+				description: menu?.description,
+				activated: menu?.activated,
+				color: menu?.color,
+				fonts: menu?.fonts,
+				image: menu?.image,
 				categories: categories,
 				company: {
-					id: record_company.id,
-					slug: record_company.slug,
+					id: record_company?.id,
+					slug: record_company?.slug,
 				},
 			}
 		})
 		return {
-			id: record_company.id,
-			name: record_company.name,
-			country: record_company.country,
-			city: record_company.city,
-			street: record_company.street,
-			postcode: record_company.postcode,
-			slug: record_company.slug,
+			id: record_company?.id,
+			name: record_company?.name,
+			country: record_company?.country,
+			city: record_company?.city,
+			street: record_company?.street,
+			postcode: record_company?.postcode,
+			slug: record_company?.slug,
 			menus: menus,
-			content: record_company.content,
+			metadata_title: record_company?.content?.metadata_title,
+			metadata_description: record_company?.content?.metadata_description,
+			home_title: record_company?.content?.home_title,
+			home_subtitle: record_company?.content?.home_subtitle,
+			home_image: record_company?.content?.home_image,
+			home_background_images: record_company?.content?.home_background_images,
 		}
 	})
 
