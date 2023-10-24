@@ -23,6 +23,7 @@
 		"@hookform/resolvers": "3.3.2",
 		"@nextui-org/react": "2.1.13",
 		"framer-motion": "10.16.4",
+		"fuzzyjs": "5.0.1",
 		"html-react-parser": "4.2.9",
 		"lodash": "4.17.21",
 		"next": "13.5.6",
