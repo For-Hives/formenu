@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: {{process.env.NEXT_PUBLIC_API_URL}}/api/content-website?populate=content
+  url: {{process.env.NEXT_PUBLIC_API_URL}}/api/content-website?populate=deep
   body: none
   auth: bearer
 }
 
 query {
-  populate: content
+  populate: deep
 }
 
 headers {

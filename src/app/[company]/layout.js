@@ -30,7 +30,9 @@ export default async function Layout({ params, children }) {
 					className={'flex w-full items-center justify-center gap-4 sm:gap-8'}
 				>
 					<Image
-						src={`${content_website_from_company?.home_image?.url}`}
+						src={`${
+							content_website_from_company?.home_image?.url ?? '/logo.svg'
+						}`}
 						width={50}
 						height={50}
 						alt={'logo_restaurant'}
@@ -46,23 +48,28 @@ export default async function Layout({ params, children }) {
 					</div>
 				</div>
 				<div className={'pt-16 sm:pt-20'}>
-					<CardBackground
-						placementClassName={'-z-10 -right-40 -top-48 rotate-15'}
-						src={`${content_website?.home_background_images?.data[0]?.url}`}
-						alt={'Background restaurant'}
-					/>
-					<CardBackground
-						placementClassName={
-							'-z-10 -left-40 top-1/2 rotate-30 translate-y-[-50%]'
-						}
-						src={`${content_website?.home_background_images?.data[1]?.url}`}
-						alt={'Background restaurant 2'}
-					/>
-					<CardBackground
-						placementClassName={'-z-10 right-8 -bottom-48 -rotate-15'}
-						src={`${content_website?.home_background_images?.data[2]?.url}`}
-						alt={'Background restaurant 3'}
-					/>
+					{content_website_from_company?.home_background_images &&
+						content_website_from_company?.home_background_images.length > 0 && (
+							<>
+								<CardBackground
+									placementClassName={'-z-10 -right-40 -top-48 rotate-15'}
+									src={`${content_website_from_company?.home_background_images[0]?.url}`}
+									alt={'Background restaurant'}
+								/>
+								<CardBackground
+									placementClassName={
+										'-z-10 -left-40 top-1/2 rotate-30 translate-y-[-50%]'
+									}
+									src={`${content_website_from_company?.home_background_images[1]?.url}`}
+									alt={'Background restaurant 2'}
+								/>
+								<CardBackground
+									placementClassName={'-z-10 right-8 -bottom-48 -rotate-15'}
+									src={`${content_website_from_company?.home_background_images[2]?.url}`}
+									alt={'Background restaurant 3'}
+								/>
+							</>
+						)}
 					{children}
 				</div>
 			</section>

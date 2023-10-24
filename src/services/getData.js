@@ -35,12 +35,13 @@ export async function getAllContentWebsite() {
 	const data = await getContentWebsite()
 
 	return {
-		metadata_title: data.data.attributes.content.metadata_title,
-		metadata_description: data.data.attributes.content.metadata_description,
-		home_title: data.data.attributes.content.home_title,
-		home_subtitle: data.data.attributes.content.home_subtitle,
-		home_image: data.data.attributes.content.home_image,
-		home_background_images: data.data.attributes.content.home_background_images,
+		metadata_title: data?.data?.attributes?.content?.metadata_title,
+		metadata_description: data?.data?.attributes?.content?.metadata_description,
+		home_title: data?.data?.attributes?.content?.home_title,
+		home_subtitle: data?.data?.attributes?.content?.home_subtitle,
+		home_image: data?.data?.attributes?.content?.home_image,
+		home_background_images:
+			data?.data?.attributes?.content?.home_background_images,
 	}
 }
 
@@ -262,7 +263,7 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 export async function getAllData_FromCompany(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	const data = await get_data_all(company_id)
-	return data.companies
+	return data.companies[0]
 }
 
 /**
