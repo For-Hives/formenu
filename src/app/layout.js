@@ -1,7 +1,11 @@
 import '@/styles/globals.css'
 import { getAllContentWebsite } from '@/services/getData'
 
-export async function generateMetadata({ params }, parent) {
+/**
+ * RootLayout
+ * @returns {Promise<{description: (*|string), links: [{rel: string, href: string},{rel: string, crossOrigin: boolean, href: string},{rel: string, href: string}], title: (*|string), metadataBase: URL, alternates: {languages: {"en-US": string, "fr-FR": string}, canonical: string}}>}
+ */
+export async function generateMetadata() {
 	// fetch data
 	const content_website = await getAllContentWebsite()
 
