@@ -14,6 +14,7 @@ export function FuzzySearchField({ category, company }) {
 	const [fuse, setFuse] = useState(null)
 	const [data, setData] = useState(null)
 	const setDataStore = useStore(state => state.setData)
+	const setSearchTerms = useStore(state => state.setSearchTerms)
 
 	const onChange = e => {
 		const query = e.target.value
@@ -57,6 +58,7 @@ export function FuzzySearchField({ category, company }) {
 	useEffect(() => {
 		// 	update data store
 		setDataStore(results)
+		setSearchTerms(query)
 	}, [results])
 
 	return (

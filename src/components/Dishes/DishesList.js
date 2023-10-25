@@ -15,6 +15,8 @@ const DishesList = ({ category, company }) => {
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
 
+	const dataStore = useStore(state => state.data)
+
 	useEffect(() => {
 		getAllData_DishesFromCategory(category, company).then(result => {
 			setData(result)
@@ -27,7 +29,20 @@ const DishesList = ({ category, company }) => {
 				})
 			)
 		})
-	}, [category, company, selectedDiet, selectedAllergens])
+	}, [category, company, selectedDiet, selectedAllergens, dataStore])
+
+	useEffect(() => {
+		if (!dataStore) return
+		// setFilteredDishes(
+		// 	data.filter(dish => {
+		// 		return (
+		// 			checkDiet(dish, selectedDiet) &&
+		// 			checkAllergens(dish, selectedAllergens)
+		// 		)
+		// 	})
+		// )
+		// 	filter data only if the item is in the dataStore (search in .item)
+	}, [dataStore])
 
 	if (!data) {
 		return <div>Loading...</div>

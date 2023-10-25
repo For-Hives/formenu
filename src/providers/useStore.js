@@ -5,9 +5,14 @@ export const useStore = create(set => ({
 	isFilterModalClosed: true,
 	selectedDiet: 'default',
 	selectedAllergens: [],
+	searchTerms: '',
 
 	setData: data => {
 		set({ data: data })
+	},
+
+	setSearchTerms: terms => {
+		set({ searchTerms: terms })
 	},
 
 	setSelectedDiet: diet => {
