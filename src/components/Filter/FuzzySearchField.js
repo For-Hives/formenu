@@ -62,7 +62,7 @@ export function FuzzySearchField({ category, company }) {
 				...dish,
 				score: results.find(result => result.item.id === dish.id)?.score,
 			})) // add score
-			.sort((a, b) => b?.score - a?.score) // sort by score
+			.sort((a, b) => a?.score - b?.score) // sort by score
 
 		setSearchTerms(query)
 		setDataStore(scoredData?.dishes)

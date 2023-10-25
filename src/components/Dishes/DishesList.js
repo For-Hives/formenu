@@ -6,7 +6,7 @@ import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
 
 const DishesList = ({ category, company }) => {
-	const [data, setData] = useState(null)
+	// const [data, setData] = useState(null)
 	const [filteredDishes, setFilteredDishes] = useState(null)
 
 	const checkDiet = useStore(state => state.checkDiet)
@@ -18,33 +18,31 @@ const DishesList = ({ category, company }) => {
 	const dataStore = useStore(state => state.data)
 
 	useEffect(() => {
-		getAllData_DishesFromCategory(category, company).then(result => {
-			setData(result)
-			setFilteredDishes(
-				result.dishes.filter(dish => {
-					return (
-						checkDiet(dish, selectedDiet) &&
-						checkAllergens(dish, selectedAllergens)
-					)
-				})
-			)
-		})
+		// setData(dataStore)
+		setFilteredDishes(
+			dataStore.filter(dish => {
+				return (
+					checkDiet(dish, selectedDiet) &&
+					checkAllergens(dish, selectedAllergens)
+				)
+			})
+		)
 	}, [category, company, selectedDiet, selectedAllergens, dataStore])
 
-	useEffect(() => {
-		if (!dataStore) return
-		// setFilteredDishes(
-		// 	data.filter(dish => {
-		// 		return (
-		// 			checkDiet(dish, selectedDiet) &&
-		// 			checkAllergens(dish, selectedAllergens)
-		// 		)
-		// 	})
-		// )
-		// 	filter data only if the item is in the dataStore (search in .item)
-	}, [dataStore])
+	// useEffect(() => {
+	// 	if (!dataStore) return
+	// 	// setFilteredDishes(
+	// 	// 	data.filter(dish => {
+	// 	// 		return (
+	// 	// 			checkDiet(dish, selectedDiet) &&
+	// 	// 			checkAllergens(dish, selectedAllergens)
+	// 	// 		)
+	// 	// 	})
+	// 	// )
+	// 	// 	filter data only if the item is in the dataStore (search in .item)
+	// }, [dataStore])
 
-	if (!data) {
+	if (!dataStore) {
 		return <div>Loading...</div>
 	}
 
