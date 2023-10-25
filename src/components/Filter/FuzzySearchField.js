@@ -22,7 +22,6 @@ export function FuzzySearchField({ category, company }) {
 		if (query.length) {
 			if (!fuse) return
 			const results = fuse.search(query)
-			console.log('results on change ', results)
 			setResults(results)
 		} else {
 			setResults([])
@@ -53,12 +52,20 @@ export function FuzzySearchField({ category, company }) {
 	}, [category, company])
 
 	/**
-	 * Update data store when data is updated
+	 * Update data store when data is updated ( filter dishes via fuzejs (fuzzy search) )
 	 */
 	useEffect(() => {
-		// 	update data store
-		setDataStore(results)
+		const scoredData = { ...data }
+		scoredData.dishes = data?.dishes
+			.filter(dish => results.some(result => result.item.id === dish.id)) // filter dishes
+			.map(dish => ({
+				...dish,
+				score: results.find(result => result.item.id === dish.id)?.score,
+			})) // add score
+			.sort((a, b) => b?.score - a?.score) // sort by score
+
 		setSearchTerms(query)
+		setDataStore(scoredData?.dishes)
 	}, [results])
 
 	return (
