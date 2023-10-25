@@ -1,12 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
 
 const DishesList = ({ category, company }) => {
-	// const [data, setData] = useState(null)
 	const [filteredDishes, setFilteredDishes] = useState(null)
 
 	const checkDiet = useStore(state => state.checkDiet)
@@ -18,7 +16,6 @@ const DishesList = ({ category, company }) => {
 	const dataStore = useStore(state => state.data)
 
 	useEffect(() => {
-		// setData(dataStore)
 		setFilteredDishes(
 			dataStore.filter(dish => {
 				return (
@@ -28,19 +25,6 @@ const DishesList = ({ category, company }) => {
 			})
 		)
 	}, [category, company, selectedDiet, selectedAllergens, dataStore])
-
-	// useEffect(() => {
-	// 	if (!dataStore) return
-	// 	// setFilteredDishes(
-	// 	// 	data.filter(dish => {
-	// 	// 		return (
-	// 	// 			checkDiet(dish, selectedDiet) &&
-	// 	// 			checkAllergens(dish, selectedAllergens)
-	// 	// 		)
-	// 	// 	})
-	// 	// )
-	// 	// 	filter data only if the item is in the dataStore (search in .item)
-	// }, [dataStore])
 
 	if (!dataStore) {
 		return <div>Loading...</div>

@@ -8,8 +8,6 @@ import { CustomSvg } from '@/components/CustomSvg'
 import { useCartStore } from '@/providers/useCartStore'
 
 export function ShoppingCartItemsList({ company_slug }) {
-	// const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
-	// 	useCart()
 	const countItemsInCart = useCartStore(state => state.countItemsInCart)
 	const count = useCartStore(state => state.count)
 	const increaseQuantity = useCartStore(state => state.increaseQuantity)
@@ -33,7 +31,6 @@ export function ShoppingCartItemsList({ company_slug }) {
 	useEffect(() => {
 		countItemsInCart()
 		setIsLoading(false)
-		console.log('itemsInCart', itemsInCart)
 	}, [countItemsInCart, itemsInCart])
 
 	return (
