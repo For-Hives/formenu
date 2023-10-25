@@ -4,6 +4,7 @@ import Fuse from 'fuse.js'
 import { fuze_config } from '@/components/config/fuze_config'
 import { useEffect, useRef, useState } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
+import { useStore } from '@/providers/useStore'
 
 export function FuzzySearchField({ category, company }) {
 	const searchRef = useRef(null)
@@ -12,6 +13,7 @@ export function FuzzySearchField({ category, company }) {
 	const [results, setResults] = useState([])
 	const [fuse, setFuse] = useState(null)
 	const [data, setData] = useState(null)
+	const setDataStore = useStore(state => state.setData)
 
 	const onChange = e => {
 		const query = e.target.value
@@ -19,7 +21,7 @@ export function FuzzySearchField({ category, company }) {
 		if (query.length) {
 			if (!fuse) return
 			const results = fuse.search(query)
-			console.log('results', results)
+			console.log('results on change ', results)
 			setResults(results)
 		} else {
 			setResults([])
@@ -40,7 +42,7 @@ export function FuzzySearchField({ category, company }) {
 	 * Fetch data from category and company if not already fetched
 	 */
 	useEffect(() => {
-		if (!data) return
+		if (data) return
 		if (!category || !company) return
 		getAllData_DishesFromCategory(category, company).then(data => {
 			const fuse = new Fuse(data.dishes, fuze_config)
@@ -48,6 +50,14 @@ export function FuzzySearchField({ category, company }) {
 			setData(data)
 		})
 	}, [category, company])
+
+	/**
+	 * Update data store when data is updated
+	 */
+	useEffect(() => {
+		// 	update data store
+		setDataStore(results)
+	}, [results])
 
 	return (
 		<div
