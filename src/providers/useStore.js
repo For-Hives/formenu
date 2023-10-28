@@ -6,6 +6,7 @@ export const useStore = create(set => ({
 	selectedDiet: 'default',
 	selectedAllergens: [],
 	searchTerms: '',
+	selectedOptionSort: '',
 
 	setData: data => {
 		set({ data: data })
@@ -17,6 +18,10 @@ export const useStore = create(set => ({
 
 	setSelectedDiet: diet => {
 		set({ selectedDiet: diet })
+	},
+
+	setSelectedOptionSort: option => {
+		set({ selectedOptionSort: option })
 	},
 
 	toggleAllergen: key => {

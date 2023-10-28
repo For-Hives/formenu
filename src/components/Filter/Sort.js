@@ -2,8 +2,30 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { CustomSvg } from '@/components/CustomSvg'
+import { useStore } from '@/providers/useStore'
+
+const options = [
+	'Mis en avant (par défaut)',
+	'Prix : Ordre croissant',
+	'Prix : Ordre décroissant',
+	'Ordre alphabetique : A-Z',
+	'Ordre alphabetique : Z-A',
+	"Date d'ajout : Ordre croissant",
+	"Date d'ajout : Ordre décroissant",
+]
 
 export function Sort() {
+	const [selectedOptionSort, setSelectedOptionSort] = useState(
+		'Mis en avant (par défaut)'
+	)
+	const storeSetSelectedOptionSort = useStore(
+		state => state.setSelectedOptionSort
+	)
+
+	useEffect(() => {
+		storeSetSelectedOptionSort(selectedOptionSort)
+	}, [selectedOptionSort])
+
 	return (
 		<>
 			<div
@@ -35,83 +57,31 @@ export function Sort() {
 							leaveTo="transform opacity-0 scale-95"
 						>
 							<Menu.Items className="absolute left-0 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											Mis en avant (par défaut)
-										</button>
-									)}
-								</Menu.Item>
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											Prix : Ordre croissant
-										</button>
-									)}
-								</Menu.Item>
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											Prix : Ordre décroissant
-										</button>
-									)}
-								</Menu.Item>
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											Ordre alphabetique : A-Z
-										</button>
-									)}
-								</Menu.Item>
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											Ordre alphabetique : Z-A
-										</button>
-									)}
-								</Menu.Item>
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											{`Date d'ajout : Ordre croissant`}
-										</button>
-									)}
-								</Menu.Item>
-								<Menu.Item>
-									{({ active }) => (
-										<button
-											className={`${
-												active ? 'bg-blue-950 text-white' : 'text-gray-900'
-											} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-										>
-											{`Date d'ajout : Ordre décroissant`}
-										</button>
-									)}
-								</Menu.Item>
+								{options.map(option => (
+									<Menu.Item key={option}>
+										{({ active }) =>
+											selectedOptionSort === option ? (
+												<button
+													className={`flex w-full items-center gap-3 bg-blue-950 px-2 py-2 text-sm text-white`}
+													onClick={() => setSelectedOptionSort(option)}
+												>
+													{option}
+												</button>
+											) : (
+												<button
+													className={`${
+														active
+															? 'bg-gray-200 text-gray-900'
+															: 'text-gray-900'
+													} flex w-full items-center gap-3 px-2 py-2 text-sm`}
+													onClick={() => setSelectedOptionSort(option)}
+												>
+													{option}
+												</button>
+											)
+										}
+									</Menu.Item>
+								))}
 							</Menu.Items>
 						</Transition>
 					</Menu>
