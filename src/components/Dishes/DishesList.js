@@ -11,18 +11,18 @@ const DishesList = ({ category, company }) => {
 	const checkDiet = useStore(state => state.checkDiet)
 	const checkAllergens = useStore(state => state.checkAllergens)
 
+	const dataStore = useStore(state => state.data)
+
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
 	const selectedOptionSort = useStore(state => state.selectedOptionSort)
 
-	const dataStore = useStore(state => state.data)
-
 	useEffect(() => {
-		if (!dataStore) return
 		console.log('dataStore', dataStore)
 		console.log('selectedDiet', selectedDiet)
 		console.log('selectedAllergens', selectedAllergens)
 		console.log('selectedOptionSort', selectedOptionSort)
+		if (!dataStore) return
 
 		setFilteredDishes(
 			dataStore.filter(dish => {
