@@ -100,6 +100,8 @@ export async function get_data_all(company_id) {
 						activated: dish?.activated,
 						available_date_start: dish?.available_date_start,
 						available_date_end: dish?.available_date_end,
+						createdAt: dish?.createdAt,
+						updatedAt: dish?.updatedAt,
 						company: {
 							id: record_company.id,
 							slug: record_company.slug,
