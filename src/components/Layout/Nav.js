@@ -20,7 +20,7 @@ export async function Nav({
 			<Filter category={category} company={company} />
 			<nav
 				className={
-					'pointer-events-none fixed left-0 top-0 z-10 h-screen w-screen select-none pb-8 md:pb-0'
+					'pointer-events-none fixed left-0 top-0 z-30 h-screen w-screen select-none pb-8 md:pb-0'
 				}
 			>
 				<div className={'grid h-full w-full grid-cols-2'}>
@@ -63,7 +63,9 @@ export async function Nav({
 						</div>
 						{/* end ------------------------------ underline decoration ------------------------------  */}
 						<div
-							className={'flex h-2/6 items-start justify-center gap-2 md:gap-4'}
+							className={
+								'z-30 flex h-2/6 items-start justify-center gap-2 md:gap-4'
+							}
 						>
 							<ShoppingCartButtonClear />
 							<ShoppingCartButtonResume company_slug={company_slug} />

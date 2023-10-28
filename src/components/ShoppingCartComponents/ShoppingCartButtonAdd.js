@@ -8,7 +8,7 @@ export function ShoppingCartButtonAdd({ newItem }) {
 
 	return (
 		<button
-			className={'btn-nav relative'}
+			className={'btn-nav relative -z-10'}
 			onClick={() => {
 				addItem(newItem)
 			}}

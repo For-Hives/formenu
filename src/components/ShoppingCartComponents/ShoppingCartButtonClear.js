@@ -6,7 +6,7 @@ export function ShoppingCartButtonClear() {
 	const resetCart = useCartStore(state => state.resetCart)
 
 	return (
-		<button className={'btn-nav relative'} onClick={() => resetCart()}>
+		<button className={'btn-nav relative z-30'} onClick={() => resetCart()}>
 			<CustomSvg url={'/icons/shopping_clear.svg'} classNames={'bg-blue-950'} />
 		</button>
 	)

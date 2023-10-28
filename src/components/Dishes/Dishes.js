@@ -22,7 +22,7 @@ export function Dishes({ dish, cartView = false }) {
 					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 				>
 					{!cartView && (
-						<div className={'absolute -right-2 -top-2 z-30'}>
+						<div className={'absolute -right-2 -top-2 z-10'}>
 							<ShoppingCartButtonAdd
 								newItem={{ id: dish?.id, quantity: 1, cartView: cartView }}
 							/>
