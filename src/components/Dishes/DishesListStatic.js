@@ -1,5 +1,6 @@
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
+import { checkIfActivated } from '@/services/checkIfActivated'
 
 const DishesListStatic = async ({ category, company }) => {
 	const data = await getAllData_DishesFromCategory(category, company)
@@ -8,9 +9,14 @@ const DishesListStatic = async ({ category, company }) => {
 		<>
 			{data?.dishes.length > 0 ? (
 				<div className={`container-dishes`}>
-					{data?.dishes.map((dish, index) => (
-						<Dishes dish={dish} key={dish.id} />
-					))}
+					{data?.dishes.map((dish, index) => {
+						return checkIfActivated(dish) ? (
+							<Dishes dish={dish} key={dish.id} />
+						) : (
+							// todo delete this div
+							<div key={dish.id}>not activated</div>
+						)
+					})}
 				</div>
 			) : (
 				<div className={`container-dishes`}>

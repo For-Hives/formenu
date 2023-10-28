@@ -97,6 +97,9 @@ export async function get_data_all(company_id) {
 						image: dish?.image,
 						type_dish: dish?.type_dish,
 						category: dish?.category,
+						activated: dish?.activated,
+						available_date_start: dish?.available_date_start,
+						available_date_end: dish?.available_date_end,
 						company: {
 							id: record_company.id,
 							slug: record_company.slug,
