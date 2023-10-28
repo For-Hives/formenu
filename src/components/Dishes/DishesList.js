@@ -12,6 +12,7 @@ const DishesList = ({ category, company }) => {
 
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
+	const selectedOptionSort = useStore(state => state.selectedOptionSort)
 
 	const dataStore = useStore(state => state.data)
 
@@ -24,7 +25,14 @@ const DishesList = ({ category, company }) => {
 				)
 			})
 		)
-	}, [category, company, selectedDiet, selectedAllergens, dataStore])
+	}, [
+		category,
+		company,
+		selectedDiet,
+		selectedAllergens,
+		selectedOptionSort,
+		dataStore,
+	])
 
 	if (!dataStore) {
 		return <div>Loading...</div>
