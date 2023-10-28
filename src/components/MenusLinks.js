@@ -7,18 +7,16 @@ export async function MenusLinks({ company_slug }) {
 
 	return (
 		<>
-			{data?.map(record => {
-				return (
-					<Link
-						className={'btn-alt-primary'}
-						key={record.id}
-						href={`/${company_slug}/${record.id}`}
-					>
-						<CustomSvg url={record.icon.url} classNames={'bg-blue-950'} />
-						<span className={'font-medium'}>{record.name}</span>
-					</Link>
-				)
-			})}
+			{data?.map(record => (
+				<Link
+					className={'btn-alt-primary'}
+					key={record.id}
+					href={`/${company_slug}/${record.id}`}
+				>
+					<CustomSvg url={record.icon.url} classNames={'bg-blue-950'} />
+					<span className={'font-medium'}>{record.name}</span>
+				</Link>
+			))}
 		</>
 	)
 }

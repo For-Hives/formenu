@@ -23,3 +23,22 @@ export function checkIfActivated(dish) {
 	// If all checks pass, return true
 	return true
 }
+
+export function checkIfMenuActivated(menu) {
+	// Check if menu is activated. If not, return false.
+	if (!menu || menu.activated === null || menu.activated === false) return false
+
+	// Check if available_date_start and available_date_end are present and are valid dates, also check if current date is within these dates.
+	// If available_date_start & available_date_end are null, return true.
+	// If they are not null but current date is not between these dates, return false.
+	const today = new Date()
+	const start = new Date(menu.available_date_start)
+	const end = new Date(menu.available_date_end)
+
+	if (menu.available_date_start !== null && menu.available_date_end !== null) {
+		if (!(today >= start && today <= end)) return false
+	}
+
+	// If all checks pass, return true
+	return true
+}

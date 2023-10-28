@@ -144,6 +144,8 @@ export async function get_data_all(company_id) {
 				title: menu?.title,
 				description: menu?.description,
 				activated: menu?.activated,
+				available_date_start: menu?.available_date_start,
+				available_date_end: menu?.available_date_end,
 				color: menu?.color,
 				fonts: menu?.fonts,
 				image: menu?.image,
