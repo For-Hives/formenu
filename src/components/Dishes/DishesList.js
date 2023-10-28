@@ -5,23 +5,25 @@ import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
 import { checkIfActivated } from '@/services/checkIfActivated'
 
-const DishesList = ({ category, company }) => {
+const DishesList = ({ category, company, data }) => {
 	const [filteredDishes, setFilteredDishes] = useState(null)
 
 	const checkDiet = useStore(state => state.checkDiet)
 	const checkAllergens = useStore(state => state.checkAllergens)
 
 	const dataStore = useStore(state => state.data)
+	const setData = useStore(state => state.setData)
 
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
 	const selectedOptionSort = useStore(state => state.selectedOptionSort)
+	const searchTerms = useStore(state => state.searchTerms)
 
 	useEffect(() => {
-		console.log('dataStore', dataStore)
-		console.log('selectedDiet', selectedDiet)
-		console.log('selectedAllergens', selectedAllergens)
-		console.log('selectedOptionSort', selectedOptionSort)
+		if (!dataStore && searchTerms === '') {
+			// 	get data
+			setData(data.dishes)
+		}
 		if (!dataStore) return
 
 		setFilteredDishes(
@@ -40,10 +42,6 @@ const DishesList = ({ category, company }) => {
 		selectedOptionSort,
 		dataStore,
 	])
-
-	if (!dataStore) {
-		return <div>Loading...</div>
-	}
 
 	return (
 		<>

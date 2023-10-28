@@ -109,6 +109,7 @@ export default async function Page({ params }) {
 								<DishListStaticOrDynamic
 									category={category}
 									company={company}
+									data={data}
 									DishesListStatic={
 										<DishesListStatic category={category} company={company} />
 									}

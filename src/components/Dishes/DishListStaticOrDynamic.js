@@ -8,6 +8,7 @@ export function DishListStaticOrDynamic({
 	category,
 	company,
 	DishesListStatic,
+	data,
 }) {
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const selectedAllergens = useStore(state => state.selectedAllergens)
@@ -22,7 +23,7 @@ export function DishListStaticOrDynamic({
 			selectedOptionSort === optionsSortData[0].key ? (
 				DishesListStatic
 			) : (
-				<DishesList category={category} company={company} />
+				<DishesList category={category} company={company} data={data} />
 			)}
 		</>
 	)
