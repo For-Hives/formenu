@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { optionsSortData } from '@/enum/optionsSortData'
 
 export const useStore = create(set => ({
 	data: [],
@@ -6,7 +7,7 @@ export const useStore = create(set => ({
 	selectedDiet: 'default',
 	selectedAllergens: [],
 	searchTerms: '',
-	selectedOptionSort: '',
+	selectedOptionSort: optionsSortData[0].key,
 
 	setData: data => {
 		set({ data: data })
@@ -21,7 +22,10 @@ export const useStore = create(set => ({
 	},
 
 	setSelectedOptionSort: option => {
-		set({ selectedOptionSort: option })
+		set(state => ({
+			selectedOptionSort:
+				optionsSortData.find(o => o.key === option) || state.selectedOptionSort,
+		}))
 	},
 
 	toggleAllergen: key => {

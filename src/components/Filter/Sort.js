@@ -1,23 +1,15 @@
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { CustomSvg } from '@/components/CustomSvg'
 import { useStore } from '@/providers/useStore'
-
-const options = [
-	'Mis en avant (par défaut)',
-	'Prix : Ordre croissant',
-	'Prix : Ordre décroissant',
-	'Ordre alphabetique : A-Z',
-	'Ordre alphabetique : Z-A',
-	"Date d'ajout : Ordre croissant",
-	"Date d'ajout : Ordre décroissant",
-]
+import { optionsSortData } from '@/enum/optionsSortData'
 
 export function Sort() {
 	const [selectedOptionSort, setSelectedOptionSort] = useState(
-		'Mis en avant (par défaut)'
+		optionsSortData[0].key
 	)
+
 	const storeSetSelectedOptionSort = useStore(
 		state => state.setSelectedOptionSort
 	)
@@ -57,15 +49,15 @@ export function Sort() {
 							leaveTo="transform opacity-0 scale-95"
 						>
 							<Menu.Items className="absolute left-0 mt-2 w-56 origin-top-left divide-y divide-gray-100 rounded-md bg-white py-2 shadow-lg ring-1 ring-black/5 focus:outline-none">
-								{options.map(option => (
-									<Menu.Item key={option}>
+								{optionsSortData.map(option => (
+									<Menu.Item key={option.key}>
 										{({ active }) =>
-											selectedOptionSort === option ? (
+											selectedOptionSort === option.key ? (
 												<button
 													className={`flex w-full items-center gap-3 bg-blue-950 px-2 py-2 text-sm text-white`}
-													onClick={() => setSelectedOptionSort(option)}
+													onClick={() => setSelectedOptionSort(option.key)}
 												>
-													{option}
+													{option.title}
 												</button>
 											) : (
 												<button
@@ -74,9 +66,9 @@ export function Sort() {
 															? 'bg-gray-200 text-gray-900'
 															: 'text-gray-900'
 													} flex w-full items-center gap-3 px-2 py-2 text-sm`}
-													onClick={() => setSelectedOptionSort(option)}
+													onClick={() => setSelectedOptionSort(option.key)}
 												>
-													{option}
+													{option.title}
 												</button>
 											)
 										}

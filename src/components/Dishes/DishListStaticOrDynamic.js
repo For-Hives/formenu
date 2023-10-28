@@ -2,6 +2,7 @@
 import DishesList from '@/components/Dishes/DishesList'
 
 import { useStore } from '@/providers/useStore'
+import { optionsSortData } from '@/enum/optionsSortData'
 
 export function DishListStaticOrDynamic({
 	category,
@@ -18,7 +19,7 @@ export function DishListStaticOrDynamic({
 			{selectedDiet === 'default' &&
 			selectedAllergens.length === 0 &&
 			searchTerms === '' &&
-			selectedOptionSort === '' ? (
+			selectedOptionSort === optionsSortData[0].key ? (
 				DishesListStatic
 			) : (
 				<DishesList category={category} company={company} />
