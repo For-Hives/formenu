@@ -19,7 +19,7 @@ function Filter({ category, company }) {
 				isFilterModalClosed
 					? 'pointer-events-none -z-10 select-none opacity-0'
 					: 'pointer-events-auto z-50 select-auto opacity-100'
-			} fixed left-0 top-0 flex min-h-screen w-screen items-start justify-start bg-black/10 backdrop-blur-sm transition-all`}
+			} absolute left-0 top-0 flex h-full w-full items-start justify-start overflow-y-visible bg-black/10 backdrop-blur-sm transition-all`}
 		>
 			<div className={'relative h-full w-full py-4'}>
 				<div
@@ -37,15 +37,18 @@ function Filter({ category, company }) {
 						onClick={() => {
 							toggleFilterModal()
 						}}
-						className={
-							'relative flex items-center justify-end rounded-l-lg border border-blue-900 bg-slate-50 px-4 py-3 shadow-xl'
-						}
+						className={'relative flex items-center justify-end py-3'}
 					>
-						<div className={'flex items-center justify-center pr-4'}>
-							<CustomSvg
-								url={'/icons/close.svg'}
-								classNames={'h-[10px] w-[10px] bg-black'}
-							/>
+						<div className={'flex items-center justify-center'}>
+							<div className={'btn-primary mr-2 flex min-h-[50px] w-full pr-8'}>
+								<span className={'text-xs font-semibold text-white'}>
+									Appliquer
+								</span>
+								<CustomSvg
+									url={'/icons/check.svg'}
+									classNames={'h-[12px] w-[12px] bg-white'}
+								/>
+							</div>
 						</div>
 					</button>
 					{/* Fuzzy Search Field */}
@@ -121,30 +124,6 @@ function Filter({ category, company }) {
 									</p>
 								</div>
 								<AllergensFilter />
-							</div>
-							<div
-								className={
-									'absolute -right-4 bottom-0 flex items-center justify-center'
-								}
-							>
-								<button
-									onClick={() => {
-										toggleFilterModal()
-									}}
-									className={
-										'relative flex items-center justify-end rounded-l-lg  px-4 py-3'
-									}
-								>
-									<div className={'btn-primary flex min-h-[50px] w-full pr-8'}>
-										<span className={'text-xs font-semibold text-white'}>
-											Appliquer
-										</span>
-										<CustomSvg
-											url={'/icons/check.svg'}
-											classNames={'h-[9px] w-[9px] bg-white'}
-										/>
-									</div>
-								</button>
 							</div>
 						</div>
 					</div>
