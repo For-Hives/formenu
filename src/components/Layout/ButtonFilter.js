@@ -11,6 +11,8 @@ export function ButtonFilter() {
 			className={'btn-nav'}
 			onClick={() => {
 				toggleFilterModal()
+				// 	scroll to top
+				window.scrollTo(0, 0)
 			}}
 		>
 			<Image
