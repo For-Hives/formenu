@@ -6,6 +6,7 @@ import { DietFilter } from '@/components/Filter/DietFilter'
 import { AllergensFilter } from '@/components/Filter/AllergensFilter'
 import { useStore } from '@/providers/useStore'
 import { FuzzySearchField } from '@/components/Filter/FuzzySearchField'
+import { Sort } from '@/components/Filter/Sort'
 
 function Filter({ category, company }) {
 	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
@@ -64,16 +65,11 @@ function Filter({ category, company }) {
 									'relative flex gap-4 border-b border-b-slate-300 py-3 pl-4'
 								}
 							>
-								<div className={'flex items-center justify-center'}>
-									<CustomSvg
-										url={'/icons/filter.svg'}
-										classNames={'h-[15px] w-[15px] bg-black'}
-									/>
-								</div>
-								<p className={'text-sm font-bold'}>Filtrer</p>
+								<Sort />
+
 								<div
 									className={
-										'absolute right-0 top-0 flex h-full w-1/3 items-center justify-end border-l border-slate-300'
+										'absolute right-0 top-0 flex h-full w-full items-center justify-end'
 									}
 								>
 									<div className={'flex items-center justify-center pr-10'}>
