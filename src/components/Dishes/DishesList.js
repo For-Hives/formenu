@@ -26,14 +26,36 @@ const DishesList = ({ category, company, data }) => {
 		}
 		if (!dataStore) return
 
-		setFilteredDishes(
-			dataStore.filter(dish => {
-				return (
-					checkDiet(dish, selectedDiet) &&
-					checkAllergens(dish, selectedAllergens)
-				)
-			})
-		)
+		let dishes = dataStore.filter(dish => {
+			return (
+				checkDiet(dish, selectedDiet) && checkAllergens(dish, selectedAllergens)
+			)
+		})
+
+		switch (selectedOptionSort.key) {
+			case 'priceAsc':
+				dishes.sort((a, b) => a.price - b.price)
+				break
+			case 'priceDesc':
+				dishes.sort((a, b) => b.price - a.price)
+				break
+			case 'alphaAZ':
+				dishes.sort((a, b) => a.name.localeCompare(b.name))
+				break
+			case 'alphaZA':
+				dishes.sort((a, b) => b.name.localeCompare(a.name))
+				break
+			case 'dateAsc':
+				dishes.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+				break
+			case 'dateDesc':
+				dishes.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+				break
+			default:
+				break
+		}
+
+		setFilteredDishes(dishes)
 	}, [
 		category,
 		company,
