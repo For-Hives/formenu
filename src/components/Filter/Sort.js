@@ -29,14 +29,26 @@ export function Sort() {
 					<Menu as="div" className="relative z-50 inline-block text-left">
 						<div>
 							<Menu.Button className="z-50 inline-flex w-full justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-black underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
-								<div className={'flex items-center gap-4'}>
+								<div className={'flex items-center gap-2 md:gap-4'}>
 									<CustomSvg
 										url={'/icons/filter.svg'}
-										classNames={'h-[15px] w-[15px] bg-black'}
+										classNames={'!h-[14px] !w-[14px] bg-black'}
 									/>
-									<p>Trier par</p>
+									<span className={'flex items-center text-xs italic'}>
+										Tri:&nbsp;
+										{
+											optionsSortData.find(
+												option => option.key === selectedOptionSort
+											).title
+										}
+									</span>
 								</div>
-								<ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+								<div className={'flex h-full items-center'}>
+									<ChevronDownIcon
+										className="h-4 w-4 md:h-5 md:w-5"
+										aria-hidden="true"
+									/>
+								</div>
 							</Menu.Button>
 						</div>
 						<Transition
