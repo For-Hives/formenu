@@ -40,6 +40,7 @@ export const useStore = create(set => ({
 			isFilterModalClosed: true,
 			selectedDiet: 'default',
 			selectedAllergens: [],
+			searchTerms: '',
 		})
 	},
 
