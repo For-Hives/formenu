@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
+import { checkIfActivated } from '@/services/checkIfActivated'
 
 const DishesList = ({ category, company }) => {
 	const [filteredDishes, setFilteredDishes] = useState(null)
@@ -48,9 +49,10 @@ const DishesList = ({ category, company }) => {
 		<>
 			{filteredDishes && filteredDishes?.length > 0 ? (
 				<div className={`container-dishes`}>
-					{filteredDishes.map((dish, index) => (
-						<Dishes dish={dish} key={dish.id} />
-					))}
+					{filteredDishes.map(
+						(dish, index) =>
+							checkIfActivated(dish) && <Dishes dish={dish} key={dish.id} />
+					)}
 				</div>
 			) : (
 				<div className={`container-dishes`}>
