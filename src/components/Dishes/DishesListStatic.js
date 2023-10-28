@@ -10,11 +10,8 @@ const DishesListStatic = async ({ category, company }) => {
 			{data?.dishes.length > 0 ? (
 				<div className={`container-dishes`}>
 					{data?.dishes.map((dish, index) => {
-						return checkIfActivated(dish) ? (
-							<Dishes dish={dish} key={dish.id} />
-						) : (
-							// todo delete this div
-							<div key={dish.id}>not activated</div>
+						return (
+							checkIfActivated(dish) && <Dishes dish={dish} key={dish.id} />
 						)
 					})}
 				</div>
