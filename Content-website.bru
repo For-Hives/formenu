@@ -1,0 +1,24 @@
+meta {
+  name: Content-website
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{process.env.NEXT_PUBLIC_API_URL}}/api/content-website?populate=deep
+  body: none
+  auth: bearer
+}
+
+query {
+  populate: deep
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{process.env.NEXT_PUBLIC_API_TOKEN}}
+}
