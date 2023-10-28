@@ -2,9 +2,8 @@
 import { CustomSvg } from '@/components/CustomSvg'
 import { Spinner } from '@nextui-org/react'
 import Link from 'next/link'
-import { useCartStore, useStore } from '@/providers/useCartStore'
+import { useCartStore } from '@/providers/useCartStore'
 import { useEffect, useState } from 'react'
-// import { useEffect } from 'react'
 
 export function ShoppingCartButtonResume({ company_slug }) {
 	const itemsInCart = useCartStore(state => state.itemsInCart)

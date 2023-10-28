@@ -1,5 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
-import { Fragment, Suspense, useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { CustomSvg } from '@/components/CustomSvg'
 import { useStore } from '@/providers/useStore'

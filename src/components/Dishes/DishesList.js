@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
 import { checkIfActivated } from '@/services/checkIfActivated'
