@@ -9,11 +9,13 @@ function SkeletonList(props) {
 				<div className={'flex w-full items-center justify-start'}>
 					<Skeleton className={'btn-primary'} />
 				</div>
-				<SkeletonDish />
-				<SkeletonDish />
-				<SkeletonDish />
-				<SkeletonDish />
-				<SkeletonDish />
+				<div className={`container-dishes`}>
+					<SkeletonDish />
+					<SkeletonDish />
+					<SkeletonDish />
+					<SkeletonDish />
+					<SkeletonDish />
+				</div>
 				<div className={'flex w-full items-center justify-start'}>
 					<Skeleton className={'btn-primary'} />
 				</div>

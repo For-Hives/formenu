@@ -1,5 +1,4 @@
 import React from 'react'
-import { CustomSvg } from '@/components/CustomSvg'
 import { Skeleton } from '@nextui-org/react'
 
 function SkeletonDish(props) {

@@ -19,22 +19,22 @@ export function DishListStaticOrDynamic({
 
 	return (
 		<>
-			{selectedDiet === 'default' &&
-			selectedAllergens.length === 0 &&
-			searchTerms === '' &&
-			selectedOptionSort === optionsSortData[0].key ? (
-				DishesListStatic
-			) : (
-				<Suspense
-					fallback={
-						<div className={`container-dishes`}>
-							<SkeletonDish />
-						</div>
-					}
-				>
+			<Suspense
+				fallback={
+					<div className={`container-dishes`}>
+						<SkeletonDish />
+					</div>
+				}
+			>
+				{selectedDiet === 'default' &&
+				selectedAllergens.length === 0 &&
+				searchTerms === '' &&
+				selectedOptionSort === optionsSortData[0].key ? (
+					DishesListStatic
+				) : (
 					<DishesList category={category} company={company} data={data} />
-				</Suspense>
-			)}
+				)}
+			</Suspense>
 		</>
 	)
 }
