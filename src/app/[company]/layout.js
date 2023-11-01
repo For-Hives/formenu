@@ -39,9 +39,9 @@ export default async function Layout({ params, children }) {
 						className={'h-8 w-8 sm:h-12 sm:w-12'}
 					/>
 					<div className={'flex flex-col gap-1 sm:gap-2'}>
-						<h1
-							className={'formenu-h1'}
-						>{`${content_website_from_company?.home_title}`}</h1>
+						<h1 className={'formenu-h1'}>
+							{`${content_website_from_company?.home_title}`}
+						</h1>
 						<h2
 							className={'ml-4'}
 						>{`${content_website_from_company?.home_subtitle}`}</h2>
