@@ -64,26 +64,7 @@ export function SkeletonContainer(props) {
 							<>
 								{/* ❌ loop on category if it's the first children category */}
 								<div className={'flex w-full items-center justify-end'}>
-									<Skeleton className={'h-[25px] w-[25px] rounded-full'} />
-									{/*<Link*/}
-									{/*	className={`${*/}
-									{/*		selected_category.toString() ===*/}
-									{/*		record.id.toString()*/}
-									{/*			? 'btn-nav-alt'*/}
-									{/*			: 'btn-nav'*/}
-									{/*	}`}*/}
-									{/*	href={`/${company_slug}/${record.id.toString()}`}*/}
-									{/*>*/}
-									{/*	<CustomSvg*/}
-									{/*		url={record.icon.url}*/}
-									{/*		classNames={*/}
-									{/*			selected_category.toString() ===*/}
-									{/*			record.id.toString()*/}
-									{/*				? 'bg-white'*/}
-									{/*				: 'bg-black'*/}
-									{/*		}*/}
-									{/*	/>*/}
-									{/*</Link>*/}
+									<Skeleton className={'btn-nav rounded-full'} />
 								</div>
 							</>
 						</div>
