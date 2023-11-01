@@ -1,7 +1,8 @@
 import React from 'react'
+import SkeletonList from '@/components/Loaders/SkeletonComponent/SkeletonList'
 
 function Loading(props) {
-	return <div>load...</div>
+	return <SkeletonList />
 }
 
 export default Loading

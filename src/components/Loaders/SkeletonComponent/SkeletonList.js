@@ -1,8 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
-import { CustomSvg } from '@/components/CustomSvg'
-import { DishListStaticOrDynamic } from '@/components/Dishes/DishListStaticOrDynamic'
-import DishesListStatic from '@/components/Dishes/DishesListStatic'
 import { Skeleton } from '@nextui-org/react'
 import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
