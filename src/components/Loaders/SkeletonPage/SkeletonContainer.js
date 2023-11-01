@@ -5,7 +5,7 @@ export function SkeletonContainer(props) {
 	return (
 		<>
 			<SkeletonNav />
-			{/*<SkeletonList />*/}
+			<SkeletonList />
 		</>
 	)
 }
