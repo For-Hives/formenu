@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import { Skeleton } from '@nextui-org/react'
 
 export function SkeletonContainer(props) {
@@ -39,13 +38,9 @@ export function SkeletonContainer(props) {
 								'z-30 flex h-2/6 items-start justify-center gap-2 md:gap-4'
 							}
 						>
-							<Skeleton className={'h-[25px] w-[25px] rounded-full'} />
-							<Skeleton className={'h-[25px] w-[25px] rounded-full'} />
-							<Skeleton className={'h-[25px] w-[25px] rounded-full'} />
-							{/*<ShoppingCartButtonClear />*/}
-							{/*<ShoppingCartButtonResume company_slug={company_slug} />*/}
-
-							{/*<ButtonFilter />*/}
+							<Skeleton className={'btn-nav'} />
+							<Skeleton className={'btn-nav'} />
+							<Skeleton className={'btn-nav'} />
 						</div>
 
 						<div
