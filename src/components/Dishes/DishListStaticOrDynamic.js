@@ -18,7 +18,7 @@ export function DishListStaticOrDynamic({
 	const searchTerms = useStore(state => state.searchTerms)
 	const selectedOptionSort = useStore(state => state.selectedOptionSort)
 
-	const [isLoaded, setIsLoaded] = useState(false)
+	const [isLoaded, setIsLoaded] = useState(true)
 
 	return (
 		<>
@@ -32,7 +32,15 @@ export function DishListStaticOrDynamic({
 					selectedOptionSort === optionsSortData[0].key ? (
 						DishesListStatic
 					) : (
-						<DishesList category={category} company={company} data={data} />
+						<Suspense
+							fallback={
+								<div className={`container-dishes`}>
+									<SkeletonDish />
+								</div>
+							}
+						>
+							<DishesList category={category} company={company} data={data} />
+						</Suspense>
 					)}
 				</>
 			)}

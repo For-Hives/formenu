@@ -1,6 +1,8 @@
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { checkIfActivated } from '@/services/checkIfActivated'
+import { Suspense } from 'react'
+import SkeletonDish from '@/components/Loaders/SkeletonDish'
 
 const DishesListStatic = async ({ category, company }) => {
 	const data = await getAllData_DishesFromCategory(category, company)
@@ -17,9 +19,7 @@ const DishesListStatic = async ({ category, company }) => {
 				</div>
 			) : (
 				<div className={`container-dishes`}>
-					<p className={`text-sm italic`}>
-						Aucun plats présent dans cette catégorie
-					</p>
+					<Suspense fallback={<SkeletonDish />} />
 				</div>
 			)}
 		</>

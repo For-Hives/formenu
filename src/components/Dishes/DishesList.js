@@ -1,9 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
 import { checkIfActivated } from '@/services/checkIfActivated'
+import SkeletonDish from '@/components/Loaders/SkeletonDish'
 
 const DishesList = ({ category, company, data }) => {
 	const [filteredDishes, setFilteredDishes] = useState(null)
@@ -76,9 +77,7 @@ const DishesList = ({ category, company, data }) => {
 				</div>
 			) : (
 				<div className={`container-dishes`}>
-					<p className={`text-sm italic`}>
-						Aucun plat ne correspond à vos critères de recherche
-					</p>
+					<Suspense fallback={<SkeletonDish />} />
 				</div>
 			)}
 		</>

@@ -10,8 +10,6 @@ import { Nav } from '@/components/Layout/Nav'
 import { CustomSvg } from '@/components/CustomSvg'
 import { DishListStaticOrDynamic } from '@/components/Dishes/DishListStaticOrDynamic'
 import DishesListStatic from '@/components/Dishes/DishesListStatic'
-import { Suspense } from 'react'
-import { Skeleton } from '@nextui-org/react'
 
 export default async function Page({ params }) {
 	const { category, company } = params
@@ -114,6 +112,7 @@ export default async function Page({ params }) {
 									<DishesListStatic category={category} company={company} />
 								}
 							/>
+
 							{next_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
