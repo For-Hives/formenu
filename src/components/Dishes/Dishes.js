@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Suspense, useEffect, useState } from 'react'
 import { Allergens } from '@/components/Dishes/Allergens'
 import { ShoppingCartButtonAdd } from '@/components/ShoppingCartComponents/ShoppingCartButtonAdd'
-import SkeletonDish from '@/components/Loaders/SkeletonDish'
+import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
 export function Dishes({ dish, cartView = false }) {
 	const [isExpanded, setIsExpanded] = useState(false)

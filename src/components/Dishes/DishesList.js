@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState } from 'react'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { useStore } from '@/providers/useStore'
 import { checkIfActivated } from '@/services/checkIfActivated'
-import SkeletonDish from '@/components/Loaders/SkeletonDish'
+import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
 const DishesList = ({ category, company, data }) => {
 	const [filteredDishes, setFilteredDishes] = useState(null)

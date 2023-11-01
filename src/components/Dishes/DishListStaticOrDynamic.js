@@ -4,7 +4,7 @@ import DishesList from '@/components/Dishes/DishesList'
 import { useStore } from '@/providers/useStore'
 import { optionsSortData } from '@/enum/optionsSortData'
 import { Suspense, useState } from 'react'
-import SkeletonDish from '@/components/Loaders/SkeletonDish'
+import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
 export function DishListStaticOrDynamic({
 	category,

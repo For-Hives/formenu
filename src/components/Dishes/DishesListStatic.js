@@ -2,7 +2,7 @@ import { getAllData_DishesFromCategory } from '@/services/getData'
 import { Dishes } from '@/components/Dishes/Dishes'
 import { checkIfActivated } from '@/services/checkIfActivated'
 import { Suspense } from 'react'
-import SkeletonDish from '@/components/Loaders/SkeletonDish'
+import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
 const DishesListStatic = async ({ category, company }) => {
 	const data = await getAllData_DishesFromCategory(category, company)
