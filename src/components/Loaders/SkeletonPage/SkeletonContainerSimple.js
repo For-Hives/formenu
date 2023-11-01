@@ -1,11 +1,9 @@
-import SkeletonNav from '@/components/Loaders/SkeletonComponent/SkeletonNav'
-import SkeletonList from '@/components/Loaders/SkeletonComponent/SkeletonList'
+import SkeletonListSimple from '@/components/Loaders/SkeletonComponent/SkeletonListSimple'
 
-export function SkeletonContainer(props) {
+export function SkeletonContainerSimple(props) {
 	return (
 		<>
-			<SkeletonNav />
-			<SkeletonList />
+			<SkeletonListSimple />
 		</>
 	)
 }

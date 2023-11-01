@@ -1,8 +1,8 @@
 import React from 'react'
-import SkeletonList from '@/components/Loaders/SkeletonComponent/SkeletonList'
 
+// todo skeleton on company menu listing
 function Loading(props) {
-	return <SkeletonList />
+	return <>skeleton company menu listing</>
 }
 
 export default Loading
