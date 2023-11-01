@@ -70,10 +70,12 @@ const DishesList = ({ category, company, data }) => {
 		<>
 			{filteredDishes && filteredDishes?.length > 0 ? (
 				<div className={`container-dishes`}>
-					{filteredDishes.map(
-						(dish, index) =>
-							checkIfActivated(dish) && <Dishes dish={dish} key={dish.id} />
-					)}
+					<Suspense fallback={<SkeletonDish />}>
+						{filteredDishes.map(
+							(dish, index) =>
+								checkIfActivated(dish) && <Dishes dish={dish} key={dish.id} />
+						)}
+					</Suspense>
 				</div>
 			) : (
 				<div className={`container-dishes`}>
