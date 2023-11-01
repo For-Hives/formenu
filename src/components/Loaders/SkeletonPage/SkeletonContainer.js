@@ -66,6 +66,18 @@ export function SkeletonContainer(props) {
 								<div className={'flex w-full items-center justify-end'}>
 									<Skeleton className={'btn-nav rounded-full'} />
 								</div>
+								<div className={'flex w-full items-center justify-end'}>
+									<Skeleton className={'btn-nav rounded-full'} />
+								</div>
+								<div className={'flex w-full items-center justify-end'}>
+									<Skeleton className={'btn-nav rounded-full'} />
+								</div>
+								<div className={'flex w-full items-center justify-end'}>
+									<Skeleton className={'btn-nav rounded-full'} />
+								</div>
+								<div className={'flex w-full items-center justify-end'}>
+									<Skeleton className={'btn-nav rounded-full'} />
+								</div>
 							</>
 						</div>
 					</div>
