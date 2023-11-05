@@ -4,7 +4,7 @@ import { SkeletonMenu } from '@/components/Loaders/SkeletonComponent/SkeletonMen
 
 function SkeletonHome() {
 	return (
-		<section className={'px-2 py-16 sm:px-4 sm:py-20'}>
+		<section className={'px-2 py-24 sm:px-4 sm:py-20'}>
 			<div className={'flex w-full items-center justify-center gap-4 sm:gap-8'}>
 				<Skeleton className={'h-[50px] w-[50px] rounded-full'} />
 				<div className={'flex flex-col gap-1 sm:gap-2'}>

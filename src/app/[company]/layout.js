@@ -25,7 +25,7 @@ export default async function Layout({ params, children }) {
 
 	return (
 		<section
-			className={`px-2 py-16 sm:px-4 sm:py-20 font-${content_website_from_company?.fonts}`}
+			className={`px-2 py-24 sm:px-4 sm:py-20 font-${content_website_from_company?.fonts}`}
 		>
 			<div className={'flex w-full items-center justify-center gap-4 sm:gap-8'}>
 				<Image

@@ -11,7 +11,6 @@ import { Nav } from '@/components/Layout/Nav'
 import { CustomSvg } from '@/components/CustomSvg'
 import { DishListStaticOrDynamic } from '@/components/Dishes/DishListStaticOrDynamic'
 import DishesListStatic from '@/components/Dishes/DishesListStatic'
-import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 import { Suspense } from 'react'
 import { SkeletonContainer } from '@/components/Loaders/SkeletonPage/SkeletonContainer'
 

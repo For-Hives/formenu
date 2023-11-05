@@ -9,7 +9,7 @@ export default async function Page() {
 	const content_website = await getAllContentWebsite()
 
 	return (
-		<section className={'px-2 py-16 sm:px-4 sm:py-20'}>
+		<section className={'px-2 py-24 sm:px-4 sm:py-20'}>
 			<div className={'flex w-full items-center justify-center gap-4 sm:gap-8'}>
 				<Image
 					src={`${content_website?.home_image?.data?.attributes?.url}`}
