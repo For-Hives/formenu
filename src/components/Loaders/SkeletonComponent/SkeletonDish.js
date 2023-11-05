@@ -6,7 +6,7 @@ function SkeletonDish() {
 		<>
 			{/* ----------- Container -------------- */}
 			<section
-				className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 border-cyan-500 bg-slate-50 p-4 shadow-xl`}
+				className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 border-cyan-500 bg-gray-50 p-4 shadow-xl`}
 			>
 				<Skeleton
 					className={

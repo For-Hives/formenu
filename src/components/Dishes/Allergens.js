@@ -10,7 +10,7 @@ export function Allergens({ dish }) {
 						<div
 							key={allergen.key}
 							className={
-								'flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-slate-100'
+								'flex h-[40px] w-[40px] items-center justify-center rounded-lg bg-gray-100'
 							}
 						>
 							<Image

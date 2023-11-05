@@ -57,10 +57,10 @@ export default async function RootLayout({ children }) {
 	return (
 		<html
 			lang="fr"
-			className={`bg-slate-50 ${lato.variable} ${fraunces.variable}`}
+			className={`bg-gray-50 ${lato.variable} ${fraunces.variable}`}
 		>
 			<body
-				className={'relative flex min-h-screen w-full flex-col text-slate-950'}
+				className={'relative flex min-h-screen w-full flex-col text-gray-950'}
 			>
 				<main className={'h-full min-h-screen'}>{children}</main>
 			</body>

@@ -63,12 +63,12 @@ export function ShoppingCartItemsList({
 										{/* third possibility */}
 										<div
 											className={
-												'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
+												'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-gray-300 bg-white shadow'
 											}
 										>
 											<button
 												className={
-													'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
+													'flex h-full items-center justify-center rounded-l-lg bg-gray-200/50 px-3 py-2 text-xs'
 												}
 												onClick={() => {
 													decreaseQuantity(item)
@@ -107,7 +107,7 @@ export function ShoppingCartItemsList({
 											</div>
 											<button
 												className={
-													'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
+													'flex h-full items-center justify-center rounded-r-lg bg-gray-200/50 px-3 py-2 text-xs'
 												}
 												onClick={() => {
 													increaseQuantity(item)

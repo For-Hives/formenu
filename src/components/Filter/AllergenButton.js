@@ -25,7 +25,7 @@ export function AllergenButton({
 			<span className={'absolute right-0 top-0 m-1'}>
 				<div
 					className={
-						'flex items-center justify-center rounded border border-slate-300 bg-transparent p-0.5'
+						'flex items-center justify-center rounded border border-gray-300 bg-transparent p-0.5'
 					}
 				>
 					{isSelected ? (

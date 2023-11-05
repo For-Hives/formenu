@@ -24,7 +24,7 @@ export function Dishes({
 			{/* is diet selected correspond to dish && allergens present */}
 			{isClient && (
 				<div
-					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
+					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-gray-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 				>
 					{!cartView && (
 						<div className={'absolute -right-2 -top-2 z-10'}>
@@ -55,7 +55,7 @@ export function Dishes({
 								/>
 							)}
 							<h3
-								className={`font-bold text-slate-800 font-${content_website_from_company?.fonts_title}`}
+								className={`font-bold text-gray-800 font-${content_website_from_company?.fonts_title}`}
 							>
 								{dish?.name}
 							</h3>
@@ -76,10 +76,10 @@ export function Dishes({
 								</div>
 								<div className={'w-5/12'} />
 								<div className={'h-full w-7/12'}>
-									<p className={'text-start text-sm text-slate-600'}>
+									<p className={'text-start text-sm text-gray-600'}>
 										{dish?.description}
 									</p>
-									<p className={'text-end text-xs italic text-slate-700'}>
+									<p className={'text-end text-xs italic text-gray-700'}>
 										{dish?.price}&nbsp;€
 									</p>
 								</div>
@@ -96,8 +96,8 @@ export function Dishes({
 									<p
 										className={`${
 											isExpanded
-												? 'text-center text-sm font-semibold text-slate-700'
-												: 'text-start text-sm text-slate-700'
+												? 'text-center text-sm font-semibold text-gray-700'
+												: 'text-start text-sm text-gray-700'
 										} `}
 									>
 										{dish?.ingredients &&
@@ -114,7 +114,7 @@ export function Dishes({
 							)}
 							{!isExpanded && dish?.price && (
 								<div className={'flex h-full flex-col items-end justify-end'}>
-									<p className={'text-xs italic text-slate-700'}>
+									<p className={'text-xs italic text-gray-700'}>
 										{dish?.price}&nbsp;€
 									</p>
 								</div>
@@ -122,7 +122,7 @@ export function Dishes({
 						</div>
 						{isExpanded && (
 							<div className={'flex flex-col gap-2'}>
-								<p className={'text-start text-sm text-slate-700'}>
+								<p className={'text-start text-sm text-gray-700'}>
 									Allergènes présents dans le plat :
 								</p>
 								<div className={'flex flex-wrap justify-evenly gap-2'}>

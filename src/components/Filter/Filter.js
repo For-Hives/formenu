@@ -72,11 +72,11 @@ function Filter({ category, company, content_website_from_company }) {
 						<div
 							className={`relative flex h-full w-full flex-col gap-8 rounded-l-lg border border-${
 								content_website_from_company?.color ?? 'blue'
-							}-950 bg-slate-50 pb-10`}
+							}-950 bg-gray-50 pb-10`}
 						>
 							<div
 								className={
-									'relative flex gap-4 border-b border-b-slate-300 py-3 pl-4'
+									'relative flex gap-4 border-b border-b-gray-300 py-3 pl-4'
 								}
 							>
 								<Sort

@@ -22,7 +22,7 @@ export function AllergensFilter() {
 						onAllergenToggle={toggleAllergen}
 					/>
 					<p
-						className={`text-xs text-slate-600 ${
+						className={`text-xs text-gray-600 ${
 							selectedAllergens?.includes(allergen.key) && 'underline'
 						}`}
 					>

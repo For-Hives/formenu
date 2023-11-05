@@ -52,7 +52,7 @@ export function UnderlineDecoration({
 					content_website_from_company?.color ?? 'blue'
 				}-950`}
 			></div>
-			<div className={'z-10 h-screen w-0.5 bg-slate-200'}></div>
+			<div className={'z-10 h-screen w-0.5 bg-gray-200'}></div>
 		</div>
 	)
 }

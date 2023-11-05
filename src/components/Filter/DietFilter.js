@@ -23,7 +23,7 @@ export function DietFilter() {
 						onDietChange={setSelectedDiet}
 					/>
 					<p
-						className={`text-xs text-slate-600 ${
+						className={`text-xs text-gray-600 ${
 							selectedDiet === diet.key && 'underline'
 						}`}
 					>

@@ -20,7 +20,7 @@ export function DietButton({ diet, selectedDiet, onDietChange }) {
 			<span className={'absolute right-0 top-0 m-1'}>
 				<div
 					className={
-						'flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 p-0.5'
+						'flex items-center justify-center rounded-full border border-gray-300 bg-gray-50 p-0.5'
 					}
 				>
 					{isSelected ? (

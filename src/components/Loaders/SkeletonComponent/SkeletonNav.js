@@ -29,7 +29,7 @@ function SkeletonNav() {
 						}
 					>
 						<div className={'flex h-full w-[40px] justify-center'}>
-							<div className={'relative h-full w-0.5 bg-slate-950'}></div>
+							<div className={'relative h-full w-0.5 bg-gray-950'}></div>
 						</div>
 					</div>
 					{/* end ------------------------------ underline decoration ------------------------------  */}
@@ -57,9 +57,9 @@ function SkeletonNav() {
 								style={{
 									height: '100%',
 								}}
-								className={'z-0 w-0.5 bg-slate-950'}
+								className={'z-0 w-0.5 bg-gray-950'}
 							></div>
-							<div className={'z-10 h-screen w-0.5 bg-slate-200'}></div>
+							<div className={'z-10 h-screen w-0.5 bg-gray-200'}></div>
 						</div>
 						{/* ❌ loop on category if it's the first children category */}
 						<div className={'flex w-full items-center justify-end'}>

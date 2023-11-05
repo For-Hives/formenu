@@ -86,7 +86,7 @@ export function FuzzySearchField({
 			<input
 				className={`flex w-full items-center rounded-l-lg border border-${
 					content_website_from_company?.color ?? 'blue'
-				}-950 bg-slate-50 py-3 pl-12 text-sm`}
+				}-950 bg-gray-50 py-3 pl-12 text-sm`}
 				placeholder={'Rechercher un plat avec un mot clé...'}
 				onChange={onChange}
 				onFocus={onFocus}

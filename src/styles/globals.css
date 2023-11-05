@@ -65,7 +65,7 @@ nav a {
 	}
 
 	* {
-		@apply text-slate-950;
+		@apply text-gray-950;
 	}
 }
 
@@ -75,7 +75,7 @@ nav a {
 	}
 
 	.btn-alt-primary {
-		@apply flex min-h-[50px] w-[235px] items-center gap-4 rounded-lg border-[1.5px] border-blue-950 bg-slate-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:gap-6 sm:text-base;
+		@apply flex min-h-[50px] w-[235px] items-center gap-4 rounded-lg border-[1.5px] border-blue-950 bg-gray-50 px-7 py-3.5 text-sm text-blue-950 shadow-lg sm:gap-6 sm:text-base;
 	}
 
 	.container-menu {
@@ -103,10 +103,10 @@ nav a {
 	}
 
 	.diet-button {
-		@apply flex h-full w-full items-center justify-center rounded-lg bg-slate-100 py-4;
+		@apply flex h-full w-full items-center justify-center rounded-lg bg-gray-100 py-4;
 	}
 
 	.diet-button-selected {
-		@apply flex h-full w-full items-center justify-center rounded-lg bg-slate-800 py-4;
+		@apply flex h-full w-full items-center justify-center rounded-lg bg-gray-800 py-4;
 	}
 }
