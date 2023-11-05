@@ -43,7 +43,11 @@ function Filter({ category, company }) {
 						className={'relative flex items-center justify-end py-3'}
 					>
 						<div className={'flex items-center justify-center'}>
-							<div className={'btn-primary mr-2 flex min-h-[50px] w-full pr-8'}>
+							<div
+								className={`btn-primary mr-2 flex min-h-[50px] w-full pr-8 border-${
+									content_website_from_company?.color ?? 'blue'
+								}-950 bg-${content_website_from_company?.color ?? 'blue'}-950`}
+							>
 								<span className={'text-xs font-semibold text-white'}>
 									Appliquer
 								</span>

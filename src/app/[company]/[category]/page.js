@@ -58,7 +58,11 @@ export default async function Page({ params }) {
 							previous_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
-										className={'btn-primary'}
+										className={`btn-primary border-${
+											content_website_from_company?.color ?? 'blue'
+										}-950 bg-${
+											content_website_from_company?.color ?? 'blue'
+										}-950`}
 										href={`/${company}/${previous_category_data?.id.toString()}`}
 									>
 										<CustomSvg
@@ -74,7 +78,9 @@ export default async function Page({ params }) {
 						// ✅ get the parent category, url
 						<div className={'flex w-full items-center justify-start'}>
 							<Link
-								className={'btn-primary'}
+								className={`btn-primary border-${
+									content_website_from_company?.color ?? 'blue'
+								}-950 bg-${content_website_from_company?.color ?? 'blue'}-950`}
 								href={`/${company}/${current_category_data?.id.toString()}`}
 							>
 								<CustomSvg
@@ -95,7 +101,11 @@ export default async function Page({ params }) {
 										className={'flex w-full items-center justify-end'}
 									>
 										<Link
-											className={'btn-alt-primary'}
+											className={`btn-alt-primary border-${
+												content_website_from_company?.color ?? 'blue'
+											}-950 text-${
+												content_website_from_company?.color ?? 'blue'
+											}-950`}
 											href={`/${company}/${record.id.toString()}`}
 										>
 											<CustomSvg
@@ -128,7 +138,11 @@ export default async function Page({ params }) {
 							{next_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
-										className={'btn-primary'}
+										className={`btn-primary border-${
+											content_website_from_company?.color ?? 'blue'
+										}-950 bg-${
+											content_website_from_company?.color ?? 'blue'
+										}-950`}
 										href={`/${company}/${next_category_data?.id.toString()}`}
 									>
 										→&nbsp;Voir les {next_category_data?.name}
@@ -144,7 +158,11 @@ export default async function Page({ params }) {
 							next_category_data && (
 								<div className={'flex w-full items-center justify-start'}>
 									<Link
-										className={'btn-primary'}
+										className={`btn-primary border-${
+											content_website_from_company?.color ?? 'blue'
+										}-950 bg-${
+											content_website_from_company?.color ?? 'blue'
+										}-950`}
 										href={`/${company}/${next_category_data?.id.toString()}`}
 									>
 										<CustomSvg
