@@ -13,6 +13,12 @@ module.exports = {
 		{
 			pattern: /border-(cyan|yellow|red|indigo|blue|purple|teal)-(400|500|600)/,
 		},
+		{
+			pattern: /font-(lato|fraunces)/,
+		},
+		{
+			pattern: /[&>*]:font-(lato|fraunces)/,
+		},
 	],
 	theme: {
 		extend: {
