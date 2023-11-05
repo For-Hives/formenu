@@ -62,7 +62,7 @@ function Filter({ category, company, content_website_from_company }) {
 					<FuzzySearchField
 						category={category}
 						company={company}
-						content_website_from_compan={content_website_from_company}
+						content_website_from_company={content_website_from_company}
 					/>
 					<div
 						className={

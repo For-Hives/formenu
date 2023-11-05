@@ -69,7 +69,9 @@ export function Sort({ content_website_from_company }) {
 									{({ active }) =>
 										selectedOptionSort === option.key ? (
 											<button
-												className={`flex w-full items-center gap-3 bg-blue-950 px-2 py-2 text-sm text-white`}
+												className={`flex w-full items-center gap-3 bg-${
+													content_website_from_company?.color ?? 'blue'
+												}-950 px-2 py-2 text-sm text-white`}
 												onClick={() => setSelectedOptionSort(option.key)}
 											>
 												{option.title}

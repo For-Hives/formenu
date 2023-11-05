@@ -96,9 +96,9 @@ export function FuzzySearchField({
 			/>
 			<CustomSvg
 				url={'/icons/magnifying-glass.svg'}
-				classNames={
-					'ml-5 absolute top-1/2 transform -translate-y-1/2 left-0 h-[15px] w-[15px] bg-black'
-				}
+				classNames={`ml-5 absolute top-1/2 transform -translate-y-1/2 left-0 !h-[15px] !w-[15px] bg-${
+					content_website_from_company?.color ?? 'blue'
+				}-950`}
 			/>
 		</div>
 	)

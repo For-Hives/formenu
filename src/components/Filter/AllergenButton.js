@@ -31,7 +31,7 @@ export function AllergenButton({
 					{isSelected ? (
 						<CustomSvg
 							url={'/icons/check.svg'}
-							classNames={'h-[6px] w-[6px] bg-white'}
+							classNames={'!h-[6px] !w-[6px] bg-white'}
 						/>
 					) : (
 						<div className={'h-1 w-1 rounded bg-transparent'}></div>
