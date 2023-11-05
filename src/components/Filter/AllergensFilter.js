@@ -3,7 +3,7 @@ import { allergens } from '@/enum/allergensData'
 import { AllergenButton } from '@/components/Filter/AllergenButton'
 import { useStore } from '@/providers/useStore'
 
-export function AllergensFilter() {
+export function AllergensFilter({ content_website_from_company }) {
 	const selectedAllergens = useStore(state => state.selectedAllergens)
 	const toggleAllergen = useStore(state => state.toggleAllergen)
 
@@ -20,6 +20,7 @@ export function AllergensFilter() {
 						allergen={allergen}
 						selectedAllergens={selectedAllergens}
 						onAllergenToggle={toggleAllergen}
+						content_website_from_company={content_website_from_company}
 					/>
 					<p
 						className={`text-xs text-gray-600 ${

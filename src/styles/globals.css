@@ -107,6 +107,6 @@ nav a {
 	}
 
 	.diet-button-selected {
-		@apply flex h-full w-full items-center justify-center rounded-lg bg-gray-800 py-4;
+		@apply flex h-full w-full items-center justify-center rounded-lg bg-blue-900 py-4;
 	}
 }

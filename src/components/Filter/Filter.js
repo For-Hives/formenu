@@ -122,7 +122,9 @@ function Filter({ category, company, content_website_from_company }) {
 									</p>
 								</div>
 							</div>
-							<DietFilter />
+							<DietFilter
+								content_website_from_company={content_website_from_company}
+							/>
 							<div className={'flex flex-col items-start justify-center gap-3'}>
 								<div className={'flex items-center justify-start gap-3 pl-6'}>
 									<Image
@@ -138,7 +140,9 @@ function Filter({ category, company, content_website_from_company }) {
 										</span>
 									</p>
 								</div>
-								<AllergensFilter />
+								<AllergensFilter
+									content_website_from_company={content_website_from_company}
+								/>
 							</div>
 						</div>
 					</div>

@@ -12,11 +12,11 @@ module.exports = {
 		'text-3xl',
 		{
 			pattern:
-				/border-(cyan|yellow|red|indigo|blue|purple|teal)-(100|200|300|400|500|600|700|800|900|950)/,
+				/border-(cyan|yellow|red|indigo|blue|purple|teal|slate|pink|stone)-(100|200|300|400|500|600|700|800|900|950)/,
 		},
 		{
 			pattern:
-				/bg-(cyan|yellow|red|indigo|blue|purple|teal)-(100|200|300|400|500|600|700|800|900|950)/,
+				/bg-(cyan|yellow|red|indigo|blue|purple|teal|slate|pink|stone)-(100|200|300|400|500|600|700|800|900|950)/,
 		},
 		{
 			pattern: /font-(lato|fraunces)/,

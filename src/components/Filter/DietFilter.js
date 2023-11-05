@@ -4,7 +4,7 @@ import { DietButton } from '@/components/Filter/DietButton'
 
 import { useStore } from '@/providers/useStore'
 
-export function DietFilter() {
+export function DietFilter({ content_website_from_company }) {
 	const selectedDiet = useStore(state => state.selectedDiet)
 	const setSelectedDiet = useStore(state => state.setSelectedDiet)
 
@@ -21,6 +21,7 @@ export function DietFilter() {
 						diet={diet}
 						selectedDiet={selectedDiet}
 						onDietChange={setSelectedDiet}
+						content_website_from_company={content_website_from_company}
 					/>
 					<p
 						className={`text-xs text-gray-600 ${

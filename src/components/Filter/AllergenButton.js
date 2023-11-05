@@ -5,12 +5,17 @@ export function AllergenButton({
 	allergen,
 	selectedAllergens,
 	onAllergenToggle,
+	content_website_from_company,
 }) {
 	const isSelected = selectedAllergens?.includes(allergen.key)
 	return (
 		<button
 			className={`${
-				isSelected ? 'diet-button-selected' : 'diet-button'
+				isSelected
+					? `diet-button-selected bg-${
+							content_website_from_company?.color ?? 'blue'
+					  }-950`
+					: 'diet-button'
 			} relative`}
 			onClick={() => {
 				onAllergenToggle(allergen.key)
