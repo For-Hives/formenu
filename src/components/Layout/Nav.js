@@ -119,7 +119,13 @@ export async function Nav({
 															className={`${
 																selected_category.toString() ===
 																record.id.toString()
-																	? 'btn-nav-alt'
+																	? `btn-nav-alt border-${
+																			content_website_from_company?.color ??
+																			'blue'
+																	  }-950 bg-${
+																			content_website_from_company?.color ??
+																			'blue'
+																	  }-950`
 																	: `btn-nav border-${
 																			content_website_from_company?.color ??
 																			'blue'
