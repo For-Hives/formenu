@@ -17,7 +17,12 @@ export function ShoppingCartButtonResume({ company_slug }) {
 	}, [countItemsInCart, itemsInCart])
 
 	return (
-		<Link className={'btn-nav relative'} href={`/${company_slug}/cart`}>
+		<Link
+			className={`btn-nav relative border-${
+				content_website_from_company?.color ?? 'blue'
+			}-950`}
+			href={`/${company_slug}/cart`}
+		>
 			{
 				<>
 					<h4

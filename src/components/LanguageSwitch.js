@@ -13,7 +13,9 @@ export function LanguageSwitch() {
 					? process.env.NEXT_PUBLIC_URL_ALT
 					: process.env.NEXT_PUBLIC_URL
 			}`}
-			className={'btn-nav'}
+			className={`btn-nav border-${
+				content_website_from_company?.color ?? 'blue'
+			}-950`}
 		>
 			<Image
 				src={`${

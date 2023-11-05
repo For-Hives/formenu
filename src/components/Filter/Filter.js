@@ -8,7 +8,7 @@ import { useStore } from '@/providers/useStore'
 import { FuzzySearchField } from '@/components/Filter/FuzzySearchField'
 import { Sort } from '@/components/Filter/Sort'
 
-function Filter({ category, company }) {
+function Filter({ category, company, content_website_from_company }) {
 	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
 	const toggleFilterModal = useStore(state => state.toggleFilterModal)
 	const resetFilter = useStore(state => state.resetFilter)

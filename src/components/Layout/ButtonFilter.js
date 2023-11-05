@@ -8,7 +8,9 @@ export function ButtonFilter() {
 
 	return (
 		<button
-			className={'btn-nav'}
+			className={`btn-nav border-${
+				content_website_from_company?.color ?? 'blue'
+			}-950`}
 			onClick={() => {
 				toggleFilterModal()
 				// 	scroll to top
