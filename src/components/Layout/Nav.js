@@ -39,6 +39,7 @@ export async function Nav({
 							className={`btn-nav border-${
 								content_website_from_company?.color ?? 'blue'
 							}-950`}
+							content_website_from_company={content_website_from_company}
 						>
 							<Image
 								src={'/icons/left-arrow.svg'}
