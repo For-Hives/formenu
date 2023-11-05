@@ -5,7 +5,7 @@ import { CustomSvg } from '@/components/CustomSvg'
 import { useStore } from '@/providers/useStore'
 import { optionsSortData } from '@/enum/optionsSortData'
 
-export function Sort() {
+export function Sort({ content_website_from_company }) {
 	const [selectedOptionSort, setSelectedOptionSort] = useState(
 		optionsSortData[0].key
 	)
@@ -25,11 +25,17 @@ export function Sort() {
 			<div className="">
 				<Menu as="div" className="relative z-50 inline-block text-left">
 					<div>
-						<Menu.Button className="z-50 inline-flex w-full justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium text-black underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75">
+						<Menu.Button
+							className={`z-50 inline-flex w-full justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium text--${
+								content_website_from_company?.color ?? 'blue'
+							}-950 underline focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
+						>
 							<div className={'flex items-center gap-2 md:gap-4'}>
 								<CustomSvg
 									url={'/icons/filter.svg'}
-									classNames={'!h-[14px] !w-[14px] bg-black'}
+									classNames={`!h-[14px] !w-[14px] bg-${
+										content_website_from_company?.color ?? 'blue'
+									}-950`}
 								/>
 								<span className={'flex items-center text-xs italic'}>
 									Tri:&nbsp;

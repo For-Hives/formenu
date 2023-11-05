@@ -80,24 +80,28 @@ export function ShoppingCartItemsList({
 													}
 												>
 													{item?.quantity === 1 ? (
-														<>
-															<CustomSvg
-																url={'/icons/bin.svg'}
-																classNames={'bg-black h-[14px] w-[14px]'}
-															/>
-														</>
+														<CustomSvg
+															url={'/icons/bin.svg'}
+															classNames={`bg-${
+																content_website_from_company?.color ?? 'blue'
+															}-950 !h-[14px] !w-[14px]`}
+														/>
 													) : (
-														<>
-															<CustomSvg
-																url={'/icons/minus.svg'}
-																classNames={'bg-black h-[14px] w-[14px]'}
-															/>
-														</>
+														<CustomSvg
+															url={'/icons/minus.svg'}
+															classNames={`bg-${
+																content_website_from_company?.color ?? 'blue'
+															}-950 !h-[14px] !w-[14px]`}
+														/>
 													)}
 												</div>
 											</button>
 											<div className={'flex items-center justify-center'}>
-												<p className={'text-xs font-bold text-blue-950'}>
+												<p
+													className={`text-xs font-bold text-${
+														content_website_from_company?.color ?? 'blue'
+													}-950`}
+												>
 													{item?.quantity}
 												</p>
 											</div>
@@ -116,7 +120,9 @@ export function ShoppingCartItemsList({
 												>
 													<CustomSvg
 														url={'/icons/plus.svg'}
-														classNames={'bg-black h-[14px] w-[14px]'}
+														classNames={`bg-${
+															content_website_from_company?.color ?? 'blue'
+														}-950 !h-[14px] !w-[14px]`}
 													/>
 												</div>
 											</button>

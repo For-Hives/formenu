@@ -53,7 +53,7 @@ function Filter({ category, company, content_website_from_company }) {
 								</span>
 								<CustomSvg
 									url={'/icons/check.svg'}
-									classNames={'h-[12px] w-[12px] bg-white'}
+									classNames={'!h-[12px] !w-[12px] bg-white'}
 								/>
 							</div>
 						</div>
@@ -75,7 +75,9 @@ function Filter({ category, company, content_website_from_company }) {
 									'relative flex gap-4 border-b border-b-slate-300 py-3 pl-4'
 								}
 							>
-								<Sort />
+								<Sort
+									content_website_from_company={content_website_from_company}
+								/>
 
 								<div
 									className={
@@ -92,7 +94,9 @@ function Filter({ category, company, content_website_from_company }) {
 											<span className={'text-xs underline'}>Réinitialiser</span>
 											<CustomSvg
 												url={'/icons/refresh.svg'}
-												classNames={'h-[18px] w-[18px] bg-black'}
+												classNames={`!h-[18px] !w-[18px] bg-${
+													content_website_from_company?.color ?? 'blue'
+												}-950`}
 											/>
 										</button>
 									</div>

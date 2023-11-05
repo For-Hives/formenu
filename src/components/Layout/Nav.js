@@ -41,11 +41,11 @@ export async function Nav({
 							}-950`}
 							content_website_from_company={content_website_from_company}
 						>
-							<Image
-								src={'/icons/left-arrow.svg'}
-								width={15}
-								height={15}
-								alt={'back'}
+							<CustomSvg
+								url={'/icons/left-arrow.svg'}
+								classNames={`!h-[15px] !w-[15px] bg-${
+									content_website_from_company?.color ?? 'blue'
+								}-950`}
 							/>
 						</BackToPrevious>
 						<Link
@@ -54,11 +54,11 @@ export async function Nav({
 							}-950`}
 							href={'/'}
 						>
-							<Image
-								src={'/icons/back.svg'}
-								width={15}
-								height={15}
-								alt={'back'}
+							<CustomSvg
+								url={'/icons/back.svg'}
+								classNames={`!h-[15px] !w-[15px] bg-${
+									content_website_from_company?.color ?? 'blue'
+								}-950`}
 							/>
 						</Link>
 					</div>
@@ -145,7 +145,10 @@ export async function Nav({
 																	selected_category.toString() ===
 																	record.id.toString()
 																		? 'bg-white'
-																		: 'bg-black'
+																		: `bg-${
+																				content_website_from_company?.color ??
+																				'blue'
+																		  }-950}`
 																}
 															/>
 														</Link>

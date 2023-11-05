@@ -2,6 +2,7 @@
 import Image from 'next/image'
 
 import { useStore } from '@/providers/useStore'
+import { CustomSvg } from '@/components/CustomSvg'
 
 export function ButtonFilter({ content_website_from_company }) {
 	const toggleFilterModal = useStore(state => state.toggleFilterModal)
@@ -17,11 +18,11 @@ export function ButtonFilter({ content_website_from_company }) {
 				window.scrollTo(0, 0)
 			}}
 		>
-			<Image
-				src={'/icons/magnifying-glass.svg'}
-				alt={'search button'}
-				width={15}
-				height={15}
+			<CustomSvg
+				url={'/icons/magnifying-glass.svg'}
+				classNames={`!h-[15px] !w-[15px] bg-${
+					content_website_from_company?.color ?? 'blue'
+				}-950`}
 			/>
 		</button>
 	)
