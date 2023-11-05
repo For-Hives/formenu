@@ -23,11 +23,9 @@ export default async function Layout({ params, children }) {
 		params.company
 	)
 
-	console.log(content_website_from_company)
-
 	return (
 		<section
-			className={`px-2 py-16 sm:px-4 sm:py-20 [&_*]:font-${content_website_from_company?.fonts_title}`}
+			className={`px-2 py-16 sm:px-4 sm:py-20 font-${content_website_from_company?.fonts}`}
 		>
 			<div className={'flex w-full items-center justify-center gap-4 sm:gap-8'}>
 				<Image
@@ -40,11 +38,13 @@ export default async function Layout({ params, children }) {
 					className={'h-8 w-8 sm:h-12 sm:w-12'}
 				/>
 				<div className={'flex flex-col gap-1 sm:gap-2'}>
-					<h1 className={'formenu-h1'}>
+					<h1
+						className={`formenu-h1 font-${content_website_from_company?.fonts_title}`}
+					>
 						{`${content_website_from_company?.home_title}`}
 					</h1>
 					<h2
-						className={'ml-4'}
+						className={`ml-4 font-${content_website_from_company?.fonts_title}`}
 					>{`${content_website_from_company?.home_subtitle}`}</h2>
 				</div>
 			</div>

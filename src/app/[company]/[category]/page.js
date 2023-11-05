@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import {
 	getAllData_DishesFromCategory,
+	getAllData_FromCompany,
 	getCategoriesParent,
 	getCurrentCategoryInfos,
 	getNextCategoryInfos,
@@ -30,6 +31,10 @@ export default async function Page({ params }) {
 	const parent_categories = await getCategoriesParent(
 		current_category_data,
 		company
+	)
+
+	const content_website_from_company = await getAllData_FromCompany(
+		params.company
 	)
 
 	return (
@@ -111,8 +116,13 @@ export default async function Page({ params }) {
 								category={category}
 								company={company}
 								data={data}
+								content_website_from_company={content_website_from_company}
 								DishesListStatic={
-									<DishesListStatic category={category} company={company} />
+									<DishesListStatic
+										category={category}
+										company={company}
+										content_website_from_company={content_website_from_company}
+									/>
 								}
 							/>
 
