@@ -6,7 +6,11 @@ import { useEffect, useRef, useState } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { useStore } from '@/providers/useStore'
 
-export function FuzzySearchField({ category, company }) {
+export function FuzzySearchField({
+	category,
+	company,
+	content_website_from_company,
+}) {
 	const searchRef = useRef(null)
 	const [query, setQuery] = useState('')
 	const [active, setActive] = useState(false)
@@ -80,9 +84,9 @@ export function FuzzySearchField({ category, company }) {
 			}
 		>
 			<input
-				className={
-					'flex w-full items-center rounded-l-lg border border-blue-950 bg-slate-50 py-3 pl-12 text-sm'
-				}
+				className={`flex w-full items-center rounded-l-lg border border-${
+					content_website_from_company?.color ?? 'blue'
+				}-950 bg-slate-50 py-3 pl-12 text-sm`}
 				placeholder={'Rechercher un plat avec un mot clé...'}
 				onChange={onChange}
 				onFocus={onFocus}

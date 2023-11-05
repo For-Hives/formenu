@@ -59,7 +59,11 @@ function Filter({ category, company, content_website_from_company }) {
 						</div>
 					</button>
 					{/* Fuzzy Search Field */}
-					<FuzzySearchField category={category} company={company} />
+					<FuzzySearchField
+						category={category}
+						company={company}
+						content_website_from_compan={content_website_from_company}
+					/>
 					<div
 						className={
 							'relative flex w-full max-w-lg items-center justify-end shadow-xl'

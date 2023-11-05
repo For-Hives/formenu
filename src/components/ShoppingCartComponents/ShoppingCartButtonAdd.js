@@ -20,7 +20,9 @@ export function ShoppingCartButtonAdd({
 		>
 			<CustomSvg
 				url={'/icons/shopping_add.svg'}
-				classNames={'bg-blue-950 h-[25px] w-[25px]'}
+				classNames={`bg-${
+					content_website_from_company?.color ?? 'blue'
+				}-950 !h-[20px] !w-[20px]`}
 			/>
 		</button>
 	)

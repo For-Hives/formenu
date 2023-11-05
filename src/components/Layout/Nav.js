@@ -148,7 +148,7 @@ export async function Nav({
 																		: `bg-${
 																				content_website_from_company?.color ??
 																				'blue'
-																		  }-950}`
+																		  }-950`
 																}
 															/>
 														</Link>

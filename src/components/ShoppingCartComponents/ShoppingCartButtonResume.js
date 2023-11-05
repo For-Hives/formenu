@@ -39,7 +39,12 @@ export function ShoppingCartButtonResume({
 					>
 						{isLoading ? <Spinner size={'sm'} /> : <>{count}</>}
 					</h4>
-					<CustomSvg url={'/icons/shopping.svg'} classNames={'bg-blue-950'} />
+					<CustomSvg
+						url={'/icons/shopping.svg'}
+						classNames={`bg-${
+							content_website_from_company?.color ?? 'blue'
+						}-950`}
+					/>
 				</>
 			}
 		</Link>
