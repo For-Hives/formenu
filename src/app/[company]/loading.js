@@ -1,7 +1,7 @@
 import React from 'react'
 import { SkeletonMenu } from '@/components/Loaders/SkeletonComponent/SkeletonMenu'
 
-function Loading(props) {
+function Loading() {
 	return <SkeletonMenu />
 }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { Skeleton } from '@nextui-org/react'
 import { SkeletonMenu } from '@/components/Loaders/SkeletonComponent/SkeletonMenu'
 
-function SkeletonHome(props) {
+function SkeletonHome() {
 	return (
 		<section className={'px-2 py-16 sm:px-4 sm:py-20'}>
 			<div className={'flex w-full items-center justify-center gap-4 sm:gap-8'}>

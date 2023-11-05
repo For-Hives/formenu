@@ -1,7 +1,7 @@
 import React from 'react'
 import SkeletonList from '@/components/Loaders/SkeletonComponent/SkeletonList'
 
-function Loading(props) {
+function Loading() {
 	return <SkeletonList />
 }
 

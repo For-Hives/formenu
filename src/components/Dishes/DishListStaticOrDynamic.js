@@ -18,23 +18,21 @@ export function DishListStaticOrDynamic({
 	const selectedOptionSort = useStore(state => state.selectedOptionSort)
 
 	return (
-		<>
-			<Suspense
-				fallback={
-					<div className={`container-dishes`}>
-						<SkeletonDish />
-					</div>
-				}
-			>
-				{selectedDiet === 'default' &&
-				selectedAllergens.length === 0 &&
-				searchTerms === '' &&
-				selectedOptionSort === optionsSortData[0].key ? (
-					DishesListStatic
-				) : (
-					<DishesList category={category} company={company} data={data} />
-				)}
-			</Suspense>
-		</>
+		<Suspense
+			fallback={
+				<div className={`container-dishes`}>
+					<SkeletonDish />
+				</div>
+			}
+		>
+			{selectedDiet === 'default' &&
+			selectedAllergens.length === 0 &&
+			searchTerms === '' &&
+			selectedOptionSort === optionsSortData[0].key ? (
+				DishesListStatic
+			) : (
+				<DishesList category={category} company={company} data={data} />
+			)}
+		</Suspense>
 	)
 }

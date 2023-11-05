@@ -27,6 +27,9 @@ function Filter({ category, company }) {
 					onClick={() => {
 						toggleFilterModal()
 					}}
+					onKeyUp={() => {
+						toggleFilterModal()
+					}}
 				/>
 				<div
 					className={

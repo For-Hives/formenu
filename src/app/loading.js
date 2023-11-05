@@ -1,7 +1,7 @@
 import React from 'react'
 import SkeletonHome from '@/components/Loaders/SkeletonPage/SkeletonHome'
 
-function Loading(props) {
+function Loading() {
 	return <SkeletonHome />
 }
 

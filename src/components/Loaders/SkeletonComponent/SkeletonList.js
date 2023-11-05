@@ -2,7 +2,7 @@ import React from 'react'
 import { Skeleton } from '@nextui-org/react'
 import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
-function SkeletonList(props) {
+function SkeletonList() {
 	return (
 		<div className={'container-menu'}>
 			<div className={`container-sub-menus min-h-[calc(100vh-25rem)]`}>

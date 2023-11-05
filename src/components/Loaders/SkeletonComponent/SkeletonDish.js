@@ -1,7 +1,7 @@
 import React from 'react'
 import { Skeleton } from '@nextui-org/react'
 
-function SkeletonDish(props) {
+function SkeletonDish() {
 	return (
 		<>
 			{/* ----------- Container -------------- */}
