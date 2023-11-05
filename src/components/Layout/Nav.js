@@ -73,7 +73,11 @@ export async function Nav({
 							}
 						>
 							<div className={'flex h-full w-[40px] justify-center'}>
-								<div className={'relative h-full w-0.5 bg-slate-950'}></div>
+								<div
+									className={`relative h-full w-0.5 bg-${
+										content_website_from_company?.color ?? 'blue'
+									}-950`}
+								></div>
 							</div>
 						</div>
 						{/* end ------------------------------ underline decoration ------------------------------  */}
@@ -105,6 +109,7 @@ export async function Nav({
 									<UnderlineDecoration
 										parent_categories={parent_categories}
 										selected_category={selected_category}
+										content_website_from_company={content_website_from_company}
 									/>
 									{
 										<>

@@ -110,7 +110,9 @@ export default async function Page({ params }) {
 										>
 											<CustomSvg
 												url={record.icon.url}
-												classNames={'bg-blue-950'}
+												classNames={`bg-${
+													content_website_from_company?.color ?? 'blue'
+												}-950`}
 											/>
 											{record.name}
 										</Link>

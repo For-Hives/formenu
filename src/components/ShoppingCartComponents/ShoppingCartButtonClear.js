@@ -12,7 +12,10 @@ export function ShoppingCartButtonClear({ content_website_from_company }) {
 			}-950`}
 			onClick={() => resetCart()}
 		>
-			<CustomSvg url={'/icons/shopping_clear.svg'} classNames={'bg-blue-950'} />
+			<CustomSvg
+				url={'/icons/shopping_clear.svg'}
+				classNames={`bg-${content_website_from_company?.color ?? 'blue'}-950`}
+			/>
 		</button>
 	)
 }

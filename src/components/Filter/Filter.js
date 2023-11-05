@@ -66,9 +66,9 @@ function Filter({ category, company, content_website_from_company }) {
 						}
 					>
 						<div
-							className={
-								'relative flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-10'
-							}
+							className={`relative flex h-full w-full flex-col gap-8 rounded-l-lg border border-${
+								content_website_from_company?.color ?? 'blue'
+							}-950 bg-slate-50 pb-10`}
 						>
 							<div
 								className={
