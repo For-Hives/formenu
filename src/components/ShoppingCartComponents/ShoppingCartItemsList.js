@@ -7,7 +7,10 @@ import { CustomSvg } from '@/components/CustomSvg'
 
 import { useCartStore } from '@/providers/useCartStore'
 
-export function ShoppingCartItemsList({ company_slug }) {
+export function ShoppingCartItemsList({
+	company_slug,
+	content_website_from_company,
+}) {
 	const countItemsInCart = useCartStore(state => state.countItemsInCart)
 	const count = useCartStore(state => state.count)
 	const increaseQuantity = useCartStore(state => state.increaseQuantity)
@@ -50,7 +53,13 @@ export function ShoppingCartItemsList({ company_slug }) {
 											'relative flex w-full items-center justify-start'
 										}
 									>
-										<Dishes dish={itemInfo(item?.id)} cartView={true} />
+										<Dishes
+											dish={itemInfo(item?.id)}
+											cartView={true}
+											content_website_from_company={
+												content_website_from_company
+											}
+										/>
 										{/* third possibility */}
 										<div
 											className={

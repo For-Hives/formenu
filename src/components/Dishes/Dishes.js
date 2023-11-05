@@ -5,7 +5,11 @@ import { Allergens } from '@/components/Dishes/Allergens'
 import { ShoppingCartButtonAdd } from '@/components/ShoppingCartComponents/ShoppingCartButtonAdd'
 import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
-export function Dishes({ dish, cartView = false }) {
+export function Dishes({
+	dish,
+	cartView = false,
+	content_website_from_company,
+}) {
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [isClient, setIsClient] = useState(false)
 
@@ -49,7 +53,11 @@ export function Dishes({ dish, cartView = false }) {
 									className={'object-cover'}
 								/>
 							)}
-							<h3 className={'font-bold text-slate-800'}>{dish?.name}</h3>
+							<h3
+								className={`font-bold text-slate-800 font-${content_website_from_company?.fonts_title}`}
+							>
+								{dish?.name}
+							</h3>
 						</div>
 						{isExpanded && dish?.description && (
 							<div

@@ -19,8 +19,12 @@ export default async function Page() {
 					className={'h-8 w-8 sm:h-12 sm:w-12'}
 				/>
 				<div className={'flex flex-col gap-1 sm:gap-2'}>
-					<h1 className={'formenu-h1'}>{`${content_website?.home_title}`}</h1>
-					<h2 className={'ml-4'}>{`${content_website?.home_subtitle}`}</h2>
+					<h1
+						className={'formenu-h1 font-fraunces'}
+					>{`${content_website?.home_title}`}</h1>
+					<h2
+						className={'ml-4 font-fraunces'}
+					>{`${content_website?.home_subtitle}`}</h2>
 				</div>
 			</div>
 			<WrapNextUiProviders>
@@ -43,23 +47,21 @@ export default async function Page() {
 						alt={'Background restaurant 3'}
 					/>
 					<div className={'container-menus'}>
-						<>
-							<nav
-								className={
-									'pointer-events-none fixed left-0 top-0 h-screen w-screen select-none pb-16 md:pb-0'
-								}
-							>
-								<div className={'grid h-full w-full grid-cols-1'}>
-									<div
-										className={
-											'col-span-1 flex flex-col items-end justify-between gap-32 p-4 md:p-8'
-										}
-									>
-										<LanguageSwitch />
-									</div>
+						<nav
+							className={
+								'pointer-events-none fixed left-0 top-0 h-screen w-screen select-none pb-16 md:pb-0'
+							}
+						>
+							<div className={'grid h-full w-full grid-cols-1'}>
+								<div
+									className={
+										'col-span-1 flex flex-col items-end justify-between gap-32 p-4 md:p-8'
+									}
+								>
+									<LanguageSwitch />
 								</div>
-							</nav>
-						</>
+							</div>
+						</nav>
 						<CompaniesLinks />
 					</div>
 				</div>

@@ -6,7 +6,12 @@ import { useStore } from '@/providers/useStore'
 import { checkIfActivated } from '@/services/checkIfActivated'
 import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
-const DishesList = ({ category, company, data }) => {
+const DishesList = ({
+	category,
+	company,
+	data,
+	content_website_from_company,
+}) => {
 	const [filteredDishes, setFilteredDishes] = useState(null)
 
 	const checkDiet = useStore(state => state.checkDiet)
@@ -73,7 +78,13 @@ const DishesList = ({ category, company, data }) => {
 					<Suspense fallback={<SkeletonDish />}>
 						{filteredDishes.map(
 							(dish, index) =>
-								checkIfActivated(dish) && <Dishes dish={dish} key={dish.id} />
+								checkIfActivated(dish) && (
+									<Dishes
+										dish={dish}
+										key={dish.id}
+										content_website_from_company={content_website_from_company}
+									/>
+								)
 						)}
 					</Suspense>
 				</div>
