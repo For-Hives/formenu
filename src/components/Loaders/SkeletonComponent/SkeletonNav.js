@@ -61,24 +61,22 @@ function SkeletonNav() {
 							></div>
 							<div className={'z-10 h-screen w-0.5 bg-slate-200'}></div>
 						</div>
-						<>
-							{/* ❌ loop on category if it's the first children category */}
-							<div className={'flex w-full items-center justify-end'}>
-								<Skeleton className={'btn-nav rounded-full'} />
-							</div>
-							<div className={'flex w-full items-center justify-end'}>
-								<Skeleton className={'btn-nav rounded-full'} />
-							</div>
-							<div className={'flex w-full items-center justify-end'}>
-								<Skeleton className={'btn-nav rounded-full'} />
-							</div>
-							<div className={'flex w-full items-center justify-end'}>
-								<Skeleton className={'btn-nav rounded-full'} />
-							</div>
-							<div className={'flex w-full items-center justify-end'}>
-								<Skeleton className={'btn-nav rounded-full'} />
-							</div>
-						</>
+						{/* ❌ loop on category if it's the first children category */}
+						<div className={'flex w-full items-center justify-end'}>
+							<Skeleton className={'btn-nav rounded-full'} />
+						</div>
+						<div className={'flex w-full items-center justify-end'}>
+							<Skeleton className={'btn-nav rounded-full'} />
+						</div>
+						<div className={'flex w-full items-center justify-end'}>
+							<Skeleton className={'btn-nav rounded-full'} />
+						</div>
+						<div className={'flex w-full items-center justify-end'}>
+							<Skeleton className={'btn-nav rounded-full'} />
+						</div>
+						<div className={'flex w-full items-center justify-end'}>
+							<Skeleton className={'btn-nav rounded-full'} />
+						</div>
 					</div>
 				</div>
 			</div>
