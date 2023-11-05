@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 import { useStore } from '@/providers/useStore'
 
-export function ButtonFilter() {
+export function ButtonFilter({ content_website_from_company }) {
 	const toggleFilterModal = useStore(state => state.toggleFilterModal)
 
 	return (

@@ -2,7 +2,7 @@
 import { CustomSvg } from '@/components/CustomSvg'
 import { useCartStore } from '@/providers/useCartStore'
 
-export function ShoppingCartButtonClear() {
+export function ShoppingCartButtonClear({ content_website_from_company }) {
 	const resetCart = useCartStore(state => state.resetCart)
 
 	return (

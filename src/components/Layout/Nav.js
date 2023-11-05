@@ -82,10 +82,17 @@ export async function Nav({
 								'z-30 flex h-2/6 items-start justify-center gap-2 md:gap-4'
 							}
 						>
-							<ShoppingCartButtonClear />
-							<ShoppingCartButtonResume company_slug={company_slug} />
+							<ShoppingCartButtonClear
+								content_website_from_company={content_website_from_company}
+							/>
+							<ShoppingCartButtonResume
+								content_website_from_company={content_website_from_company}
+								company_slug={company_slug}
+							/>
 
-							<ButtonFilter />
+							<ButtonFilter
+								content_website_from_company={content_website_from_company}
+							/>
 						</div>
 						{
 							//     if parent_categories is null, it means that we are on cart page

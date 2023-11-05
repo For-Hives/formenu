@@ -29,6 +29,7 @@ export function Dishes({
 					{!cartView && (
 						<div className={'absolute -right-2 -top-2 z-10'}>
 							<ShoppingCartButtonAdd
+								content_website_from_company={content_website_from_company}
 								newItem={{ id: dish?.id, quantity: 1, cartView: cartView }}
 							/>
 						</div>

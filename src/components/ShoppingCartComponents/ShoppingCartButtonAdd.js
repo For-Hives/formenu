@@ -2,7 +2,10 @@
 import { CustomSvg } from '@/components/CustomSvg'
 import { useCartStore } from '@/providers/useCartStore'
 
-export function ShoppingCartButtonAdd({ newItem }) {
+export function ShoppingCartButtonAdd({
+	newItem,
+	content_website_from_company,
+}) {
 	// Set the value received from the local storage to a local state
 	const addItem = useCartStore(state => state.addItem)
 

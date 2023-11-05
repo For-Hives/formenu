@@ -5,7 +5,10 @@ import Link from 'next/link'
 import { useCartStore } from '@/providers/useCartStore'
 import { useEffect, useState } from 'react'
 
-export function ShoppingCartButtonResume({ company_slug }) {
+export function ShoppingCartButtonResume({
+	company_slug,
+	content_website_from_company,
+}) {
 	const itemsInCart = useCartStore(state => state.itemsInCart)
 	const countItemsInCart = useCartStore(state => state.countItemsInCart)
 	const count = useCartStore(state => state.count)
