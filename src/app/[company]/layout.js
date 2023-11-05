@@ -23,8 +23,12 @@ export default async function Layout({ params, children }) {
 		params.company
 	)
 
+	console.log(content_website_from_company)
+
 	return (
-		<section className={'px-2 py-16 sm:px-4 sm:py-20'}>
+		<section
+			className={`px-2 py-16 sm:px-4 sm:py-20 [&_*]:font-${content_website_from_company?.fonts_title}`}
+		>
 			<div className={'flex w-full items-center justify-center gap-4 sm:gap-8'}>
 				<Image
 					src={`${

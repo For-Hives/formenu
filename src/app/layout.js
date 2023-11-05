@@ -1,5 +1,20 @@
 import '@/styles/globals.css'
 import { getAllContentWebsite } from '@/services/getData'
+import { Lato, Fraunces } from 'next/font/google'
+
+const lato = Lato({
+	weight: ['100', '300', '400', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-lato',
+	style: ['normal', 'italic'],
+})
+
+const fraunces = Fraunces({
+	weight: ['100', '300', '400', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-fraunces',
+	style: ['normal', 'italic'],
+})
 
 export async function generateMetadata() {
 	// fetch data
@@ -40,7 +55,10 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
 	return (
-		<html lang="fr" className={'bg-slate-50'}>
+		<html
+			lang="fr"
+			className={`bg-slate-50 ${lato.variable} ${fraunces.variable}`}
+		>
 			<body
 				className={'relative flex min-h-screen w-full flex-col text-slate-950'}
 			>

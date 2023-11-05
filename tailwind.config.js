@@ -28,6 +28,10 @@ module.exports = {
 			borderWidth: {
 				3: '3px',
 			},
+			fontFamily: {
+				lato: 'var(--font-lato)',
+				fraunces: 'var(--font-fraunces)',
+			},
 		},
 	},
 	darkMode: 'class',

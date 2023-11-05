@@ -10,8 +10,6 @@
 		opacity,
 		z-index,
 		color ease-in-out 0.3s;
-	font-family: 'Lato', sans-serif;
-	font-style: normal;
 }
 
 body {
@@ -68,17 +66,6 @@ nav a {
 
 	* {
 		@apply text-slate-950;
-	}
-
-	h1,
-	h1 *,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6,
-	nav * {
-		font-family: 'Fraunces', serif;
 	}
 }
 
