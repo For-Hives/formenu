@@ -19,6 +19,10 @@ export function Dishes({
 		setIsClient(true)
 	}, [])
 
+	if (dish?.is_sidedish === true) {
+		return null
+	}
+
 	return (
 		<Suspense fallback={<SkeletonDish />}>
 			{/* is diet selected correspond to dish && allergens present */}
@@ -120,6 +124,25 @@ export function Dishes({
 								</div>
 							)}
 						</div>
+
+						{isExpanded && dish?.dishes && dish.dishes.length > 0 && (
+							<div className={'flex h-full w-full flex-col gap-2'}>
+								<div className={'flex text-sm text-gray-700'}>
+									<p>Options possibles :</p>
+								</div>
+								<ul className="flex flex-wrap gap-4">
+									{dish.dishes.map(subDish => (
+										<li
+											key={subDish.id}
+											className="rounded bg-gray-100 px-3 py-1 italic"
+										>
+											{subDish.name}
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+
 						{isExpanded && (
 							<div className={'flex flex-col gap-2'}>
 								<p className={'text-start text-sm text-gray-700'}>

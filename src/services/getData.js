@@ -87,6 +87,43 @@ export async function get_data_all(company_id) {
 		let menus = record_company.menus.map(menu => {
 			let categories = menu.categories.map(category => {
 				let dishes = category.dishes.map(dish => {
+					let subdishes =
+						dish.dishes.length > 0
+							? dish.dishes.map(subdish => {
+									return {
+										id: subdish?.id,
+										name: subdish?.name,
+										ingredients: subdish?.ingredients,
+										activated: subdish?.activated,
+										available_date_start: subdish?.available_date_start,
+										available_date_end: subdish?.available_date_end,
+										company: {
+											id: record_company.id,
+											slug: record_company.slug,
+										},
+										allergens: {
+											is_allergen_gluten: subdish?.is_allergen_gluten,
+											is_allergen_eggs: subdish?.is_allergen_eggs,
+											is_allergen_fishes: subdish?.is_allergen_fishes,
+											is_allergen_peanuts: subdish?.is_allergen_peanuts,
+											is_allergen_soybeans: subdish?.is_allergen_soybeans,
+											is_allergen_milk: subdish?.is_allergen_milk,
+											is_allergen_nuts: subdish?.is_allergen_nuts,
+											is_allergen_celery: subdish?.is_allergen_celery,
+											is_allergen_mustard: subdish?.is_allergen_mustard,
+											is_allergen_sesams: subdish?.is_allergen_sesams,
+											is_allergen_sulphurous_anhydre:
+												subdish?.is_allergen_sulphurous_anhydre,
+											is_allergen_lupins: subdish?.is_allergen_lupins,
+											is_allergen_mollusks: subdish?.is_allergen_mollusks,
+										},
+										is_vegetarian: subdish?.is_vegetarian,
+										is_vegan: subdish?.is_vegan,
+										is_sidedish: subdish?.is_sidedish,
+									}
+							  })
+							: []
+					console.log(subdishes)
 					return {
 						id: dish?.id,
 						name: dish?.name,
@@ -122,8 +159,10 @@ export async function get_data_all(company_id) {
 							is_allergen_lupins: dish?.is_allergen_lupins,
 							is_allergen_mollusks: dish?.is_allergen_mollusks,
 						},
+						dishes: subdishes,
 						is_vegetarian: dish?.is_vegetarian,
 						is_vegan: dish?.is_vegan,
+						is_sidedish: dish?.is_sidedish,
 					}
 				})
 				return {
