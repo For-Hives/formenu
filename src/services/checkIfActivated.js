@@ -20,6 +20,13 @@ export function checkIfActivated(dish) {
 		}
 	}
 
+	// Additional check for subdishes if they exist
+	if (dish.dishes) {
+		for (const subdish of dish.dishes) {
+			if (!checkIfActivated(subdish)) return false
+		}
+	}
+
 	// If all checks pass, return true
 	return true
 }

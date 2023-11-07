@@ -123,7 +123,6 @@ export async function get_data_all(company_id) {
 									}
 							  })
 							: []
-					console.log(subdishes)
 					return {
 						id: dish?.id,
 						name: dish?.name,
