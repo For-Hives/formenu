@@ -127,9 +127,9 @@ export function Dishes({
 
 						{isExpanded && dish?.dishes && dish.dishes.length > 0 && (
 							<div className={'flex h-full w-full flex-col gap-2'}>
-								<div className={'flex text-sm text-gray-700'}>
-									<p>Options possibles :</p>
-								</div>
+								<p className={'flex text-sm text-gray-700'}>
+									Options possibles :
+								</p>
 								<ul className="flex flex-wrap gap-4">
 									{dish.dishes.map(subDish => (
 										<li
