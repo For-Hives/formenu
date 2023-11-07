@@ -10,6 +10,9 @@ export const fuze_config = {
 		{ name: 'city', weight: 0.2 },
 		{ name: 'street', weight: 0.1 },
 		{ name: 'postcode', weight: 0.1 },
+		{ name: 'dishes.name', weight: 0.6 },
+		{ name: 'dishes.description', weight: 0.4 },
+		{ name: 'dishes.ingredients.name', weight: 0.6 },
 	],
 	threshold: 0.3,
 	location: 0,
@@ -17,4 +20,5 @@ export const fuze_config = {
 	includeMatches: true,
 	includeScore: true,
 	useExtendedSearch: true,
+	shouldSort: true,
 }
