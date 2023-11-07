@@ -29,6 +29,7 @@ export function FuzzySearchField({
 			const results = fuse.search(query)
 			setResults(results)
 		} else {
+			setDataStore(data?.dishes)
 			setResults([])
 		}
 	}
@@ -57,21 +58,25 @@ export function FuzzySearchField({
 	}, [category, company])
 
 	/**
-	 * Update data store when data is updated ( filter dishes via fuzejs (fuzzy search) )
+	 * Update data store when data is updated (filter dishes via Fuse.js (fuzzy search))
 	 */
 	useEffect(() => {
-		const scoredData = { ...data }
-		scoredData.dishes = data?.dishes
-			.filter(dish => results.some(result => result.item.id === dish.id)) // filter dishes
-			.map(dish => ({
-				...dish,
-				score: results.find(result => result.item.id === dish.id)?.score,
-			})) // add score
-			.sort((a, b) => a?.score - b?.score) // sort by score
+		if (query.length > 0 && results.length > 0) {
+			// Only process the search results if there is a query and there are results
+			const scoredData = results
+				.map(result => ({
+					...result.item,
+					score: result.score,
+				}))
+				.sort((a, b) => a.score - b.score) // Sort by score
 
-		setSearchTerms(query)
-		setDataStore(scoredData?.dishes)
-	}, [results])
+			setDataStore(scoredData)
+		} else {
+			// If the query is empty, reset the data store to the full list of dishes
+			setDataStore(data?.dishes)
+		}
+		setSearchTerms(query) // This might be redundant if `setQuery` already updates the search terms in the store
+	}, [results, query, data?.dishes, setDataStore, setSearchTerms])
 
 	useEffect(() => {
 		setQuery(searchTerms)
