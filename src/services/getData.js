@@ -300,6 +300,10 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 ) {
 	const company_id = await getIdFromSlug(company_slug)
 	const data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.categories) {
+		throw new Error('Categories not found')
+	}
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)
@@ -315,6 +319,10 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 export async function getAllData_FromCompany(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	const data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.companies) {
+		throw new Error('Companies not found')
+	}
 	return data.companies[0]
 }
 
@@ -327,6 +335,10 @@ export async function getAllData_FromCompany(company_slug) {
 export async function get_data_categories(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.categories) {
+		throw new Error('Categories not found')
+	}
 	return data.categories
 }
 
@@ -339,6 +351,10 @@ export async function get_data_categories(company_slug) {
 export async function get_data_menus(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.menus) {
+		throw new Error('Menus not found')
+	}
 	return data.menus
 }
 
@@ -351,6 +367,10 @@ export async function get_data_menus(company_slug) {
 export async function get_data_dishes(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.dishes) {
+		throw new Error('Dishes not found')
+	}
 	return data.dishes
 }
 
@@ -361,6 +381,10 @@ export async function get_data_dishes(company_slug) {
  */
 export async function get_data_companies() {
 	let data = await get_data_all()
+	// check if data exist if not throw error
+	if (!data.companies) {
+		throw new Error('Companies not found')
+	}
 	return data.companies
 }
 
@@ -377,6 +401,10 @@ export async function getAllData_DishesFromCategory(category, company_slug) {
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)
+	// check if data exist if not throw error
+	if (!data_dishes) {
+		throw new Error('Dishes not found')
+	}
 	return data_dishes[0]
 }
 
@@ -391,6 +419,10 @@ export async function getCurrentCategoryInfos(categoryId, company_slug) {
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
 	)
+	// check if data exist if not throw error
+	if (!data_category) {
+		throw new Error('Category not found')
+	}
 	return data_category[0]
 }
 
@@ -404,6 +436,10 @@ export async function getCurrentCategoryInfos(categoryId, company_slug) {
 export async function getCategoriesParent(current_category_data, company_slug) {
 	if (!current_category_data) return []
 	const data = await get_data_categories(company_slug)
+	// check if data exist if not throw error
+	if (!data) {
+		throw new Error('Categories not found')
+	}
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
 		record => record.depth.toString() === current_category_data.depth.toString()
@@ -432,7 +468,10 @@ export async function getPreviousCategoryInfos(
 				record.depth.toString() === current_category_data?.depth.toString()
 		)
 	})()
-
+	// check if data exist if not throw error
+	if (!previous_category) {
+		throw new Error('Category not found')
+	}
 	return previous_category[0]
 }
 
@@ -460,6 +499,9 @@ export async function getNextCategoryInfos(
 				record.depth.toString() === current_category_data?.depth.toString()
 		)
 	})()
-
+	// check if data exist if not throw error
+	if (!next_category) {
+		throw new Error('Category not found')
+	}
 	return next_category[0]
 }
