@@ -1,12 +1,8 @@
 'use client' // Error components must be Client Components
 
 import Image from 'next/image'
-import { useEffect } from 'react'
 
 export default function Error({ error, reset }) {
-	useEffect(() => {
-		console.log('Error', error)
-	}, [error])
 	return (
 		<html>
 			<body>
