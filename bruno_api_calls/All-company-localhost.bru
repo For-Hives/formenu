@@ -1,0 +1,20 @@
+meta {
+  name: All-company-localhost
+  type: http
+  seq: 3
+}
+
+get {
+  url: http://localhost:1337/api/all-company
+  body: none
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+  Accept: application/json
+}
+
+auth:bearer {
+  token: {{process.env.NEXT_PUBLIC_API_TOKEN}}
+}

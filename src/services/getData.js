@@ -87,6 +87,42 @@ export async function get_data_all(company_id) {
 		let menus = record_company.menus.map(menu => {
 			let categories = menu.categories.map(category => {
 				let dishes = category.dishes.map(dish => {
+					let subdishes =
+						dish.dishes.length > 0
+							? dish.dishes.map(subdish => {
+									return {
+										id: subdish?.id,
+										name: subdish?.name,
+										ingredients: subdish?.ingredients,
+										activated: subdish?.activated,
+										available_date_start: subdish?.available_date_start,
+										available_date_end: subdish?.available_date_end,
+										company: {
+											id: record_company.id,
+											slug: record_company.slug,
+										},
+										allergens: {
+											is_allergen_gluten: subdish?.is_allergen_gluten,
+											is_allergen_eggs: subdish?.is_allergen_eggs,
+											is_allergen_fishes: subdish?.is_allergen_fishes,
+											is_allergen_peanuts: subdish?.is_allergen_peanuts,
+											is_allergen_soybeans: subdish?.is_allergen_soybeans,
+											is_allergen_milk: subdish?.is_allergen_milk,
+											is_allergen_nuts: subdish?.is_allergen_nuts,
+											is_allergen_celery: subdish?.is_allergen_celery,
+											is_allergen_mustard: subdish?.is_allergen_mustard,
+											is_allergen_sesams: subdish?.is_allergen_sesams,
+											is_allergen_sulphurous_anhydre:
+												subdish?.is_allergen_sulphurous_anhydre,
+											is_allergen_lupins: subdish?.is_allergen_lupins,
+											is_allergen_mollusks: subdish?.is_allergen_mollusks,
+										},
+										is_vegetarian: subdish?.is_vegetarian,
+										is_vegan: subdish?.is_vegan,
+										is_sidedish: subdish?.is_sidedish,
+									}
+							  })
+							: []
 					return {
 						id: dish?.id,
 						name: dish?.name,
@@ -97,6 +133,11 @@ export async function get_data_all(company_id) {
 						image: dish?.image,
 						type_dish: dish?.type_dish,
 						category: dish?.category,
+						activated: dish?.activated,
+						available_date_start: dish?.available_date_start,
+						available_date_end: dish?.available_date_end,
+						createdAt: dish?.createdAt,
+						updatedAt: dish?.updatedAt,
 						company: {
 							id: record_company.id,
 							slug: record_company.slug,
@@ -117,8 +158,10 @@ export async function get_data_all(company_id) {
 							is_allergen_lupins: dish?.is_allergen_lupins,
 							is_allergen_mollusks: dish?.is_allergen_mollusks,
 						},
+						dishes: subdishes,
 						is_vegetarian: dish?.is_vegetarian,
 						is_vegan: dish?.is_vegan,
+						is_sidedish: dish?.is_sidedish,
 					}
 				})
 				return {
@@ -141,6 +184,8 @@ export async function get_data_all(company_id) {
 				title: menu?.title,
 				description: menu?.description,
 				activated: menu?.activated,
+				available_date_start: menu?.available_date_start,
+				available_date_end: menu?.available_date_end,
 				color: menu?.color,
 				fonts: menu?.fonts,
 				image: menu?.image,
@@ -159,6 +204,9 @@ export async function get_data_all(company_id) {
 			street: record_company?.street,
 			postcode: record_company?.postcode,
 			slug: record_company?.slug,
+			color: record_company?.color,
+			fonts: record_company?.fonts,
+			fonts_title: record_company?.fonts_title,
 			menus: menus,
 			metadata_title: record_company?.content?.metadata_title,
 			metadata_description: record_company?.content?.metadata_description,
@@ -234,6 +282,10 @@ async function getIdFromSlug(slug) {
 	const company = data.companies.filter(
 		record => record.slug.toString() === slug.toString()
 	)
+	// check if company exist if not throw error
+	if (!company[0]) {
+		throw new Error('Company not found')
+	}
 	return company[0]?.id
 }
 
@@ -248,6 +300,10 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 ) {
 	const company_id = await getIdFromSlug(company_slug)
 	const data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.categories) {
+		throw new Error('Categories not found')
+	}
 	// 	filter data.categories, to get all categories with depth = 0 & sort by order
 	return data.categories
 		.filter(category => category.depth === 0)
@@ -263,6 +319,10 @@ export async function getAllData_CategoriesWith0DepthAndSortByOrder(
 export async function getAllData_FromCompany(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	const data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.companies) {
+		throw new Error('Companies not found')
+	}
 	return data.companies[0]
 }
 
@@ -275,6 +335,10 @@ export async function getAllData_FromCompany(company_slug) {
 export async function get_data_categories(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.categories) {
+		throw new Error('Categories not found')
+	}
 	return data.categories
 }
 
@@ -287,6 +351,10 @@ export async function get_data_categories(company_slug) {
 export async function get_data_menus(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.menus) {
+		throw new Error('Menus not found')
+	}
 	return data.menus
 }
 
@@ -299,6 +367,10 @@ export async function get_data_menus(company_slug) {
 export async function get_data_dishes(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
 	let data = await get_data_all(company_id)
+	// check if data exist if not throw error
+	if (!data.dishes) {
+		throw new Error('Dishes not found')
+	}
 	return data.dishes
 }
 
@@ -309,6 +381,10 @@ export async function get_data_dishes(company_slug) {
  */
 export async function get_data_companies() {
 	let data = await get_data_all()
+	// check if data exist if not throw error
+	if (!data.companies) {
+		throw new Error('Companies not found')
+	}
 	return data.companies
 }
 
@@ -325,6 +401,10 @@ export async function getAllData_DishesFromCategory(category, company_slug) {
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)
+	// check if data exist if not throw error
+	if (!data_dishes) {
+		throw new Error('Dishes not found')
+	}
 	return data_dishes[0]
 }
 
@@ -339,6 +419,10 @@ export async function getCurrentCategoryInfos(categoryId, company_slug) {
 	const data_category = data.filter(
 		record => record.id.toString() === categoryId.toString()
 	)
+	// check if data exist if not throw error
+	if (!data_category) {
+		throw new Error('Category not found')
+	}
 	return data_category[0]
 }
 
@@ -352,6 +436,10 @@ export async function getCurrentCategoryInfos(categoryId, company_slug) {
 export async function getCategoriesParent(current_category_data, company_slug) {
 	if (!current_category_data) return []
 	const data = await get_data_categories(company_slug)
+	// check if data exist if not throw error
+	if (!data) {
+		throw new Error('Categories not found')
+	}
 	// get the parent category (depth - 1) of current_category_data
 	return data.filter(
 		record => record.depth.toString() === current_category_data.depth.toString()
@@ -380,7 +468,10 @@ export async function getPreviousCategoryInfos(
 				record.depth.toString() === current_category_data?.depth.toString()
 		)
 	})()
-
+	// check if data exist if not throw error
+	if (!previous_category) {
+		throw new Error('Category not found')
+	}
 	return previous_category[0]
 }
 
@@ -408,6 +499,9 @@ export async function getNextCategoryInfos(
 				record.depth.toString() === current_category_data?.depth.toString()
 		)
 	})()
-
+	// check if data exist if not throw error
+	if (!next_category) {
+		throw new Error('Category not found')
+	}
 	return next_category[0]
 }

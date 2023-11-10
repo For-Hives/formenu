@@ -35,7 +35,9 @@ That is the list of technologies that ForMenu use.
 > > - [Bruno](https://github.com/usebruno/bruno)
 > > - [EsLint](https://eslint.org/)
 > > - [Husky](https://typicode.github.io/husky/#/)
-
+> > - [FuseJS](https://www.fusejs.io/) 
+> 
+> 
 > **CI/CD**
 >
 > > - GitHub CI

@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from 'react'
 
-export function UnderlineDecoration({ parent_categories, selected_category }) {
+export function UnderlineDecoration({
+	parent_categories,
+	selected_category,
+	content_website_from_company,
+}) {
 	const [matches, setMatches] = useState(false)
 
 	useEffect(() => {
@@ -44,9 +48,11 @@ export function UnderlineDecoration({ parent_categories, selected_category }) {
 				style={{
 					height: heightStyle,
 				}}
-				className={'z-0 w-0.5 bg-slate-950'}
+				className={`z-0 w-0.5 bg-${
+					content_website_from_company?.color ?? 'blue'
+				}-950`}
 			></div>
-			<div className={'z-10 h-screen w-0.5 bg-slate-200'}></div>
+			<div className={'z-10 h-screen w-0.5 bg-gray-200'}></div>
 		</div>
 	)
 }

@@ -16,7 +16,7 @@ export function CardBackground({ placementClassName, src, alt }) {
 			</div>
 			<div
 				className={
-					'absolute left-6 top-6 -z-10 h-full w-full rounded-xl border-2 border-slate-950/75'
+					'absolute left-6 top-6 -z-10 h-full w-full rounded-xl border-2 border-gray-950/75'
 				}
 			/>
 		</div>

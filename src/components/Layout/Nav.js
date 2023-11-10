@@ -7,18 +7,26 @@ import { ShoppingCartButtonResume } from '@/components/ShoppingCartComponents/Sh
 import { ShoppingCartButtonClear } from '@/components/ShoppingCartComponents/ShoppingCartButtonClear'
 import Filter from '@/components/Filter/Filter'
 import { ButtonFilter } from '@/components/Layout/ButtonFilter'
+import { getAllData_FromCompany } from '@/services/getData'
 
 export async function Nav({
 	parent_categories = null,
 	selected_category = null,
+	company = null,
+	category = null,
 	company_slug,
 }) {
+	const content_website_from_company = await getAllData_FromCompany(company)
 	return (
 		<>
-			<Filter />
+			<Filter
+				category={category}
+				company={company}
+				content_website_from_company={content_website_from_company}
+			/>
 			<nav
 				className={
-					'pointer-events-none fixed left-0 top-0 z-10 h-screen w-screen select-none pb-8 md:pb-0'
+					'pointer-events-none fixed left-0 top-0 z-30 h-screen w-screen select-none pb-8 md:pb-0'
 				}
 			>
 				<div className={'grid h-full w-full grid-cols-2'}>
@@ -27,20 +35,30 @@ export async function Nav({
 							'col-span-1 flex items-start justify-start gap-2 p-4 sm:gap-4 md:p-8'
 						}
 					>
-						<BackToPrevious className={'btn-nav'}>
-							<Image
-								src={'/icons/left-arrow.svg'}
-								width={15}
-								height={15}
-								alt={'back'}
+						<BackToPrevious
+							className={`btn-nav border-${
+								content_website_from_company?.color ?? 'blue'
+							}-950`}
+							content_website_from_company={content_website_from_company}
+						>
+							<CustomSvg
+								url={'/icons/left-arrow.svg'}
+								classNames={`!h-[15px] !w-[15px] bg-${
+									content_website_from_company?.color ?? 'blue'
+								}-950`}
 							/>
 						</BackToPrevious>
-						<Link className={'btn-nav'} href={'/'}>
-							<Image
-								src={'/icons/back.svg'}
-								width={15}
-								height={15}
-								alt={'back'}
+						<Link
+							className={`btn-nav border-${
+								content_website_from_company?.color ?? 'blue'
+							}-950`}
+							href={'/'}
+						>
+							<CustomSvg
+								url={'/icons/back.svg'}
+								classNames={`!h-[15px] !w-[15px] bg-${
+									content_website_from_company?.color ?? 'blue'
+								}-950`}
 							/>
 						</Link>
 					</div>
@@ -56,17 +74,30 @@ export async function Nav({
 							}
 						>
 							<div className={'flex h-full w-[40px] justify-center'}>
-								<div className={'relative h-full w-0.5 bg-slate-950'}></div>
+								<div
+									className={`relative h-full w-0.5 bg-${
+										content_website_from_company?.color ?? 'blue'
+									}-950`}
+								></div>
 							</div>
 						</div>
 						{/* end ------------------------------ underline decoration ------------------------------  */}
 						<div
-							className={'flex h-2/6 items-start justify-center gap-2 md:gap-4'}
+							className={
+								'z-30 flex h-2/6 items-start justify-center gap-2 md:gap-4'
+							}
 						>
-							<ShoppingCartButtonClear />
-							<ShoppingCartButtonResume company_slug={company_slug} />
+							<ShoppingCartButtonClear
+								content_website_from_company={content_website_from_company}
+							/>
+							<ShoppingCartButtonResume
+								content_website_from_company={content_website_from_company}
+								company_slug={company_slug}
+							/>
 
-							<ButtonFilter />
+							<ButtonFilter
+								content_website_from_company={content_website_from_company}
+							/>
 						</div>
 						{
 							//     if parent_categories is null, it means that we are on cart page
@@ -79,6 +110,7 @@ export async function Nav({
 									<UnderlineDecoration
 										parent_categories={parent_categories}
 										selected_category={selected_category}
+										content_website_from_company={content_website_from_company}
 									/>
 									{
 										<>
@@ -93,8 +125,17 @@ export async function Nav({
 															className={`${
 																selected_category.toString() ===
 																record.id.toString()
-																	? 'btn-nav-alt'
-																	: 'btn-nav'
+																	? `btn-nav-alt border-${
+																			content_website_from_company?.color ??
+																			'blue'
+																	  }-950 bg-${
+																			content_website_from_company?.color ??
+																			'blue'
+																	  }-950`
+																	: `btn-nav border-${
+																			content_website_from_company?.color ??
+																			'blue'
+																	  }-950`
 															}`}
 															href={`/${company_slug}/${record.id.toString()}`}
 														>
@@ -104,7 +145,10 @@ export async function Nav({
 																	selected_category.toString() ===
 																	record.id.toString()
 																		? 'bg-white'
-																		: 'bg-black'
+																		: `bg-${
+																				content_website_from_company?.color ??
+																				'blue'
+																		  }-950`
 																}
 															/>
 														</Link>

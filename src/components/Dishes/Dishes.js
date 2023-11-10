@@ -1,10 +1,15 @@
 'use client'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { Allergens } from '@/components/Dishes/Allergens'
 import { ShoppingCartButtonAdd } from '@/components/ShoppingCartComponents/ShoppingCartButtonAdd'
+import SkeletonDish from '@/components/Loaders/SkeletonComponent/SkeletonDish'
 
-export function Dishes({ dish, cartView = false }) {
+export function Dishes({
+	dish,
+	cartView = false,
+	content_website_from_company,
+}) {
 	const [isExpanded, setIsExpanded] = useState(false)
 	const [isClient, setIsClient] = useState(false)
 
@@ -14,16 +19,21 @@ export function Dishes({ dish, cartView = false }) {
 		setIsClient(true)
 	}, [])
 
+	if (dish?.is_sidedish === true) {
+		return null
+	}
+
 	return (
-		<>
+		<Suspense fallback={<SkeletonDish />}>
 			{/* is diet selected correspond to dish && allergens present */}
 			{isClient && (
 				<div
-					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-slate-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
+					className={`relative my-2 flex w-full items-center justify-center rounded-lg border-l-3 bg-gray-50 p-4 shadow-xl border-${dish?.type_dish?.color}`}
 				>
 					{!cartView && (
-						<div className={'absolute -right-2 -top-2 z-30'}>
+						<div className={'absolute -right-2 -top-2 z-10'}>
 							<ShoppingCartButtonAdd
+								content_website_from_company={content_website_from_company}
 								newItem={{ id: dish?.id, quantity: 1, cartView: cartView }}
 							/>
 						</div>
@@ -48,7 +58,11 @@ export function Dishes({ dish, cartView = false }) {
 									className={'object-cover'}
 								/>
 							)}
-							<h3 className={'font-bold text-slate-800'}>{dish?.name}</h3>
+							<h3
+								className={`font-bold text-gray-800 font-${content_website_from_company?.fonts_title}`}
+							>
+								{dish?.name}
+							</h3>
 						</div>
 						{isExpanded && dish?.description && (
 							<div
@@ -66,10 +80,10 @@ export function Dishes({ dish, cartView = false }) {
 								</div>
 								<div className={'w-5/12'} />
 								<div className={'h-full w-7/12'}>
-									<p className={'text-start text-sm text-slate-600'}>
+									<p className={'text-start text-sm text-gray-600'}>
 										{dish?.description}
 									</p>
-									<p className={'text-end text-xs italic text-slate-700'}>
+									<p className={'text-end text-xs italic text-gray-700'}>
 										{dish?.price}&nbsp;€
 									</p>
 								</div>
@@ -86,8 +100,8 @@ export function Dishes({ dish, cartView = false }) {
 									<p
 										className={`${
 											isExpanded
-												? 'text-center text-sm font-semibold text-slate-700'
-												: 'text-start text-sm text-slate-700'
+												? 'text-center text-sm font-semibold text-gray-700'
+												: 'text-start text-sm text-gray-700'
 										} `}
 									>
 										{dish?.ingredients &&
@@ -104,15 +118,34 @@ export function Dishes({ dish, cartView = false }) {
 							)}
 							{!isExpanded && dish?.price && (
 								<div className={'flex h-full flex-col items-end justify-end'}>
-									<p className={'text-xs italic text-slate-700'}>
+									<p className={'text-xs italic text-gray-700'}>
 										{dish?.price}&nbsp;€
 									</p>
 								</div>
 							)}
 						</div>
+
+						{isExpanded && dish?.dishes && dish.dishes.length > 0 && (
+							<div className={'flex h-full w-full flex-col gap-2'}>
+								<p className={'flex text-sm text-gray-700'}>
+									Options possibles :
+								</p>
+								<ul className="flex flex-wrap gap-4">
+									{dish.dishes.map(subDish => (
+										<li
+											key={subDish.id}
+											className="rounded bg-gray-100 px-3 py-1 italic"
+										>
+											{subDish.name}
+										</li>
+									))}
+								</ul>
+							</div>
+						)}
+
 						{isExpanded && (
 							<div className={'flex flex-col gap-2'}>
-								<p className={'text-start text-sm text-slate-700'}>
+								<p className={'text-start text-sm text-gray-700'}>
 									Allergènes présents dans le plat :
 								</p>
 								<div className={'flex flex-wrap justify-evenly gap-2'}>
@@ -123,6 +156,6 @@ export function Dishes({ dish, cartView = false }) {
 					</button>
 				</div>
 			)}
-		</>
+		</Suspense>
 	)
 }

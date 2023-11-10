@@ -1,10 +1,21 @@
 import '@/styles/globals.css'
 import { getAllContentWebsite } from '@/services/getData'
+import { Lato, Fraunces } from 'next/font/google'
 
-/**
- * RootLayout
- * @returns {Promise<{description: (*|string), links: [{rel: string, href: string},{rel: string, crossOrigin: boolean, href: string},{rel: string, href: string}], title: (*|string), metadataBase: URL, alternates: {languages: {"en-US": string, "fr-FR": string}, canonical: string}}>}
- */
+const lato = Lato({
+	weight: ['100', '300', '400', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-lato',
+	style: ['normal', 'italic'],
+})
+
+const fraunces = Fraunces({
+	weight: ['100', '300', '400', '700', '900'],
+	subsets: ['latin'],
+	variable: '--font-fraunces',
+	style: ['normal', 'italic'],
+})
+
 export async function generateMetadata() {
 	// fetch data
 	const content_website = await getAllContentWebsite()
@@ -44,9 +55,12 @@ export async function generateMetadata() {
 
 export default async function RootLayout({ children }) {
 	return (
-		<html lang="fr" className={'bg-slate-50'}>
+		<html
+			lang="fr"
+			className={`bg-gray-50 ${lato.variable} ${fraunces.variable}`}
+		>
 			<body
-				className={'relative flex min-h-screen w-full flex-col text-slate-950'}
+				className={'relative flex min-h-screen w-full flex-col text-gray-950'}
 			>
 				<main className={'h-full min-h-screen'}>{children}</main>
 			</body>

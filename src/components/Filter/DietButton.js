@@ -1,11 +1,20 @@
 import Image from 'next/image'
 
-export function DietButton({ diet, selectedDiet, onDietChange }) {
+export function DietButton({
+	diet,
+	selectedDiet,
+	onDietChange,
+	content_website_from_company,
+}) {
 	const isSelected = diet.key === selectedDiet
 	return (
 		<button
 			className={`${
-				isSelected ? 'diet-button-selected' : 'diet-button'
+				isSelected
+					? `diet-button-selected bg-${
+							content_website_from_company?.color ?? 'blue'
+					  }-950`
+					: 'diet-button'
 			} relative`}
 			onClick={() => {
 				onDietChange(diet.key)
@@ -20,7 +29,7 @@ export function DietButton({ diet, selectedDiet, onDietChange }) {
 			<span className={'absolute right-0 top-0 m-1'}>
 				<div
 					className={
-						'flex items-center justify-center rounded-full border border-slate-300 bg-slate-50 p-0.5'
+						'flex items-center justify-center rounded-full border border-gray-300 bg-gray-50 p-0.5'
 					}
 				>
 					{isSelected ? (

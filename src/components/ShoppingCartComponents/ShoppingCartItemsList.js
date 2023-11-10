@@ -7,9 +7,10 @@ import { CustomSvg } from '@/components/CustomSvg'
 
 import { useCartStore } from '@/providers/useCartStore'
 
-export function ShoppingCartItemsList({ company_slug }) {
-	// const { itemsInCart, countItemsInCart, increaseQuantity, decreaseQuantity } =
-	// 	useCart()
+export function ShoppingCartItemsList({
+	company_slug,
+	content_website_from_company,
+}) {
 	const countItemsInCart = useCartStore(state => state.countItemsInCart)
 	const count = useCartStore(state => state.count)
 	const increaseQuantity = useCartStore(state => state.increaseQuantity)
@@ -33,7 +34,6 @@ export function ShoppingCartItemsList({ company_slug }) {
 	useEffect(() => {
 		countItemsInCart()
 		setIsLoading(false)
-		console.log('itemsInCart', itemsInCart)
 	}, [countItemsInCart, itemsInCart])
 
 	return (
@@ -53,16 +53,22 @@ export function ShoppingCartItemsList({ company_slug }) {
 											'relative flex w-full items-center justify-start'
 										}
 									>
-										<Dishes dish={itemInfo(item?.id)} cartView={true} />
+										<Dishes
+											dish={itemInfo(item?.id)}
+											cartView={true}
+											content_website_from_company={
+												content_website_from_company
+											}
+										/>
 										{/* third possibility */}
 										<div
 											className={
-												'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-slate-300 bg-white shadow'
+												'absolute -right-2 -top-2 flex h-8 items-center justify-center gap-4 rounded-lg border border-gray-300 bg-white shadow'
 											}
 										>
 											<button
 												className={
-													'flex h-full items-center justify-center rounded-l-lg bg-slate-200/50 px-3 py-2 text-xs'
+													'flex h-full items-center justify-center rounded-l-lg bg-gray-200/50 px-3 py-2 text-xs'
 												}
 												onClick={() => {
 													decreaseQuantity(item)
@@ -74,30 +80,34 @@ export function ShoppingCartItemsList({ company_slug }) {
 													}
 												>
 													{item?.quantity === 1 ? (
-														<>
-															<CustomSvg
-																url={'/icons/bin.svg'}
-																classNames={'bg-black h-[14px] w-[14px]'}
-															/>
-														</>
+														<CustomSvg
+															url={'/icons/bin.svg'}
+															classNames={`bg-${
+																content_website_from_company?.color ?? 'blue'
+															}-950 !h-[14px] !w-[14px]`}
+														/>
 													) : (
-														<>
-															<CustomSvg
-																url={'/icons/minus.svg'}
-																classNames={'bg-black h-[14px] w-[14px]'}
-															/>
-														</>
+														<CustomSvg
+															url={'/icons/minus.svg'}
+															classNames={`bg-${
+																content_website_from_company?.color ?? 'blue'
+															}-950 !h-[14px] !w-[14px]`}
+														/>
 													)}
 												</div>
 											</button>
 											<div className={'flex items-center justify-center'}>
-												<p className={'text-xs font-bold text-blue-950'}>
+												<p
+													className={`text-xs font-bold text-${
+														content_website_from_company?.color ?? 'blue'
+													}-950`}
+												>
 													{item?.quantity}
 												</p>
 											</div>
 											<button
 												className={
-													'flex h-full items-center justify-center rounded-r-lg bg-slate-200/50 px-3 py-2 text-xs'
+													'flex h-full items-center justify-center rounded-r-lg bg-gray-200/50 px-3 py-2 text-xs'
 												}
 												onClick={() => {
 													increaseQuantity(item)
@@ -110,7 +120,9 @@ export function ShoppingCartItemsList({ company_slug }) {
 												>
 													<CustomSvg
 														url={'/icons/plus.svg'}
-														classNames={'bg-black h-[14px] w-[14px]'}
+														classNames={`bg-${
+															content_website_from_company?.color ?? 'blue'
+														}-950 !h-[14px] !w-[14px]`}
 													/>
 												</div>
 											</button>

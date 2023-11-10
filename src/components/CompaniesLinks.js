@@ -10,7 +10,7 @@ export async function CompaniesLinks() {
 			{data?.map(record => {
 				return (
 					<Link
-						className={'btn-alt-primary'}
+						className={`btn-alt-primary border-blue-950 text-blue-950`}
 						key={record.id}
 						href={`/${record.slug}`}
 					>

@@ -6,8 +6,9 @@ import { DietFilter } from '@/components/Filter/DietFilter'
 import { AllergensFilter } from '@/components/Filter/AllergensFilter'
 import { useStore } from '@/providers/useStore'
 import { FuzzySearchField } from '@/components/Filter/FuzzySearchField'
+import { Sort } from '@/components/Filter/Sort'
 
-function Filter() {
+function Filter({ category, company, content_website_from_company }) {
 	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
 	const toggleFilterModal = useStore(state => state.toggleFilterModal)
 	const resetFilter = useStore(state => state.resetFilter)
@@ -18,12 +19,15 @@ function Filter() {
 				isFilterModalClosed
 					? 'pointer-events-none -z-10 select-none opacity-0'
 					: 'pointer-events-auto z-50 select-auto opacity-100'
-			} fixed left-0 top-0 flex min-h-screen w-screen items-start justify-start bg-black/10 backdrop-blur-sm transition-all`}
+			} absolute left-0 top-0 flex h-full w-full items-start justify-start overflow-y-visible bg-black/10 backdrop-blur-sm transition-all`}
 		>
 			<div className={'relative h-full w-full py-4'}>
 				<div
 					className={'absolute left-0 top-0 h-full w-full'}
 					onClick={() => {
+						toggleFilterModal()
+					}}
+					onKeyUp={() => {
 						toggleFilterModal()
 					}}
 				/>
@@ -36,44 +40,52 @@ function Filter() {
 						onClick={() => {
 							toggleFilterModal()
 						}}
-						className={
-							'relative flex items-center justify-end rounded-l-lg border border-blue-900 bg-slate-50 px-4 py-3 shadow-xl'
-						}
+						className={'relative flex items-center justify-end py-3'}
 					>
-						<div className={'flex items-center justify-center pr-4'}>
-							<CustomSvg
-								url={'/icons/close.svg'}
-								classNames={'h-[10px] w-[10px] bg-black'}
-							/>
+						<div className={'flex items-center justify-center'}>
+							<div
+								className={`btn-primary mr-2 flex min-h-[50px] w-full pr-8 border-${
+									content_website_from_company?.color ?? 'blue'
+								}-950 bg-${content_website_from_company?.color ?? 'blue'}-950`}
+							>
+								<span className={'text-xs font-semibold text-white'}>
+									Appliquer
+								</span>
+								<CustomSvg
+									url={'/icons/check.svg'}
+									classNames={'!h-[12px] !w-[12px] bg-white'}
+								/>
+							</div>
 						</div>
 					</button>
 					{/* Fuzzy Search Field */}
-					<FuzzySearchField />
+					<FuzzySearchField
+						category={category}
+						company={company}
+						content_website_from_company={content_website_from_company}
+					/>
 					<div
 						className={
 							'relative flex w-full max-w-lg items-center justify-end shadow-xl'
 						}
 					>
 						<div
-							className={
-								'relative flex h-full w-full flex-col gap-8 rounded-l-lg border border-blue-950 bg-slate-50 pb-10'
-							}
+							className={`relative flex h-full w-full flex-col gap-8 rounded-l-lg border border-${
+								content_website_from_company?.color ?? 'blue'
+							}-950 bg-gray-50 pb-10`}
 						>
 							<div
 								className={
-									'relative flex gap-4 border-b border-b-slate-300 py-3 pl-4'
+									'relative flex gap-4 border-b border-b-gray-300 py-3 pl-4'
 								}
 							>
-								<div className={'flex items-center justify-center'}>
-									<CustomSvg
-										url={'/icons/filter.svg'}
-										classNames={'h-[15px] w-[15px] bg-black'}
-									/>
-								</div>
-								<p className={'text-sm font-bold'}>Filtrer</p>
+								<Sort
+									content_website_from_company={content_website_from_company}
+								/>
+
 								<div
 									className={
-										'absolute right-0 top-0 flex h-full w-1/3 items-center justify-end border-l border-slate-300'
+										'absolute right-0 top-0 flex h-full w-full items-center justify-end'
 									}
 								>
 									<div className={'flex items-center justify-center pr-10'}>
@@ -86,7 +98,9 @@ function Filter() {
 											<span className={'text-xs underline'}>Réinitialiser</span>
 											<CustomSvg
 												url={'/icons/refresh.svg'}
-												classNames={'h-[18px] w-[18px] bg-black'}
+												classNames={`!h-[18px] !w-[18px] bg-${
+													content_website_from_company?.color ?? 'blue'
+												}-950`}
 											/>
 										</button>
 									</div>
@@ -108,7 +122,9 @@ function Filter() {
 									</p>
 								</div>
 							</div>
-							<DietFilter />
+							<DietFilter
+								content_website_from_company={content_website_from_company}
+							/>
 							<div className={'flex flex-col items-start justify-center gap-3'}>
 								<div className={'flex items-center justify-start gap-3 pl-6'}>
 									<Image
@@ -124,31 +140,9 @@ function Filter() {
 										</span>
 									</p>
 								</div>
-								<AllergensFilter />
-							</div>
-							<div
-								className={
-									'absolute -right-4 bottom-0 flex items-center justify-center'
-								}
-							>
-								<button
-									onClick={() => {
-										toggleFilterModal()
-									}}
-									className={
-										'relative flex items-center justify-end rounded-l-lg  px-4 py-3'
-									}
-								>
-									<div className={'btn-primary flex min-h-[50px] w-full pr-8'}>
-										<span className={'text-xs font-semibold text-white'}>
-											Appliquer
-										</span>
-										<CustomSvg
-											url={'/icons/check.svg'}
-											classNames={'h-[9px] w-[9px] bg-white'}
-										/>
-									</div>
-								</button>
+								<AllergensFilter
+									content_website_from_company={content_website_from_company}
+								/>
 							</div>
 						</div>
 					</div>

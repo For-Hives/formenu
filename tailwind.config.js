@@ -11,7 +11,15 @@ module.exports = {
 		'text-2xl',
 		'text-3xl',
 		{
-			pattern: /border-(cyan|yellow|red|indigo|blue|purple|teal)-(400|500|600)/,
+			pattern:
+				/border-(cyan|yellow|red|indigo|blue|purple|teal|slate|pink|stone)-(100|200|300|400|500|600|700|800|900|950)/,
+		},
+		{
+			pattern:
+				/bg-(cyan|yellow|red|indigo|blue|purple|teal|slate|pink|stone)-(100|200|300|400|500|600|700|800|900|950)/,
+		},
+		{
+			pattern: /font-(lato|fraunces)/,
 		},
 	],
 	theme: {
@@ -27,6 +35,10 @@ module.exports = {
 			},
 			borderWidth: {
 				3: '3px',
+			},
+			fontFamily: {
+				lato: 'var(--font-lato)',
+				fraunces: 'var(--font-fraunces)',
 			},
 		},
 	},
