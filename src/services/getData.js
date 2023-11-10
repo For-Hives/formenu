@@ -282,6 +282,10 @@ async function getIdFromSlug(slug) {
 	const company = data.companies.filter(
 		record => record.slug.toString() === slug.toString()
 	)
+	// check if company exist if not throw error
+	if (!company[0]) {
+		throw new Error('Company not found')
+	}
 	return company[0]?.id
 }
 
