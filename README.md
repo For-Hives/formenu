@@ -16,9 +16,9 @@
 git clone
 -> add .env file
 -> add .env file in .bruno folder
-pnpm install
-pnpm run dev
-pnpm run build
+npm install
+npm run dev
+npm run build
 ```
 
 ## Tech stack 💻
