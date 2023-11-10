@@ -1,9 +1,6 @@
-import { LanguageSwitchComponents } from '@/components/LanguageSwitch.components'
-import { MenusLinksComponents } from '@/components/MenusLinks.components'
+import { Skeleton } from '@nextui-org/react'
 
-export default async function Page({ params }) {
-	const { company } = params
-
+export function SkeletonMenuComponents() {
 	return (
 		<div className={'container-menus'}>
 			<nav
@@ -17,11 +14,15 @@ export default async function Page({ params }) {
 							'col-span-1 flex flex-col items-end justify-between gap-32 p-4 md:p-8'
 						}
 					>
-						<LanguageSwitchComponents />
+						<div className={'btn-nav'}>
+							<Skeleton className={'h-[30px] w-[30px] rounded-full'} />
+						</div>
 					</div>
 				</div>
 			</nav>
-			<MenusLinksComponents company_slug={company} />
+			<Skeleton className={'btn-alt-primary'} />
+			<Skeleton className={'btn-alt-primary'} />
+			<Skeleton className={'btn-alt-primary'} />
 		</div>
 	)
 }

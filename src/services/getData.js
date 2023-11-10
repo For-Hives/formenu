@@ -369,7 +369,7 @@ export async function get_data_dishes(company_slug) {
 	let data = await get_data_all(company_id)
 	// check if data exist if not throw error
 	if (!data.dishes) {
-		throw new Error('Dishes not found')
+		throw new Error('DishesComponents not found')
 	}
 	return data.dishes
 }
@@ -403,7 +403,7 @@ export async function getAllData_DishesFromCategory(category, company_slug) {
 	)
 	// check if data exist if not throw error
 	if (!data_dishes) {
-		throw new Error('Dishes not found')
+		throw new Error('DishesComponents not found')
 	}
 	return data_dishes[0]
 }
