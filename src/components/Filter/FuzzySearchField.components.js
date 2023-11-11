@@ -1,7 +1,7 @@
 'use client'
 import { CustomSvgComponents } from '@/components/CustomSvg.components'
 import Fuse from 'fuse.js'
-import { fuze_config } from '@/app/config/fuze_config'
+import { fuze_config } from '../../../config/fuze_config'
 import { useEffect, useRef, useState } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
 import { useStore } from '@/providers/useStore'
