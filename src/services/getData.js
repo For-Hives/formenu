@@ -120,6 +120,8 @@ export async function get_data_all(company_id) {
 										is_vegetarian: subdish?.is_vegetarian,
 										is_vegan: subdish?.is_vegan,
 										is_sidedish: subdish?.is_sidedish,
+										is_pescetarian: subdish?.is_pescetarian,
+										// 	be carefull it's the subdish
 									}
 							  })
 							: []
@@ -162,6 +164,8 @@ export async function get_data_all(company_id) {
 						is_vegetarian: dish?.is_vegetarian,
 						is_vegan: dish?.is_vegan,
 						is_sidedish: dish?.is_sidedish,
+						is_pescetarian: dish?.is_pescetarian,
+						// 	be carefull it's the dish
 					}
 				})
 				return {

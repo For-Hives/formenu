@@ -6,7 +6,7 @@ const checkDietRecursive = (dish, diet) => {
 	const isDietMatch =
 		(diet === 'vegetarian' && dish.is_vegetarian) ||
 		(diet === 'vegan' && dish.is_vegan) ||
-		diet === 'default' ||
+		(diet === 'pescetarian' && dish.is_pescetarian) ||
 		diet === 'omnivore'
 
 	// If the diet does not match, return false
@@ -44,7 +44,7 @@ const checkAllergensRecursive = (dish, selectedAllergens) => {
 export const useFilterStore = create(set => ({
 	data: [],
 	isFilterModalClosed: true,
-	selectedDiet: 'default',
+	selectedDiet: 'omnivore',
 	selectedAllergens: [],
 	searchTerms: '',
 	selectedOptionSort: optionsSortData[0].key,
@@ -87,7 +87,7 @@ export const useFilterStore = create(set => ({
 	resetFilter: () => {
 		set({
 			isFilterModalClosed: true,
-			selectedDiet: 'default',
+			selectedDiet: 'omnivore',
 			selectedAllergens: [],
 			searchTerms: '',
 		})
