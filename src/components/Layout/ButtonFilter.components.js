@@ -1,11 +1,11 @@
 'use client'
 import Image from 'next/image'
 
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 import { CustomSvgComponents } from '@/components/CustomSvg.components'
 
 export function ButtonFilterComponents({ content_website_from_company }) {
-	const toggleFilterModal = useStore(state => state.toggleFilterModal)
+	const toggleFilterModal = useFilterStore(state => state.toggleFilterModal)
 
 	return (
 		<button

@@ -4,14 +4,14 @@ import { CustomSvgComponents } from '@/components/CustomSvg.components'
 import Image from 'next/image'
 import { DietFilterComponents } from '@/components/Filter/DietFilter.components'
 import { AllergensFilterComponents } from '@/components/Filter/AllergensFilter.components'
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 import { FuzzySearchFieldComponents } from '@/components/Filter/FuzzySearchField.components'
 import { SortComponents } from '@/components/Filter/Sort.components'
 
 function FilterComponents({ category, company, content_website_from_company }) {
-	const isFilterModalClosed = useStore(state => state.isFilterModalClosed)
-	const toggleFilterModal = useStore(state => state.toggleFilterModal)
-	const resetFilter = useStore(state => state.resetFilter)
+	const isFilterModalClosed = useFilterStore(state => state.isFilterModalClosed)
+	const toggleFilterModal = useFilterStore(state => state.toggleFilterModal)
+	const resetFilter = useFilterStore(state => state.resetFilter)
 
 	return (
 		<div

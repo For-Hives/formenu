@@ -2,7 +2,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { CustomSvgComponents } from '@/components/CustomSvg.components'
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 import { optionsSortData } from '@/enum/optionsSortData'
 
 export function SortComponents({ content_website_from_company }) {
@@ -10,7 +10,7 @@ export function SortComponents({ content_website_from_company }) {
 		optionsSortData[0].key
 	)
 
-	const storeSetSelectedOptionSort = useStore(
+	const storeSetSelectedOptionSort = useFilterStore(
 		state => state.setSelectedOptionSort
 	)
 

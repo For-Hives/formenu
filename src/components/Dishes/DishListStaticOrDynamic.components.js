@@ -1,7 +1,7 @@
 'use client'
 import DishesListComponents from '@/components/Dishes/DishesList.components'
 
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 import { optionsSortData } from '@/enum/optionsSortData'
 import { Suspense, useState } from 'react'
 import SkeletonDishComponents from '@/components/Skeletons/SkeletonComponent/SkeletonDish.components'
@@ -13,10 +13,10 @@ export function DishListStaticOrDynamicComponents({
 	data,
 	content_website_from_company,
 }) {
-	const selectedDiet = useStore(state => state.selectedDiet)
-	const selectedAllergens = useStore(state => state.selectedAllergens)
-	const searchTerms = useStore(state => state.searchTerms)
-	const selectedOptionSort = useStore(state => state.selectedOptionSort)
+	const selectedDiet = useFilterStore(state => state.selectedDiet)
+	const selectedAllergens = useFilterStore(state => state.selectedAllergens)
+	const searchTerms = useFilterStore(state => state.searchTerms)
+	const selectedOptionSort = useFilterStore(state => state.selectedOptionSort)
 
 	return (
 		<Suspense

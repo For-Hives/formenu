@@ -2,7 +2,7 @@
 
 import { Suspense, useEffect, useState } from 'react'
 import { DishesComponents } from '@/components/Dishes/Dishes.components'
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 import { checkIfActivated } from '@/services/checkIfActivated'
 import SkeletonDishComponents from '@/components/Skeletons/SkeletonComponent/SkeletonDish.components'
 
@@ -14,16 +14,16 @@ const DishesListComponents = ({
 }) => {
 	const [filteredDishes, setFilteredDishes] = useState(null)
 
-	const checkDiet = useStore(state => state.checkDiet)
-	const checkAllergens = useStore(state => state.checkAllergens)
+	const checkDiet = useFilterStore(state => state.checkDiet)
+	const checkAllergens = useFilterStore(state => state.checkAllergens)
 
-	const dataStore = useStore(state => state.data)
-	const setData = useStore(state => state.setData)
+	const dataStore = useFilterStore(state => state.data)
+	const setData = useFilterStore(state => state.setData)
 
-	const selectedDiet = useStore(state => state.selectedDiet)
-	const selectedAllergens = useStore(state => state.selectedAllergens)
-	const selectedOptionSort = useStore(state => state.selectedOptionSort)
-	const searchTerms = useStore(state => state.searchTerms)
+	const selectedDiet = useFilterStore(state => state.selectedDiet)
+	const selectedAllergens = useFilterStore(state => state.selectedAllergens)
+	const selectedOptionSort = useFilterStore(state => state.selectedOptionSort)
+	const searchTerms = useFilterStore(state => state.searchTerms)
 
 	useEffect(() => {
 		if (!dataStore && searchTerms === '') {

@@ -41,7 +41,7 @@ const checkAllergensRecursive = (dish, selectedAllergens) => {
 	return true
 }
 
-export const useStore = create(set => ({
+export const useFilterStore = create(set => ({
 	data: [],
 	isFilterModalClosed: true,
 	selectedDiet: 'default',

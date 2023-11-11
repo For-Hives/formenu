@@ -2,11 +2,11 @@
 import { diets } from '@/enum/dietsData'
 import { DietButtonComponents } from '@/components/Filter/DietButton.components'
 
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 
 export function DietFilterComponents({ content_website_from_company }) {
-	const selectedDiet = useStore(state => state.selectedDiet)
-	const setSelectedDiet = useStore(state => state.setSelectedDiet)
+	const selectedDiet = useFilterStore(state => state.selectedDiet)
+	const setSelectedDiet = useFilterStore(state => state.setSelectedDiet)
 
 	return (
 		<div className={'grid w-full grid-cols-12 gap-2 px-8'}>

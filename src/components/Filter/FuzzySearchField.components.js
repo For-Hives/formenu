@@ -4,7 +4,7 @@ import Fuse from 'fuse.js'
 import { fuze_config } from '../../../config/fuze_config'
 import { useEffect, useRef, useState } from 'react'
 import { getAllData_DishesFromCategory } from '@/services/getData'
-import { useStore } from '@/providers/useStore'
+import { useFilterStore } from '@/providers/useFilterStore'
 
 export function FuzzySearchFieldComponents({
 	category,
@@ -17,9 +17,9 @@ export function FuzzySearchFieldComponents({
 	const [results, setResults] = useState([])
 	const [fuse, setFuse] = useState(null)
 	const [data, setData] = useState(null)
-	const setDataStore = useStore(state => state.setData)
-	const setSearchTerms = useStore(state => state.setSearchTerms)
-	const searchTerms = useStore(state => state.searchTerms)
+	const setDataStore = useFilterStore(state => state.setData)
+	const setSearchTerms = useFilterStore(state => state.setSearchTerms)
+	const searchTerms = useFilterStore(state => state.searchTerms)
 
 	const onChange = e => {
 		const query = e.target.value
