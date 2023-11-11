@@ -28,7 +28,7 @@ export function DietFilterComponents({ content_website_from_company }) {
 							selectedDiet === diet.key && 'underline'
 						}`}
 					>
-						{diet.key.charAt(0).toUpperCase() + diet.key.slice(1)}
+						{diet.title.charAt(0).toUpperCase() + diet.title.slice(1)}
 					</p>
 				</div>
 			))}
