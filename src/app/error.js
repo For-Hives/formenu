@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 
-export default function Error({ error, reset }) {
+export default function Error() {
 	return (
 		<html>
 			<body>
@@ -34,8 +34,10 @@ export default function Error({ error, reset }) {
 							<button
 								className="text-sm font-semibold leading-7 text-white"
 								onClick={
-									// Attempt to recover by trying to re-render the segment
-									() => reset()
+									// Attempt to go back in history first
+									() => {
+										window.history.back()
+									}
 								}
 							>
 								<span aria-hidden="true" className={'text-white'}>
