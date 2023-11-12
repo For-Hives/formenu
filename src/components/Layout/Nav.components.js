@@ -16,7 +16,8 @@ export async function NavComponents({
 	category = null,
 	company_slug,
 }) {
-	const content_website_from_company = await getAllData_FromCompany(company)
+	const content_website_from_company =
+		await getAllData_FromCompany(company_slug)
 	return (
 		<>
 			<FilterComponents
