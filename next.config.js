@@ -10,9 +10,7 @@ const nextConfig = {
 		],
 	},
 	experimental: {
-		// Defaults to 50MB
-		isrMemoryCacheSize: 0,
-		largePageDataBytes: 5000000,
+		ppr: true,
 	},
 	i18n: {
 		localeDetection: false,
