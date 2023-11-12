@@ -1,6 +1,6 @@
-import { LanguageSwitch } from '@/components/LanguageSwitch'
-import { CompaniesLinks } from '@/components/CompaniesLinks'
-import { CardBackground } from '@/components/Background/CardBackground'
+import { LanguageSwitchComponents } from '@/components/LanguageSwitch.components'
+import { CompaniesLinksComponents } from '@/components/CompaniesLinks.components'
+import { CardBackgroundComponents } from '@/components/Background/CardBackground.components'
 import { getAllContentWebsite } from '@/services/getData'
 import Image from 'next/image'
 import { WrapNextUiProviders } from '@/providers/WrapNextUiProvider'
@@ -29,19 +29,19 @@ export default async function Page() {
 			</div>
 			<WrapNextUiProviders>
 				<div className={'pt-16 sm:pt-20'}>
-					<CardBackground
+					<CardBackgroundComponents
 						placementClassName={'-z-10 -right-40 -top-48 rotate-15'}
 						src={`${content_website?.home_background_images?.data[0].attributes?.url}`}
 						alt={'Background restaurant'}
 					/>
-					<CardBackground
+					<CardBackgroundComponents
 						placementClassName={
 							'-z-10 -left-40 top-1/2 rotate-30 translate-y-[-50%]'
 						}
 						src={`${content_website?.home_background_images?.data[1].attributes?.url}`}
 						alt={'Background restaurant 2'}
 					/>
-					<CardBackground
+					<CardBackgroundComponents
 						placementClassName={'-z-10 right-8 -bottom-48 -rotate-15'}
 						src={`${content_website?.home_background_images?.data[2].attributes?.url}`}
 						alt={'Background restaurant 3'}
@@ -58,11 +58,11 @@ export default async function Page() {
 										'col-span-1 flex flex-col items-end justify-between gap-32 p-4 md:p-8'
 									}
 								>
-									<LanguageSwitch />
+									<LanguageSwitchComponents />
 								</div>
 							</div>
 						</nav>
-						<CompaniesLinks />
+						<CompaniesLinksComponents />
 					</div>
 				</div>
 			</WrapNextUiProviders>

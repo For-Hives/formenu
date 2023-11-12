@@ -14,13 +14,13 @@ export const diets = [
 	{
 		key: 'vegan',
 		url: '/icons/vegan.svg',
-		title: 'Vegan',
+		title: 'Végan',
 		alt: 'vegan',
 	},
 	{
-		key: 'default',
-		url: null,
-		title: null,
-		alt: null,
+		key: 'pescetarian',
+		url: '/icons/pescetarian.svg',
+		title: 'Péscétarien',
+		alt: 'pescetarian',
 	},
 ]

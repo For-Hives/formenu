@@ -120,6 +120,8 @@ export async function get_data_all(company_id) {
 										is_vegetarian: subdish?.is_vegetarian,
 										is_vegan: subdish?.is_vegan,
 										is_sidedish: subdish?.is_sidedish,
+										is_pescetarian: subdish?.is_pescetarian,
+										// 	be carefull it's the subdish
 									}
 							  })
 							: []
@@ -162,6 +164,8 @@ export async function get_data_all(company_id) {
 						is_vegetarian: dish?.is_vegetarian,
 						is_vegan: dish?.is_vegan,
 						is_sidedish: dish?.is_sidedish,
+						is_pescetarian: dish?.is_pescetarian,
+						// 	be carefull it's the dish
 					}
 				})
 				return {
@@ -369,7 +373,7 @@ export async function get_data_dishes(company_slug) {
 	let data = await get_data_all(company_id)
 	// check if data exist if not throw error
 	if (!data.dishes) {
-		throw new Error('Dishes not found')
+		throw new Error('DishesComponents not found')
 	}
 	return data.dishes
 }
@@ -403,7 +407,7 @@ export async function getAllData_DishesFromCategory(category, company_slug) {
 	)
 	// check if data exist if not throw error
 	if (!data_dishes) {
-		throw new Error('Dishes not found')
+		throw new Error('DishesComponents not found')
 	}
 	return data_dishes[0]
 }

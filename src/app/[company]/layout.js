@@ -1,4 +1,4 @@
-import { CardBackground } from '@/components/Background/CardBackground'
+import { CardBackgroundComponents } from '@/components/Background/CardBackground.components'
 import { getAllData_FromCompany } from '@/services/getData'
 import Image from 'next/image'
 
@@ -52,19 +52,19 @@ export default async function Layout({ params, children }) {
 				{content_website_from_company?.home_background_images &&
 					content_website_from_company?.home_background_images.length > 0 && (
 						<>
-							<CardBackground
+							<CardBackgroundComponents
 								placementClassName={'-z-10 -right-40 -top-48 rotate-15'}
 								src={`${content_website_from_company?.home_background_images[0]?.url}`}
 								alt={'Background restaurant'}
 							/>
-							<CardBackground
+							<CardBackgroundComponents
 								placementClassName={
 									'-z-10 -left-40 top-1/2 rotate-30 translate-y-[-50%]'
 								}
 								src={`${content_website_from_company?.home_background_images[1]?.url}`}
 								alt={'Background restaurant 2'}
 							/>
-							<CardBackground
+							<CardBackgroundComponents
 								placementClassName={'-z-10 right-8 -bottom-48 -rotate-15'}
 								src={`${content_website_from_company?.home_background_images[2]?.url}`}
 								alt={'Background restaurant 3'}

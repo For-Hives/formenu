@@ -1,8 +1,8 @@
 import React from 'react'
-import SkeletonHome from '@/components/Loaders/SkeletonPage/SkeletonHome'
+import SkeletonHomeComponents from '@/components/Skeletons/SkeletonPage/SkeletonHome.components'
 
 function Loading() {
-	return <SkeletonHome />
+	return <SkeletonHomeComponents />
 }
 
 export default Loading

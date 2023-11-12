@@ -1,8 +1,8 @@
 import React from 'react'
-import { SkeletonMenu } from '@/components/Loaders/SkeletonComponent/SkeletonMenu'
+import { SkeletonMenuComponents } from '@/components/Skeletons/SkeletonComponent/SkeletonMenu.components'
 
 function Loading() {
-	return <SkeletonMenu />
+	return <SkeletonMenuComponents />
 }
 
 export default Loading

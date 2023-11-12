@@ -7,12 +7,12 @@ import {
 	getNextCategoryInfos,
 	getPreviousCategoryInfos,
 } from '@/services/getData'
-import { Nav } from '@/components/Layout/Nav'
-import { CustomSvg } from '@/components/CustomSvg'
-import { DishListStaticOrDynamic } from '@/components/Dishes/DishListStaticOrDynamic'
-import DishesListStatic from '@/components/Dishes/DishesListStatic'
+import { NavComponents } from '@/components/Layout/Nav.components'
+import { CustomSvgComponents } from '@/components/CustomSvg.components'
+import { DishListStaticOrDynamicComponents } from '@/components/Dishes/DishListStaticOrDynamic.components'
+import DishesListStaticComponents from '@/components/Dishes/DishesListStatic.components'
 import { Suspense } from 'react'
-import { SkeletonContainer } from '@/components/Loaders/SkeletonPage/SkeletonContainer'
+import { SkeletonContainerComponents } from '@/components/Skeletons/SkeletonPage/SkeletonContainer.components'
 
 export default async function Page({ params }) {
 	const { category, company } = params
@@ -37,8 +37,8 @@ export default async function Page({ params }) {
 	)
 
 	return (
-		<Suspense fallback={<SkeletonContainer />}>
-			<Nav
+		<Suspense fallback={<SkeletonContainerComponents />}>
+			<NavComponents
 				parent_categories={parent_categories}
 				selected_category={current_category_data?.id}
 				company_slug={company}
@@ -65,7 +65,7 @@ export default async function Page({ params }) {
 										}-950`}
 										href={`/${company}/${previous_category_data?.id.toString()}`}
 									>
-										<CustomSvg
+										<CustomSvgComponents
 											url={previous_category_data.icon.url}
 											classNames={'bg-white'}
 										/>
@@ -83,7 +83,7 @@ export default async function Page({ params }) {
 								}-950 bg-${content_website_from_company?.color ?? 'blue'}-950`}
 								href={`/${company}/${current_category_data?.id.toString()}`}
 							>
-								<CustomSvg
+								<CustomSvgComponents
 									url={current_category_data?.icon?.url}
 									classNames={'bg-white'}
 								/>
@@ -108,7 +108,7 @@ export default async function Page({ params }) {
 											}-950`}
 											href={`/${company}/${record.id.toString()}`}
 										>
-											<CustomSvg
+											<CustomSvgComponents
 												url={record.icon.url}
 												classNames={`bg-${
 													content_website_from_company?.color ?? 'blue'
@@ -123,13 +123,13 @@ export default async function Page({ params }) {
 					) : (
 						// When there is no children categories -> display dishes
 						<>
-							<DishListStaticOrDynamic
+							<DishListStaticOrDynamicComponents
 								category={category}
 								company={company}
 								data={data}
 								content_website_from_company={content_website_from_company}
 								DishesListStatic={
-									<DishesListStatic
+									<DishesListStaticComponents
 										category={category}
 										company={company}
 										content_website_from_company={content_website_from_company}
@@ -167,7 +167,7 @@ export default async function Page({ params }) {
 										}-950`}
 										href={`/${company}/${next_category_data?.id.toString()}`}
 									>
-										<CustomSvg
+										<CustomSvgComponents
 											url={next_category_data.icon.url}
 											classNames={'bg-white'}
 										/>

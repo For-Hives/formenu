@@ -15,9 +15,10 @@
 ```
 git clone
 -> add .env file
-pnpm install
-pnpm run dev
-pnpm run build
+-> add .env file in .bruno folder
+npm install
+npm run dev
+npm run build
 ```
 
 ## Tech stack 💻
@@ -36,6 +37,7 @@ That is the list of technologies that ForMenu use.
 > > - [EsLint](https://eslint.org/)
 > > - [Husky](https://typicode.github.io/husky/#/)
 > > - [FuseJS](https://www.fusejs.io/) 
+> > - [Zustand](https://docs.pmnd.rs/zustand/getting-started/introduction)
 > 
 > 
 > **CI/CD**
