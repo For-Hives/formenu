@@ -4,9 +4,7 @@ import { getAllData_FromCompany } from '@/services/getData'
 
 export default async function Page({ params }) {
 	const { company } = params
-	const content_website_from_company = await getAllData_FromCompany(
-		params.company
-	)
+	const content_website_from_company = await getAllData_FromCompany(company)
 
 	return (
 		<>
