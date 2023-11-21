@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 export default function Error() {
 	return (
-		<html>
+		<html className={'overflow-hidden'}>
 			<body>
 				<main className="relative isolate z-30 min-h-screen">
 					{/* darken */}
@@ -15,6 +15,8 @@ export default function Error() {
 						src="/error_background.png"
 						alt="error"
 						fill={true}
+						sizes={'75vw'}
+						quality={75}
 						className="absolute inset-0 -z-10 h-full w-full object-cover object-left opacity-50"
 					/>
 					<div className="z-30 mx-auto max-w-7xl px-6 py-32 text-center sm:py-40 lg:px-8">
