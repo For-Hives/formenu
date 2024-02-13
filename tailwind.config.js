@@ -10,6 +10,8 @@ module.exports = {
 	safelist: [
 		'text-2xl',
 		'text-3xl',
+		'border-black',
+		'bg-black',
 		{
 			pattern:
 				/border-(cyan|yellow|red|indigo|blue|purple|teal|slate|pink|stone)-(100|200|300|400|500|600|700|800|900|950)/,
