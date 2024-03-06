@@ -1,6 +1,8 @@
 import '@/styles/globals.css'
 import { getAllContentWebsite } from '@/services/getData'
 import { Lato, Fraunces } from 'next/font/google'
+import Head from 'next/head'
+import Script from 'next/script'
 
 const lato = Lato({
 	weight: ['100', '300', '400', '700', '900'],
@@ -44,6 +46,14 @@ export default async function RootLayout({ children }) {
 			lang="fr"
 			className={`bg-gray-50 ${lato.variable} ${fraunces.variable}`}
 		>
+			<Head>
+				<Script
+					async
+					src="https://umami.wadefade.fr/script.js"
+					strategy={'afterInteractive'}
+					data-website-id="911083ce-df29-4499-a611-e43c70defd8b"
+				/>
+			</Head>
 			<body
 				className={'relative flex min-h-screen w-full flex-col text-gray-950'}
 			>
