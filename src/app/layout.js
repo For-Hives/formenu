@@ -46,14 +46,12 @@ export default async function RootLayout({ children }) {
 			lang="fr"
 			className={`bg-gray-50 ${lato.variable} ${fraunces.variable}`}
 		>
-			<Head>
-				<Script
-					async
-					src="https://umami.wadefade.fr/script.js"
-					strategy={'afterInteractive'}
-					data-website-id="911083ce-df29-4499-a611-e43c70defd8b"
-				/>
-			</Head>
+			<Script
+				async
+				src="https://umami.wadefade.fr/script.js"
+				strategy={'afterInteractive'}
+				data-website-id="911083ce-df29-4499-a611-e43c70defd8b"
+			/>
 			<body
 				className={'relative flex min-h-screen w-full flex-col text-gray-950'}
 			>
