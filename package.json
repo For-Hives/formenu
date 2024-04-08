@@ -24,7 +24,7 @@
     "@nextui-org/react": "2.2.10",
     "framer-motion": "11.0.25",
     "fuse.js": "7.0.0",
-    "next": "14.2.0-canary.61",
+    "next": "14.2.0-canary.62",
     "postcss": "8.4.38",
     "prettier-plugin-tailwindcss": "0.5.13",
     "react": "18.2.0",
