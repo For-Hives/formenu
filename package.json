@@ -20,7 +20,7 @@
   "dependencies": {
     "@headlessui/react": "1.7.19",
     "@heroicons/react": "2.1.4",
-    "@hookform/resolvers": "3.8.0",
+    "@hookform/resolvers": "3.9.0",
     "@nextui-org/react": "2.4.2",
     "framer-motion": "11.2.13",
     "fuse.js": "7.0.0",
