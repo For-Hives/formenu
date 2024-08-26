@@ -10,7 +10,7 @@
 			"automergeStrategy": "squash"
 		},
 		{
-			"matchPackageNames": ["next"],
+			"matchPackageNames": ["next", "react"],
 			"allowedVersions": "current"
 		}
 	]
