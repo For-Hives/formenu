@@ -8,6 +8,10 @@
 			"automerge": true,
 			"automergeType": "pr",
 			"automergeStrategy": "squash"
+		},
+		{
+			"matchPackageNames": ["next"],
+			"allowedVersions": "current"
 		}
 	]
 }
