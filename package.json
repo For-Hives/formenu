@@ -27,7 +27,7 @@
     "next": "15.0.0-canary.130",
     "postcss": "8.4.41",
     "prettier-plugin-tailwindcss": "0.6.6",
-    "react": "19.0.0-rc-b57d2823-20240822",
+    "react": "^19.0.0-rc-b57d2823-20240822",
     "react-dom": "18.3.1",
     "react-hook-form": "7.53.0",
     "react-toastify": "10.0.5",
