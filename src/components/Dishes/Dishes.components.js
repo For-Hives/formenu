@@ -46,7 +46,7 @@ export function DishesComponents({
 							//	expand this dish
 							setIsExpanded(!isExpanded)
 						}}
-						className={`flex h-full w-full flex-col gap-4 `}
+						className={`flex h-full w-full flex-col gap-4`}
 					>
 						<div className={'flex w-full items-center justify-start gap-4'}>
 							{image && (

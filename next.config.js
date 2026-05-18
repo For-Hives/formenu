@@ -10,9 +10,6 @@ const nextConfig = {
 			},
 		],
 	},
-	experimental: {
-		ppr: true,
-	},
 	i18n: {
 		localeDetection: false,
 		locales: ['fr', 'en'],

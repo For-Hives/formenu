@@ -123,7 +123,7 @@ export async function get_data_all(company_id) {
 										is_pescetarian: subdish?.is_pescetarian,
 										// 	be carefull it's the subdish
 									}
-							  })
+								})
 							: []
 					return {
 						id: dish?.id,

@@ -1,55 +1,55 @@
 {
-  "name": "formenu-app",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "prettier": "prettier --write .",
-    "precommit": "lint-staged",
-    "prepare": "husky install"
-  },
-  "lint-staged": {
-    "*.js": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "dependencies": {
-    "@headlessui/react": "2.2.10",
-    "@heroicons/react": "2.2.0",
-    "@hookform/resolvers": "3.9.0",
-    "@nextui-org/react": "2.6.11",
-    "framer-motion": "11.3.30",
-    "fuse.js": "7.3.0",
-    "next": "14.2.35",
-    "node-addon-api": "^8.7.0",
-    "node-gyp": "^12.3.0",
-    "postcss": "8.5.14",
-    "prettier-plugin-tailwindcss": "0.8.0",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
-    "react-hook-form": "7.76.0",
-    "react-toastify": "10.0.5",
-    "sharp": "0.34.5",
-    "zustand": "4.5.5"
-  },
-  "devDependencies": {
-    "@tailwindcss/forms": "0.5.11",
-    "@tailwindcss/typography": "0.5.19",
-    "autoprefixer": "10.5.0",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.6",
-    "eslint-config-prettier": "9.1.0",
-    "husky": "9.1.7",
-    "lint-staged": "15.2.9",
-    "postcss": "8.5.14",
-    "prettier": "3.8.3",
-    "tailwindcss": "3.4.10"
-  },
-  "engines": {
-    "node": "20.x"
-  }
+	"name": "formenu-app",
+	"version": "1.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"prettier": "prettier --write .",
+		"precommit": "lint-staged",
+		"prepare": "husky install"
+	},
+	"lint-staged": {
+		"*.js": [
+			"prettier --write",
+			"git add"
+		]
+	},
+	"dependencies": {
+		"@headlessui/react": "2.2.10",
+		"@heroicons/react": "2.2.0",
+		"@hookform/resolvers": "3.10.0",
+		"@nextui-org/react": "2.6.11",
+		"framer-motion": "11.18.2",
+		"fuse.js": "7.3.0",
+		"next": "14.2.35",
+		"node-addon-api": "^8.7.0",
+		"node-gyp": "^12.3.0",
+		"postcss": "8.5.14",
+		"prettier-plugin-tailwindcss": "0.8.0",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
+		"react-hook-form": "7.76.0",
+		"react-toastify": "10.0.6",
+		"sharp": "0.34.5",
+		"zustand": "4.5.7"
+	},
+	"devDependencies": {
+		"@tailwindcss/forms": "0.5.11",
+		"@tailwindcss/typography": "0.5.19",
+		"autoprefixer": "10.5.0",
+		"eslint": "8.57.1",
+		"eslint-config-next": "14.2.35",
+		"eslint-config-prettier": "9.1.2",
+		"husky": "9.1.7",
+		"lint-staged": "15.5.2",
+		"postcss": "8.5.14",
+		"prettier": "3.8.3",
+		"tailwindcss": "3.4.19"
+	},
+	"engines": {
+		"node": "20.x"
+	}
 }

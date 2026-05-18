@@ -34,7 +34,7 @@ export function ShoppingCartButtonResumeComponents({
 								? 'scale-[0.85] transform'
 								: `border border-${
 										content_website_from_company?.color ?? 'blue'
-								  }-950 bg-white`
+									}-950 bg-white`
 						}`}
 					>
 						{isLoading ? <Spinner size={'sm'} /> : <>{count}</>}

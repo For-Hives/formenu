@@ -77,7 +77,7 @@ export const useCartStore = create(set => ({
 					? state.itemsInCart.reduce(
 							(count, item) => count + (item?.quantity || 0),
 							0
-					  )
+						)
 					: 0,
 		}))
 	},

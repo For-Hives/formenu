@@ -129,14 +129,14 @@ export async function NavComponents({
 																	? `btn-nav-alt border-${
 																			content_website_from_company?.color ??
 																			'blue'
-																	  }-950 bg-${
+																		}-950 bg-${
 																			content_website_from_company?.color ??
 																			'blue'
-																	  }-950`
+																		}-950`
 																	: `btn-nav border-${
 																			content_website_from_company?.color ??
 																			'blue'
-																	  }-950`
+																		}-950`
 															}`}
 															href={`/${company_slug}/${record.id.toString()}`}
 														>
@@ -149,7 +149,7 @@ export async function NavComponents({
 																		: `bg-${
 																				content_website_from_company?.color ??
 																				'blue'
-																		  }-950`
+																			}-950`
 																}
 															/>
 														</Link>

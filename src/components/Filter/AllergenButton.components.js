@@ -14,7 +14,7 @@ export function AllergenButtonComponents({
 				isSelected
 					? `diet-button-selected bg-${
 							content_website_from_company?.color ?? 'blue'
-					  }-950`
+						}-950`
 					: 'diet-button'
 			} relative`}
 			onClick={() => {
