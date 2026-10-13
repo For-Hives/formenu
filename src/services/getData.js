@@ -1,3 +1,66 @@
+import 'server-only'
+import { cache } from 'react'
+import {
+	mapAllCompanyPayload,
+	mapContentWebsitePayload,
+} from '@/services/menuMappers'
+
+/*
+ * SERVER-ONLY MODULE: it holds the API credential and receives raw API data.
+ *
+ * - `import 'server-only'` makes `next build` fail as soon as this file is
+ *   imported, directly or not, by a 'use client' component. Client components
+ *   get their data through props, from a server component.
+ * - The token is read from API_TOKEN. Never give it a NEXT_PUBLIC_ name:
+ *   Next.js writes NEXT_PUBLIC_ variables into the JavaScript sent to browsers.
+ * - A raw API response never leaves this file: everything returned goes
+ *   through the whitelist mappers of menuMappers.js.
+ *
+ * `npm run check:leak` verifies these three points.
+ */
+
+/**
+ * How long (in seconds) Next.js may reuse an API response before asking the
+ * API again. Only for what changes rarely: the home page, the branding and the
+ * metadata of a company, the links of the company page. The first page
+ * requested after this delay still gets the previous response and starts the
+ * refresh, the following ones get the new data.
+ *
+ * The categories and the dishes of the category pages and of the cart are NOT
+ * read that way: see getData(true).
+ * @private
+ */
+const API_REVALIDATE_SECONDS = 60
+
+/**
+ * Options of every request to the API (credential included)
+ * @private
+ * @param {boolean} fresh true: ask the API now, false: Next.js may reuse a
+ * response for API_REVALIDATE_SECONDS
+ * @returns {{method: string, headers: Object, cache: (string|undefined), next: ({revalidate: number}|undefined)}}
+ */
+function getApiRequestOptions(fresh = false) {
+	const token = process.env.API_TOKEN
+	if (!token) {
+		throw new Error(
+			'API_TOKEN is not set: this server-only variable is required to build and to run the app'
+		)
+	}
+
+	return {
+		method: 'GET',
+		headers: {
+			// 	token
+			'Content-Type': 'application/json',
+			Accept: 'application/json',
+			Authorization: `Bearer ${token}`,
+		},
+		...(fresh
+			? { cache: 'no-store' }
+			: { next: { revalidate: API_REVALIDATE_SECONDS } }),
+	}
+}
+
 /**
  * Get all content-website from API
  * /api/content-website?populate=deep
@@ -7,15 +70,7 @@
 async function getContentWebsite() {
 	const res = await fetch(
 		`${process.env.NEXT_PUBLIC_API_URL}/api/content-website?populate=deep`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
-		}
+		getApiRequestOptions()
 	)
 
 	if (!res.ok) {
@@ -29,41 +84,46 @@ async function getContentWebsite() {
 /**
  * Get all content-website from API
  * @public
- * @returns {Promise<{home_title, metadata_description, home_background_images, metadata_title, home_image, home_subtitle, id}>}
+ * @returns {Promise<{home_title, metadata_description, home_background_images, metadata_title, home_image, home_subtitle}>}
  */
 export async function getAllContentWebsite() {
 	const data = await getContentWebsite()
 
-	return {
-		metadata_title: data?.data?.attributes?.content?.metadata_title,
-		metadata_description: data?.data?.attributes?.content?.metadata_description,
-		home_title: data?.data?.attributes?.content?.home_title,
-		home_subtitle: data?.data?.attributes?.content?.home_subtitle,
-		home_image: data?.data?.attributes?.content?.home_image,
-		home_background_images:
-			data?.data?.attributes?.content?.home_background_images,
-	}
+	return mapContentWebsitePayload(data)
 }
 
 /**
  * Get all data from API
  * @private
  * /api/all-company
+ * @param {boolean} fresh false: Next.js may reuse a response for
+ * API_REVALIDATE_SECONDS. true: the API is asked while the page is rendered,
+ * as the browser used to do on every page view, so that a dish disabled in the
+ * back-office is not displayed any more by the next page. Next.js sends a
+ * single request to the API per page rendered (same URL, same headers).
  * @returns {Promise<any>}
  */
-async function getData() {
-	const res = await fetch(
-		`${process.env.NEXT_PUBLIC_API_URL}/api/all-company`,
-		{
-			method: 'GET',
-			headers: {
-				// 	token
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-			},
+async function getData(fresh = false) {
+	const url = `${process.env.NEXT_PUBLIC_API_URL}/api/all-company`
+
+	if (fresh) {
+		const options = getApiRequestOptions(true)
+		try {
+			const res = await fetch(url, options)
+			if (res.ok) return await res.json()
+		} catch (error) {
+			// an error with a digest is a signal of Next.js, not a failure of the API
+			if (error?.digest) throw error
 		}
-	)
+		// The API did not answer: the page is rendered with the response kept by
+		// Next.js instead of failing (the page used to stay displayed when the
+		// request of the browser failed).
+		console.error(
+			'Failed to fetch fresh data from /api/all-company, using the cached response'
+		)
+	}
+
+	const res = await fetch(url, getApiRequestOptions())
 
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
@@ -74,205 +134,40 @@ async function getData() {
 }
 
 /**
+ * Get all data from API, mapped to whitelisted objects.
+ * cache() shares the result between the calls made, with the same arguments,
+ * while one request is rendered.
+ * @private
+ * @param company_id
+ * @param {boolean} fresh see getData()
+ * @returns {Promise<{companies: *[], dishes: *[], menus: *[], categories: *[]}>}
+ */
+const getMappedData = cache(async (company_id, fresh) => {
+	const data = await getData(fresh)
+
+	// companies, menus, categories, dishes: all of them, or those of company_id
+	return mapAllCompanyPayload(data, company_id)
+})
+
+/**
  * Get all data from API
  * @public
  * @param company_id
  * @returns {Promise<{companies: *, dishes: *[], menus: *[], categories: *[]}>}
  */
 export async function get_data_all(company_id) {
-	const data = await getData()
+	return getMappedData(company_id, false)
+}
 
-	let companies = data.map(record_company => {
-		// get all menus, if menus is empty, return empty array
-		let menus = record_company.menus.map(menu => {
-			let categories = menu.categories.map(category => {
-				let dishes = category.dishes.map(dish => {
-					let subdishes =
-						dish.dishes.length > 0
-							? dish.dishes.map(subdish => {
-									return {
-										id: subdish?.id,
-										name: subdish?.name,
-										ingredients: subdish?.ingredients,
-										activated: subdish?.activated,
-										available_date_start: subdish?.available_date_start,
-										available_date_end: subdish?.available_date_end,
-										company: {
-											id: record_company.id,
-											slug: record_company.slug,
-										},
-										allergens: {
-											is_allergen_gluten: subdish?.is_allergen_gluten,
-											is_allergen_eggs: subdish?.is_allergen_eggs,
-											is_allergen_fishes: subdish?.is_allergen_fishes,
-											is_allergen_peanuts: subdish?.is_allergen_peanuts,
-											is_allergen_soybeans: subdish?.is_allergen_soybeans,
-											is_allergen_milk: subdish?.is_allergen_milk,
-											is_allergen_nuts: subdish?.is_allergen_nuts,
-											is_allergen_celery: subdish?.is_allergen_celery,
-											is_allergen_mustard: subdish?.is_allergen_mustard,
-											is_allergen_sesams: subdish?.is_allergen_sesams,
-											is_allergen_sulphurous_anhydre:
-												subdish?.is_allergen_sulphurous_anhydre,
-											is_allergen_lupins: subdish?.is_allergen_lupins,
-											is_allergen_mollusks: subdish?.is_allergen_mollusks,
-										},
-										is_vegetarian: subdish?.is_vegetarian,
-										is_vegan: subdish?.is_vegan,
-										is_sidedish: subdish?.is_sidedish,
-										is_pescetarian: subdish?.is_pescetarian,
-										// 	be carefull it's the subdish
-									}
-								})
-							: []
-					return {
-						id: dish?.id,
-						name: dish?.name,
-						description: dish?.description,
-						price: dish?.price,
-						ingredients: dish?.ingredients,
-						attributes: dish?.attributes,
-						image: dish?.image,
-						type_dish: dish?.type_dish,
-						category: dish?.category,
-						activated: dish?.activated,
-						available_date_start: dish?.available_date_start,
-						available_date_end: dish?.available_date_end,
-						createdAt: dish?.createdAt,
-						updatedAt: dish?.updatedAt,
-						company: {
-							id: record_company.id,
-							slug: record_company.slug,
-						},
-						allergens: {
-							is_allergen_gluten: dish?.is_allergen_gluten,
-							is_allergen_eggs: dish?.is_allergen_eggs,
-							is_allergen_fishes: dish?.is_allergen_fishes,
-							is_allergen_peanuts: dish?.is_allergen_peanuts,
-							is_allergen_soybeans: dish?.is_allergen_soybeans,
-							is_allergen_milk: dish?.is_allergen_milk,
-							is_allergen_nuts: dish?.is_allergen_nuts,
-							is_allergen_celery: dish?.is_allergen_celery,
-							is_allergen_mustard: dish?.is_allergen_mustard,
-							is_allergen_sesams: dish?.is_allergen_sesams,
-							is_allergen_sulphurous_anhydre:
-								dish?.is_allergen_sulphurous_anhydre,
-							is_allergen_lupins: dish?.is_allergen_lupins,
-							is_allergen_mollusks: dish?.is_allergen_mollusks,
-						},
-						dishes: subdishes,
-						is_vegetarian: dish?.is_vegetarian,
-						is_vegan: dish?.is_vegan,
-						is_sidedish: dish?.is_sidedish,
-						is_pescetarian: dish?.is_pescetarian,
-						// 	be carefull it's the dish
-					}
-				})
-				return {
-					id: category?.id,
-					name: category?.name,
-					order: category?.order,
-					depth: category?.depth,
-					icon: category?.icon,
-					category: category?.category,
-					categories: category?.categories,
-					dishes: dishes,
-					company: {
-						id: record_company?.id,
-						slug: record_company?.slug,
-					},
-				}
-			})
-			return {
-				id: menu?.id,
-				title: menu?.title,
-				description: menu?.description,
-				activated: menu?.activated,
-				available_date_start: menu?.available_date_start,
-				available_date_end: menu?.available_date_end,
-				color: menu?.color,
-				fonts: menu?.fonts,
-				image: menu?.image,
-				categories: categories,
-				company: {
-					id: record_company?.id,
-					slug: record_company?.slug,
-				},
-			}
-		})
-		return {
-			id: record_company?.id,
-			name: record_company?.name,
-			country: record_company?.country,
-			city: record_company?.city,
-			street: record_company?.street,
-			postcode: record_company?.postcode,
-			slug: record_company?.slug,
-			color: record_company?.color,
-			fonts: record_company?.fonts,
-			fonts_title: record_company?.fonts_title,
-			menus: menus,
-			metadata_title: record_company?.content?.metadata_title,
-			metadata_description: record_company?.content?.metadata_description,
-			home_title: record_company?.content?.home_title,
-			home_subtitle: record_company?.content?.home_subtitle,
-			home_image: record_company?.content?.home_image,
-			home_background_images: record_company?.content?.home_background_images,
-		}
-	})
-
-	// get all dishes
-	let dishes = []
-	companies.forEach(company => {
-		company.menus.forEach(menu => {
-			menu.categories.forEach(category => {
-				category.dishes.forEach(dish => {
-					dishes.push(dish)
-				})
-			})
-		})
-	})
-
-	// get all categories
-	let categories = []
-	companies.forEach(company => {
-		company.menus.forEach(menu => {
-			menu.categories.forEach(category => {
-				categories.push(category)
-			})
-		})
-	})
-
-	// get all menus
-	let menus = []
-	companies.forEach(company => {
-		company.menus.forEach(menu => {
-			menus.push(menu)
-		})
-	})
-
-	// filter companies, menus, categories, dishes by company_slug
-	if (company_id) {
-		companies = companies.filter(
-			company => company.id.toString() === company_id.toString()
-		)
-		menus = menus.filter(
-			menu => menu.company.id.toString() === company_id.toString()
-		)
-		categories = categories.filter(
-			category => category.company.id.toString() === company_id.toString()
-		)
-		dishes = dishes.filter(
-			dish => dish.company.id.toString() === company_id.toString()
-		)
-	}
-
-	return {
-		companies: companies,
-		menus: menus,
-		categories: categories,
-		dishes: dishes,
-	}
+/**
+ * Get all data from API, without the cache of Next.js: for the categories and
+ * the dishes displayed by the category pages and by the cart.
+ * @private
+ * @param company_id
+ * @returns {Promise<{companies: *, dishes: *[], menus: *[], categories: *[]}>}
+ */
+async function get_fresh_data_all(company_id) {
+	return getMappedData(company_id, true)
 }
 
 /**
@@ -331,14 +226,15 @@ export async function getAllData_FromCompany(company_slug) {
 }
 
 /**
- * Get all categories from company
+ * Get all categories from company (category pages: not cached, so that they
+ * come from the same API response as the dishes displayed with them)
  * @public
  * @param company_slug
  * @returns {Promise<*[]>}
  */
 export async function get_data_categories(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
-	let data = await get_data_all(company_id)
+	let data = await get_fresh_data_all(company_id)
 	// check if data exist if not throw error
 	if (!data.categories) {
 		throw new Error('Categories not found')
@@ -363,14 +259,14 @@ export async function get_data_menus(company_slug) {
 }
 
 /**
- * Get all dishes from company
+ * Get all dishes from company (cart: not cached)
  * @public
  * @param company_slug
  * @returns {Promise<*[]>}
  */
 export async function get_data_dishes(company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
-	let data = await get_data_all(company_id)
+	let data = await get_fresh_data_all(company_id)
 	// check if data exist if not throw error
 	if (!data.dishes) {
 		throw new Error('DishesComponents not found')
@@ -393,7 +289,7 @@ export async function get_data_companies() {
 }
 
 /**
- * Get all data dishes from category
+ * Get all data dishes from category (dish list, search field: not cached)
  * @public
  * @param category
  * @param company_slug
@@ -401,7 +297,7 @@ export async function get_data_companies() {
  */
 export async function getAllData_DishesFromCategory(category, company_slug) {
 	const company_id = await getIdFromSlug(company_slug)
-	const data = await get_data_all(company_id)
+	const data = await get_fresh_data_all(company_id)
 	const data_dishes = data.categories.filter(
 		record => record.id.toString() === category.toString()
 	)

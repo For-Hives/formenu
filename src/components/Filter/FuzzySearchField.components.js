@@ -2,21 +2,25 @@
 import { CustomSvgComponents } from '@/components/CustomSvg.components'
 import Fuse from 'fuse.js'
 import { fuze_config } from '../../../config/fuze_config'
-import { useEffect, useRef, useState } from 'react'
-import { getAllData_DishesFromCategory } from '@/services/getData'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useFilterStore } from '@/providers/useFilterStore'
 
+/**
+ * `dishes` are the dishes of the current category. They are loaded on the
+ * server (see Nav.components.js): this component must not call the API itself.
+ */
 export function FuzzySearchFieldComponents({
-	category,
-	company,
+	dishes,
 	content_website_from_company,
 }) {
 	const searchRef = useRef(null)
 	const [query, setQuery] = useState('')
 	const [active, setActive] = useState(false)
 	const [results, setResults] = useState([])
-	const [fuse, setFuse] = useState(null)
-	const [data, setData] = useState(null)
+	const fuse = useMemo(
+		() => (dishes ? new Fuse(dishes, fuze_config) : null),
+		[dishes]
+	)
 	const setDataStore = useFilterStore(state => state.setData)
 	const setSearchTerms = useFilterStore(state => state.setSearchTerms)
 	const searchTerms = useFilterStore(state => state.searchTerms)
@@ -29,7 +33,7 @@ export function FuzzySearchFieldComponents({
 			const results = fuse.search(query)
 			setResults(results)
 		} else {
-			setDataStore(data?.dishes)
+			setDataStore(dishes)
 			setResults([])
 		}
 	}
@@ -43,19 +47,6 @@ export function FuzzySearchFieldComponents({
 			setActive(false)
 		}
 	}
-
-	/**
-	 * Fetch data from category and company if not already fetched
-	 */
-	useEffect(() => {
-		if (data) return
-		if (!category || !company) return
-		getAllData_DishesFromCategory(category, company).then(data => {
-			const fuse = new Fuse(data.dishes, fuze_config)
-			setFuse(fuse)
-			setData(data)
-		})
-	}, [category, company])
 
 	/**
 	 * Update data store when data is updated (filter dishes via Fuse.js (fuzzy search))
@@ -73,10 +64,10 @@ export function FuzzySearchFieldComponents({
 			setDataStore(scoredData)
 		} else {
 			// If the query is empty, reset the data store to the full list of dishes
-			setDataStore(data?.dishes)
+			setDataStore(dishes)
 		}
 		setSearchTerms(query) // This might be redundant if `setQuery` already updates the search terms in the store
-	}, [results, query, data?.dishes, setDataStore, setSearchTerms])
+	}, [results, query, dishes, setDataStore, setSearchTerms])
 
 	useEffect(() => {
 		setQuery(searchTerms)

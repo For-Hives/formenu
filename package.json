@@ -4,9 +4,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
+		"prebuild": "npm run check:leak",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
+		"check:leak": "node scripts/check-no-client-secrets.mjs",
 		"prettier": "prettier --write .",
 		"precommit": "lint-staged",
 		"prepare": "husky install"
@@ -33,6 +35,7 @@
 		"react-dom": "18.3.1",
 		"react-hook-form": "7.76.0",
 		"react-toastify": "10.0.6",
+		"server-only": "0.0.1",
 		"sharp": "0.34.5",
 		"zustand": "4.5.7"
 	},

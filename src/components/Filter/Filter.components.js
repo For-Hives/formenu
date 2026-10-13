@@ -8,7 +8,7 @@ import { useFilterStore } from '@/providers/useFilterStore'
 import { FuzzySearchFieldComponents } from '@/components/Filter/FuzzySearchField.components'
 import { SortComponents } from '@/components/Filter/Sort.components'
 
-function FilterComponents({ category, company, content_website_from_company }) {
+function FilterComponents({ dishes, content_website_from_company }) {
 	const isFilterModalClosed = useFilterStore(state => state.isFilterModalClosed)
 	const toggleFilterModal = useFilterStore(state => state.toggleFilterModal)
 	const resetFilter = useFilterStore(state => state.resetFilter)
@@ -60,8 +60,7 @@ function FilterComponents({ category, company, content_website_from_company }) {
 					</button>
 					{/* Fuzzy Search Field */}
 					<FuzzySearchFieldComponents
-						category={category}
-						company={company}
+						dishes={dishes}
 						content_website_from_company={content_website_from_company}
 					/>
 					<div
