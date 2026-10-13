@@ -1,5 +1,4 @@
 'use client'
-import { get_data_dishes } from '@/services/getData'
 import { useEffect, useState } from 'react'
 import { Spinner } from '@nextui-org/react'
 import { DishesComponents } from '@/components/Dishes/Dishes.components'
@@ -7,8 +6,12 @@ import { CustomSvgComponents } from '@/components/CustomSvg.components'
 
 import { useCartStore } from '@/providers/useCartStore'
 
+/**
+ * `dishes` are all the dishes of the company. They are loaded on the server
+ * (see app/[company]/cart/page.js): this component must not call the API itself.
+ */
 export function ShoppingCartItemsListComponents({
-	company_slug,
+	dishes,
 	content_website_from_company,
 }) {
 	const countItemsInCart = useCartStore(state => state.countItemsInCart)
@@ -18,18 +21,10 @@ export function ShoppingCartItemsListComponents({
 	const itemsInCart = useCartStore(state => state.itemsInCart)
 	const [isLoading, setIsLoading] = useState(true)
 
-	const [dishes, setDishes] = useState([])
-
 	const itemInfo = item => {
-		if (!dishes.length) return
+		if (!dishes?.length) return
 		return dishes.find(dish => dish?.id?.toString() === item?.toString())
 	}
-
-	useEffect(() => {
-		get_data_dishes(company_slug).then(data => {
-			setDishes(data)
-		})
-	}, [])
 
 	useEffect(() => {
 		countItemsInCart()

@@ -7,7 +7,10 @@ import { ShoppingCartButtonResumeComponents } from '@/components/ShoppingCartCom
 import { ShoppingCartButtonClearComponents } from '@/components/ShoppingCartComponents/ShoppingCartButtonClear.components'
 import FilterComponents from '@/components/Filter/Filter.components'
 import { ButtonFilterComponents } from '@/components/Layout/ButtonFilter.components'
-import { getAllData_FromCompany } from '@/services/getData'
+import {
+	getAllData_DishesFromCategory,
+	getAllData_FromCompany,
+} from '@/services/getData'
 
 export async function NavComponents({
 	parent_categories = null,
@@ -18,11 +21,16 @@ export async function NavComponents({
 }) {
 	const content_website_from_company =
 		await getAllData_FromCompany(company_slug)
+	// dishes of the current category, for the search field
+	// (category and company are null on the cart page)
+	const category_data =
+		category && company
+			? await getAllData_DishesFromCategory(category, company)
+			: null
 	return (
 		<>
 			<FilterComponents
-				category={category}
-				company={company}
+				dishes={category_data?.dishes}
 				content_website_from_company={content_website_from_company}
 			/>
 			<nav
@@ -109,7 +117,9 @@ export async function NavComponents({
 									}
 								>
 									<UnderlineDecorationComponents
-										parent_categories={parent_categories}
+										parent_categories={parent_categories.map(record => ({
+											id: record.id,
+										}))}
 										selected_category={selected_category}
 										content_website_from_company={content_website_from_company}
 									/>
